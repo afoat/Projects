@@ -1,4 +1,6 @@
-﻿This is a set of custom generic collections originally located here: https://github.com/afoat/Common.
+﻿This is one part of a larger project. Please head here to see the entire solution. https://github.com/afoat/Projects
+
+This is a set of custom generic collections originally located here: https://github.com/afoat/Common.
 
 That repository has since been depreciated so that all of my code can live together under the same repository.
 

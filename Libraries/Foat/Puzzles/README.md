@@ -1,4 +1,6 @@
-﻿This library contains code that allows us to manipulate and solve a Rubik's Cube. The solution I've developed finds the shortest possible solution to any randomized Rubik's Cube. For more information about my solution please check out Richard E. Korf's paper here - https://www.cs.princeton.edu/courses/archive/fall06/cos402/papers/korfrubik.pdf
+﻿This is one part of a larger project. Please head here to see the entire solution. https://github.com/afoat/Projects
+
+This library contains code that allows us to manipulate and solve a Rubik's Cube. The solution I've developed finds the shortest possible solution to any randomized Rubik's Cube. For more information about my solution please check out Richard E. Korf's paper here - https://www.cs.princeton.edu/courses/archive/fall06/cos402/papers/korfrubik.pdf
 
 A Rubik's Cube consists of 26 visible "cubies". There are 8 corner cubies that have 3 visible colours each, 12 edge cubies that have 2 colours each, and 6 center cubies that never move so we can ignore them. Instead of rotating an assembled cube you can simulate the twists and turns of a real cube by taking the cube apart and lining up all 20 cubies on a table and twisting and turning them individuallly instead. Doing this makes it easier for us to examine each individual cubie at any time.
 
