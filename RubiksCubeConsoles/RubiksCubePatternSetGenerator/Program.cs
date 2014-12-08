@@ -3,6 +3,7 @@
     using Foat.Puzzles.RubiksCube;
     using Foat.Puzzles.RubiksCube.Solution.ShortestPath;
     using RubiksCubePatternSetGenerator.Configuration;
+    using System.Collections.Generic;
     using System.Diagnostics;
     using System.IO;
 
@@ -16,7 +17,7 @@
                 return;
             }
 
-            PatternCollection patternCollection = GetPatternsToGenerate();
+            IEnumerable<Pattern> patternCollection = GetPatternsToGenerate();
             
             foreach (Pattern pattern in patternCollection)
             {
@@ -26,7 +27,7 @@
             }
         }
 
-        private static PatternCollection GetPatternsToGenerate()
+        private static IEnumerable<Pattern> GetPatternsToGenerate()
         {
             Pattern[] patterns = new Pattern[] {
                 new Pattern("EdgeGroup1",   42577920, 10, RubiksCubeFactory.CreateEdgeGroup1MaskCube()),
@@ -43,7 +44,7 @@
                 new Pattern("HybridGroup4", 95800320, 11, RubiksCubeFactory.CreateHybridGroup4MaskCube()),
             };
 
-            return new PatternCollection(patterns);
+            return patterns;
         }
     }
 }

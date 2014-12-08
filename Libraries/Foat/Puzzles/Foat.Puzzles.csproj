@@ -71,7 +71,6 @@
     <Compile Include="RubiksCube\Solution\Move.cs" />
     <Compile Include="RubiksCube\Solution\ShortestPath\ParallelIDAStar.cs" />
     <Compile Include="RubiksCube\Solution\ShortestPath\Pattern.cs" />
-    <Compile Include="RubiksCube\Solution\ShortestPath\PatternCollection.cs" />
     <Compile Include="RubiksCube\Solution\ShortestPath\PatternSet.cs" />
     <Compile Include="RubiksCube\Solution\ShortestPath\PatternSetGenerator.cs" />
     <Compile Include="RubiksCube\Solution\ShortestPath\PatternSetGeneratorWorker.cs" />
