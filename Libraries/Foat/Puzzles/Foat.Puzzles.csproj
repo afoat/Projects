@@ -69,7 +69,6 @@
     <Compile Include="RubiksCube\Solution\IRubiksCubeSolutionGenerator.cs" />
     <Compile Include="RubiksCube\Solution\ShortestPath\IDAStar.cs" />
     <Compile Include="RubiksCube\Solution\Move.cs" />
-    <Compile Include="RubiksCube\Solution\ShortestPath\IDAStarResult.cs" />
     <Compile Include="RubiksCube\Solution\ShortestPath\ParallelIDAStar.cs" />
     <Compile Include="RubiksCube\Solution\ShortestPath\Pattern.cs" />
     <Compile Include="RubiksCube\Solution\ShortestPath\PatternCollection.cs" />
