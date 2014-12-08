@@ -1,4 +1,4 @@
-FOAT.COLLECTIONS:
+LIBRARIES\FOAT.COLLECTIONS
 
 Is a set of custom generic collections.
 
@@ -9,12 +9,12 @@ Is a set of custom generic collections.
 * SkipList - A Skip List is an alternative to any of the Binary Search Trees above. It's easier to implement but provides nearly the same performance as the other ones.
 * SmallIntArray - This array can pack integers smaller than one byte into a byte array such that there is no wasted space.
 
-FOAT.HASHING:
+LIBRARIES\FOAT.HASHING:
 
 * FnvHash - Fnv Hash is a fairly good hash function that is easy to implement, fairly speedy, and provides a good distribution of hash keys. For more information see - http://isthe.com/chongo/tech/comp/fnv/
 * MinimalPerfectHash - A perfect hash function maps a set to a set of integers with no collisions. A minimal perfect hash is a perfect hash with consecutive keys going from 0 .. n where there are n elements in the set. For more information see these sites - http://stevehanov.ca/blog/index.php?id=119, http://cmph.sourceforge.net/papers/fch92.pdf
 
-FOAT.PUZZLES:
+LIBRARIES\FOAT.PUZZLES:
 
 This library contains code that allows us to manipulate and solve a Rubik's Cube. The solution I've developed finds the shortest possible solution to any randomized Rubik's Cube. For more information about my solution please check out Richard E. Korf's paper here - https://www.cs.princeton.edu/courses/archive/fall06/cos402/papers/korfrubik.pdf
 
