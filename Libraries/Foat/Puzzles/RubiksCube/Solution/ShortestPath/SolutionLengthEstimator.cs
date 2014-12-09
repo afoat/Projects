@@ -1,6 +1,7 @@
 ﻿namespace Foat.Puzzles.RubiksCube.Solution.ShortestPath
 {
     using Foat.Puzzles.RubiksCube;
+    using Foat.Puzzles.Solutions;
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
@@ -13,7 +14,7 @@
     /// required to solve a Rubiks Cube in any given state. Using more patttern sets generally yields more accurate
     /// results.
     /// </summary>
-    public sealed class SolutionLengthEstimator
+    public sealed class SolutionLengthEstimator : IHeuristic<RubiksCube>
     {
         /// <summary>
         /// A collection of PatternSets used to estimate the minimum solution distance of a Rubiks Cube.
@@ -55,7 +56,7 @@
         /// </summary>
         /// <param name="rubiksCube">The rubiks cube that we would like to estimate</param>
         /// <returns></returns>
-        public byte GetMinimumEstimatedSolutionLength(RubiksCube rubiksCube)
+        public int GetMinimumEstimatedSolutionLength(RubiksCube rubiksCube)
         {
             if (rubiksCube == null)
                 throw new ArgumentNullException("rubiksCube");

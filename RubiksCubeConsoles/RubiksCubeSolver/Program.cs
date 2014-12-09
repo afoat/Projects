@@ -3,6 +3,8 @@
     using Foat.Puzzles.RubiksCube;
     using Foat.Puzzles.RubiksCube.Solution;
     using Foat.Puzzles.RubiksCube.Solution.ShortestPath;
+    using Foat.Puzzles.Solutions;
+    using Foat.Puzzles.Solutions.IDAStar;
     using RubiksCubeSolver.Configuration;
     using System;
     using System.Diagnostics;
@@ -22,7 +24,7 @@
             
             SolutionLengthEstimator soltutionEstimator = new SolutionLengthEstimator(GetPatternSetFilenames());
 
-            IRubiksCubeSolutionGenerator solutionGenerator = new ParallelIDAStar(soltutionEstimator);
+            IPuzzleSolution<RubiksCube> solutionGenerator = new ParallelIDAStar<RubiksCube>(soltutionEstimator, new RubiksCube());
 
             Random rnd = new Random();
             string inputFromUser;
@@ -32,11 +34,11 @@
                 RubiksCube cube = new RubiksCube();
                 for (int i = 0; i < 100; ++i)
                 {
-                    Move move = (Move)rnd.Next((int)Move.MaxMove);
+                    int move = rnd.Next(RubiksCube.Moves.MaxMove);
 
                     Trace.WriteLine(string.Format("Mixing with move {0}.", move.ToString()));
 
-                    cube = RubiksCubeController.Rotate(cube, move);
+                    cube = cube.PerformMove(move);
                 }
 
                 var solution = solutionGenerator.FindSolution(cube);
@@ -47,7 +49,7 @@
                 }
                 else
                 {
-                    foreach (Move move in solution)
+                    foreach (int move in solution)
                     {
                         Trace.WriteLine(move.ToString());
                     }

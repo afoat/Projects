@@ -1,6 +1,7 @@
 ﻿namespace Foat.Puzzles.RubiksCube.Solution.ShortestPath
 {
     using Foat.Puzzles.RubiksCube;
+    using Foat.Puzzles.Solutions;
     using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
@@ -24,14 +25,14 @@
         /// <summary>
         /// A queue containing all of the RubiksCubes that we have not yet examined (by applying all twists/moves to them).
         /// </summary>
-        public ConcurrentQueue<RotatedCube> CubesToExamine { get; private set; }
+        public ConcurrentQueue<PuzzleState<RubiksCube>> CubesToExamine { get; private set; }
 
         /// <summary>
         /// The current maximum number of moves found in the PatternSet so far.
         /// </summary>
         public int CurrentMaxDepth { get; private set; }
 
-        public PatternSetGeneratorWorker(ConcurrentDictionary<RubiksCube, byte> patternDatabase, ConcurrentQueue<RotatedCube> cubesToExamine, int groupSize, int maxDepth)
+        public PatternSetGeneratorWorker(ConcurrentDictionary<RubiksCube, byte> patternDatabase, ConcurrentQueue<PuzzleState<RubiksCube>> cubesToExamine, int groupSize, int maxDepth)
         {
             this.MaxDepth = maxDepth;
             this.GroupSize = groupSize;
@@ -48,21 +49,21 @@
             int count;
             while (this.CubesToExamine.Count > 0)
             {
-                RotatedCube rotatedCube;
+                PuzzleState<RubiksCube> rotatedCube;
                 if (this.CubesToExamine.TryDequeue(out rotatedCube))
                 {
                     byte newDepth = (byte)(rotatedCube.Depth + 1);
                     this.CurrentMaxDepth = Math.Max(this.CurrentMaxDepth, newDepth);
 
-                    IEnumerable<Move> moves = RubiksCubeController.GetValidMovesBasedOnPreviousMove(rotatedCube.Move);
+                    IEnumerable<int> moves = rotatedCube.PuzzleInstance.GetValidMovesBasedOnPreviousMove(rotatedCube.LastMove);
 
-                    foreach (Move move in moves)
+                    foreach (int move in moves)
                     {
-                        RubiksCube newCube = RubiksCubeController.Rotate(rotatedCube.RubiksCube, move);
+                        RubiksCube newCube = rotatedCube.PuzzleInstance.PerformMove(move);
 
                         if (!this.PatternDatabase.ContainsKey(newCube) && newDepth <= this.MaxDepth)
                         {
-                            this.CubesToExamine.Enqueue(new RotatedCube(move, newDepth, newCube));
+                            this.CubesToExamine.Enqueue(new PuzzleState<RubiksCube>(move, newDepth, newCube));
                             lock (this.PatternDatabase)
                             {
                                 this.PatternDatabase.AddOrUpdate(newCube, newDepth, (cube, depth) => Math.Min(newDepth, depth));

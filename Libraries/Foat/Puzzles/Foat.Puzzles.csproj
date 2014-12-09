@@ -66,17 +66,17 @@
     <Compile Include="RubiksCube\RubiksCube.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RubiksCube\RubiksCubeFactory.cs" />
-    <Compile Include="RubiksCube\Solution\IRubiksCubeSolutionGenerator.cs" />
-    <Compile Include="RubiksCube\Solution\ShortestPath\IDAStar.cs" />
-    <Compile Include="RubiksCube\Solution\Move.cs" />
-    <Compile Include="RubiksCube\Solution\ShortestPath\ParallelIDAStar.cs" />
+    <Compile Include="Solutions\IDAStar\IDAStar.cs" />
+    <Compile Include="Solutions\IDAStar\ParallelIDAStar.cs" />
     <Compile Include="RubiksCube\Solution\ShortestPath\Pattern.cs" />
     <Compile Include="RubiksCube\Solution\ShortestPath\PatternSet.cs" />
     <Compile Include="RubiksCube\Solution\ShortestPath\PatternSetGenerator.cs" />
     <Compile Include="RubiksCube\Solution\ShortestPath\PatternSetGeneratorWorker.cs" />
-    <Compile Include="RubiksCube\Solution\RotatedCube.cs" />
-    <Compile Include="RubiksCube\Solution\RubiksCubeController.cs" />
+    <Compile Include="Solutions\PuzzleState.cs" />
     <Compile Include="RubiksCube\Solution\ShortestPath\SolutionLengthEstimator.cs" />
+    <Compile Include="Solutions\IHeuristic.cs" />
+    <Compile Include="Solutions\IPuzzle.cs" />
+    <Compile Include="Solutions\IPuzzleSolution.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Hashing\Foat.Hashing.csproj">
@@ -90,6 +90,7 @@
     </None>
     <None Include="README.md" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
