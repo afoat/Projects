@@ -2,8 +2,7 @@
 {
     public interface IPuzzle<TPuzzle>
     {
-        TPuzzle PerformMove(int moveId);
-        int[] GetValidMovesBasedOnPreviousMove(int? previousMove);
-        int[] GetValidMovesBasedOnPreviousMove();
+        Move<TPuzzle> GetMove(int moveId);
+        Move<TPuzzle>[] GetValidMoves();
     }
 }

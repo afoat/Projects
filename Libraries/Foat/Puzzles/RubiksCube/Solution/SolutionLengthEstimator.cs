@@ -1,4 +1,4 @@
-﻿namespace Foat.Puzzles.RubiksCube.Solution.ShortestPath
+﻿namespace Foat.Puzzles.RubiksCube.Solution
 {
     using Foat.Puzzles.RubiksCube;
     using Foat.Puzzles.Solutions;

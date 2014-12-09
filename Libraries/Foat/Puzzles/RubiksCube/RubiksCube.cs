@@ -6,34 +6,8 @@
     using System.Runtime.CompilerServices;
     using System.Xml.Serialization;
 
-    public sealed class RubiksCube : IHashKey, IXmlSerializable, IEquatable<RubiksCube>, IPuzzle<RubiksCube>
+    public sealed partial class RubiksCube : IPuzzle<RubiksCube>, IHashKey, IXmlSerializable, IEquatable<RubiksCube>
     {
-        #region Structs
-
-        public struct Moves
-        {
-            public const byte TopCW = 0;
-            public const byte TopCCW = 1;
-            public const byte TopHalf = 2;
-            public const byte BottomCW = 3;
-            public const byte BottomCCW = 4;
-            public const byte BottomHalf = 5;
-            public const byte LeftCW = 6;
-            public const byte LeftCCW = 7;
-            public const byte LeftHalf = 8;
-            public const byte RightCW = 9;
-            public const byte RightCCW = 10;
-            public const byte RightHalf = 11;
-            public const byte FrontCW = 12;
-            public const byte FrontCCW = 13;
-            public const byte FrontHalf = 14;
-            public const byte BackCW = 15;
-            public const byte BackCCW = 16;
-            public const byte BackHalf = 17;
-            public const byte MaxMove = 18;
-        }
-
-        #endregion
 
         #region Constants
 
@@ -42,57 +16,6 @@
         private const byte EdgeStartIx = 7;
         private const byte EdgeEndIx = 18;
         private const byte NumCubies = EdgeEndIx + 1;
-
-        #endregion
-
-        #region Static Members
-
-        private static readonly int[] AllMoves = new int[] {
-                    Moves.TopCW, Moves.TopCCW, Moves.TopHalf, 
-                    Moves.BottomCW, Moves.BottomCCW, Moves.BottomHalf, 
-                    Moves.LeftCW, Moves.LeftCCW, Moves.LeftHalf, 
-                    Moves.RightCW, Moves.RightCCW, Moves.RightHalf, 
-                    Moves.FrontCW, Moves.FrontCCW, Moves.FrontHalf, 
-                    Moves.BackCW, Moves.BackCCW, Moves.BackHalf };
-
-        private static readonly int[] TopMoves = new int[] {
-                    Moves.BottomCW, Moves.BottomCCW, Moves.BottomHalf, 
-                    Moves.LeftCW, Moves.LeftCCW, Moves.LeftHalf, 
-                    Moves.RightCW, Moves.RightCCW, Moves.RightHalf, 
-                    Moves.FrontCW, Moves.FrontCCW, Moves.FrontHalf, 
-                    Moves.BackCW, Moves.BackCCW, Moves.BackHalf };
-
-        private static readonly int[] BottomMoves = new int[] { 
-                    Moves.LeftCW, Moves.LeftCCW, Moves.LeftHalf, 
-                    Moves.RightCW, Moves.RightCCW, Moves.RightHalf, 
-                    Moves.FrontCW, Moves.FrontCCW, Moves.FrontHalf, 
-                    Moves.BackCW, Moves.BackCCW, Moves.BackHalf };
-
-        private static readonly int[] LeftMoves = new int[] { 
-                    Moves.TopCW, Moves.TopCCW, Moves.TopHalf, 
-                    Moves.BottomCW, Moves.BottomCCW, Moves.BottomHalf, 
-                    Moves.RightCW, Moves.RightCCW, Moves.RightHalf, 
-                    Moves.FrontCW, Moves.FrontCCW, Moves.FrontHalf, 
-                    Moves.BackCW, Moves.BackCCW, Moves.BackHalf };
-
-        private static readonly int[] RightMoves = new int[] { 
-                    Moves.TopCW, Moves.TopCCW, Moves.TopHalf, 
-                    Moves.BottomCW, Moves.BottomCCW, Moves.BottomHalf, 
-                    Moves.FrontCW, Moves.FrontCCW, Moves.FrontHalf, 
-                    Moves.BackCW, Moves.BackCCW, Moves.BackHalf };
-
-        private static readonly int[] FrontMoves = new int[] { 
-                    Moves.TopCW, Moves.TopCCW, Moves.TopHalf, 
-                    Moves.BottomCW, Moves.BottomCCW, Moves.BottomHalf, 
-                    Moves.LeftCW, Moves.LeftCCW, Moves.LeftHalf, 
-                    Moves.RightCW, Moves.RightCCW, Moves.RightHalf, 
-                    Moves.BackCW, Moves.BackCCW, Moves.BackHalf };
-
-        private static readonly int[] BackMoves = new int[] { 
-                    Moves.TopCW, Moves.TopCCW, Moves.TopHalf, 
-                    Moves.BottomCW, Moves.BottomCCW, Moves.BottomHalf, 
-                    Moves.LeftCW, Moves.LeftCCW, Moves.LeftHalf, 
-                    Moves.RightCW, Moves.RightCCW, Moves.RightHalf };
 
         #endregion
 
@@ -332,89 +255,19 @@
             return new RubiksCube(newData);
         }
 
-        public RubiksCube PerformMove(int moveId)
+        public Move<RubiksCube> GetMove(int moveId)
         {
-            switch (moveId)
+            if (moveId < 0 || moveId > AllMoves.Length)
             {
-                case Moves.TopCW:
-                    return this.RotateTopCW();
-                case Moves.TopCCW:
-                    return this.RotateTopCCW();
-                case Moves.TopHalf:
-                    return this.RotateTopHalf();
-                case Moves.BottomCW:
-                    return this.RotateBottomCW();
-                case Moves.BottomCCW:
-                    return this.RotateBottomCCW();
-                case Moves.BottomHalf:
-                    return this.RotateBottomHalf();
-                case Moves.LeftCW:
-                    return this.RotateLeftCW();
-                case Moves.LeftCCW:
-                    return this.RotateLeftCCW();
-                case Moves.LeftHalf:
-                    return this.RotateLeftHalf();
-                case Moves.RightCW:
-                    return this.RotateRightCW();
-                case Moves.RightCCW:
-                    return this.RotateRightCCW();
-                case Moves.RightHalf:
-                    return this.RotateRightHalf();
-                case Moves.FrontCW:
-                    return this.RotateFrontCW();
-                case Moves.FrontCCW:
-                    return this.RotateFrontCCW();
-                case Moves.FrontHalf:
-                    return this.RotateFrontHalf();
-                case Moves.BackCW:
-                    return this.RotateBackCW();
-                case Moves.BackCCW:
-                    return this.RotateBackCCW();
-                case Moves.BackHalf:
-                    return this.RotateBackHalf();
-                default:
-                    throw new ArgumentException();
+                throw new ArgumentOutOfRangeException("moveId");
             }
+
+            return AllMoves[moveId];
         }
 
-        public int[] GetValidMovesBasedOnPreviousMove()
+        public Move<RubiksCube>[] GetValidMoves()
         {
             return AllMoves;
-        }
-
-        public int[] GetValidMovesBasedOnPreviousMove(int? previousMove)
-        {
-            switch (previousMove)
-            {
-                case null:
-                    return AllMoves;
-                case Moves.TopCCW:
-                case Moves.TopCW:
-                case Moves.TopHalf:
-                    return TopMoves;
-                case Moves.BottomHalf:
-                case Moves.BottomCW:
-                case Moves.BottomCCW:
-                    return BottomMoves;
-                case Moves.LeftCCW:
-                case Moves.LeftCW:
-                case Moves.LeftHalf:
-                    return LeftMoves;
-                case Moves.RightCCW:
-                case Moves.RightCW:
-                case Moves.RightHalf:
-                    return RightMoves;
-                case Moves.FrontCCW:
-                case Moves.FrontCW:
-                case Moves.FrontHalf:
-                    return FrontMoves;
-                case Moves.BackCW:
-                case Moves.BackCCW:
-                case Moves.BackHalf:
-                    return BackMoves;
-                default:
-                    throw new ArgumentException();
-            }
         }
 
         #endregion

@@ -2,7 +2,6 @@
 {
     using Foat.Puzzles.RubiksCube;
     using Foat.Puzzles.RubiksCube.Solution;
-    using Foat.Puzzles.RubiksCube.Solution.ShortestPath;
     using Foat.Puzzles.Solutions;
     using Foat.Puzzles.Solutions.IDAStar;
     using RubiksCubeSolver.Configuration;
@@ -29,16 +28,21 @@
             Random rnd = new Random();
             string inputFromUser;
 
+            RubiksCube newCube = new RubiksCube();
+            int numberOfMoves = newCube.GetValidMoves().Length;
+
             do
             {
-                RubiksCube cube = new RubiksCube();
+                RubiksCube cube = newCube;
+
                 for (int i = 0; i < 100; ++i)
                 {
-                    int move = rnd.Next(RubiksCube.Moves.MaxMove);
+                    int moveId = rnd.Next(numberOfMoves);
+                    Move<RubiksCube> move = cube.GetMove(moveId);
 
                     Trace.WriteLine(string.Format("Mixing with move {0}.", move.ToString()));
 
-                    cube = cube.PerformMove(move);
+                    cube = move.MovePuzzle(cube);
                 }
 
                 var solution = solutionGenerator.FindSolution(cube);
@@ -49,7 +53,7 @@
                 }
                 else
                 {
-                    foreach (int move in solution)
+                    foreach (Move<RubiksCube> move in solution)
                     {
                         Trace.WriteLine(move.ToString());
                     }

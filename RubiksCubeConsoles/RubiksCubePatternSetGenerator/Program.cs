@@ -1,7 +1,7 @@
 ﻿namespace RubiksCubePatternSetGenerator
 {
     using Foat.Puzzles.RubiksCube;
-    using Foat.Puzzles.RubiksCube.Solution.ShortestPath;
+    using Foat.Puzzles.RubiksCube.Solution;
     using RubiksCubePatternSetGenerator.Configuration;
     using System.Collections.Generic;
     using System.Diagnostics;

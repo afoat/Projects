@@ -12,14 +12,14 @@
     {
         public ParallelIDAStar(IHeuristic<TPuzzle> heuristic, TPuzzle solutionInstance) : base(heuristic, solutionInstance) { }
 
-        public override IEnumerable<int> FindSolution(TPuzzle puzzleInstance)
+        public override IEnumerable<Move<TPuzzle>> FindSolution(TPuzzle puzzleInstance)
         {
             if (puzzleInstance == null)
                 throw new ArgumentNullException("puzzleInstance");
-            
-            ConcurrentDictionary<IPuzzle<TPuzzle>, IEnumerable<int>> workerInfo = new ConcurrentDictionary<IPuzzle<TPuzzle>, IEnumerable<int>>();
 
-            int[] moves = puzzleInstance.GetValidMovesBasedOnPreviousMove();
+            ConcurrentDictionary<IPuzzle<TPuzzle>, IEnumerable<Move<TPuzzle>>> workerInfo = new ConcurrentDictionary<IPuzzle<TPuzzle>, IEnumerable<Move<TPuzzle>>>();
+
+            Move<TPuzzle>[] moves = puzzleInstance.GetValidMoves();
 
             int maxDepth = this.Heuristic.GetMinimumEstimatedSolutionLength(puzzleInstance);
             bool found = false;
@@ -35,13 +35,13 @@
                     tasks[i] = Task.Factory.StartNew((taskIx =>
                         {
                             int index = (int)taskIx;
-                            TPuzzle newPuzzle = puzzleInstance.PerformMove((int)moves[index]);
-                            PuzzleState<TPuzzle> puzzleState = new PuzzleState<TPuzzle>((int)moves[index], 1, newPuzzle);
-                            Stack<int> currentSolution = new Stack<int>();
+                            TPuzzle newPuzzle = moves[index].MovePuzzle(puzzleInstance);
+                            PuzzleState<TPuzzle> puzzleState = new PuzzleState<TPuzzle>(moves[index], 1, newPuzzle);
+                            Stack<Move<TPuzzle>> currentSolution = new Stack<Move<TPuzzle>>();
 
                             if (this.DepthLimitedDFS(puzzleState, maxDepth, currentSolution))
                             {
-                                currentSolution.Push((int)moves[index]);
+                                currentSolution.Push(moves[index]);
                                 workerInfo[newPuzzle] = currentSolution;
                                 found = true;
                             }

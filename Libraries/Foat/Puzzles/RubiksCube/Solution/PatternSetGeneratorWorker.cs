@@ -1,4 +1,4 @@
-﻿namespace Foat.Puzzles.RubiksCube.Solution.ShortestPath
+﻿namespace Foat.Puzzles.RubiksCube.Solution
 {
     using Foat.Puzzles.RubiksCube;
     using Foat.Puzzles.Solutions;
@@ -49,17 +49,25 @@
             int count;
             while (this.CubesToExamine.Count > 0)
             {
-                PuzzleState<RubiksCube> rotatedCube;
-                if (this.CubesToExamine.TryDequeue(out rotatedCube))
+                PuzzleState<RubiksCube> puzzleState;
+                if (this.CubesToExamine.TryDequeue(out puzzleState))
                 {
-                    byte newDepth = (byte)(rotatedCube.Depth + 1);
+                    byte newDepth = (byte)(puzzleState.Depth + 1);
                     this.CurrentMaxDepth = Math.Max(this.CurrentMaxDepth, newDepth);
 
-                    IEnumerable<int> moves = rotatedCube.PuzzleInstance.GetValidMovesBasedOnPreviousMove(rotatedCube.LastMove);
-
-                    foreach (int move in moves)
+                    IEnumerable<Move<RubiksCube>> moves;
+                    if (puzzleState.LastMove == null)
                     {
-                        RubiksCube newCube = rotatedCube.PuzzleInstance.PerformMove(move);
+                        moves = puzzleState.PuzzleInstance.GetValidMoves();
+                    }
+                    else
+                    {
+                        moves = puzzleState.LastMove.GetValidNextMoves();
+                    }
+
+                    foreach (Move<RubiksCube> move in moves)
+                    {
+                        RubiksCube newCube = move.MovePuzzle(puzzleState.PuzzleInstance);
 
                         if (!this.PatternDatabase.ContainsKey(newCube) && newDepth <= this.MaxDepth)
                         {

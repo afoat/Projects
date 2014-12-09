@@ -4,6 +4,6 @@
 
     public interface IPuzzleSolution<TPuzzle>
     {
-        IEnumerable<int> FindSolution(TPuzzle puzzleInstance);
+        IEnumerable<Move<TPuzzle>> FindSolution(TPuzzle puzzleInstance);
     }
 }

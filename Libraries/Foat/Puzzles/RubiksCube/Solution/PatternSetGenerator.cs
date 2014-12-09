@@ -1,4 +1,4 @@
-﻿namespace Foat.Puzzles.RubiksCube.Solution.ShortestPath
+﻿namespace Foat.Puzzles.RubiksCube.Solution
 {
     using Foat.Hashing;
     using Foat.Puzzles.RubiksCube;
@@ -98,7 +98,7 @@
         private static void SetInitalState(Pattern pattern, ConcurrentDictionary<RubiksCube, byte> patternDatabase, ConcurrentQueue<PuzzleState<RubiksCube>> cubesToExamine)
         {
             RubiksCube newCube = new RubiksCube().ApplyMask(pattern.Mask);
-            cubesToExamine.Enqueue(new PuzzleState<RubiksCube>(null, 0, newCube));
+            cubesToExamine.Enqueue(new PuzzleState<RubiksCube>(0, newCube));
             patternDatabase[newCube] = 0;
         }
 
