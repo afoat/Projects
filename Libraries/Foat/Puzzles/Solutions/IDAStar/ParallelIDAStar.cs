@@ -15,55 +15,68 @@
 
         public override IEnumerable<Move<TPuzzle>> FindSolution(TPuzzle puzzleInstance)
         {
-            if (puzzleInstance == null)
-                throw new ArgumentNullException("puzzleInstance");
-
-
-            ConcurrentDictionary<TPuzzle, IEnumerable<Move<TPuzzle>>> workerInfo = new ConcurrentDictionary<TPuzzle, IEnumerable<Move<TPuzzle>>>();
-
-            int maxDepth = this.Heuristic.GetMinimumEstimatedSolutionLength(puzzleInstance);
-            bool found = false;
-            while (!found)
+            int numTasks = ParallelIDAStarSettings.Current.NumTasks;
+            if (numTasks < 1)
             {
-                Queue<PuzzleState<TPuzzle>> nodes = new Queue<PuzzleState<TPuzzle>>();
-
-                if (NodeLimitedBFS(puzzleInstance, ParallelIDAStarSettings.Current.NumTasks, nodes))
-                {
-                    return base.FindSolution(puzzleInstance);
-                }
-                else
-                {
-                    Trace.WriteLine(string.Format("IDA* - Bound = {0:N0}", maxDepth));
-
-                    Task[] tasks = new Task[nodes.Count];
-                    workerInfo.Clear();
-
-                    for (int i = 0; i < tasks.Length; ++i)
-                    {
-                        PuzzleState<TPuzzle> puzzleState = nodes.Dequeue();
-                        tasks[i] = Task.Factory.StartNew((state =>
-                        {
-                            PuzzleState<TPuzzle> newPuzzleState = (PuzzleState<TPuzzle>)state;
-                            Stack<Move<TPuzzle>> currentSolution = new Stack<Move<TPuzzle>>();
-
-                            if (this.DepthLimitedDFS(puzzleState, maxDepth, currentSolution))
-                            {
-                                currentSolution.Push(newPuzzleState.LastMove);
-                                workerInfo[newPuzzleState.PuzzleInstance] = currentSolution;
-                                found = true;
-                            }
-
-                        }), puzzleState);
-                    }
-
-                    Task.WaitAll(tasks);
-                    ++maxDepth;
-                }
+                throw new InvalidOperationException("Must have at least one IDAStar task.");
             }
+            else if (numTasks == 1)
+            {
+                return base.FindSolution(puzzleInstance);
+            }
+            else
+            {
 
-            return workerInfo.Values
-                             .Where(solution => solution != null && solution.Count() > 0)
-                             .FirstOrDefault(); // First or default because we might find two solutions at the same depth
+                if (puzzleInstance == null)
+                    throw new ArgumentNullException("puzzleInstance");
+
+
+                ConcurrentDictionary<TPuzzle, IEnumerable<Move<TPuzzle>>> workerInfo = new ConcurrentDictionary<TPuzzle, IEnumerable<Move<TPuzzle>>>();
+
+                int maxDepth = this.Heuristic.GetMinimumEstimatedSolutionLength(puzzleInstance);
+                bool found = false;
+                while (!found)
+                {
+                    Queue<PuzzleState<TPuzzle>> nodes = new Queue<PuzzleState<TPuzzle>>();
+
+                    if (NodeLimitedBFS(puzzleInstance, numTasks, nodes))
+                    {
+                        return base.FindSolution(puzzleInstance);
+                    }
+                    else
+                    {
+                        Trace.WriteLine(string.Format("IDA* - Bound = {0:N0}", maxDepth));
+
+                        Task[] tasks = new Task[nodes.Count];
+                        workerInfo.Clear();
+
+                        for (int i = 0; i < tasks.Length; ++i)
+                        {
+                            PuzzleState<TPuzzle> puzzleState = nodes.Dequeue();
+                            tasks[i] = Task.Factory.StartNew((state =>
+                            {
+                                PuzzleState<TPuzzle> newPuzzleState = (PuzzleState<TPuzzle>)state;
+                                Stack<Move<TPuzzle>> currentSolution = new Stack<Move<TPuzzle>>();
+
+                                if (this.DepthLimitedDFS(puzzleState, maxDepth, currentSolution))
+                                {
+                                    currentSolution.Push(newPuzzleState.LastMove);
+                                    workerInfo[newPuzzleState.PuzzleInstance] = currentSolution;
+                                    found = true;
+                                }
+
+                            }), puzzleState);
+                        }
+
+                        Task.WaitAll(tasks);
+                        ++maxDepth;
+                    }
+                }
+
+                return workerInfo.Values
+                                 .Where(solution => solution != null && solution.Count() > 0)
+                                 .FirstOrDefault(); // First or default because we might find two solutions at the same depth
+            }
         }
 
         private bool NodeLimitedBFS(TPuzzle puzzleInstance, int minNumNodes, Queue<PuzzleState<TPuzzle>> nodes)

@@ -1,22 +1,16 @@
-﻿using Foat.Puzzles.NPuzzle;
-using Foat.Puzzles.NPuzzle.Solution;
-using Foat.Puzzles.Solutions;
-using Foat.Puzzles.Solutions.IDAStar;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NPuzzleSolver
+﻿namespace NPuzzleSolver
 {
+    using Foat.Puzzles.NPuzzle;
+    using Foat.Puzzles.NPuzzle.Solution;
+    using Foat.Puzzles.Solutions;
+    using Foat.Puzzles.Solutions.IDAStar;
+    using System;
+    using System.Diagnostics;
+
     class Program
     {
         static void Main(string[] args)
         {
-            Trace.WriteLine("Getting Pattern Sets From Disk");
-
             ManhattanDistance heuristic = new ManhattanDistance();
 
             NPuzzle newPuzzle = new NPuzzle(3);

@@ -2,7 +2,7 @@
 {
     using Foat.Puzzles.Solutions;
 
-    public partial class NPuzzle
+    public sealed partial class NPuzzle
     {
         private static readonly Move<NPuzzle> Up = new Move<NPuzzle>("Up", nPuzzle => nPuzzle.SlideUp(), nPuzzle => nPuzzle.GetValidMovesAfterUp());
         private static readonly Move<NPuzzle> Down = new Move<NPuzzle>("Down", nPuzzle => nPuzzle.SlideDown(), nPuzzle => nPuzzle.GetValidMovesAfterDown());

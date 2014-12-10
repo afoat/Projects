@@ -24,7 +24,7 @@
 
             if (n > 15)
             {
-                throw new ArgumentException("Size oof the n-puzzlle must be at most 15.");
+                throw new ArgumentException("Size of the n-puzzle must be at most 15.");
             }
 
             this.N = n;
@@ -43,7 +43,7 @@
 
         private void InitializeBoard()
         {
-            byte current = 1;
+            byte current = 0;
 
             for (int i = 0; i < this.N; ++i)
             {
@@ -53,8 +53,8 @@
                 }
             }
 
-            this.BlankSpaceX = (byte)(this.N - 1);
-            this.BlankSpaceY = (byte)(this.N - 1);
+            this.BlankSpaceX = 0;
+            this.BlankSpaceY = 0;
 
             this.Board[this.BlankSpaceX, this.BlankSpaceY] = null;
         }
