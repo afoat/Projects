@@ -9,13 +9,13 @@
         #region Fields
 
         private const string SectionName = @"Foat.Puzzles.ConfigSection/ParallelIDAStar";
-        private const string DefaultNumTasksPropertyName = "MinNumberOfTasks";
+        private const string DefaultMinNumberOfTasksPropertyName = "MinNumberOfTasks";
 
         private const int DefaultNumTasks = 1;
 
         private static readonly ParallelIDAStarSettings SharedDefault = new ParallelIDAStarSettings()
             {
-                NumTasks = DefaultNumTasks,
+                MinNumberOfTasks = DefaultNumTasks,
             };
 
         private static readonly ParallelIDAStarSettings SharedCurrent = (ParallelIDAStarSettings)ConfigurationManager.GetSection(SectionName);
@@ -24,16 +24,16 @@
 
         #region Properties
 
-        [ConfigurationProperty(DefaultNumTasksPropertyName, DefaultValue = DefaultNumTasks, IsRequired = false)]
-        public int NumTasks
+        [ConfigurationProperty(DefaultMinNumberOfTasksPropertyName, DefaultValue = DefaultNumTasks, IsRequired = false)]
+        public int MinNumberOfTasks
         {
             get
             {
-                return (int)this[DefaultNumTasksPropertyName];
+                return (int)this[DefaultMinNumberOfTasksPropertyName];
             }
             set
             {
-                this[DefaultNumTasksPropertyName] = value;
+                this[DefaultMinNumberOfTasksPropertyName] = value;
             }
         }
 

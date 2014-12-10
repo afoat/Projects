@@ -3,6 +3,7 @@
     using Foat.Puzzles.Configuration;
     using Foat.Puzzles.Solutions;
     using System;
+    using System.Collections;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Diagnostics;
@@ -15,12 +16,13 @@
 
         public override IEnumerable<Move<TPuzzle>> FindSolution(TPuzzle puzzleInstance)
         {
-            int numTasks = ParallelIDAStarSettings.Current.NumTasks;
-            if (numTasks < 1)
+            int minNumTasks = ParallelIDAStarSettings.Current.MinNumberOfTasks;
+
+            if (minNumTasks < 1)
             {
                 throw new InvalidOperationException("Must have at least one IDAStar task.");
             }
-            else if (numTasks == 1)
+            else if (minNumTasks == 1)
             {
                 return base.FindSolution(puzzleInstance);
             }
@@ -29,23 +31,26 @@
 
                 if (puzzleInstance == null)
                     throw new ArgumentNullException("puzzleInstance");
-
-
+                
                 ConcurrentDictionary<TPuzzle, IEnumerable<Move<TPuzzle>>> workerInfo = new ConcurrentDictionary<TPuzzle, IEnumerable<Move<TPuzzle>>>();
+                ConcurrentDictionary<TPuzzle, ulong> numberOfMoves = new ConcurrentDictionary<TPuzzle, ulong>();
 
                 int maxDepth = this.Heuristic.GetMinimumEstimatedSolutionLength(puzzleInstance);
                 bool found = false;
+                long time = 0;
                 while (!found)
                 {
+                    Stopwatch stopwatch = new Stopwatch();
+                    stopwatch.Start();
                     Queue<PuzzleState<TPuzzle>> nodes = new Queue<PuzzleState<TPuzzle>>();
 
-                    if (NodeLimitedBFS(puzzleInstance, numTasks, nodes))
+                    if (NodeLimitedBFS(puzzleInstance, minNumTasks, nodes))
                     {
                         return base.FindSolution(puzzleInstance);
                     }
                     else
                     {
-                        Trace.WriteLine(string.Format("IDA* - Bound = {0:N0}", maxDepth));
+                        Trace.WriteLine(string.Format("Searching to a maximum depth of - {0:N0}. Last Depth Took: {1} ms", maxDepth, time));
 
                         Task[] tasks = new Task[nodes.Count];
                         workerInfo.Clear();
@@ -55,13 +60,15 @@
                             PuzzleState<TPuzzle> puzzleState = nodes.Dequeue();
                             tasks[i] = Task.Factory.StartNew((state =>
                             {
+                                ulong expandedNodes = 0;
                                 PuzzleState<TPuzzle> newPuzzleState = (PuzzleState<TPuzzle>)state;
                                 Stack<Move<TPuzzle>> currentSolution = new Stack<Move<TPuzzle>>();
 
-                                if (this.DepthLimitedDFS(puzzleState, maxDepth, currentSolution))
+                                if (this.DepthLimitedDFS(puzzleState, maxDepth, currentSolution, ref expandedNodes))
                                 {
                                     currentSolution.Push(newPuzzleState.LastMove);
                                     workerInfo[newPuzzleState.PuzzleInstance] = currentSolution;
+                                    numberOfMoves[newPuzzleState.PuzzleInstance] = expandedNodes;
                                     found = true;
                                 }
 
@@ -71,6 +78,14 @@
                         Task.WaitAll(tasks);
                         ++maxDepth;
                     }
+                    stopwatch.Stop();
+                    time = stopwatch.ElapsedMilliseconds;
+                }
+                
+                this.NumberOfExpandedNodes = 0;
+                foreach (ulong value in numberOfMoves.Values)
+                {
+                    this.NumberOfExpandedNodes += value;
                 }
 
                 return workerInfo.Values
@@ -92,25 +107,16 @@
                 {
                     PuzzleState<TPuzzle> puzzle = nodes.Dequeue();
 
-                    Move<TPuzzle>[] moves;
-                    if (puzzle.LastMove == null)
-                    {
-                        moves = puzzle.PuzzleInstance.GetValidMoves();
-                    }
-                    else
-                    {
-                        moves = puzzle.LastMove.GetValidNextMoves(puzzle.PuzzleInstance);
-                    }
+                    IEnumerable<PuzzleState<TPuzzle>> childPuzzles = GetPuzzleStatesToExamine(puzzle, int.MaxValue);
 
-                    foreach (Move<TPuzzle> move in moves)
+                    foreach (PuzzleState<TPuzzle> puzzleState in childPuzzles)
                     {
-                        TPuzzle newPuzzle = move.MovePuzzle(puzzle.PuzzleInstance);
-                        if (!puzzlesToExpand.Contains(newPuzzle))
+                        if (!puzzlesToExpand.Contains(puzzleState.PuzzleInstance))
                         {
-                            puzzlesToExpand.Add(newPuzzle);
-                            nodes.Enqueue(new PuzzleState<TPuzzle>(move, (byte)(puzzle.Depth + 1), newPuzzle));
+                            puzzlesToExpand.Add(puzzleState.PuzzleInstance);
+                            nodes.Enqueue(new PuzzleState<TPuzzle>(puzzleState.LastMove, (byte)(puzzle.Depth + 1), puzzleState.PuzzleInstance));
 
-                            if (newPuzzle.Equals(this.SolutionState))
+                            if (puzzleState.PuzzleInstance.Equals(this.SolutionState))
                             {
                                 return true;
                             }

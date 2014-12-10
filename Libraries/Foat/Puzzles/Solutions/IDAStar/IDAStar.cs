@@ -17,6 +17,10 @@
     /// </summary>
     public class IDAStar<TPuzzle> : IPuzzleSolution<TPuzzle> where TPuzzle : IPuzzle<TPuzzle>, IEquatable<TPuzzle>
     {
+        #region Properties
+
+        public ulong NumberOfExpandedNodes { get; protected set; }
+
         /// <summary>
         /// Stores the solved puzzle so that we can know when we reach the goal.
         /// </summary>
@@ -27,14 +31,25 @@
         /// </summary>
         protected IHeuristic<TPuzzle> Heuristic { get; set; }
 
-        public IDAStar(IHeuristic<TPuzzle> heuristic, TPuzzle solutionInstance)
+        #endregion
+
+        #region Construction
+
+        public IDAStar(IHeuristic<TPuzzle> heuristic, TPuzzle solution)
         {
             if (heuristic == null)
                 throw new ArgumentNullException("heuristic");
 
-            this.SolutionState = solutionInstance;
+            if (solution == null)
+                throw new ArgumentNullException("solution");
+
+            this.SolutionState = solution;
             this.Heuristic = heuristic;
         }
+
+        #endregion
+
+        #region Public Methods
 
         /// <summary>
         /// Finds the smallest list of moves possible, that when applied to a puzzle will leave it in the solved state.
@@ -50,20 +65,33 @@
 
             bool found = false;
             int maxDepth = this.Heuristic.GetMinimumEstimatedSolutionLength(puzzleInstance);
+            ulong expandedNodes = 0;
+            long time = 0;
 
             while (!found)
             {
-                Trace.WriteLine(string.Format("IDA* - Bound = {0:N0}", maxDepth));
-                if (DepthLimitedDFS(new PuzzleState<TPuzzle>(0, puzzleInstance), maxDepth, solution))
-                {
-                    found = true;
-                }
-
+                Trace.WriteLine(string.Format("Searching to a maximum depth of - {0:N0}. Last Depth Took: {1} ms", maxDepth, time));
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
+                found = DepthLimitedDFS(new PuzzleState<TPuzzle>(0, puzzleInstance), maxDepth, solution, ref expandedNodes);
+                stopwatch.Stop();
+                time = stopwatch.ElapsedMilliseconds;
                 ++maxDepth;
             }
 
+            this.NumberOfExpandedNodes = expandedNodes;
+
             return solution;
         }
+
+        public ulong GetNumberOfExpandedNodes()
+        {
+            return this.NumberOfExpandedNodes;
+        }
+
+        #endregion
+
+        #region Protected Methods
 
         /// <summary>
         /// Does a depth first search for the solved puzzle state. The search will cease after it reaches a certain depth regardless
@@ -73,7 +101,7 @@
         /// <param name="maxDepth">Determines how deep we will search for a solution in the tree.</param>
         /// <param name="solution">The solution that has been found.</param>
         /// <returns></returns>
-        internal bool DepthLimitedDFS(PuzzleState<TPuzzle> puzzleState, int maxDepth, Stack<Move<TPuzzle>> solution)
+        protected bool DepthLimitedDFS(PuzzleState<TPuzzle> puzzleState, int maxDepth, Stack<Move<TPuzzle>> solution, ref ulong expandedNodes)
         {
             if (puzzleState.PuzzleInstance.Equals(this.SolutionState))
             {
@@ -82,9 +110,10 @@
 
             IEnumerable<PuzzleState<TPuzzle>> orderedPuzzlesToExamine = GetPuzzleStatesToExamine(puzzleState, maxDepth);
 
+            expandedNodes++;
             foreach (PuzzleState<TPuzzle> newPuzzleState in orderedPuzzlesToExamine)
             {
-                if (DepthLimitedDFS(newPuzzleState, maxDepth, solution))
+                if (DepthLimitedDFS(newPuzzleState, maxDepth, solution, ref expandedNodes))
                 {
                     solution.Push(newPuzzleState.LastMove);
                     return true;
@@ -95,7 +124,7 @@
         }
 
         /// <summary>
-        /// Each puzzle N moves that can be applied to it. This method will retrive a list of puzzle states
+        /// Each puzzle has N moves that can be applied to it. This method will retrive a list of puzzle states
         /// resulting from applying each move to the puzzle. The puzzles returned are ordered such that the
         /// one with the shortest estimated solution is first. Any puzzle state with an estimated solution
         /// distance that is too large will not be returned.
@@ -104,7 +133,7 @@
         /// <param name="maxDepth">The maximum estimated solution length that we are willing to accept.</param>
         /// <returns>A list of puzzle states that all have an estimated solution distance smaller than the
         /// specified max. The list is sorted by estimated solution distance.</returns>
-        private IEnumerable<PuzzleState<TPuzzle>> GetPuzzleStatesToExamine(PuzzleState<TPuzzle> puzzleInstance, int maxDepth)
+        protected IEnumerable<PuzzleState<TPuzzle>> GetPuzzleStatesToExamine(PuzzleState<TPuzzle> puzzleInstance, int maxDepth)
         {
             // Not all moves are valid depending on the previous move.
             // e.g. If I perform one move, it makes no senses to try the exact opposite of that move
@@ -133,9 +162,13 @@
         /// Calculates the estimated solution depth of a puzzle state.
         /// </summary>
         /// <returns>The estimated depth = Actual Depth of Puzzle State + EstimatedSolutionLength for that Puzzle State.</returns>
-        private byte GetEstimatedDepth(PuzzleState<TPuzzle> puzzleInstance)
+        protected int GetEstimatedDepth(PuzzleState<TPuzzle> puzzleInstance)
         {
-            return (byte)(puzzleInstance.Depth + this.Heuristic.GetMinimumEstimatedSolutionLength(puzzleInstance.PuzzleInstance));
+            return puzzleInstance.Depth + this.Heuristic.GetMinimumEstimatedSolutionLength(puzzleInstance.PuzzleInstance);
         }
+
+        #endregion
+
+
     }
 }

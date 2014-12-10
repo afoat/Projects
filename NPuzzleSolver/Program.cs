@@ -13,10 +13,10 @@
         {
             ManhattanDistance heuristic = new ManhattanDistance();
 
-            NPuzzle newPuzzle = new NPuzzle(3);
+            NPuzzle newPuzzle = new NPuzzle(4);
             IPuzzleSolution<NPuzzle> solutionGenerator = new ParallelIDAStar<NPuzzle>(heuristic, newPuzzle);
 
-            Random rnd = new Random();
+            Random rnd = new Random(3);
             string inputFromUser;
 
             do
@@ -51,7 +51,10 @@
                 Trace.WriteLine(string.Format("Made {0} moves.", timesMoved));
                 Trace.WriteLine(puzzle.ToString());
 
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
                 var solution = solutionGenerator.FindSolution(puzzle);
+                stopwatch.Stop();
 
                 if (solution == null)
                 {
@@ -63,6 +66,9 @@
                     {
                         Trace.WriteLine(move.ToString());
                     }
+
+                    Trace.WriteLine(string.Format("Elapsed Time in ms: {0}", stopwatch.ElapsedMilliseconds));
+                    Trace.WriteLine(string.Format("Expanded {0} nodes.", solutionGenerator.GetNumberOfExpandedNodes()));
                 }
 
                 Trace.WriteLine("Press Q to quit, anything else to try another one.");

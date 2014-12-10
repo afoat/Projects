@@ -1,6 +1,6 @@
 ﻿namespace Foat.Puzzles.Solutions
 {
-    internal class PuzzleState<TPuzzle> where TPuzzle : IPuzzle<TPuzzle>
+    public class PuzzleState<TPuzzle> where TPuzzle : IPuzzle<TPuzzle>
     {
 
         public Move<TPuzzle> LastMove { get; private set; }
