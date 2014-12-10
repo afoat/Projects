@@ -32,8 +32,8 @@
         {
             if (value.HasValue)
             {
-                xGoal = (value.Value - 1) % n;
-                yGoal = (value.Value - 1) / n;
+                xGoal = value.Value % n;
+                yGoal = value.Value / n;
             }
             else
             {
