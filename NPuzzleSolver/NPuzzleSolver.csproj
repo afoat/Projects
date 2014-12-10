@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{10B7DE48-1AE6-495B-BFE1-8DD676EAFFB5}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{A9A4A921-FB08-4090-9B98-C0A9E06A4842}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Foat.Puzzles</RootNamespace>
-    <AssemblyName>Foat.Puzzles</AssemblyName>
+    <RootNamespace>NPuzzleSolver</RootNamespace>
+    <AssemblyName>NPuzzleSolver</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,19 +23,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>..\..\..\key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
@@ -44,6 +39,7 @@
     <PlatformTarget>x64</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutputPath>bin\x64\Release\</OutputPath>
@@ -53,49 +49,43 @@
     <PlatformTarget>x64</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.XML" />
-    <Reference Include="System.Xml.Serialization" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NPuzzle\NPuzzle.cs" />
-    <Compile Include="NPuzzle\NPuzzle.Moves.cs" />
-    <Compile Include="NPuzzle\Solution\ManhattanDistance.cs" />
-    <Compile Include="RubiksCube\CornerPosition.cs" />
-    <Compile Include="RubiksCube\EdgePosition.cs" />
-    <Compile Include="RubiksCube\RubiksCube.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RubiksCube\RubiksCube.Moves.cs" />
-    <Compile Include="RubiksCube\RubiksCubeFactory.cs" />
-    <Compile Include="Solutions\IDAStar\IDAStar.cs" />
-    <Compile Include="Solutions\IDAStar\ParallelIDAStar.cs" />
-    <Compile Include="RubiksCube\Solution\Pattern.cs" />
-    <Compile Include="RubiksCube\Solution\PatternSet.cs" />
-    <Compile Include="RubiksCube\Solution\PatternSetGenerator.cs" />
-    <Compile Include="RubiksCube\Solution\PatternSetGeneratorWorker.cs" />
-    <Compile Include="Solutions\Move.cs" />
-    <Compile Include="Solutions\PuzzleState.cs" />
-    <Compile Include="RubiksCube\Solution\SolutionLengthEstimator.cs" />
-    <Compile Include="Solutions\IHeuristic.cs" />
-    <Compile Include="Solutions\IPuzzle.cs" />
-    <Compile Include="Solutions\IPuzzleSolution.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Hashing\Foat.Hashing.csproj">
+    <None Include="..\key.snk">
+      <Link>key.snk</Link>
+    </None>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Libraries\Foat\Hashing\Foat.Hashing.csproj">
       <Project>{335c2cec-b336-476c-9cfe-17dd52e81860}</Project>
       <Name>Foat.Hashing</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Libraries\Foat\Puzzles\Foat.Puzzles.csproj">
+      <Project>{10b7de48-1ae6-495b-bfe1-8dd676eaffb5}</Project>
+      <Name>Foat.Puzzles</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\..\key.snk">
-      <Link>key.snk</Link>
-    </None>
-    <None Include="README.md" />
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

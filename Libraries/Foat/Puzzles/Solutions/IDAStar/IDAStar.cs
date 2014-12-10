@@ -15,7 +15,7 @@
     /// This ensures that we still find a solution of minimum length but keeps us from traversing too far
     /// down the wrong branch of the tree which would waste time and memory.
     /// </summary>
-    public class IDAStar<TPuzzle> : IPuzzleSolution<TPuzzle> where TPuzzle : IPuzzle<TPuzzle>
+    public class IDAStar<TPuzzle> : IPuzzleSolution<TPuzzle> where TPuzzle : IPuzzle<TPuzzle>, IEquatable<TPuzzle>
     {
         /// <summary>
         /// Stores the solved puzzle so that we can know when we reach the goal.
@@ -116,7 +116,7 @@
             }
             else
             {
-                moves = puzzleInstance.LastMove.GetValidNextMoves();
+                moves = puzzleInstance.LastMove.GetValidNextMoves(puzzleInstance.PuzzleInstance);
             }
 
             // Get the estimated solution depth of the puzzle that results from each possible move

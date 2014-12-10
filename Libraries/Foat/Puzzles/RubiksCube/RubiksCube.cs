@@ -255,16 +255,6 @@
             return new RubiksCube(newData);
         }
 
-        public Move<RubiksCube> GetMove(int moveId)
-        {
-            if (moveId < 0 || moveId > AllMoves.Length)
-            {
-                throw new ArgumentOutOfRangeException("moveId");
-            }
-
-            return AllMoves[moveId];
-        }
-
         public Move<RubiksCube>[] GetValidMoves()
         {
             return AllMoves;

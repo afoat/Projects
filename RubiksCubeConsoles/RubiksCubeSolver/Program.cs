@@ -29,7 +29,7 @@
             string inputFromUser;
 
             RubiksCube newCube = new RubiksCube();
-            int numberOfMoves = newCube.GetValidMoves().Length;
+            Move<RubiksCube>[] moves = newCube.GetValidMoves();
 
             do
             {
@@ -37,8 +37,8 @@
 
                 for (int i = 0; i < 100; ++i)
                 {
-                    int moveId = rnd.Next(numberOfMoves);
-                    Move<RubiksCube> move = cube.GetMove(moveId);
+                    int moveId = rnd.Next(moves.Length);
+                    Move<RubiksCube> move = moves[moveId];
 
                     Trace.WriteLine(string.Format("Mixing with move {0}.", move.ToString()));
 

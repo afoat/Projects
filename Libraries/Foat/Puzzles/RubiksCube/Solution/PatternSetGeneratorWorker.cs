@@ -62,7 +62,7 @@
                     }
                     else
                     {
-                        moves = puzzleState.LastMove.GetValidNextMoves();
+                        moves = puzzleState.LastMove.GetValidNextMoves(puzzleState.PuzzleInstance);
                     }
 
                     foreach (Move<RubiksCube> move in moves)

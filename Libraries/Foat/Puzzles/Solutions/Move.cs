@@ -4,11 +4,22 @@
 
     public sealed class Move<TPuzzle>
     {
+        /// <summary>
+        /// The name of the move in a more human readable format.
+        /// </summary>
         public string Name { get; private set; }
-        public Func<TPuzzle, TPuzzle> MovePuzzle { get; private set; }
-        public Func<Move<TPuzzle>[]> GetValidNextMoves { get; private set; }
 
-        internal Move(string name, Func<TPuzzle, TPuzzle> movePuzzleFunction, Func<Move<TPuzzle>[]> validMovesAfterFunction)
+        /// <summary>
+        /// This function returns a copy of the puzzle that is passed in with the current move applied to it.
+        /// </summary>
+        public Func<TPuzzle, TPuzzle> MovePuzzle { get; private set; }
+
+        /// <summary>
+        /// The function returns all of the valid moves based on what the current move is.
+        /// </summary>
+        public Func<TPuzzle, Move<TPuzzle>[]> GetValidNextMoves { get; private set; }
+
+        internal Move(string name, Func<TPuzzle, TPuzzle> movePuzzleFunction, Func<TPuzzle, Move<TPuzzle>[]> validMovesAfterFunction)
         {
             if (string.IsNullOrWhiteSpace(name))
             {
