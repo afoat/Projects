@@ -49,7 +49,7 @@
 
                 if (solution == null)
                 {
-                    Console.WriteLine("No Solution Found.");
+                    Trace.WriteLine("No Solution Found.");
                 }
                 else
                 {
@@ -59,7 +59,7 @@
                     }
                 }
 
-                Console.WriteLine("Press Q to quit, anything else to try another one.");
+                Trace.WriteLine("Press Q to quit, anything else to try another one.");
 
                 inputFromUser = Console.ReadKey(true).KeyChar.ToString().ToLower();
             } while (!inputFromUser.Equals("q"));

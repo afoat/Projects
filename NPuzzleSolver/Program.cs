@@ -29,8 +29,10 @@ namespace NPuzzleSolver
             {
                 NPuzzle puzzle = newPuzzle;
                 Move<NPuzzle> lastMove = null;
+                int timesMoved = 0;
 
-                for (int i = 0; i < 40; ++i)
+                Trace.WriteLine("Mixing puzzle");
+                for (int i = 0; i < 10000; ++i)
                 {
                     Move<NPuzzle>[] validMoves;
 
@@ -47,17 +49,19 @@ namespace NPuzzleSolver
                     int moveId = rnd.Next(numberOfMoves);
                     Move<NPuzzle> move = validMoves[moveId];
                     lastMove = move;
-                    
-                    Trace.WriteLine(string.Format("Mixing with move {0}.", move.ToString()));
 
                     puzzle = move.MovePuzzle(puzzle);
+                    timesMoved++;
                 }
+
+                Trace.WriteLine(string.Format("Made {0} moves.", timesMoved));
+                Trace.WriteLine(puzzle.ToString());
 
                 var solution = solutionGenerator.FindSolution(puzzle);
 
                 if (solution == null)
                 {
-                    Console.WriteLine("No Solution Found.");
+                    Trace.WriteLine("No Solution Found.");
                 }
                 else
                 {
@@ -67,7 +71,7 @@ namespace NPuzzleSolver
                     }
                 }
 
-                Console.WriteLine("Press Q to quit, anything else to try another one.");
+                Trace.WriteLine("Press Q to quit, anything else to try another one.");
 
                 inputFromUser = Console.ReadKey(true).KeyChar.ToString().ToLower();
             } while (!inputFromUser.Equals("q"));

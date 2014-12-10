@@ -13,12 +13,15 @@
             {
                 for (int x = 0; x < puzzleInstance.N; ++x)
                 {
-                    int xGoal;
-                    int yGoal;
+                    if (puzzleInstance.GetValue(x, y) != null)
+                    {
+                        int xGoal;
+                        int yGoal;
 
-                    byte? value = puzzleInstance.GetValue(x, y);
-                    GetGoalStateIndexForSquareValue(value, puzzleInstance.N, out xGoal, out yGoal);
-                    distance += GetSingleManhattanDistance(x, y, xGoal, yGoal);
+                        byte? value = puzzleInstance.GetValue(x, y);
+                        GetGoalStateIndexForSquareValue(value, puzzleInstance.N, out xGoal, out yGoal);
+                        distance += GetSingleManhattanDistance(x, y, xGoal, yGoal);
+                    }
                 }
             }
 
@@ -29,7 +32,7 @@
         {
             if (value.HasValue)
             {
-                xGoal = value.Value & n;
+                xGoal = (value.Value - 1) % n;
                 yGoal = (value.Value - 1) / n;
             }
             else

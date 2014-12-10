@@ -3,6 +3,7 @@
     using Foat.Hashing;
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Globalization;
     using System.Runtime.Serialization;
 
@@ -17,7 +18,7 @@
             HashSet<IHashKey> keys = new HashSet<IHashKey>();
             Random rnd = new Random();
 
-            Console.WriteLine(string.Format(CultureInfo.InvariantCulture, ConsoleOutput.GeneratingKeys, n));
+            Trace.WriteLine(string.Format(CultureInfo.InvariantCulture, ConsoleOutput.GeneratingKeys, n));
             while (keys.Count < n )
             {
                 IntHashKey next = new IntHashKey(rnd.Next());
@@ -32,15 +33,15 @@
 
             if (CheckMinimalPerfectHash(n, keys, mph))
             {
-                Console.WriteLine(string.Format(CultureInfo.InvariantCulture, ConsoleOutput.VerifiedMPH, mph.Stats.NumberOfKeys - 1));
+                Trace.WriteLine(string.Format(CultureInfo.InvariantCulture, ConsoleOutput.VerifiedMPH, mph.Stats.NumberOfKeys - 1));
 
-                Console.WriteLine(string.Format(CultureInfo.InvariantCulture, ConsoleOutput.DoneGeneratingMPH, mph.Stats.GenerationTime.TotalMilliseconds));
-                Console.WriteLine(string.Format(CultureInfo.InvariantCulture, ConsoleOutput.MPHFilledBucketStats, mph.Stats.NumberOfKeys, mph.Stats.NumberOfFilledBuckets, mph.Stats.NumberOfBuckets - mph.Stats.NumberOfFilledBuckets));
-                Console.WriteLine(string.Format(CultureInfo.InvariantCulture, ConsoleOutput.MPHFrontLoadedStats, mph.Stats.NumberOfFrontloadedKeys, mph.Stats.NumberOfFrontloadedBuckets));
+                Trace.WriteLine(string.Format(CultureInfo.InvariantCulture, ConsoleOutput.DoneGeneratingMPH, mph.Stats.GenerationTime.TotalMilliseconds));
+                Trace.WriteLine(string.Format(CultureInfo.InvariantCulture, ConsoleOutput.MPHFilledBucketStats, mph.Stats.NumberOfKeys, mph.Stats.NumberOfFilledBuckets, mph.Stats.NumberOfBuckets - mph.Stats.NumberOfFilledBuckets));
+                Trace.WriteLine(string.Format(CultureInfo.InvariantCulture, ConsoleOutput.MPHFrontLoadedStats, mph.Stats.NumberOfFrontloadedKeys, mph.Stats.NumberOfFrontloadedBuckets));
             }
             else
             {
-                Console.WriteLine(ConsoleOutput.MPHInvalidHash);
+                Trace.WriteLine(ConsoleOutput.MPHInvalidHash);
             }
 
             SerializeMPH(mph);

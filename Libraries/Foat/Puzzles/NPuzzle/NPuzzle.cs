@@ -3,6 +3,7 @@
     using Foat.Puzzles.Solutions;
     using System;
     using System.Collections.Generic;
+    using System.Text;
 
     public sealed partial class NPuzzle : IPuzzle<NPuzzle>, IEquatable<NPuzzle>
     {
@@ -79,7 +80,7 @@
                 }
                 else
                 {
-                    return UpDownRight;
+                    return UpDownLeft;
                 }
             }
             else if (this.BlankSpaceX == this.N-1)
@@ -354,6 +355,32 @@
 
                 return true;
             }
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            for (int y = 0; y < this.N; y++)
+            {
+                for (int x = 0; x < this.N; x++)
+                {
+                    byte? value = this.Board[y, x];
+                    if (value.HasValue)
+                    {
+                        sb.Append(value);
+                    }
+                    else
+                    {
+                        sb.Append("X");
+                    }
+                    sb.Append(" ");
+                }
+
+                sb.Append("\n");
+            }
+
+            return sb.ToString();
         }
 
         #endregion
