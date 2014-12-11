@@ -1,6 +1,17 @@
 ﻿This is one part of a larger project. Please head here to see the entire solution. https://github.com/afoat/Projects
 
-This library contains code that allows us to manipulate and solve a Rubik's Cube. The solution I've developed finds the shortest possible solution to any randomized Rubik's Cube. For more information about my solution please check out Richard E. Korf's paper here - https://www.cs.princeton.edu/courses/archive/fall06/cos402/papers/korfrubik.pdf
+N-PUZZLE
+
+The N-Puzzle is a puzzle played on a square board that contains tiles numbered 1 to N. There is one tile empty on the board so that adjacent tiles
+can slide into the blank spot. The goal is to return a randomized N-Puzzle to it's solved state.
+
+A 3x3 puzzle is often called an 8-Puzzle since there are 8 numbered tiles and one blank one. Similarly a 4x4 puzzle is called a 15-Puzzle.
+
+In this instance, the 8-Puzzle can be solved very quickly. The 15-Puzzle is a bit slower but still finishes in a reasonable about of time. I'm not too sure how long a 24-Puzzle would take to solve though. Likely less time than a Rubiks Cube at any rate :-)
+
+RUBIK's CUBE
+
+This library also contains code that allows us to manipulate and solve a Rubik's Cube. The solution I've developed finds the shortest possible solution to any randomized Rubik's Cube. For more information about my solution please check out Richard E. Korf's paper here - https://www.cs.princeton.edu/courses/archive/fall06/cos402/papers/korfrubik.pdf
 
 A Rubik's Cube consists of 26 visible "cubies". There are 8 corner cubies that have 3 visible colours each, 12 edge cubies that have 2 colours each, and 6 center cubies that never move so we can ignore them. Instead of rotating an assembled cube you can simulate the twists and turns of a real cube by taking the cube apart and lining up all 20 cubies on a table and twisting and turning them individuallly instead. Doing this makes it easier for us to examine each individual cubie at any time.
 
