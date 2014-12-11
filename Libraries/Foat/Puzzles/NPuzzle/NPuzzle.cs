@@ -7,7 +7,10 @@
 
     public sealed partial class NPuzzle : IPuzzle<NPuzzle>, IEquatable<NPuzzle>
     {
-        public byte N { get; private set; }
+        public int Size
+        {
+            get { return this.Board.GetLength(0); }
+        }
 
         private byte?[,] Board { get; set; }
 
@@ -27,7 +30,6 @@
                 throw new ArgumentException("Size of the n-puzzle must be at most 15.");
             }
 
-            this.N = n;
             this.Board = new byte?[n, n];
 
             InitializeBoard();
@@ -38,16 +40,15 @@
             this.Board = newBoard;
             this.BlankSpaceX = blankX;
             this.BlankSpaceY = blankY;
-            this.N = (byte)this.Board.GetLength(0);
         }
 
         private void InitializeBoard()
         {
             byte current = 0;
 
-            for (int i = 0; i < this.N; ++i)
+            for (int i = 0; i < this.Size; ++i)
             {
-                for (int j = 0; j < this.N; ++j)
+                for (int j = 0; j < this.Size; ++j)
                 {
                     this.Board[i, j] = current++;
                 }
@@ -74,7 +75,7 @@
                 {
                     return UpLeft;
                 }
-                else if (this.BlankSpaceY == this.N - 1)
+                else if (this.BlankSpaceY == this.Size - 1)
                 {
                     return DownLeft;
                 }
@@ -83,13 +84,13 @@
                     return UpDownLeft;
                 }
             }
-            else if (this.BlankSpaceX == this.N-1)
+            else if (this.BlankSpaceX == this.Size-1)
             {
                 if (this.BlankSpaceY == 0)
                 {
                     return UpRight;
                 }
-                else if (this.BlankSpaceY == this.N - 1)
+                else if (this.BlankSpaceY == this.Size - 1)
                 {
                     return DownRight;
                 }
@@ -104,7 +105,7 @@
                 {
                     return UpLeftRight;
                 }
-                else if (this.BlankSpaceY == this.N - 1)
+                else if (this.BlankSpaceY == this.Size - 1)
                 {
                     return DownLeftRight;
                 }
@@ -118,7 +119,7 @@
 
         private Move<NPuzzle>[] GetValidMovesAfterUp()
         {
-            int nMinusOne = this.N - 1;
+            int nMinusOne = this.Size - 1;
 
             if (this.BlankSpaceY == nMinusOne)
             {
@@ -160,7 +161,7 @@
                 {
                     return LeftOnly;
                 }
-                else if (this.BlankSpaceX == this.N - 1)
+                else if (this.BlankSpaceX == this.Size - 1)
                 {
                     return RightOnly;
                 }
@@ -175,7 +176,7 @@
                 {
                     return DownLeft;
                 }
-                else if (this.BlankSpaceX == this.N - 1)
+                else if (this.BlankSpaceX == this.Size - 1)
                 {
                     return DownRight;
                 }
@@ -188,7 +189,7 @@
 
         private Move<NPuzzle>[] GetValidMovesAfterLeft()
         {
-            int nMinusOne = this.N - 1;
+            int nMinusOne = this.Size - 1;
 
             if (this.BlankSpaceX == nMinusOne)
             {
@@ -230,7 +231,7 @@
                 {
                     return UpOnly;
                 }
-                else if (this.BlankSpaceY == this.N - 1)
+                else if (this.BlankSpaceY == this.Size - 1)
                 {
                     return DownOnly;
                 }
@@ -245,7 +246,7 @@
                 {
                     return UpRight;
                 }
-                else if (this.BlankSpaceY == this.N - 1)
+                else if (this.BlankSpaceY == this.Size - 1)
                 {
                     return DownRight;
                 }
@@ -259,7 +260,7 @@
         public NPuzzle SlideUp()
         {
             byte swapY = (byte)(this.BlankSpaceY + 1);
-            if (swapY >= this.N)
+            if (swapY >= this.Size)
             {
                 throw new InvalidOperationException("Cannot slide up when the empty space is at the bottom.");
             }
@@ -281,7 +282,7 @@
         public NPuzzle SlideLeft()
         {
             byte swapX = (byte)(this.BlankSpaceX + 1);
-            if (swapX >= this.N)
+            if (swapX >= this.Size)
             {
                 throw new InvalidOperationException("Cannot slide up when the empty space is at the bottom.");
             }
@@ -336,15 +337,15 @@
 
         public bool Equals(NPuzzle otherPuzzle)
         {
-            if (otherPuzzle == null || otherPuzzle.N != this.N)
+            if (otherPuzzle == null || otherPuzzle.Size != this.Size)
             {
                 return false;
             }
             else
             {
-                for (int y = 0; y < this.N; ++y)
+                for (int y = 0; y < this.Size; ++y)
                 {
-                    for (int x = 0; x < this.N; ++x)
+                    for (int x = 0; x < this.Size; ++x)
                     {
                         if (this.Board[y, x] != otherPuzzle.Board[y,x])
                         {
@@ -361,9 +362,9 @@
         {
             StringBuilder sb = new StringBuilder();
 
-            for (int y = 0; y < this.N; y++)
+            for (int y = 0; y < this.Size; y++)
             {
-                for (int x = 0; x < this.N; x++)
+                for (int x = 0; x < this.Size; x++)
                 {
                     byte? value = this.Board[y, x];
                     if (value.HasValue)

@@ -9,9 +9,9 @@
         {
             int distance = 0;
 
-            for (int y = 0; y < puzzleInstance.N; ++y)
+            for (int y = 0; y < puzzleInstance.Size; ++y)
             {
-                for (int x = 0; x < puzzleInstance.N; ++x)
+                for (int x = 0; x < puzzleInstance.Size; ++x)
                 {
                     if (puzzleInstance.GetValue(x, y) != null)
                     {
@@ -19,7 +19,7 @@
                         int yGoal;
 
                         byte? value = puzzleInstance.GetValue(x, y);
-                        GetGoalStateIndexForSquareValue(value, puzzleInstance.N, out xGoal, out yGoal);
+                        GetGoalStateIndexForSquareValue(value, puzzleInstance.Size, out xGoal, out yGoal);
                         distance += GetSingleManhattanDistance(x, y, xGoal, yGoal);
                     }
                 }
