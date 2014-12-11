@@ -26,8 +26,8 @@
             ConcurrentDictionary<RubiksCube, byte> patternSetDictionary = GeneratePatternSetDictionary(pattern, numberOfThreads);
             MinimalPerfectHash<FnvHash> mph = GetMinimalPerfectHashForPatternSet(patternSetDictionary);
 
-            Trace.WriteLine("Finished generating minimal perfect hash.");
-            Trace.WriteLine("Creating new Pattern Set.");
+            Trace.WriteLine(Logging.RubiksFinishedGeneratingMPH);
+            Trace.WriteLine(Logging.RubiksCreatingPatternSet);
 
             return new PatternSet(patternSetDictionary, mph, pattern);
         }
@@ -65,7 +65,6 @@
 
             for (int i = 0; i < numberOfThreads; ++i)
             {
-                Trace.WriteLine(string.Format("Creating Worker {0:N0}.", i));
                 tasks[i] = Task.Factory.StartNew(() =>
                 {
                     new PatternSetGeneratorWorker(
@@ -88,7 +87,7 @@
 
             int maxDepth = patternDatabase.Values.Max();
 
-            Trace.WriteLine(string.Format("Found a set of {0:N0} Rubik's Cubes,  Longest solution is {1:N0}.", patternDatabase.Count, maxDepth));
+            Trace.WriteLine(string.Format(Logging.RubiksPatternGenerationFinished, patternDatabase.Count, maxDepth));
 
             return patternDatabase;
         }

@@ -63,6 +63,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\ParallelIDAStarSettings.cs" />
+    <Compile Include="Logging.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Logging.resx</DependentUpon>
+    </Compile>
     <Compile Include="NPuzzle\NPuzzle.cs" />
     <Compile Include="NPuzzle\NPuzzle.Moves.cs" />
     <Compile Include="NPuzzle\Solution\ManhattanDistance.cs" />
@@ -97,7 +102,12 @@
     </None>
     <None Include="README.md" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Logging.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Logging.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

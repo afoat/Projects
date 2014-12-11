@@ -70,7 +70,7 @@
 
             while (!found)
             {
-                Trace.WriteLine(string.Format("Searching to a maximum depth of - {0:N0}. Last Depth Took: {1} ms", maxDepth, time));
+                Trace.WriteLine(string.Format(Logging.IDAStarDepthUpdate, maxDepth, time));
                 Stopwatch stopwatch = new Stopwatch();
                 stopwatch.Start();
                 found = DepthLimitedDFS(new PuzzleState<TPuzzle>(0, puzzleInstance), maxDepth, solution, ref expandedNodes);

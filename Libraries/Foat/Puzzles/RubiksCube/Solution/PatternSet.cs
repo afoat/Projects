@@ -125,15 +125,15 @@
                 XmlSerializer serializer = new XmlSerializer(typeof(Pattern));
                 this.Pattern = (Pattern)serializer.Deserialize(reader);
 
-                Trace.WriteLine(string.Format("Finished reading in pattern {0}.", this.Name));
-                Trace.WriteLine("Reading in distance map.");
+                Trace.WriteLine(string.Format(Logging.RubiksFinishedReadingPattern, this.Name));
+                Trace.WriteLine(Logging.RubiksReadingDistanceMap);
 
                 serializer = new XmlSerializer(typeof(byte[]));
                 reader.ReadStartElement("DistanceMap");
                 this.MinimumSolutionLength = (byte[])serializer.Deserialize(reader);
                 reader.ReadEndElement();
 
-                Trace.WriteLine("Reading in minimal perfect hash.");
+                Trace.WriteLine(Logging.RubiksReadingMPH);
 
                 DataContractSerializer contractSerializer = new DataContractSerializer(typeof(MinimalPerfectHash<FnvHash>));
                 this.MinimalPerfectHash = (MinimalPerfectHash<FnvHash>)contractSerializer.ReadObject(reader);

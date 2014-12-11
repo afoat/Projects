@@ -39,7 +39,7 @@
             XmlSerializer serializer = new XmlSerializer(typeof(PatternSet));
             foreach (string fileName in patternSetFilePaths)
             {
-                Trace.WriteLine(string.Format("Reading In Pattern From {0}.", fileName));
+                Trace.WriteLine(string.Format(Logging.RubiksReadingPatternFromDisk, fileName));
                 using (StreamReader reader = new StreamReader(fileName))
                 {
                     PatternSet patternSet = (PatternSet)serializer.Deserialize(reader);

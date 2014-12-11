@@ -44,7 +44,7 @@
 
         public void Work()
         {
-            Trace.WriteLine(string.Format("Worker {0:N0} Starting.", Thread.CurrentThread.ManagedThreadId));
+            Trace.WriteLine(string.Format(Logging.TaskStarting, Thread.CurrentThread.ManagedThreadId));
 
             int count;
             while (this.CubesToExamine.Count > 0)
@@ -78,12 +78,13 @@
                                 count = PatternDatabase.Count;
                             }
                             
-                            Trace.WriteLineIf(count % 100000 == 0, string.Format("W{3:N0} - Cubes: {0:N0} Queue: {1:N0} Max Depth: {2:N0}", count, this.CubesToExamine.Count, this.CurrentMaxDepth, Thread.CurrentThread.ManagedThreadId));
+                            Trace.WriteLineIf(count % 100000 == 0, string.Format(Logging.RubiksPatternGenerationUpdate, count, this.CubesToExamine.Count, this.CurrentMaxDepth, Thread.CurrentThread.ManagedThreadId));
                         }
                     }
                 }
             }
-            Trace.WriteLine(string.Format("Worker {0:N0} Ending.", Thread.CurrentThread.ManagedThreadId));
+
+            Trace.WriteLine(string.Format(Logging.TaskEnding, Thread.CurrentThread.ManagedThreadId));
         }
     }
 }
