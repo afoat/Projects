@@ -12,10 +12,31 @@
 
     public sealed class ParallelIDAStar<TPuzzle> : IDAStar<TPuzzle> where TPuzzle : IPuzzle<TPuzzle>, IEquatable<TPuzzle>
     {
-        public ParallelIDAStar(IHeuristic<TPuzzle> heuristic, TPuzzle solutionInstance) : base(heuristic, solutionInstance) { }
+
+        #region Properties
+
+        private ConcurrentDictionary<TPuzzle, IEnumerable<Move<TPuzzle>>> TaskSolutions;
+        private ConcurrentBag<ulong> NumberOfExpandedNodesInTasks;
+
+        #endregion
+
+        #region Construction
+
+        public ParallelIDAStar(IHeuristic<TPuzzle> heuristic, TPuzzle solutionInstance) : base(heuristic, solutionInstance)
+        {
+            this.TaskSolutions = new ConcurrentDictionary<TPuzzle, IEnumerable<Move<TPuzzle>>>();
+            this.NumberOfExpandedNodesInTasks = null;
+        }
+
+        #endregion
+
+        #region Public Methods
 
         public override IEnumerable<Move<TPuzzle>> FindSolution(TPuzzle puzzleInstance)
         {
+            if (puzzleInstance == null)
+                throw new ArgumentNullException("puzzleInstance");
+
             int minNumTasks = ParallelIDAStarSettings.Current.MinNumberOfTasks;
 
             if (minNumTasks < 1)
@@ -28,23 +49,32 @@
             }
             else
             {
+                return FindSolutionParallel(puzzleInstance, minNumTasks);
+            }
+        }
 
-                if (puzzleInstance == null)
-                    throw new ArgumentNullException("puzzleInstance");
-                
-                ConcurrentDictionary<TPuzzle, IEnumerable<Move<TPuzzle>>> workerInfo = new ConcurrentDictionary<TPuzzle, IEnumerable<Move<TPuzzle>>>();
-                ConcurrentDictionary<TPuzzle, ulong> numberOfMoves = new ConcurrentDictionary<TPuzzle, ulong>();
+        #endregion
 
-                int maxDepth = this.Heuristic.GetMinimumEstimatedSolutionLength(puzzleInstance);
-                bool found = false;
+        #region Private Methods
+
+        private IEnumerable<Move<TPuzzle>> FindSolutionParallel(TPuzzle puzzleInstance, int minNumTasks)
+        {
+            try
+            {
                 long time = 0;
+                bool found = false;
+
+                this.NumberOfExpandedNodesInTasks = new ConcurrentBag<ulong>();
+                int maxDepth = this.Heuristic.GetMinimumEstimatedSolutionLength(puzzleInstance);
+
                 while (!found)
                 {
                     Stopwatch stopwatch = new Stopwatch();
                     stopwatch.Start();
-                    Queue<PuzzleState<TPuzzle>> nodes = new Queue<PuzzleState<TPuzzle>>();
 
-                    if (NodeLimitedBFS(puzzleInstance, minNumTasks, nodes))
+                    Queue<PuzzleState<TPuzzle>> taskPuzzleStates;
+
+                    if (NodeLimitedBFS(puzzleInstance, minNumTasks, out taskPuzzleStates))
                     {
                         return base.FindSolution(puzzleInstance);
                     }
@@ -52,27 +82,14 @@
                     {
                         Trace.WriteLine(string.Format("Searching to a maximum depth of - {0:N0}. Last Depth Took: {1} ms", maxDepth, time));
 
-                        Task[] tasks = new Task[nodes.Count];
-                        workerInfo.Clear();
+                        Task[] tasks = new Task[taskPuzzleStates.Count];
+                        TaskSolutions.Clear();
 
                         for (int i = 0; i < tasks.Length; ++i)
                         {
-                            PuzzleState<TPuzzle> puzzleState = nodes.Dequeue();
-                            tasks[i] = Task.Factory.StartNew((state =>
-                            {
-                                ulong expandedNodes = 0;
-                                PuzzleState<TPuzzle> newPuzzleState = (PuzzleState<TPuzzle>)state;
-                                Stack<Move<TPuzzle>> currentSolution = new Stack<Move<TPuzzle>>();
-
-                                if (this.DepthLimitedDFS(puzzleState, maxDepth, currentSolution, ref expandedNodes))
-                                {
-                                    currentSolution.Push(newPuzzleState.LastMove);
-                                    workerInfo[newPuzzleState.PuzzleInstance] = currentSolution;
-                                    numberOfMoves[newPuzzleState.PuzzleInstance] = expandedNodes;
-                                    found = true;
-                                }
-
-                            }), puzzleState);
+                            tasks[i] = Task.Factory.StartNew(
+                                (puzzleState => found = StartTask(maxDepth, (PuzzleState<TPuzzle>)puzzleState))
+                                , taskPuzzleStates.Dequeue());
                         }
 
                         Task.WaitAll(tasks);
@@ -81,33 +98,47 @@
                     stopwatch.Stop();
                     time = stopwatch.ElapsedMilliseconds;
                 }
-                
-                this.NumberOfExpandedNodes = 0;
-                foreach (ulong value in numberOfMoves.Values)
-                {
-                    this.NumberOfExpandedNodes += value;
-                }
 
-                return workerInfo.Values
+                SetTotalNumberOfNodes();
+
+                return TaskSolutions.Values
                                  .Where(solution => solution != null && solution.Count() > 0)
                                  .FirstOrDefault(); // First or default because we might find two solutions at the same depth
             }
+            finally
+            {
+                this.TaskSolutions = null;
+                this.NumberOfExpandedNodesInTasks = null;
+            }
         }
 
-        private bool NodeLimitedBFS(TPuzzle puzzleInstance, int minNumNodes, Queue<PuzzleState<TPuzzle>> nodes)
+        private void SetTotalNumberOfNodes()
         {
-            nodes.Clear();
+            this.NumberOfExpandedNodes = 0;
+            if (this.NumberOfExpandedNodesInTasks != null)
+            {
+                foreach (ulong numberOfNodes in this.NumberOfExpandedNodesInTasks)
+                {
+                    this.NumberOfExpandedNodes += numberOfNodes;
+                }
+            }
+        }
 
+        private bool NodeLimitedBFS(TPuzzle puzzleInstance, int minNumNodes, out Queue<PuzzleState<TPuzzle>> nodes)
+        {
+            nodes = new Queue<PuzzleState<TPuzzle>>();
             if (!puzzleInstance.Equals(this.SolutionState))
             {
-                HashSet<TPuzzle> puzzlesToExpand = new HashSet<TPuzzle>();
                 bool solutionFound = false;
+                HashSet<TPuzzle> puzzlesToExpand = new HashSet<TPuzzle>();
+
                 nodes.Enqueue(new PuzzleState<TPuzzle>(0, puzzleInstance));
+
                 while (!solutionFound && nodes.Count < minNumNodes)
                 {
                     PuzzleState<TPuzzle> puzzle = nodes.Dequeue();
 
-                    IEnumerable<PuzzleState<TPuzzle>> childPuzzles = GetPuzzleStatesToExamine(puzzle, int.MaxValue);
+                    IEnumerable<PuzzleState<TPuzzle>> childPuzzles = GetPuzzleStatesToExamine(puzzle);
 
                     foreach (PuzzleState<TPuzzle> puzzleState in childPuzzles)
                     {
@@ -131,5 +162,24 @@
 
             return false;
         }
+
+        private bool StartTask(int maxDepth, PuzzleState<TPuzzle> newPuzzleState)
+        {
+            bool found = false;
+            ulong expandedNodes = 0;
+            Stack<Move<TPuzzle>> currentSolution = new Stack<Move<TPuzzle>>();
+
+            if (this.DepthLimitedDFS(newPuzzleState, maxDepth, currentSolution, ref expandedNodes))
+            {
+                currentSolution.Push(newPuzzleState.LastMove);
+                this.TaskSolutions[newPuzzleState.PuzzleInstance] = currentSolution;
+                this.NumberOfExpandedNodesInTasks.Add(expandedNodes);
+                found = true;
+            }
+
+            return found;
+        }
+
+        #endregion
     }
 }

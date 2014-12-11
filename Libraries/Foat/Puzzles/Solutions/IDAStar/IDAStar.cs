@@ -158,6 +158,11 @@
                         .Select(newPuzzleState => newPuzzleState.PuzzleState);
         }
 
+        protected IEnumerable<PuzzleState<TPuzzle>> GetPuzzleStatesToExamine(PuzzleState<TPuzzle> puzzleInstance)
+        {
+            return GetPuzzleStatesToExamine(puzzleInstance, int.MaxValue);
+        }
+
         /// <summary>
         /// Calculates the estimated solution depth of a puzzle state.
         /// </summary>
