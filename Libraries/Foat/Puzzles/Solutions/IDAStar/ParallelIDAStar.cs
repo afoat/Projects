@@ -17,6 +17,7 @@
 
         private ConcurrentDictionary<TPuzzle, IEnumerable<Move<TPuzzle>>> TaskSolutions;
         private ConcurrentBag<ulong> NumberOfExpandedNodesInTasks;
+        private ConcurrentBag<int> TaskResults;
 
         #endregion
 
@@ -24,7 +25,8 @@
 
         public ParallelIDAStar(IHeuristic<TPuzzle> heuristic, TPuzzle solutionInstance) : base(heuristic, solutionInstance)
         {
-            this.TaskSolutions = new ConcurrentDictionary<TPuzzle, IEnumerable<Move<TPuzzle>>>();
+            this.TaskSolutions = null;
+            this.TaskResults = null;
             this.NumberOfExpandedNodesInTasks = null;
         }
 
@@ -62,13 +64,15 @@
             try
             {
                 long time = 0;
-                bool found = false;
 
-                this.NumberOfExpandedNodesInTasks = new ConcurrentBag<ulong>();
+                this.TaskSolutions = new ConcurrentDictionary<TPuzzle, IEnumerable<Move<TPuzzle>>>();
+
                 int maxDepth = this.Heuristic.GetMinimumEstimatedSolutionLength(puzzleInstance);
 
-                while (!found)
+                while (maxDepth != FoundResult)
                 {
+                    this.NumberOfExpandedNodesInTasks = new ConcurrentBag<ulong>();
+                    this.TaskResults = new ConcurrentBag<int>();
                     Stopwatch stopwatch = new Stopwatch();
                     stopwatch.Start();
 
@@ -88,12 +92,13 @@
                         for (int i = 0; i < tasks.Length; ++i)
                         {
                             tasks[i] = Task.Factory.StartNew(
-                                (puzzleState => found = StartTask(maxDepth, (PuzzleState<TPuzzle>)puzzleState))
+                                (puzzleState => TaskResults.Add(StartTask(maxDepth, (PuzzleState<TPuzzle>)puzzleState)))
                                 , taskPuzzleStates.Dequeue());
                         }
 
                         Task.WaitAll(tasks);
-                        ++maxDepth;
+
+                        maxDepth = this.TaskResults.Min();
                     }
                     stopwatch.Stop();
                     time = stopwatch.ElapsedMilliseconds;
@@ -163,21 +168,20 @@
             return false;
         }
 
-        private bool StartTask(int maxDepth, PuzzleState<TPuzzle> newPuzzleState)
+        private int StartTask(int maxDepth, PuzzleState<TPuzzle> newPuzzleState)
         {
-            bool found = false;
             ulong expandedNodes = 0;
             Stack<Move<TPuzzle>> currentSolution = new Stack<Move<TPuzzle>>();
 
-            if (this.DepthLimitedDFS(newPuzzleState, maxDepth, currentSolution, ref expandedNodes))
+            int results = this.DepthLimitedDFS(newPuzzleState, maxDepth, currentSolution, ref expandedNodes);
+            if (results == FoundResult)
             {
                 currentSolution.Push(newPuzzleState.LastMove);
                 this.TaskSolutions[newPuzzleState.PuzzleInstance] = currentSolution;
                 this.NumberOfExpandedNodesInTasks.Add(expandedNodes);
-                found = true;
             }
 
-            return found;
+            return results;
         }
 
         #endregion

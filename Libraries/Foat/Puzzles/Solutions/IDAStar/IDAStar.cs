@@ -17,6 +17,9 @@
     /// </summary>
     public class IDAStar<TPuzzle> : IPuzzleSolution<TPuzzle> where TPuzzle : IPuzzle<TPuzzle>, IEquatable<TPuzzle>
     {
+        protected const int FoundResult = -1;
+        protected const int NotFoundResult = int.MaxValue;
+
         #region Properties
 
         public ulong NumberOfExpandedNodes { get; protected set; }
@@ -63,20 +66,19 @@
 
             Stack<Move<TPuzzle>> solution = new Stack<Move<TPuzzle>>();
 
-            bool found = false;
             int maxDepth = this.Heuristic.GetMinimumEstimatedSolutionLength(puzzleInstance);
             ulong expandedNodes = 0;
             long time = 0;
 
-            while (!found)
+            while (maxDepth != FoundResult)
             {
+                expandedNodes = 0;
                 Trace.WriteLine(string.Format(Logging.IDAStarDepthUpdate, maxDepth, time));
                 Stopwatch stopwatch = new Stopwatch();
                 stopwatch.Start();
-                found = DepthLimitedDFS(new PuzzleState<TPuzzle>(0, puzzleInstance), maxDepth, solution, ref expandedNodes);
+                maxDepth = DepthLimitedDFS(new PuzzleState<TPuzzle>(0, puzzleInstance), maxDepth, solution, ref expandedNodes);
                 stopwatch.Stop();
                 time = stopwatch.ElapsedMilliseconds;
-                ++maxDepth;
             }
 
             this.NumberOfExpandedNodes = expandedNodes;
@@ -101,26 +103,40 @@
         /// <param name="maxDepth">Determines how deep we will search for a solution in the tree.</param>
         /// <param name="solution">The solution that has been found.</param>
         /// <returns></returns>
-        protected bool DepthLimitedDFS(PuzzleState<TPuzzle> puzzleState, int maxDepth, Stack<Move<TPuzzle>> solution, ref ulong expandedNodes)
+        protected int DepthLimitedDFS(PuzzleState<TPuzzle> puzzleState, int maxDepth, Stack<Move<TPuzzle>> solution, ref ulong expandedNodes)
         {
-            if (puzzleState.PuzzleInstance.Equals(this.SolutionState))
+            int currentHeuristic = GetEstimatedDepth(puzzleState);
+            if (currentHeuristic > maxDepth)
             {
-                return true;
+                return currentHeuristic;
             }
 
-            IEnumerable<PuzzleState<TPuzzle>> orderedPuzzlesToExamine = GetPuzzleStatesToExamine(puzzleState, maxDepth);
+            if (puzzleState.PuzzleInstance.Equals(this.SolutionState))
+            {
+                return FoundResult;
+            }
+
+            int newMaxDepth = int.MaxValue;
+
+            IEnumerable<PuzzleState<TPuzzle>> puzzlesToExamine = GetPuzzleStatesToExamine(puzzleState, maxDepth);
 
             expandedNodes++;
-            foreach (PuzzleState<TPuzzle> newPuzzleState in orderedPuzzlesToExamine)
+            foreach (PuzzleState<TPuzzle> newPuzzleState in puzzlesToExamine)
             {
-                if (DepthLimitedDFS(newPuzzleState, maxDepth, solution, ref expandedNodes))
+                int results = DepthLimitedDFS(newPuzzleState, maxDepth, solution, ref expandedNodes);
+                if (results == FoundResult)
                 {
                     solution.Push(newPuzzleState.LastMove);
-                    return true;
+                    return results;
+                }
+
+                if (results < newMaxDepth)
+                {
+                    newMaxDepth = results;
                 }
             }
 
-            return false;
+            return newMaxDepth;
         }
 
         /// <summary>
@@ -151,11 +167,7 @@
             // Get the estimated solution depth of the puzzle that results from each possible move
             // Filter out the ones that have an estimate that is larger than maxDepth
             // And sort them in ascending order by EstimatedDepth
-            return moves.Select(move => new PuzzleState<TPuzzle>(move, (byte)(puzzleInstance.Depth + 1), move.MovePuzzle(puzzleInstance.PuzzleInstance)))
-                        .Select(newPuzzleState => new { PuzzleState = newPuzzleState, EstimatedDepth = GetEstimatedDepth(newPuzzleState) })
-                        .Where(newPuzzleState => newPuzzleState.EstimatedDepth <= maxDepth)
-                        .OrderBy(newPuzzleState => newPuzzleState.EstimatedDepth)
-                        .Select(newPuzzleState => newPuzzleState.PuzzleState);
+            return moves.Select(move => new PuzzleState<TPuzzle>(move, (byte)(puzzleInstance.Depth + 1), move.MovePuzzle(puzzleInstance.PuzzleInstance)));
         }
 
         protected IEnumerable<PuzzleState<TPuzzle>> GetPuzzleStatesToExamine(PuzzleState<TPuzzle> puzzleInstance)
@@ -167,9 +179,9 @@
         /// Calculates the estimated solution depth of a puzzle state.
         /// </summary>
         /// <returns>The estimated depth = Actual Depth of Puzzle State + EstimatedSolutionLength for that Puzzle State.</returns>
-        protected int GetEstimatedDepth(PuzzleState<TPuzzle> puzzleInstance)
+        protected int GetEstimatedDepth(PuzzleState<TPuzzle> puzzleState)
         {
-            return puzzleInstance.Depth + this.Heuristic.GetMinimumEstimatedSolutionLength(puzzleInstance.PuzzleInstance);
+            return puzzleState.Depth + this.Heuristic.GetMinimumEstimatedSolutionLength(puzzleState.PuzzleInstance);
         }
 
         #endregion
