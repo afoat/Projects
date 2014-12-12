@@ -16,7 +16,7 @@
             NPuzzle newPuzzle = new NPuzzle(4);
             IPuzzleSolution<NPuzzle> solutionGenerator = new ParallelIDAStar<NPuzzle>(heuristic, newPuzzle);
 
-            Random rnd = new Random(1234);
+            Random rnd = new Random(3);
             string inputFromUser;
 
             do
@@ -53,7 +53,7 @@
 
                 Stopwatch stopwatch = new Stopwatch();
                 stopwatch.Start();
-                var solution = solutionGenerator.FindSolution(puzzle);
+                var solution = solutionGenerator.Solve(puzzle);
                 stopwatch.Stop();
 
                 if (solution == null)

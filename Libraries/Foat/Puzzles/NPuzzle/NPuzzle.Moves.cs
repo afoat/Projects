@@ -4,6 +4,10 @@
 
     public sealed partial class NPuzzle
     {
+        // Since the puzzle moves never really change I have defined them once below.
+        // This will speed up the NPuzzle and any searches done on it since we aren't
+        // constantly allocating new memory for moves.
+
         private static readonly Move<NPuzzle> Up = new Move<NPuzzle>("Up", nPuzzle => nPuzzle.SlideUp(), nPuzzle => nPuzzle.GetValidMovesAfterUp());
         private static readonly Move<NPuzzle> Down = new Move<NPuzzle>("Down", nPuzzle => nPuzzle.SlideDown(), nPuzzle => nPuzzle.GetValidMovesAfterDown());
         private static readonly Move<NPuzzle> Left = new Move<NPuzzle>("Left", nPuzzle => nPuzzle.SlideLeft(), nPuzzle => nPuzzle.GetValidMovesAfterLeft());

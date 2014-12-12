@@ -2,6 +2,24 @@
 {
     using Foat.Puzzles.Solutions;
 
+    /// <summary>
+    /// Improves on the manhattan distance by taking into account cases that contain linear conflicts.
+    /// 
+    /// A linear conflict occust in an NPuzzle when there are multiple tiles in the right row but in incorrect order.
+    /// In these cases the conflicting tile must be moved out of the row so that it's position can be swapped with the
+    /// other conflicting tile. Since you have to move the out then back into the row we can add 2 to the manhattan distance
+    /// for each linear conflict detected.
+    /// 
+    /// 1 3 2
+    /// 4 5 6
+    /// 7 8 X  has one linear conflict (3-2)
+    /// 
+    /// 3 2 1
+    /// 4 5 6
+    /// 7 8 X has three linear conflicts in the same line (3,2) (3,1) (2,1)
+    /// 
+    /// Linear conflicts can occur in either the columns or the rows.
+    /// </summary>
     public class LinearConflict : IHeuristic<NPuzzle>
     {
         private ManhattanDistance ManhattanDistance { get; set; }
@@ -18,6 +36,9 @@
                  + this.CalculateColumnLinearConflicts(puzzleInstance);
         }
 
+        /// <summary>
+        /// Calculates the linear conflicts in the rows of the puzzleInstance.
+        /// </summary>
         private int CalculateRowLinearConflicts(NPuzzle puzzleInstance)
         {
             unchecked
@@ -48,6 +69,9 @@
             }
         }
 
+        /// <summary>
+        /// Calculates the linear conflicts in the columns of the puzzleInstance.
+        /// </summary>
         private int CalculateColumnLinearConflicts(NPuzzle puzzleInstance)
         {
             unchecked

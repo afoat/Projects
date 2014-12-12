@@ -45,7 +45,7 @@
                     cube = move.MovePuzzle(cube);
                 }
 
-                var solution = solutionGenerator.FindSolution(cube);
+                var solution = solutionGenerator.Solve(cube);
 
                 if (solution == null)
                 {

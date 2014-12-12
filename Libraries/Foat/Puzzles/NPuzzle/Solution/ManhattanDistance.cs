@@ -3,6 +3,9 @@
     using Foat.Puzzles.Solutions;
     using System;
 
+    /// <summary>
+    /// A heuristic that calculates the manhattan distance of an NPuzzle.
+    /// </summary>
     public class ManhattanDistance : IHeuristic<NPuzzle>
     {
         public int GetMinimumEstimatedSolutionLength(NPuzzle puzzleInstance)
@@ -32,7 +35,7 @@
             }
         }
 
-        protected static void GetGoalStateIndexForTileValue(byte value, int n, out int goalColIx, out int goalRowIx)
+        private static void GetGoalStateIndexForTileValue(byte value, int n, out int goalColIx, out int goalRowIx)
         {
             unchecked
             {

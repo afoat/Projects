@@ -5,8 +5,23 @@
     using System.Collections.Generic;
     using System.Text;
 
+    /// <summary>
+    /// The NPuzzle can be used to create an instance of the popular 8-Puzzle and 15-Puzzle sliding tile games.
+    /// These puzzles are a 3x3 and 4x4 grid respect, of numbered tiles. One space is left empty so that the tiles
+    /// can be re-ordered. Once randomized the goal is to return the puzzle into the original state such as
+    /// 
+    /// 1 2 3
+    /// 4 5 5
+    /// 7 8
+    /// 
+    /// in the case of the 8 puzzle. This class supports grids of up to 15x15 but seriously. Even a 5x5 24-Puzzle is
+    /// VERY hard for the algorithm to solve.
+    /// </summary>
     public sealed partial class NPuzzle : IPuzzle<NPuzzle>, IEquatable<NPuzzle>
     {
+        /// <summary>
+        /// The length of one side of the square grid.
+        /// </summary>
         public int Size
         {
             get { return this.Board.GetLength(0); }
@@ -65,6 +80,13 @@
             return this.Board[rowIx, colIx];
         }
 
+        /// <summary>
+        /// This method will always return the moves that are valid on any particular NPuzzle instance.
+        /// 
+        /// This doesnt take into account the previous moves on the puzzle though so we will need to be smarted than this
+        /// when performing an IDA* search.
+        /// </summary>
+        /// <returns></returns>
         public Move<NPuzzle>[] GetValidMoves()
         {
             List<Move<NPuzzle>> moves = new List<Move<NPuzzle>>(4);
@@ -116,7 +138,9 @@
             }
         }
 
-
+        /// <summary>
+        /// Returns the moves that are valid on this instance of the puzzle assuming that a tile was just slid UP.
+        /// </summary>
         private Move<NPuzzle>[] GetValidMovesAfterUp()
         {
             int nMinusOne = this.Size - 1;
@@ -153,6 +177,10 @@
             }
         }
 
+
+        /// <summary>
+        /// Returns the moves that are valid on this instance of the puzzle assuming that a tile was just slid DOWN.
+        /// </summary>
         private Move<NPuzzle>[] GetValidMovesAfterDown()
         {
             if (this.BlankSpaceRow == 0)
@@ -187,6 +215,10 @@
             }
         }
 
+
+        /// <summary>
+        /// Returns the moves that are valid on this instance of the puzzle assuming that a tile was just slid LEFT.
+        /// </summary>
         private Move<NPuzzle>[] GetValidMovesAfterLeft()
         {
             int nMinusOne = this.Size - 1;
@@ -223,6 +255,10 @@
             }
         }
 
+
+        /// <summary>
+        /// Returns the moves that are valid on this instance of the puzzle assuming that a tile was just slid RIGHT.
+        /// </summary>
         private Move<NPuzzle>[] GetValidMovesAfterRight()
         {
             if (this.BlankSpaceCol == 0)
@@ -257,6 +293,9 @@
             }
         }
 
+        /// <summary>
+        /// Slides a tile up into the blank space if possible.
+        /// </summary>
         public NPuzzle SlideUp()
         {
             byte swapY = (byte)(this.BlankSpaceRow + 1);
@@ -268,6 +307,10 @@
             return SlideVertically(swapY);
         }
 
+
+        /// <summary>
+        /// Slides a tile down into the blank space if possible.
+        /// </summary>
         public NPuzzle SlideDown()
         {
             byte swapY = (byte)(this.BlankSpaceRow - 1);
@@ -279,6 +322,9 @@
             return SlideVertically(swapY);
         }
 
+        /// <summary>
+        /// Slides a tile left into the blank space if possible.
+        /// </summary>
         public NPuzzle SlideLeft()
         {
             byte swapX = (byte)(this.BlankSpaceCol + 1);
@@ -290,6 +336,10 @@
             return SlideHorizontally(swapX);
         }
 
+
+        /// <summary>
+        /// Slides a tile right into the blank space if possible.
+        /// </summary>
         public NPuzzle SlideRight()
         {
             byte swapX = (byte)(this.BlankSpaceCol - 1);

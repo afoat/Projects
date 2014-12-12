@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\ParallelIDAStarSettings.cs" />
+    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Logging.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -78,7 +79,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RubiksCube\RubiksCube.Moves.cs" />
     <Compile Include="RubiksCube\RubiksCubeFactory.cs" />
+    <Compile Include="Solutions\IDAStar\DepthLimitedAStar.cs" />
     <Compile Include="Solutions\IDAStar\IDAStar.cs" />
+    <Compile Include="Solutions\PuzzleStateExpander.cs" />
+    <Compile Include="Solutions\IDAStar\IDAStarTask.cs" />
     <Compile Include="Solutions\IDAStar\ParallelIDAStar.cs" />
     <Compile Include="RubiksCube\Solution\Pattern.cs" />
     <Compile Include="RubiksCube\Solution\PatternSet.cs" />
