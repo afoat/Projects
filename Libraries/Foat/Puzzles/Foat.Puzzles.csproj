@@ -70,6 +70,7 @@
     </Compile>
     <Compile Include="NPuzzle\NPuzzle.cs" />
     <Compile Include="NPuzzle\NPuzzle.Moves.cs" />
+    <Compile Include="NPuzzle\Solution\LinearConflict.cs" />
     <Compile Include="NPuzzle\Solution\ManhattanDistance.cs" />
     <Compile Include="RubiksCube\CornerPosition.cs" />
     <Compile Include="RubiksCube\EdgePosition.cs" />

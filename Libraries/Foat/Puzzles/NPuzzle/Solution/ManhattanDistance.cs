@@ -7,44 +7,46 @@
     {
         public int GetMinimumEstimatedSolutionLength(NPuzzle puzzleInstance)
         {
-            int distance = 0;
-
-            for (int y = 0; y < puzzleInstance.Size; ++y)
+            unchecked
             {
-                for (int x = 0; x < puzzleInstance.Size; ++x)
-                {
-                    if (puzzleInstance.GetValue(x, y) != null)
-                    {
-                        int xGoal;
-                        int yGoal;
+                int size = puzzleInstance.Size;
+                int distance = 0;
 
-                        byte? value = puzzleInstance.GetValue(x, y);
-                        GetGoalStateIndexForSquareValue(value, puzzleInstance.Size, out xGoal, out yGoal);
-                        distance += GetSingleManhattanDistance(x, y, xGoal, yGoal);
+                for (int rowIx = 0; rowIx < size; ++rowIx)
+                {
+                    for (int colIx = 0; colIx < size; ++colIx)
+                    {
+                        if (puzzleInstance.GetValue(colIx, rowIx) != 0)
+                        {
+                            int goalColIx;
+                            int goalRowIx;
+
+                            byte value = puzzleInstance.GetValue(colIx, rowIx);
+                            GetGoalStateIndexForTileValue(value, size, out goalColIx, out goalRowIx);
+                            distance += GetSingleManhattanDistance(colIx, rowIx, goalColIx, goalRowIx);
+                        }
                     }
                 }
-            }
 
-            return distance;
+                return distance;
+            }
         }
 
-        private static void GetGoalStateIndexForSquareValue(byte? value, int n, out int xGoal, out int yGoal)
+        protected static void GetGoalStateIndexForTileValue(byte value, int n, out int goalColIx, out int goalRowIx)
         {
-            if (value.HasValue)
+            unchecked
             {
-                xGoal = value.Value % n;
-                yGoal = value.Value / n;
-            }
-            else
-            {
-                xGoal = n - 1;
-                yGoal = xGoal;
+                goalColIx = (value - 1) % n;
+                goalRowIx = (value - 1) / n;
             }
         }
 
         private static int GetSingleManhattanDistance(int actualX, int actualY, int goalX, int goalY)
         {
-            return Math.Abs(actualX - goalX) + Math.Abs(actualY - goalY);
+            unchecked
+            {
+                return Math.Abs(actualX - goalX) + Math.Abs(actualY - goalY);
+            }
         }
     }
 }

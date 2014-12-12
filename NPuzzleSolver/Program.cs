@@ -11,12 +11,12 @@
     {
         static void Main(string[] args)
         {
-            ManhattanDistance heuristic = new ManhattanDistance();
+            IHeuristic<NPuzzle> heuristic = new LinearConflict();
 
             NPuzzle newPuzzle = new NPuzzle(4);
             IPuzzleSolution<NPuzzle> solutionGenerator = new ParallelIDAStar<NPuzzle>(heuristic, newPuzzle);
 
-            Random rnd = new Random(3);
+            Random rnd = new Random(1234);
             string inputFromUser;
 
             do
@@ -48,8 +48,8 @@
                     timesMoved++;
                 }
 
-                Trace.WriteLine(string.Format("Made {0} moves.", timesMoved));
-                Trace.WriteLine(puzzle.ToString());
+                Console.WriteLine(string.Format("Made {0} moves.", timesMoved));
+                Console.WriteLine(puzzle.ToString());
 
                 Stopwatch stopwatch = new Stopwatch();
                 stopwatch.Start();
@@ -64,11 +64,11 @@
                 {
                     foreach (Move<NPuzzle> move in solution)
                     {
-                        Trace.WriteLine(move.ToString());
+                        Console.WriteLine(move.ToString());
                     }
 
-                    Trace.WriteLine(string.Format("Elapsed Time in ms: {0}", stopwatch.ElapsedMilliseconds));
-                    Trace.WriteLine(string.Format("Expanded {0} nodes.", solutionGenerator.GetNumberOfExpandedNodes()));
+                    Console.WriteLine(string.Format("Elapsed Time in ms: {0}", stopwatch.ElapsedMilliseconds));
+                    Console.WriteLine(string.Format("Expanded {0} nodes.", solutionGenerator.GetNumberOfExpandedNodes()));
                 }
 
                 Trace.WriteLine("Press Q to quit, anything else to try another one.");
