@@ -64,17 +64,12 @@
         /// <returns></returns>
         private IEnumerable<Move<TPuzzle>> FindSolutionParallel(TPuzzle puzzleInstance, int minNumTasks)
         {
-            long time;
-
             int maxDepth = this.Heuristic.GetMinimumEstimatedSolutionLength(puzzleInstance);
 
             IDAStarTask<TPuzzle>[] taskInfo = null;
+
             while (maxDepth != 0)
             {
-                time = 0;
-                Stopwatch stopwatch = new Stopwatch();
-                stopwatch.Start();
-
                 // If a solution was found while doing the BFS it is just
                 // easier for now to do a single threaded IDA* search for it
                 // This can likely be improved.
@@ -84,7 +79,7 @@
                 }
                 else
                 {
-                    Trace.WriteLine(string.Format(Logging.IDAStarDepthUpdate, maxDepth, time));
+                    Trace.WriteLine(string.Format(Logging.IDAStarDepthUpdate, maxDepth));
 
                     Task[] tasks = new Task[taskInfo.Length];
                     for (int i = 0; i < tasks.Length; ++i)
@@ -102,9 +97,6 @@
 
                     maxDepth = taskInfo.Select(info => info.NextMaxDepth).Min();
                 }
-
-                stopwatch.Stop();
-                time = stopwatch.ElapsedMilliseconds;
             }
 
             return GetFinalSolution(taskInfo);

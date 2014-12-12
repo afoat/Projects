@@ -52,8 +52,8 @@
                 throw new ArgumentNullException("solution");
 
             _solutionState = solutionState;
-            this.Solution = null;
             this.Heuristic = heuristic;
+            this.Reset();
         }
 
         /// <summary>
@@ -66,8 +66,6 @@
         /// <returns></returns>
         internal int DepthLimitedDFS(PuzzleState<TPuzzle> puzzleState, int maxDepth)
         {
-            this.Reset();
-
             int currentHeuristic = GetEstimatedDepth(puzzleState);
             if (currentHeuristic > maxDepth)
             {
@@ -98,13 +96,12 @@
                     newMaxDepth = results;
                 }
             }
-
             this.NumberOfExpandedNodes++;
 
             return newMaxDepth;
         }
 
-        private void Reset()
+        internal void Reset()
         {
             this.NumberOfExpandedNodes = 0;
             this.Solution = null;

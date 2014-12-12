@@ -61,7 +61,7 @@ namespace Foat.Puzzles {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Searching to a maximum depth of - {0:N0}. Last Depth Took: {1} ms..
+        ///   Looks up a localized string similar to Searching to a maximum depth of - {0:N0}..
         /// </summary>
         internal static string IDAStarDepthUpdate {
             get {

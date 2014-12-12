@@ -47,16 +47,19 @@
                 int linearConflict = 0;
                 for (int rowIx = 0; rowIx < size; rowIx++)
                 {
+                    int minRow = size * rowIx + 1;
+                    int maxRow = minRow + size - 1;
+
                     for (int curColIx = 0; curColIx < size; curColIx++)
                     {
                         byte curValue = puzzleInstance.GetValue(curColIx, rowIx);
 
-                        if (curValue != 0 && (curValue - 1) / size == rowIx)
+                        if (curValue != 0 && curValue >= minRow && curValue <= maxRow)
                         {
                             for (int compareColIx = curColIx + 1; compareColIx < size; compareColIx++)
                             {
                                 byte compareValue = puzzleInstance.GetValue(compareColIx, rowIx);
-                                if (compareValue != 0 && (compareValue - 1) / size == rowIx && compareValue < curValue)
+                                if (compareValue != 0 && compareValue >= minRow && compareValue <= maxRow && compareValue < curValue)
                                 {
                                     linearConflict += 2;
                                 }

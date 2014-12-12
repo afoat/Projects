@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="IDAStarDepthUpdate" xml:space="preserve">
-    <value>Searching to a maximum depth of - {0:N0}. Last Depth Took: {1} ms.</value>
+    <value>Searching to a maximum depth of - {0:N0}.</value>
   </data>
   <data name="RubiksCreatingPatternSet" xml:space="preserve">
     <value>Creating new Pattern Set.</value>
