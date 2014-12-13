@@ -60,6 +60,8 @@
 
             _solutionState = solution;
             this.Heuristic = heuristic;
+
+            this.Heuristic.RegisterSolution(this.SolutionState);
         }
 
         #endregion

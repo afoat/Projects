@@ -72,6 +72,8 @@
                 return currentHeuristic;
             }
 
+            this.NumberOfExpandedNodes++;
+
             if (puzzleState.PuzzleInstance.Equals(this.SolutionState))
             {
                 this.Solution = new Stack<Move<TPuzzle>>();
@@ -96,7 +98,6 @@
                     newMaxDepth = results;
                 }
             }
-            this.NumberOfExpandedNodes++;
 
             return newMaxDepth;
         }

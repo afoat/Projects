@@ -4,6 +4,7 @@
     using System;
     using System.Collections.Generic;
     using System.Text;
+    using System.Linq;
 
     /// <summary>
     /// The NPuzzle can be used to create an instance of the popular 8-Puzzle and 15-Puzzle sliding tile games.
@@ -72,7 +73,7 @@
             this.BlankSpaceCol = (byte)(this.Size - 1);
             this.BlankSpaceRow = BlankSpaceCol;
 
-            this.Board[this.BlankSpaceCol, this.BlankSpaceRow] = 0;
+            this.Board[this.BlankSpaceRow, this.BlankSpaceCol] = 0;
         }
 
         public byte GetValue(int colIx, int rowIx)
@@ -351,9 +352,33 @@
             return SlideHorizontally(swapX);
         }
 
+        /// <summary>
+        /// Using the values on the board as indexes into the arrays, this function fills the arrays with the
+        /// index of each board value in the goal state. This allows us to take a value and really quickly
+        /// determine where it should be.
+        /// </summary>
+        public void FillIndexes(out byte[] goalRowIndexes, out byte[] goalColIndexes)
+        {
+            int size = this.Size;
+
+            goalRowIndexes = new byte[size*size];
+            goalColIndexes = new byte[goalRowIndexes.Length];
+
+            int value;
+            for (byte colIx = 0; colIx < size; colIx++)
+            {
+                for (byte rowIx = 0; rowIx < size; rowIx++)
+                {
+                    value = this.Board[rowIx, colIx];
+                    goalRowIndexes[value] = rowIx;
+                    goalColIndexes[value] = colIx;
+                }
+            }
+        }
+
         private NPuzzle SlideVertically(byte swapRow)
         {
-            byte[,] newBoard = (byte[,])this.Board.Clone();
+            byte[,] newBoard = CloneBoard();
 
             byte swapValue = newBoard[swapRow, this.BlankSpaceCol];
             newBoard[swapRow, this.BlankSpaceCol] = 0;
@@ -362,9 +387,23 @@
             return new NPuzzle(newBoard, this.BlankSpaceCol, swapRow);
         }
 
+        private byte[,] CloneBoard()
+        {
+            int size = this.Size;
+            byte[,] newBoard = new byte[size, size];
+            for (int rowIx = 0; rowIx < size; ++rowIx)
+            {
+                for (int colIx = 0; colIx < size; ++colIx)
+                {
+                    newBoard[rowIx, colIx] = this.Board[rowIx, colIx];
+                }
+            }
+            return newBoard;
+        }
+
         private NPuzzle SlideHorizontally(byte swapCol)
         {
-            byte[,] newBoard = (byte[,])this.Board.Clone();
+            byte[,] newBoard = CloneBoard();
 
             byte swapValue = newBoard[this.BlankSpaceRow, swapCol];
             newBoard[this.BlankSpaceRow, swapCol] = 0;

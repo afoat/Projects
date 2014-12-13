@@ -65,5 +65,9 @@
                        .Select(patternSet => patternSet.GetEstimatedSolutionLength(rubiksCube))
                        .Max();
         }
+
+        public void RegisterSolution(RubiksCube puzzleSolution)
+        {
+        }
     }
 }

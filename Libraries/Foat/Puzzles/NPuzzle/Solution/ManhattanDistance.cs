@@ -8,6 +8,14 @@
     /// </summary>
     public class ManhattanDistance : IHeuristic<NPuzzle>
     {
+        private byte[] GoalRowIndexes;
+        private byte[] GoalColIndexes;
+
+        public void RegisterSolution(NPuzzle puzzleSolution)
+        {
+            puzzleSolution.FillIndexes(out GoalRowIndexes, out GoalColIndexes);
+        }
+
         public int GetMinimumEstimatedSolutionLength(NPuzzle puzzleInstance)
         {
             unchecked
@@ -19,14 +27,10 @@
                 {
                     for (int colIx = 0; colIx < size; ++colIx)
                     {
-                        if (puzzleInstance.GetValue(colIx, rowIx) != 0)
+                        byte value = puzzleInstance.GetValue(colIx, rowIx);
+                        if (value != 0)
                         {
-                            int goalColIx;
-                            int goalRowIx;
-
-                            byte value = puzzleInstance.GetValue(colIx, rowIx);
-                            GetGoalStateIndexForTileValue(value, size, out goalColIx, out goalRowIx);
-                            distance += GetSingleManhattanDistance(colIx, rowIx, goalColIx, goalRowIx);
+                            distance += GetSingleManhattanDistance(colIx, rowIx, GoalColIndexes[value], GoalRowIndexes[value]);
                         }
                     }
                 }
@@ -35,20 +39,11 @@
             }
         }
 
-        private static void GetGoalStateIndexForTileValue(byte value, int n, out int goalColIx, out int goalRowIx)
+        private static int GetSingleManhattanDistance(int colIx, int rowIx, int goalColIx, int goalRowIx)
         {
             unchecked
             {
-                goalColIx = (value - 1) % n;
-                goalRowIx = (value - 1) / n;
-            }
-        }
-
-        private static int GetSingleManhattanDistance(int actualX, int actualY, int goalX, int goalY)
-        {
-            unchecked
-            {
-                return Math.Abs(actualX - goalX) + Math.Abs(actualY - goalY);
+                return Math.Abs(colIx - goalColIx) + Math.Abs(rowIx - goalRowIx);
             }
         }
     }

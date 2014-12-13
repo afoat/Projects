@@ -22,6 +22,9 @@
     /// </summary>
     public class LinearConflict : IHeuristic<NPuzzle>
     {
+        private byte[] GoalRowIndexes;
+        private byte[] GoalColIndexes;
+
         private ManhattanDistance ManhattanDistance { get; set; }
 
         public LinearConflict()
@@ -29,6 +32,18 @@
             this.ManhattanDistance = new ManhattanDistance();
         }
 
+        /// <summary>
+        /// Registers the puzzle solution with the heuristic so that it can generate any needed data.
+        /// </summary>
+        public void RegisterSolution(NPuzzle puzzleSolution)
+        {
+            this.ManhattanDistance.RegisterSolution(puzzleSolution);
+            puzzleSolution.FillIndexes(out GoalRowIndexes, out GoalColIndexes);
+        }
+
+        /// <summary>
+        /// Returns the manhattan distance + 2 x Number Of Linear Conflicts
+        /// </summary>
         public int GetMinimumEstimatedSolutionLength(NPuzzle puzzleInstance)
         {
             return this.ManhattanDistance.GetMinimumEstimatedSolutionLength(puzzleInstance)
@@ -47,19 +62,16 @@
                 int linearConflict = 0;
                 for (int rowIx = 0; rowIx < size; rowIx++)
                 {
-                    int minRow = size * rowIx + 1;
-                    int maxRow = minRow + size - 1;
-
                     for (int curColIx = 0; curColIx < size; curColIx++)
                     {
                         byte curValue = puzzleInstance.GetValue(curColIx, rowIx);
 
-                        if (curValue != 0 && curValue >= minRow && curValue <= maxRow)
+                        if (GoalRowIndexes[curValue] == rowIx && curValue != 0)
                         {
                             for (int compareColIx = curColIx + 1; compareColIx < size; compareColIx++)
                             {
                                 byte compareValue = puzzleInstance.GetValue(compareColIx, rowIx);
-                                if (compareValue != 0 && compareValue >= minRow && compareValue <= maxRow && compareValue < curValue)
+                                if (GoalRowIndexes[compareValue] == rowIx && compareValue < curValue && compareValue != 0)
                                 {
                                     linearConflict += 2;
                                 }
@@ -87,12 +99,12 @@
                     {
                         byte curValue = puzzleInstance.GetValue(colIx, curRowIx);
 
-                        if (curValue != 0 && (curValue - 1) % size == colIx)
+                        if (GoalColIndexes[curValue] == colIx && curValue != 0)
                         {
                             for (int compareRowIx = curRowIx + 1; compareRowIx < size; compareRowIx++)
                             {
                                 byte compareValue = puzzleInstance.GetValue(colIx, compareRowIx);
-                                if (compareValue != 0 && (compareValue - 1) % size == colIx && compareValue < curValue)
+                                if (GoalColIndexes[compareValue] == colIx && compareValue < curValue && compareValue != 0)
                                 {
                                     linearConflict += 2;
                                 }

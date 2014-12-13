@@ -13,5 +13,10 @@
         /// </summary>
         /// <param name="puzzleInstance">The puzzle for which we want to find an estimate for.</param>
         int GetMinimumEstimatedSolutionLength(TPuzzle puzzleInstance);
+
+        /// <summary>
+        /// Registers the puzzle solution with the heuristic so that it can generate any needed data.
+        /// </summary>
+        void RegisterSolution(TPuzzle puzzleSolution);
     }
 }
