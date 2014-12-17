@@ -4,8 +4,6 @@
     using Foat.Puzzles.RubiksCube;
     using Foat.Puzzles.Solutions;
     using System.Collections.Concurrent;
-    using System.Diagnostics;
-    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
     
@@ -25,9 +23,6 @@
         {
             ConcurrentDictionary<RubiksCube, byte> patternSetDictionary = GeneratePatternSetDictionary(pattern, numberOfThreads);
             MinimalPerfectHash<FnvHash> mph = GetMinimalPerfectHashForPatternSet(patternSetDictionary);
-
-            Trace.WriteLine(Logging.RubiksFinishedGeneratingMPH);
-            Trace.WriteLine(Logging.RubiksCreatingPatternSet);
 
             return new PatternSet(patternSetDictionary, mph, pattern);
         }
@@ -84,10 +79,6 @@
             }
 
             Task.WaitAll(tasks);
-
-            int maxDepth = patternDatabase.Values.Max();
-
-            Trace.WriteLine(string.Format(Logging.RubiksPatternGenerationFinished, patternDatabase.Count, maxDepth));
 
             return patternDatabase;
         }

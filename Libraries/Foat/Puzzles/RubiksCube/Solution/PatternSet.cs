@@ -4,7 +4,6 @@
     using Foat.Puzzles.RubiksCube;
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
     using System.IO;
     using System.Runtime.Serialization;
     using System.Xml;
@@ -125,15 +124,10 @@
                 XmlSerializer serializer = new XmlSerializer(typeof(Pattern));
                 this.Pattern = (Pattern)serializer.Deserialize(reader);
 
-                Trace.WriteLine(string.Format(Logging.RubiksFinishedReadingPattern, this.Name));
-                Trace.WriteLine(Logging.RubiksReadingDistanceMap);
-
                 serializer = new XmlSerializer(typeof(byte[]));
                 reader.ReadStartElement("DistanceMap");
                 this.MinimumSolutionLength = (byte[])serializer.Deserialize(reader);
                 reader.ReadEndElement();
-
-                Trace.WriteLine(Logging.RubiksReadingMPH);
 
                 DataContractSerializer contractSerializer = new DataContractSerializer(typeof(MinimalPerfectHash<FnvHash>));
                 this.MinimalPerfectHash = (MinimalPerfectHash<FnvHash>)contractSerializer.ReadObject(reader);

@@ -4,7 +4,6 @@
     using Foat.Puzzles.Solutions;
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
     using System.IO;
     using System.Linq;
     using System.Xml.Serialization;
@@ -39,7 +38,6 @@
             XmlSerializer serializer = new XmlSerializer(typeof(PatternSet));
             foreach (string fileName in patternSetFilePaths)
             {
-                Trace.WriteLine(string.Format(Logging.RubiksReadingPatternFromDisk, fileName));
                 using (StreamReader reader = new StreamReader(fileName))
                 {
                     PatternSet patternSet = (PatternSet)serializer.Deserialize(reader);

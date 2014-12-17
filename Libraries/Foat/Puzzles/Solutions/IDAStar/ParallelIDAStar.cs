@@ -6,7 +6,6 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Diagnostics;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -79,8 +78,6 @@
                 }
                 else
                 {
-                    Trace.WriteLine(string.Format(Logging.IDAStarDepthUpdate, maxDepth));
-
                     Task[] tasks = new Task[taskInfo.Length];
                     for (int i = 0; i < tasks.Length; ++i)
                     {

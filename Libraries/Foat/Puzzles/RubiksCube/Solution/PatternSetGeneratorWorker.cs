@@ -5,8 +5,6 @@
     using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Threading;
 
     /// <summary>
     /// A worker that does the pattern set generation.
@@ -44,8 +42,6 @@
 
         public void Work()
         {
-            Trace.WriteLine(string.Format(Logging.TaskStarting, Thread.CurrentThread.ManagedThreadId));
-
             int count;
             while (this.CubesToExamine.Count > 0)
             {
@@ -77,14 +73,10 @@
                                 this.PatternDatabase.AddOrUpdate(newCube, newDepth, (cube, depth) => Math.Min(newDepth, depth));
                                 count = PatternDatabase.Count;
                             }
-                            
-                            Trace.WriteLineIf(count % 100000 == 0, string.Format(Logging.RubiksPatternGenerationUpdate, count, this.CubesToExamine.Count, this.CurrentMaxDepth, Thread.CurrentThread.ManagedThreadId));
                         }
                     }
                 }
             }
-
-            Trace.WriteLine(string.Format(Logging.TaskEnding, Thread.CurrentThread.ManagedThreadId));
         }
     }
 }

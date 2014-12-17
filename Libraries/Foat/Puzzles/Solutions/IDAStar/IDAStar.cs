@@ -3,7 +3,6 @@
     using Foat.Puzzles.Solutions;
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
 
     /// <summary>
     /// An algorithm for finding a shortest length solution to any IPuzzle
@@ -85,8 +84,6 @@
             DepthLimitedAStar<TPuzzle> depthLimitedSearch = new DepthLimitedAStar<TPuzzle>(this.Heuristic, this.SolutionState);
             while (solution == null && maxDepth != 0)
             {
-                Trace.WriteLine(string.Format(Logging.IDAStarDepthUpdate, maxDepth));
-
                 depthLimitedSearch.Reset();
 
                 maxDepth = depthLimitedSearch.DepthLimitedDFS(new PuzzleState<TPuzzle>(0, puzzleInstance), maxDepth);

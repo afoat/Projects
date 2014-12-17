@@ -23,11 +23,11 @@
         /// </summary>
         public int Dimension { get; private set; }
 
-        private byte[,] Board { get; set; }
+        private byte[,] Board;
 
-        private byte BlankSpaceCol { get; set; }
+        private byte BlankSpaceCol;
 
-        private byte BlankSpaceRow { get; set; }
+        private byte BlankSpaceRow;
 
         public NPuzzle(byte n)
         {
