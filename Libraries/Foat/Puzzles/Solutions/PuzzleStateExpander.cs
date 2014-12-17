@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
 
     /// <summary>
     /// Provides functions used to enumerate the child states of a puzzle instance.
@@ -19,25 +18,17 @@
         /// </summary>
         /// <param name="puzzleInstance">The puzzle that we will be examining.</param>
         /// <param name="maxDepth">The maximum estimated solution length that we are willing to accept.</param>
-        internal static IEnumerable<PuzzleState<TPuzzle>> GetPuzzleStatesToExamine(PuzzleState<TPuzzle> puzzleInstance, int maxDepth)
+        internal static PuzzleState<TPuzzle>[] GetPuzzleStatesToExamine(PuzzleState<TPuzzle> puzzleInstance, int maxDepth)
         {
-            // Not all moves are valid depending on the previous move.
-            // e.g. If I perform one move, it makes no senses to try the exact opposite of that move
-            // Pruning the tree like this makes it quite a bit more efficient.
-            IEnumerable<Move<TPuzzle>> moves;
-            if (puzzleInstance.LastMove == null)
+            Move<TPuzzle>[] moves = GetMovesForPuzzleState(puzzleInstance);
+            PuzzleState<TPuzzle>[] puzzleStates = new PuzzleState<TPuzzle>[moves.Length];
+
+            for (int i = 0; i < moves.Length; i++)
             {
-                moves = puzzleInstance.PuzzleInstance.GetValidMoves();
-            }
-            else
-            {
-                moves = puzzleInstance.LastMove.GetValidNextMoves(puzzleInstance.PuzzleInstance);
+                puzzleStates[i] = new PuzzleState<TPuzzle>(moves[i], (byte)(puzzleInstance.Depth + 1), moves[i].MovePuzzle(puzzleInstance.PuzzleInstance));
             }
 
-            // Get the estimated solution depth of the puzzle that results from each possible move
-            // Filter out the ones that have an estimate that is larger than maxDepth
-            // And sort them in ascending order by EstimatedDepth
-            return moves.Select(move => new PuzzleState<TPuzzle>(move, (byte)(puzzleInstance.Depth + 1), move.MovePuzzle(puzzleInstance.PuzzleInstance)));
+            return puzzleStates;
         }
 
         /// <summary>
@@ -50,6 +41,24 @@
         internal static IEnumerable<PuzzleState<TPuzzle>> GetPuzzleStatesToExamine(PuzzleState<TPuzzle> puzzleInstance)
         {
             return GetPuzzleStatesToExamine(puzzleInstance, int.MaxValue);
+        }
+
+        private static Move<TPuzzle>[] GetMovesForPuzzleState(PuzzleState<TPuzzle> puzzleInstance)
+        {
+            Move<TPuzzle>[] moves;
+
+            // Not all moves are valid depending on the previous move.
+            // e.g. If I perform one move, it makes no senses to try the exact opposite of that move
+            // Pruning the tree like this makes it quite a bit more efficient.
+            if (puzzleInstance.LastMove == null)
+            {
+                moves = puzzleInstance.PuzzleInstance.GetValidMoves();
+            }
+            else
+            {
+                moves = puzzleInstance.LastMove.GetValidNextMoves(puzzleInstance.PuzzleInstance);
+            }
+            return moves;
         }
     }
 }

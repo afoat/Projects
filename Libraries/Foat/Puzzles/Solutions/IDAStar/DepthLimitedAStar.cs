@@ -82,18 +82,16 @@
 
             int newMaxDepth = int.MaxValue;
 
-            IEnumerable<PuzzleState<TPuzzle>> puzzlesToExamine = PuzzleStateExpander<TPuzzle>.GetPuzzleStatesToExamine(puzzleState, maxDepth);
-
-            foreach (PuzzleState<TPuzzle> newPuzzleState in puzzlesToExamine)
+            PuzzleState<TPuzzle>[] puzzlesToExamine = PuzzleStateExpander<TPuzzle>.GetPuzzleStatesToExamine(puzzleState, maxDepth);
+            for (int i = 0; i < puzzlesToExamine.Length; i++)
             {
-                int results = DepthLimitedDFS(newPuzzleState, maxDepth);
-                if (this.Solution != null)
+                int results = DepthLimitedDFS(puzzlesToExamine[i], maxDepth);
+                if (results == 0)
                 {
-                    this.Solution.Push(newPuzzleState.LastMove);
+                    this.Solution.Push(puzzlesToExamine[i].LastMove);
                     return results;
                 }
-
-                if (results < newMaxDepth)
+                else if (results < newMaxDepth)
                 {
                     newMaxDepth = results;
                 }

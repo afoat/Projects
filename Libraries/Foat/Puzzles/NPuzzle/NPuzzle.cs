@@ -2,9 +2,7 @@
 {
     using Foat.Puzzles.Solutions;
     using System;
-    using System.Collections.Generic;
     using System.Text;
-    using System.Linq;
 
     /// <summary>
     /// The NPuzzle can be used to create an instance of the popular 8-Puzzle and 15-Puzzle sliding tile games.
@@ -23,10 +21,7 @@
         /// <summary>
         /// The length of one side of the square grid.
         /// </summary>
-        public int Size
-        {
-            get { return this.Board.GetLength(0); }
-        }
+        public int Dimension { get; private set; }
 
         private byte[,] Board { get; set; }
 
@@ -47,6 +42,7 @@
             }
 
             this.Board = new byte[n, n];
+            this.Dimension = n;
 
             InitializeBoard();
         }
@@ -56,27 +52,28 @@
             this.Board = newBoard;
             this.BlankSpaceCol = blankCol;
             this.BlankSpaceRow = blankRow;
+            this.Dimension = newBoard.GetLength(0);
         }
 
         private void InitializeBoard()
         {
             byte current = 1;
 
-            for (int rowIx = 0; rowIx < this.Size; ++rowIx)
+            for (int rowIx = 0; rowIx < this.Dimension; ++rowIx)
             {
-                for (int colIx = 0; colIx < this.Size; ++colIx)
+                for (int colIx = 0; colIx < this.Dimension; ++colIx)
                 {
                     this.Board[rowIx, colIx] = current++;
                 }
             }
 
-            this.BlankSpaceCol = (byte)(this.Size - 1);
+            this.BlankSpaceCol = (byte)(this.Dimension - 1);
             this.BlankSpaceRow = BlankSpaceCol;
 
             this.Board[this.BlankSpaceRow, this.BlankSpaceCol] = 0;
         }
 
-        public byte GetValue(int colIx, int rowIx)
+        public byte GetValue(int rowIx, int colIx)
         {
             return this.Board[rowIx, colIx];
         }
@@ -90,15 +87,13 @@
         /// <returns></returns>
         public Move<NPuzzle>[] GetValidMoves()
         {
-            List<Move<NPuzzle>> moves = new List<Move<NPuzzle>>(4);
-
             if (this.BlankSpaceCol == 0)
             {
                 if (this.BlankSpaceRow == 0)
                 {
                     return UpLeft;
                 }
-                else if (this.BlankSpaceRow == this.Size - 1)
+                else if (this.BlankSpaceRow == this.Dimension - 1)
                 {
                     return DownLeft;
                 }
@@ -107,13 +102,13 @@
                     return UpDownLeft;
                 }
             }
-            else if (this.BlankSpaceCol == this.Size-1)
+            else if (this.BlankSpaceCol == this.Dimension-1)
             {
                 if (this.BlankSpaceRow == 0)
                 {
                     return UpRight;
                 }
-                else if (this.BlankSpaceRow == this.Size - 1)
+                else if (this.BlankSpaceRow == this.Dimension - 1)
                 {
                     return DownRight;
                 }
@@ -128,7 +123,7 @@
                 {
                     return UpLeftRight;
                 }
-                else if (this.BlankSpaceRow == this.Size - 1)
+                else if (this.BlankSpaceRow == this.Dimension - 1)
                 {
                     return DownLeftRight;
                 }
@@ -144,7 +139,7 @@
         /// </summary>
         private Move<NPuzzle>[] GetValidMovesAfterUp()
         {
-            int nMinusOne = this.Size - 1;
+            int nMinusOne = this.Dimension - 1;
 
             if (this.BlankSpaceRow == nMinusOne)
             {
@@ -190,7 +185,7 @@
                 {
                     return LeftOnly;
                 }
-                else if (this.BlankSpaceCol == this.Size - 1)
+                else if (this.BlankSpaceCol == this.Dimension - 1)
                 {
                     return RightOnly;
                 }
@@ -205,7 +200,7 @@
                 {
                     return DownLeft;
                 }
-                else if (this.BlankSpaceCol == this.Size - 1)
+                else if (this.BlankSpaceCol == this.Dimension - 1)
                 {
                     return DownRight;
                 }
@@ -222,7 +217,7 @@
         /// </summary>
         private Move<NPuzzle>[] GetValidMovesAfterLeft()
         {
-            int nMinusOne = this.Size - 1;
+            int nMinusOne = this.Dimension - 1;
 
             if (this.BlankSpaceCol == nMinusOne)
             {
@@ -268,7 +263,7 @@
                 {
                     return UpOnly;
                 }
-                else if (this.BlankSpaceRow == this.Size - 1)
+                else if (this.BlankSpaceRow == this.Dimension - 1)
                 {
                     return DownOnly;
                 }
@@ -283,7 +278,7 @@
                 {
                     return UpRight;
                 }
-                else if (this.BlankSpaceRow == this.Size - 1)
+                else if (this.BlankSpaceRow == this.Dimension - 1)
                 {
                     return DownRight;
                 }
@@ -299,13 +294,13 @@
         /// </summary>
         public NPuzzle SlideUp()
         {
-            byte swapY = (byte)(this.BlankSpaceRow + 1);
-            if (swapY >= this.Size)
+            byte swapRowIx = (byte)(this.BlankSpaceRow + 1);
+            if (swapRowIx >= this.Dimension)
             {
                 throw new InvalidOperationException("Cannot slide up when the empty space is at the bottom.");
             }
 
-            return SlideVertically(swapY);
+            return SlideVertically(swapRowIx);
         }
 
 
@@ -314,13 +309,13 @@
         /// </summary>
         public NPuzzle SlideDown()
         {
-            byte swapY = (byte)(this.BlankSpaceRow - 1);
-            if (swapY < 0)
+            byte swapRowIx = (byte)(this.BlankSpaceRow - 1);
+            if (swapRowIx < 0)
             {
                 throw new InvalidOperationException("Cannot slide down when the empty space is at the top.");
             }
 
-            return SlideVertically(swapY);
+            return SlideVertically(swapRowIx);
         }
 
         /// <summary>
@@ -328,13 +323,13 @@
         /// </summary>
         public NPuzzle SlideLeft()
         {
-            byte swapX = (byte)(this.BlankSpaceCol + 1);
-            if (swapX >= this.Size)
+            byte swapColIx = (byte)(this.BlankSpaceCol + 1);
+            if (swapColIx >= this.Dimension)
             {
                 throw new InvalidOperationException("Cannot slide up when the empty space is at the bottom.");
             }
 
-            return SlideHorizontally(swapX);
+            return SlideHorizontally(swapColIx);
         }
 
 
@@ -343,13 +338,13 @@
         /// </summary>
         public NPuzzle SlideRight()
         {
-            byte swapX = (byte)(this.BlankSpaceCol - 1);
-            if (swapX < 0)
+            byte swapColIx = (byte)(this.BlankSpaceCol - 1);
+            if (swapColIx < 0)
             {
                 throw new InvalidOperationException("Cannot slide up when the empty space is at the bottom.");
             }
 
-            return SlideHorizontally(swapX);
+            return SlideHorizontally(swapColIx);
         }
 
         /// <summary>
@@ -359,7 +354,7 @@
         /// </summary>
         public void FillIndexes(out byte[] goalRowIndexes, out byte[] goalColIndexes)
         {
-            int size = this.Size;
+            int size = this.Dimension;
 
             goalRowIndexes = new byte[size*size];
             goalColIndexes = new byte[goalRowIndexes.Length];
@@ -387,20 +382,6 @@
             return new NPuzzle(newBoard, this.BlankSpaceCol, swapRow);
         }
 
-        private byte[,] CloneBoard()
-        {
-            int size = this.Size;
-            byte[,] newBoard = new byte[size, size];
-            for (int rowIx = 0; rowIx < size; ++rowIx)
-            {
-                for (int colIx = 0; colIx < size; ++colIx)
-                {
-                    newBoard[rowIx, colIx] = this.Board[rowIx, colIx];
-                }
-            }
-            return newBoard;
-        }
-
         private NPuzzle SlideHorizontally(byte swapCol)
         {
             byte[,] newBoard = CloneBoard();
@@ -410,6 +391,20 @@
             newBoard[this.BlankSpaceRow, this.BlankSpaceCol] = swapValue;
 
             return new NPuzzle(newBoard, swapCol, this.BlankSpaceRow);
+        }
+
+        private byte[,] CloneBoard()
+        {
+            int size = this.Dimension;
+            byte[,] newBoard = new byte[size, size];
+            for (int rowIx = 0; rowIx < size; ++rowIx)
+            {
+                for (int colIx = 0; colIx < size; ++colIx)
+                {
+                    newBoard[rowIx, colIx] = this.Board[rowIx, colIx];
+                }
+            }
+            return newBoard;
         }
 
         #region Object Overrides
@@ -426,15 +421,16 @@
 
         public bool Equals(NPuzzle otherPuzzle)
         {
-            if (otherPuzzle == null || otherPuzzle.Size != this.Size)
+            if (otherPuzzle == null || otherPuzzle.Dimension != this.Dimension)
             {
                 return false;
             }
             else
             {
-                for (int rowIx = 0; rowIx < this.Size; ++rowIx)
+                int dimension = this.Dimension;
+                for (int rowIx = 0; rowIx < dimension; ++rowIx)
                 {
-                    for (int colIx = 0; colIx < this.Size; ++colIx)
+                    for (int colIx = 0; colIx < dimension; ++colIx)
                     {
                         if (this.Board[rowIx, colIx] != otherPuzzle.Board[rowIx,colIx])
                         {
@@ -451,9 +447,9 @@
         {
             StringBuilder sb = new StringBuilder();
 
-            for (int rowIx = 0; rowIx < this.Size; rowIx++)
+            for (int rowIx = 0; rowIx < this.Dimension; rowIx++)
             {
-                for (int colIx = 0; colIx < this.Size; colIx++)
+                for (int colIx = 0; colIx < this.Dimension; colIx++)
                 {
                     sb.Append(this.Board[rowIx, colIx].ToString("00"));
                     sb.Append(" ");

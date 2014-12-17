@@ -20,30 +20,22 @@
         {
             unchecked
             {
-                int size = puzzleInstance.Size;
                 int distance = 0;
+                int size = puzzleInstance.Dimension;
 
                 for (int rowIx = 0; rowIx < size; ++rowIx)
                 {
                     for (int colIx = 0; colIx < size; ++colIx)
                     {
-                        byte value = puzzleInstance.GetValue(colIx, rowIx);
+                        byte value = puzzleInstance.GetValue(rowIx, colIx);
                         if (value != 0)
                         {
-                            distance += GetSingleManhattanDistance(colIx, rowIx, GoalColIndexes[value], GoalRowIndexes[value]);
+                            distance += Math.Abs(colIx - GoalColIndexes[value]) + Math.Abs(rowIx - GoalRowIndexes[value]);
                         }
                     }
                 }
 
                 return distance;
-            }
-        }
-
-        private static int GetSingleManhattanDistance(int colIx, int rowIx, int goalColIx, int goalRowIx)
-        {
-            unchecked
-            {
-                return Math.Abs(colIx - goalColIx) + Math.Abs(rowIx - goalRowIx);
             }
         }
     }

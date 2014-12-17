@@ -58,19 +58,19 @@
         {
             unchecked
             {
-                int size = puzzleInstance.Size;
+                int size = puzzleInstance.Dimension;
                 int linearConflict = 0;
                 for (int rowIx = 0; rowIx < size; rowIx++)
                 {
                     for (int curColIx = 0; curColIx < size; curColIx++)
                     {
-                        byte curValue = puzzleInstance.GetValue(curColIx, rowIx);
+                        byte curValue = puzzleInstance.GetValue(rowIx, curColIx);
 
                         if (GoalRowIndexes[curValue] == rowIx && curValue != 0)
                         {
                             for (int compareColIx = curColIx + 1; compareColIx < size; compareColIx++)
                             {
-                                byte compareValue = puzzleInstance.GetValue(compareColIx, rowIx);
+                                byte compareValue = puzzleInstance.GetValue(rowIx, compareColIx);
                                 if (GoalRowIndexes[compareValue] == rowIx && compareValue < curValue && compareValue != 0)
                                 {
                                     linearConflict += 2;
@@ -92,18 +92,18 @@
             unchecked
             {
                 int linearConflict = 0;
-                int size = puzzleInstance.Size;
+                int size = puzzleInstance.Dimension;
                 for (int colIx = 0; colIx < size; colIx++)
                 {
                     for (int curRowIx = 0; curRowIx < size; curRowIx++)
                     {
-                        byte curValue = puzzleInstance.GetValue(colIx, curRowIx);
+                        byte curValue = puzzleInstance.GetValue(curRowIx, colIx);
 
-                        if (GoalColIndexes[curValue] == colIx && curValue != 0)
+                        if (curValue != 0 && GoalColIndexes[curValue] == colIx)
                         {
                             for (int compareRowIx = curRowIx + 1; compareRowIx < size; compareRowIx++)
                             {
-                                byte compareValue = puzzleInstance.GetValue(colIx, compareRowIx);
+                                byte compareValue = puzzleInstance.GetValue(compareRowIx, colIx);
                                 if (GoalColIndexes[compareValue] == colIx && compareValue < curValue && compareValue != 0)
                                 {
                                     linearConflict += 2;
