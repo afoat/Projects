@@ -1,6 +1,7 @@
 ﻿namespace Foat.Puzzles.NPuzzle.Solution
 {
     using Foat.Puzzles.Solutions;
+    using Foat.Puzzles.Solutions.Heuristics;
     using System;
 
     /// <summary>
@@ -8,15 +9,29 @@
     /// </summary>
     public class ManhattanDistance : IHeuristic<NPuzzle>
     {
-        private byte[] GoalRowIndexes;
-        private byte[] GoalColIndexes;
+        protected byte[] GoalRowIndexes;
+        protected byte[] GoalColIndexes;
 
         public void RegisterSolution(NPuzzle puzzleSolution)
         {
-            puzzleSolution.FillIndexes(out GoalRowIndexes, out GoalColIndexes);
+            int size = puzzleSolution.Dimension;
+
+            GoalRowIndexes = new byte[size * size];
+            GoalColIndexes = new byte[GoalRowIndexes.Length];
+
+            int value;
+            for (byte colIx = 0; colIx < size; colIx++)
+            {
+                for (byte rowIx = 0; rowIx < size; rowIx++)
+                {
+                    value = puzzleSolution.GetValue(rowIx, colIx);
+                    GoalRowIndexes[value] = rowIx;
+                    GoalColIndexes[value] = colIx;
+                }
+            }
         }
 
-        public int GetMinimumEstimatedSolutionLength(NPuzzle puzzleInstance)
+        public virtual int GetMinimumEstimatedSolutionLength(NPuzzle puzzleInstance)
         {
             unchecked
             {

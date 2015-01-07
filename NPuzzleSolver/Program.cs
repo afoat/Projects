@@ -3,6 +3,7 @@
     using Foat.Puzzles.NPuzzle;
     using Foat.Puzzles.NPuzzle.Solution;
     using Foat.Puzzles.Solutions;
+    using Foat.Puzzles.Solutions.Heuristics;
     using Foat.Puzzles.Solutions.IDAStar;
     using System;
     using System.Diagnostics;
@@ -17,7 +18,7 @@
             IPuzzleSolution<NPuzzle> solutionGenerator = new ParallelIDAStar<NPuzzle>(heuristic, newPuzzle);
 
             Random rnd = new Random(3);
-            string inputFromUser;
+            string inputFromUser = "";
 
             do
             {
@@ -25,7 +26,7 @@
                 Move<NPuzzle> lastMove = null;
                 int timesMoved = 0;
 
-                Trace.WriteLine("Mixing puzzle");
+                Console.WriteLine("Mixing puzzle");
                 for (int i = 0; i < 10000; ++i)
                 {
                     Move<NPuzzle>[] validMoves;
@@ -58,20 +59,21 @@
 
                 if (solution == null)
                 {
-                    Trace.WriteLine("No Solution Found.");
+                    Console.WriteLine("No Solution Found.");
                 }
                 else
                 {
                     foreach (Move<NPuzzle> move in solution)
                     {
-                        Console.WriteLine(move.ToString());
+                        Console.Write(move.ToString());
+                        Console.Write(" ");
                     }
 
-                    Console.WriteLine(string.Format("Elapsed Time in ms: {0}", stopwatch.ElapsedMilliseconds));
+                    Console.WriteLine(string.Format("\n\nElapsed Time in ms: {0}", stopwatch.ElapsedMilliseconds));
                     Console.WriteLine(string.Format("Expanded {0} nodes.", solutionGenerator.GetNumberOfExpandedNodes()));
                 }
 
-                Trace.WriteLine("Press Q to quit, anything else to try another one.");
+                Console.WriteLine("Press Q to quit, anything else to try another one.");
 
                 inputFromUser = Console.ReadKey(true).KeyChar.ToString().ToLower();
             } while (!inputFromUser.Equals("q"));

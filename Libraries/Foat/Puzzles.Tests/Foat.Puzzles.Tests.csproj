@@ -76,6 +76,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="NPuzzle\NPuzzleTests.cs" />
     <Compile Include="RubiksCube\RubiksCubeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RubiksCube\EdgePositionTests.cs" />

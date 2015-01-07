@@ -1,4 +1,4 @@
-﻿namespace Foat.Puzzles.Solutions
+﻿namespace Foat.Puzzles.Solutions.Heuristics
 {
     /// <summary>
     /// A heuristic is capable of estimating the cost of finding a solution. For our purposes, the heuristics

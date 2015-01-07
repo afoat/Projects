@@ -1,5 +1,6 @@
 ﻿namespace Foat.Puzzles.Solutions.IDAStar
 {
+    using Foat.Puzzles.Solutions.Heuristics;
     using System;
     using System.Collections.Generic;
 

@@ -3,6 +3,7 @@
     using Foat.Puzzles;
     using Foat.Puzzles.Configuration;
     using Foat.Puzzles.Solutions;
+    using Foat.Puzzles.Solutions.Heuristics;
     using System;
     using System.Collections;
     using System.Collections.Generic;

@@ -6,18 +6,216 @@
 
     /// <summary>
     /// The NPuzzle can be used to create an instance of the popular 8-Puzzle and 15-Puzzle sliding tile games.
-    /// These puzzles are a 3x3 and 4x4 grid respect, of numbered tiles. One space is left empty so that the tiles
-    /// can be re-ordered. Once randomized the goal is to return the puzzle into the original state such as
+    /// These puzzles are a 3x3 and 4x4 grid of numbered tiles. One space is left empty so that the tiles
+    /// can be slid around to re-order them. Once randomized, the goal is to return the puzzle into the original
+    /// state. For example, a solved 8-Puzzle looks like this. Note that in memory the empty spot is denoted by a 0.
     /// 
     /// 1 2 3
     /// 4 5 5
     /// 7 8
     /// 
-    /// in the case of the 8 puzzle. This class supports grids of up to 15x15 but seriously. Even a 5x5 24-Puzzle is
-    /// VERY hard for the algorithm to solve.
+    /// This class supports grids of up to 15x15 but seriously. Even a 5x5 24-Puzzle is VERY hard for the algorithm to solve.
     /// </summary>
     public sealed partial class NPuzzle : IPuzzle<NPuzzle>, IEquatable<NPuzzle>
     {
+        #region Static Methods
+
+        /// <summary>
+        /// Checks whether or not a 2-dimensional byte array would be considered a valid and solvable NPuzzle.
+        /// 
+        /// A valid puzzle:
+        /// 
+        /// - Is not null
+        /// - It's width must equal its height (must be square)
+        /// - It must be between 2x2 and 15x15 inclusive
+        /// - In an NxN puzzle, the board must contain every digit from 0 ... ((N * N)^2) - 1 exactly once.
+        ///   e.g. a 3x3 board needs every digit from 0 ... 8
+        /// - If all of those checks pass then the puzzle is valid only if the numbers are ordered such that it is
+        ///   possible to solve the puzzle by only making valid moves.
+        /// </summary>
+        /// <param name="board">A 2D Array representation of a potential NPuzzle.</param>
+        /// <returns>True if the 2D array represents a valid NPuzzle, false otherwise.</returns>
+        public static bool IsPuzzleValid(byte[,] board)
+        {
+            bool validAndSolvable = false;
+            if  (IsPuzzleCorrectDimension(board))
+            {
+                int dimension = board.GetLength(0);
+
+                if (NPuzzle.ContainsOnlyValidTiles(board))
+                {
+                    int numberOfInversions = CountInversions(board);
+                    int rowIxOfZero = GetRowIxOfZero(board);
+                    validAndSolvable = IsPuzzleSolvable(board.GetLength(0), rowIxOfZero, numberOfInversions);
+                }
+            }
+
+            return validAndSolvable;
+        }
+
+        /// <summary>
+        /// Returns true of the board is square and between 2x2 and 15x15 inclusive.
+        /// </summary>
+        private static bool IsPuzzleCorrectDimension(byte[,] board)
+        {
+            bool isCorrectDimension = true;
+            if (board == null)
+            {
+                isCorrectDimension =  false;
+            }
+            else if (board.GetLength(0) < 2 || board.GetLength(0) > 15)
+            {
+                isCorrectDimension = false;
+            }
+            else if (board.GetLength(0) != board.GetLength(1))
+            {
+                isCorrectDimension = false;
+            }
+
+            return isCorrectDimension;
+        }
+
+        /// <summary>
+        /// Checks to make sure that no tile is too large for the dimensions of this board
+        /// and that the board contains exactly one copy of every required digit.
+        /// 
+        /// e.g. a 3x3 puzzle would be invalid if it contained any number larger than an 8.
+        ///      a 3x3 puzzle would also be invalid if it contained no 6 and 2 copies of the number 5.
+        /// 
+        /// </summary>
+        /// <param name="board"></param>
+        /// <returns></returns>
+        private static bool ContainsOnlyValidTiles(byte[,] board)
+        {
+            bool isValid = true;
+
+            int dimension = board.GetLength(0);
+            int numberOfTiles = dimension * dimension;
+            byte[] valueChecker = new byte[numberOfTiles];
+
+            for (int rowIx = 0; rowIx < dimension; rowIx++)
+            {
+                for (int colIx = 0; colIx < dimension; colIx++)
+                {
+                    byte value = board[rowIx, colIx];
+                    if (value >= numberOfTiles)
+                    {
+                        isValid = false;
+                        break;
+                    }
+
+                    ++valueChecker[value];
+                }
+            }
+
+            if (isValid)
+            {
+                for (int i = 0; i < valueChecker.Length; ++i)
+                {
+                    byte numberOfValues = valueChecker[i];
+                    if (numberOfValues != 1)
+                    {
+                        isValid = false;
+                        break;
+                    }
+                }
+            }
+
+            return isValid;
+        }
+
+        /// <summary>
+        /// Counts the number of inversions on the board. This number can be combined with the dimensions of the board
+        /// to figure out if it is solvable or not.
+        /// </summary>
+        private static int CountInversions(byte[,] board)
+        {
+            int dimension = board.GetLength(0);
+            int numberOfInversions = 0;
+            for (int i = 0; i < board.Length; ++i)
+            {
+                byte value1 = board[i / dimension, i % dimension];
+                for (int j = i + 1; j < board.Length; ++j)
+                {
+                    byte value2 = board[j / dimension, (j % dimension)];
+                    if (value1 != 0 && value2 != 0 && value1 > value2)
+                    {
+                        ++numberOfInversions;
+                    }
+                }
+            }
+
+            return numberOfInversions;
+        }
+
+        /// <summary>
+        /// Returns the index of the row that contains the 0 or blank space.
+        /// </summary>
+        private static int GetRowIxOfZero(byte[,] board)
+        {
+            int zeroIx = -1;
+            int dimension = board.GetLength(0);
+            for (int rowIx = 0; rowIx < dimension; rowIx++)
+            {
+                for (int colIx = 0; colIx < dimension; colIx++)
+                {
+                    if (board[rowIx, colIx] == 0)
+                    {
+                        zeroIx = rowIx;
+                        break;
+                    }
+
+                }
+            }
+
+            if (zeroIx < 0)
+            {
+                throw new ArgumentException("Board must contain a tile with value of 0.", "board");
+            }
+
+            return zeroIx;
+        }
+
+        /// <summary>
+        /// Based on the number of inversions, the location of the blank space and the dimensions of the board,
+        /// this method checks to see if the board is solvable.
+        /// </summary>
+        /// <returns></returns>
+        private static bool IsPuzzleSolvable(int dimension, int rowIxOfZero, int numberOfInversions)
+        {
+            bool solvable = true;
+            if (dimension % 2 == 1)
+            {
+                if (numberOfInversions % 2 == 1)
+                {
+                    solvable = false;
+                }
+            }
+            else
+            {
+                if (rowIxOfZero % 2 == 0)
+                {
+                    if (numberOfInversions % 2 == 0)
+                    {
+                        solvable = false;
+                    }
+                }
+                else
+                {
+                    if (numberOfInversions % 2 == 1)
+                    {
+                        solvable = false;
+                    }
+                }
+            }
+
+            return solvable;
+        }
+        
+        #endregion
+
+        #region Properties
+
         /// <summary>
         /// The length of one side of the square grid.
         /// </summary>
@@ -28,6 +226,10 @@
         private byte BlankSpaceCol;
 
         private byte BlankSpaceRow;
+
+        #endregion
+
+        #region Construction
 
         public NPuzzle(byte n)
         {
@@ -47,6 +249,23 @@
             InitializeBoard();
         }
 
+        public NPuzzle(byte[,] board)
+        {
+            if (board == null)
+            {
+                throw new ArgumentNullException("board");
+            }
+
+            if (!NPuzzle.IsPuzzleValid(board))
+            {
+                throw new ArgumentException("Invalid or unsolvable NPuzzle.");
+            }
+            else
+            {
+                InitializeBoard(board);
+            }
+        }
+
         private NPuzzle(byte[,] newBoard, byte blankCol, byte blankRow)
         {
             this.Board = newBoard;
@@ -55,23 +274,9 @@
             this.Dimension = newBoard.GetLength(0);
         }
 
-        private void InitializeBoard()
-        {
-            byte current = 1;
+        #endregion
 
-            for (int rowIx = 0; rowIx < this.Dimension; ++rowIx)
-            {
-                for (int colIx = 0; colIx < this.Dimension; ++colIx)
-                {
-                    this.Board[rowIx, colIx] = current++;
-                }
-            }
-
-            this.BlankSpaceCol = (byte)(this.Dimension - 1);
-            this.BlankSpaceRow = BlankSpaceCol;
-
-            this.Board[this.BlankSpaceRow, this.BlankSpaceCol] = 0;
-        }
+        #region Public Methods
 
         public byte GetValue(int rowIx, int colIx)
         {
@@ -81,8 +286,8 @@
         /// <summary>
         /// This method will always return the moves that are valid on any particular NPuzzle instance.
         /// 
-        /// This doesnt take into account the previous moves on the puzzle though so we will need to be smarted than this
-        /// when performing an IDA* search.
+        /// This doesnt take into account the previous moves on the puzzle though so we will need to be smarter than this
+        /// when performing an IDA* search, if we want it to go faster.
         /// </summary>
         /// <returns></returns>
         public Move<NPuzzle>[] GetValidMoves()
@@ -130,6 +335,105 @@
                 else
                 {
                     return AllMoves;
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Slides a tile up into the blank space if possible.
+        /// </summary>
+        public NPuzzle SlideUp()
+        {
+            byte swapRowIx = (byte)(this.BlankSpaceRow + 1);
+            if (swapRowIx >= this.Dimension)
+            {
+                throw new InvalidOperationException("Cannot slide up when the empty space is at the bottom.");
+            }
+
+            return SlideVertically(swapRowIx);
+        }
+
+
+        /// <summary>
+        /// Slides a tile down into the blank space if possible.
+        /// </summary>
+        public NPuzzle SlideDown()
+        {
+            if (this.BlankSpaceRow == 0)
+            {
+                throw new InvalidOperationException("Cannot slide down when the empty space is at the top.");
+            }
+
+            return SlideVertically((byte)(this.BlankSpaceRow - 1));
+        }
+
+        /// <summary>
+        /// Slides a tile left into the blank space if possible.
+        /// </summary>
+        public NPuzzle SlideLeft()
+        {
+            byte swapColIx = (byte)(this.BlankSpaceCol + 1);
+            if (swapColIx >= this.Dimension)
+            {
+                throw new InvalidOperationException("Cannot slide up when the empty space is at the bottom.");
+            }
+
+            return SlideHorizontally(swapColIx);
+        }
+
+
+        /// <summary>
+        /// Slides a tile right into the blank space if possible.
+        /// </summary>
+        public NPuzzle SlideRight()
+        {
+            if (this.BlankSpaceCol == 0)
+            {
+                throw new InvalidOperationException("Cannot slide up when the empty space is at the bottom.");
+            }
+
+            return SlideHorizontally((byte)(this.BlankSpaceCol - 1));
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private void InitializeBoard()
+        {
+            byte current = 1;
+
+            for (int rowIx = 0; rowIx < this.Dimension; ++rowIx)
+            {
+                for (int colIx = 0; colIx < this.Dimension; ++colIx)
+                {
+                    this.Board[rowIx, colIx] = current++;
+                }
+            }
+
+            this.BlankSpaceCol = (byte)(this.Dimension - 1);
+            this.BlankSpaceRow = BlankSpaceCol;
+
+            this.Board[this.BlankSpaceRow, this.BlankSpaceCol] = 0;
+        }
+
+        private void InitializeBoard(byte[,] board)
+        {
+            this.Dimension = board.GetLength(0);
+            this.Board = new byte[board.GetLength(0), board.GetLength(1)];
+
+            for (byte rowIx = 0; rowIx < this.Dimension; ++rowIx)
+            {
+                for (byte colIx = 0; colIx < this.Dimension; ++colIx)
+                {
+                    if (board[rowIx, colIx] == 0)
+                    {
+                        this.BlankSpaceRow = rowIx;
+                        this.BlankSpaceCol = colIx;
+                    }
+
+                    this.Board[rowIx, colIx] = board[rowIx, colIx];
                 }
             }
         }
@@ -288,89 +592,7 @@
                 }
             }
         }
-
-        /// <summary>
-        /// Slides a tile up into the blank space if possible.
-        /// </summary>
-        public NPuzzle SlideUp()
-        {
-            byte swapRowIx = (byte)(this.BlankSpaceRow + 1);
-            if (swapRowIx >= this.Dimension)
-            {
-                throw new InvalidOperationException("Cannot slide up when the empty space is at the bottom.");
-            }
-
-            return SlideVertically(swapRowIx);
-        }
-
-
-        /// <summary>
-        /// Slides a tile down into the blank space if possible.
-        /// </summary>
-        public NPuzzle SlideDown()
-        {
-            byte swapRowIx = (byte)(this.BlankSpaceRow - 1);
-            if (swapRowIx < 0)
-            {
-                throw new InvalidOperationException("Cannot slide down when the empty space is at the top.");
-            }
-
-            return SlideVertically(swapRowIx);
-        }
-
-        /// <summary>
-        /// Slides a tile left into the blank space if possible.
-        /// </summary>
-        public NPuzzle SlideLeft()
-        {
-            byte swapColIx = (byte)(this.BlankSpaceCol + 1);
-            if (swapColIx >= this.Dimension)
-            {
-                throw new InvalidOperationException("Cannot slide up when the empty space is at the bottom.");
-            }
-
-            return SlideHorizontally(swapColIx);
-        }
-
-
-        /// <summary>
-        /// Slides a tile right into the blank space if possible.
-        /// </summary>
-        public NPuzzle SlideRight()
-        {
-            byte swapColIx = (byte)(this.BlankSpaceCol - 1);
-            if (swapColIx < 0)
-            {
-                throw new InvalidOperationException("Cannot slide up when the empty space is at the bottom.");
-            }
-
-            return SlideHorizontally(swapColIx);
-        }
-
-        /// <summary>
-        /// Using the values on the board as indexes into the arrays, this function fills the arrays with the
-        /// index of each board value in the goal state. This allows us to take a value and really quickly
-        /// determine where it should be.
-        /// </summary>
-        public void FillIndexes(out byte[] goalRowIndexes, out byte[] goalColIndexes)
-        {
-            int size = this.Dimension;
-
-            goalRowIndexes = new byte[size*size];
-            goalColIndexes = new byte[goalRowIndexes.Length];
-
-            int value;
-            for (byte colIx = 0; colIx < size; colIx++)
-            {
-                for (byte rowIx = 0; rowIx < size; rowIx++)
-                {
-                    value = this.Board[rowIx, colIx];
-                    goalRowIndexes[value] = rowIx;
-                    goalColIndexes[value] = colIx;
-                }
-            }
-        }
-
+        
         private NPuzzle SlideVertically(byte swapRow)
         {
             byte[,] newBoard = CloneBoard();
@@ -406,6 +628,8 @@
             }
             return newBoard;
         }
+
+        #endregion
 
         #region Object Overrides
 

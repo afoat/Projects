@@ -2,6 +2,7 @@
 {
     using Foat.Puzzles.RubiksCube;
     using Foat.Puzzles.Solutions;
+    using Foat.Puzzles.Solutions.Heuristics;
     using System;
     using System.Collections.Generic;
     using System.IO;

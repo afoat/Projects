@@ -1,6 +1,7 @@
 ﻿namespace Foat.Puzzles.NPuzzle.Solution
 {
     using Foat.Puzzles.Solutions;
+    using Foat.Puzzles.Solutions.Heuristics;
 
     /// <summary>
     /// Improves on the manhattan distance by taking into account cases that contain linear conflicts.
@@ -20,33 +21,19 @@
     /// 
     /// Linear conflicts can occur in either the columns or the rows.
     /// </summary>
-    public class LinearConflict : IHeuristic<NPuzzle>
+    public sealed class LinearConflict : ManhattanDistance, IHeuristic<NPuzzle>
     {
-        private byte[] GoalRowIndexes;
-        private byte[] GoalColIndexes;
 
-        private ManhattanDistance ManhattanDistance { get; set; }
-
-        public LinearConflict()
+        public LinearConflict() : base()
         {
-            this.ManhattanDistance = new ManhattanDistance();
         }
-
-        /// <summary>
-        /// Registers the puzzle solution with the heuristic so that it can generate any needed data.
-        /// </summary>
-        public void RegisterSolution(NPuzzle puzzleSolution)
-        {
-            this.ManhattanDistance.RegisterSolution(puzzleSolution);
-            puzzleSolution.FillIndexes(out GoalRowIndexes, out GoalColIndexes);
-        }
-
+        
         /// <summary>
         /// Returns the manhattan distance + 2 x Number Of Linear Conflicts
         /// </summary>
-        public int GetMinimumEstimatedSolutionLength(NPuzzle puzzleInstance)
+        public override int GetMinimumEstimatedSolutionLength(NPuzzle puzzleInstance)
         {
-            return this.ManhattanDistance.GetMinimumEstimatedSolutionLength(puzzleInstance)
+            return base.GetMinimumEstimatedSolutionLength(puzzleInstance)
                  + this.CalculateRowLinearConflicts(puzzleInstance)
                  + this.CalculateColumnLinearConflicts(puzzleInstance);
         }

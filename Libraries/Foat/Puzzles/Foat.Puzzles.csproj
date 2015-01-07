@@ -91,7 +91,7 @@
     <Compile Include="Solutions\Move.cs" />
     <Compile Include="Solutions\PuzzleState.cs" />
     <Compile Include="RubiksCube\Solution\SolutionLengthEstimator.cs" />
-    <Compile Include="Solutions\IHeuristic.cs" />
+    <Compile Include="Solutions\Heuristics\IHeuristic.cs" />
     <Compile Include="Solutions\IPuzzle.cs" />
     <Compile Include="Solutions\IPuzzleSolution.cs" />
   </ItemGroup>
