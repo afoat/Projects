@@ -7,6 +7,7 @@
     using Foat.Puzzles.Solutions.IDAStar;
     using System;
     using System.Diagnostics;
+    using System.Linq;
 
     class Program
     {
@@ -16,6 +17,7 @@
 
             NPuzzle newPuzzle = new NPuzzle(4);
             IPuzzleSolution<NPuzzle> solutionGenerator = new ParallelIDAStar<NPuzzle>(heuristic, newPuzzle);
+            solutionGenerator.StatusUpdate += DoStatusUpdate;
 
             Random rnd = new Random(3);
             string inputFromUser = "";
@@ -49,7 +51,7 @@
                     timesMoved++;
                 }
 
-                Console.WriteLine(string.Format("Made {0} moves.", timesMoved));
+                Console.WriteLine(string.Format("Made {0} moves.\n", timesMoved));
                 Console.WriteLine(puzzle.ToString());
 
                 Stopwatch stopwatch = new Stopwatch();
@@ -59,10 +61,11 @@
 
                 if (solution == null)
                 {
-                    Console.WriteLine("No Solution Found.");
+                    Console.WriteLine("\nNo Solution Found.");
                 }
                 else
                 {
+                    Console.WriteLine("\nSolution Found.");
                     foreach (Move<NPuzzle> move in solution)
                     {
                         Console.Write(move.ToString());
@@ -70,13 +73,18 @@
                     }
 
                     Console.WriteLine(string.Format("\n\nElapsed Time in ms: {0}", stopwatch.ElapsedMilliseconds));
-                    Console.WriteLine(string.Format("Expanded {0} nodes.", solutionGenerator.GetNumberOfExpandedNodes()));
+                    Console.WriteLine(string.Format("Expanded {0} nodes. Found a solution that is {1} moves long.", solutionGenerator.GetNumberOfExpandedNodes(), solution.Count()));
                 }
 
                 Console.WriteLine("Press Q to quit, anything else to try another one.");
 
                 inputFromUser = Console.ReadKey(true).KeyChar.ToString().ToLower();
             } while (!inputFromUser.Equals("q"));
+        }
+
+        static void DoStatusUpdate(object sender, PuzzleSolutionEventArgs e)
+        {
+            Console.WriteLine(string.Format("Finished searching for a solution of length {0}. Expanded {1} nodes so far.", e.SearchDepth, e.NumberOfExpandedNodes));
         }
     }
 }

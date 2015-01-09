@@ -81,6 +81,8 @@
     <Compile Include="RubiksCube\RubiksCubeFactory.cs" />
     <Compile Include="Solutions\IDAStar\DepthLimitedAStar.cs" />
     <Compile Include="Solutions\IDAStar\IDAStar.cs" />
+    <Compile Include="Solutions\PuzzleSolutionEventArgs.cs" />
+    <Compile Include="Solutions\PuzzleSolutionEventHandler.cs" />
     <Compile Include="Solutions\PuzzleStateExpander.cs" />
     <Compile Include="Solutions\IDAStar\IDAStarTask.cs" />
     <Compile Include="Solutions\IDAStar\ParallelIDAStar.cs" />

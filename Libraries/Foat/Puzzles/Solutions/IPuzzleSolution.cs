@@ -20,5 +20,7 @@
         /// </summary
         /// <returns></returns>
         long GetNumberOfExpandedNodes();
+
+        event PuzzleSolutionEventHandler StatusUpdate;
     }
 }

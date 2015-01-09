@@ -338,7 +338,35 @@
                 );
         }
 
-        public static RubiksCube CreateUnmaskedCunbe()
+        public static RubiksCube Create7Corners1EdgeGroupA()
+        {
+            return new RubiksCube(
+                new byte[19]
+                {
+                    CornerPosition.Unmasked,
+                    CornerPosition.Unmasked,
+                    CornerPosition.Unmasked,
+                    CornerPosition.Unmasked,
+                    CornerPosition.Unmasked,
+                    CornerPosition.Unmasked,
+                    CornerPosition.Masked,
+                    EdgePosition.Unmasked,
+                    EdgePosition.Masked,
+                    EdgePosition.Masked,
+                    EdgePosition.Masked,
+                    EdgePosition.Masked,
+                    EdgePosition.Masked,
+                    EdgePosition.Masked,
+                    EdgePosition.Masked,
+                    EdgePosition.Masked,
+                    EdgePosition.Masked,
+                    EdgePosition.Masked,
+                    EdgePosition.Masked,
+                }
+                );
+        }
+
+        public static RubiksCube CreateUnmaskedCube()
         {
             return new RubiksCube(
                 new byte[19]

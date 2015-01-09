@@ -50,6 +50,7 @@
             }
             else
             {
+                this.NumberOfExpandedNodes = 0;
                 return FindSolutionParallel(puzzleInstance, minNumTasks);
             }
         }
@@ -93,7 +94,14 @@
 
                     Task.WaitAll(tasks);
 
+                    int oldDepth = maxDepth;
                     maxDepth = taskInfo.Select(info => info.NextMaxDepth).Min();
+                    this.NumberOfExpandedNodes += taskInfo.Sum(info => info.NumberOfExpandedNodes);
+
+                    if (maxDepth != 0)
+                    {
+                        this.Update(oldDepth);
+                    }
                 }
             }
 
@@ -114,7 +122,6 @@
 
             if (solutionTask != null)
             {
-                this.NumberOfExpandedNodes = taskInfo.Sum(info => info.NumberOfExpandedNodes);
                 return solutionTask.Solution;
             }
             else

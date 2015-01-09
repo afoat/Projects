@@ -42,6 +42,7 @@
                 new Pattern("HybridGroup2", 95800320, 11, RubiksCubeFactory.CreateHybridGroup2MaskCube()),
                 new Pattern("HybridGroup3", 95800320, 11, RubiksCubeFactory.CreateHybridGroup3MaskCube()),
                 new Pattern("HybridGroup4", 95800320, 11, RubiksCubeFactory.CreateHybridGroup4MaskCube()),
+                // Currently wont fit in memory with 32 GB ram. new Pattern("7Corners1Edge-A",   352719360, 15, RubiksCubeFactory.Create7Corners1EdgeGroupA()),
             };
 
             return patterns;

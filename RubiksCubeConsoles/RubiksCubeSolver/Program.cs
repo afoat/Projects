@@ -24,6 +24,7 @@
             SolutionLengthEstimator soltutionEstimator = new SolutionLengthEstimator(GetPatternSetFilenames());
 
             IPuzzleSolution<RubiksCube> solutionGenerator = new ParallelIDAStar<RubiksCube>(soltutionEstimator, new RubiksCube());
+            solutionGenerator.StatusUpdate += DoStatusUpdate;
 
             Random rnd = new Random();
             string inputFromUser;
@@ -73,6 +74,11 @@
         private static string[] GetPatternSetFilenames()
         {
             return Directory.GetFiles(RubiksCubeSolverSettings.Current.PatternSetPath);
+        }
+
+        static void DoStatusUpdate(object sender, PuzzleSolutionEventArgs e)
+        {
+            Console.WriteLine(string.Format("Finished searching for a solution of length {0}. Expanded {1} nodes so far.", e.SearchDepth, e.NumberOfExpandedNodes));
         }
     }
 }

@@ -41,6 +41,8 @@
         /// </summary>
         protected IHeuristic<TPuzzle> Heuristic { get; set; }
 
+        public event PuzzleSolutionEventHandler StatusUpdate;
+
         #endregion
 
         #region Construction
@@ -75,6 +77,8 @@
         /// <returns>Null if no solution is found, otherwise it returns an enum of move IDs that will solve the puzzle.</returns>
         public virtual IEnumerable<Move<TPuzzle>> Solve(TPuzzle puzzleInstance)
         {
+            this.NumberOfExpandedNodes = 0;
+
             if (puzzleInstance == null)
                 throw new ArgumentNullException("puzzleInstance");
 
@@ -85,14 +89,17 @@
             DepthLimitedAStar<TPuzzle> depthLimitedSearch = new DepthLimitedAStar<TPuzzle>(this.Heuristic, this.SolutionState);
             while (solution == null && maxDepth != 0)
             {
-                depthLimitedSearch.Reset();
-
+                int oldDepth = maxDepth;
                 maxDepth = depthLimitedSearch.DepthLimitedDFS(new PuzzleState<TPuzzle>(0, puzzleInstance), maxDepth);
 
+                this.NumberOfExpandedNodes = depthLimitedSearch.NumberOfExpandedNodes;
                 if (maxDepth == 0)
                 {
                     solution = depthLimitedSearch.Solution;
-                    this.NumberOfExpandedNodes = depthLimitedSearch.NumberOfExpandedNodes;
+                }
+                else
+                {
+                    this.Update(oldDepth);
                 }
             }
 
@@ -108,5 +115,13 @@
         }
 
         #endregion
+
+        protected void Update(int maxDepth)
+        {
+            if (this.StatusUpdate != null)
+            {
+                this.StatusUpdate(this, new PuzzleSolutionEventArgs() { NumberOfExpandedNodes = this.NumberOfExpandedNodes, SearchDepth = maxDepth});
+            }
+        }
     }
 }
