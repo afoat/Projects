@@ -12,5 +12,9 @@
         /// Finds all of the current valid moves for a puzzle.
         /// </summary>
         Move<TPuzzle>[] GetValidMoves();
+
+        Move<TPuzzle>[] GetAllMoves();
+
+        TPuzzle ApplyMask(TPuzzle mask);
     }
 }

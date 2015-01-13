@@ -8,10 +8,19 @@
         // This will speed up the NPuzzle and any searches done on it since we aren't
         // constantly allocating new memory for moves.
 
-        private static readonly Move<NPuzzle> Up = new Move<NPuzzle>("Up", nPuzzle => nPuzzle.SlideUp(), nPuzzle => nPuzzle.GetValidMovesAfterUp());
-        private static readonly Move<NPuzzle> Down = new Move<NPuzzle>("Down", nPuzzle => nPuzzle.SlideDown(), nPuzzle => nPuzzle.GetValidMovesAfterDown());
-        private static readonly Move<NPuzzle> Left = new Move<NPuzzle>("Left", nPuzzle => nPuzzle.SlideLeft(), nPuzzle => nPuzzle.GetValidMovesAfterLeft());
-        private static readonly Move<NPuzzle> Right = new Move<NPuzzle>("Right", nPuzzle => nPuzzle.SlideRight(), nPuzzle => nPuzzle.GetValidMovesAfterRight());
+        private static readonly Move<NPuzzle> Up = new Move<NPuzzle>(0, "Up", nPuzzle => nPuzzle.SlideUp(), nPuzzle => nPuzzle.GetValidMovesAfterUp());
+        private static readonly Move<NPuzzle> Down = new Move<NPuzzle>(1, "Down", nPuzzle => nPuzzle.SlideDown(), nPuzzle => nPuzzle.GetValidMovesAfterDown());
+        private static readonly Move<NPuzzle> Left = new Move<NPuzzle>(2, "Left", nPuzzle => nPuzzle.SlideLeft(), nPuzzle => nPuzzle.GetValidMovesAfterLeft());
+        private static readonly Move<NPuzzle> Right = new Move<NPuzzle>(3, "Right", nPuzzle => nPuzzle.SlideRight(), nPuzzle => nPuzzle.GetValidMovesAfterRight());
+
+
+        static NPuzzle()
+        {
+            Up.OppositeMove = Down;
+            Down.OppositeMove = Up;
+            Left.OppositeMove = Right;
+            Right.OppositeMove = Left;
+        }
 
         private static readonly Move<NPuzzle>[] AllMoves = new Move<NPuzzle>[] { Up, Down, Left, Right };
 

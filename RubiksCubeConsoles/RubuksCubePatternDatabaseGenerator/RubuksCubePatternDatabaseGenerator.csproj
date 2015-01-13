@@ -1,22 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8EDD2050-80A7-47A5-9D5F-B5D5C0AC7A79}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{F3C1BD1C-2825-4CF1-B2D2-7D1A99628C05}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Foat.Collections</RootNamespace>
-    <AssemblyName>Foat.Collections</AssemblyName>
+    <RootNamespace>RubuksCubePatternDatabaseGenerator</RootNamespace>
+    <AssemblyName>RubuksCubePatternDatabaseGenerator</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -26,19 +23,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>..\..\..\key.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>..\..\key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
@@ -48,79 +45,53 @@
     <PlatformTarget>x64</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutputPath>bin\x64\Release\</OutputPath>
-    <DefineConstants>CODE_ANALYSIS;TRACE</DefineConstants>
+    <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>x64</PlatformTarget>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.XML" />
-    <Reference Include="System.Xml.Serialization" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Generic\AVLTree.ICollection.cs" />
-    <Compile Include="Generic\BinarySearchTree.ICollection.cs" />
-    <Compile Include="Generic\Colour.cs" />
-    <Compile Include="Generic\Heap.cs" />
-    <Compile Include="Generic\HeapType.cs" />
-    <Compile Include="Generic\RedBlackTree.ICollection.cs" />
-    <Compile Include="Generic\SkipList.ICollection.cs" />
-    <Compile Include="Generic\SkipList.IEnumerable.cs" />
-    <Compile Include="Generic\Exceptions\InvalidTreeException.cs" />
-    <Compile Include="Generic\BinarySearchTreeNode.cs" />
-    <Compile Include="Generic\AVLNode.cs" />
-    <Compile Include="Generic\Exceptions\ValueNotFoundException.cs" />
-    <Compile Include="Generic\RedBlackNode.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Generic\AVLTree.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Generic\AVLTree.IEnumerable.cs" />
-    <Compile Include="Generic\BinarySearchTree.cs" />
-    <Compile Include="Generic\BinarySearchTree.IEnumerable.cs" />
-    <Compile Include="Generic\IBinarySearchTree.cs" />
-    <Compile Include="Generic\RedBlackTree.cs" />
-    <Compile Include="Generic\RedBlackTree.IEnumerable.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Generic\SkipList.cs" />
-    <Compile Include="Generic\SkipListNode.cs" />
-    <Compile Include="BitMask.cs" />
-    <Compile Include="Generic\SmallIntArray.cs" />
-    <Compile Include="Resources\Errors.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Errors.resx</DependentUpon>
-    </Compile>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Errors.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Errors.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
+    <None Include="..\..\key.snk">
+      <Link>key.snk</Link>
+    </None>
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Hashing\Foat.Hashing.csproj">
+    <ProjectReference Include="..\..\Libraries\Foat\Collections\Foat.Collections.csproj">
+      <Project>{8edd2050-80a7-47a5-9d5f-b5d5c0ac7a79}</Project>
+      <Name>Foat.Collections</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Libraries\Foat\Hashing\Foat.Hashing.csproj">
       <Project>{335c2cec-b336-476c-9cfe-17dd52e81860}</Project>
       <Name>Foat.Hashing</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Libraries\Foat\Puzzles\Foat.Puzzles.csproj">
+      <Project>{10b7de48-1ae6-495b-bfe1-8dd676eaffb5}</Project>
+      <Name>Foat.Puzzles</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\key.snk">
-      <Link>key.snk</Link>
-    </None>
-    <None Include="README.md" />
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

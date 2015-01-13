@@ -100,7 +100,7 @@
 
                     if (maxDepth != 0)
                     {
-                        this.Update(oldDepth);
+                        this.DoStatusUpdate(oldDepth);
                     }
                 }
             }

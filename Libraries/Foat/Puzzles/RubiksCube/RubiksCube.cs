@@ -17,11 +17,13 @@
         private const byte EdgeEndIx = 18;
         private const byte NumCubies = EdgeEndIx + 1;
 
+        private static readonly FnvHash Hash = new FnvHash();
+
         #endregion
 
         #region Properties
 
-        private byte[] Data { get; set; }
+        private byte[] Data;
 
         internal byte this[int index]
         {
@@ -255,6 +257,11 @@
             return new RubiksCube(newData);
         }
 
+        public Move<RubiksCube>[] GetAllMoves()
+        {
+            return AllMoves;
+        }
+
         public Move<RubiksCube>[] GetValidMoves()
         {
             return AllMoves;
@@ -297,8 +304,7 @@
 
         public override int GetHashCode()
         {
-            FnvHash hash = new FnvHash();
-            return hash.ComputeHash(this.Data);
+            return Hash.ComputeHash(this.Data);
         }
 
         public override bool Equals(object obj)

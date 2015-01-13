@@ -99,24 +99,16 @@
                 }
                 else
                 {
-                    this.Update(oldDepth);
+                    this.DoStatusUpdate(oldDepth);
                 }
             }
 
             return solution;
         }
 
-        /// <summary>
-        /// Returns the number of nodes that were fully expanded in the final iteration of the search.
-        /// </summary>
-        public long GetNumberOfExpandedNodes()
-        {
-            return this.NumberOfExpandedNodes;
-        }
-
         #endregion
 
-        protected void Update(int maxDepth)
+        protected void DoStatusUpdate(int maxDepth)
         {
             if (this.StatusUpdate != null)
             {

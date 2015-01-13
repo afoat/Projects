@@ -283,6 +283,11 @@
             return this.Board[rowIx, colIx];
         }
 
+        public Move<NPuzzle>[] GetAllMoves()
+        {
+            return AllMoves;
+        }
+
         /// <summary>
         /// This method will always return the moves that are valid on any particular NPuzzle instance.
         /// 

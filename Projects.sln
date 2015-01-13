@@ -40,6 +40,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NPuzzleSolver", "NPuzzleSolver\NPuzzleSolver.csproj", "{A9A4A921-FB08-4090-9B98-C0A9E06A4842}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RubuksCubePatternDatabaseGenerator", "RubiksCubeConsoles\RubuksCubePatternDatabaseGenerator\RubuksCubePatternDatabaseGenerator.csproj", "{F3C1BD1C-2825-4CF1-B2D2-7D1A99628C05}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -182,6 +184,17 @@ Global
 		{A9A4A921-FB08-4090-9B98-C0A9E06A4842}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{A9A4A921-FB08-4090-9B98-C0A9E06A4842}.Release|x64.ActiveCfg = Release|x64
 		{A9A4A921-FB08-4090-9B98-C0A9E06A4842}.Release|x64.Build.0 = Release|x64
+		{F3C1BD1C-2825-4CF1-B2D2-7D1A99628C05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3C1BD1C-2825-4CF1-B2D2-7D1A99628C05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3C1BD1C-2825-4CF1-B2D2-7D1A99628C05}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{F3C1BD1C-2825-4CF1-B2D2-7D1A99628C05}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{F3C1BD1C-2825-4CF1-B2D2-7D1A99628C05}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F3C1BD1C-2825-4CF1-B2D2-7D1A99628C05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3C1BD1C-2825-4CF1-B2D2-7D1A99628C05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3C1BD1C-2825-4CF1-B2D2-7D1A99628C05}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{F3C1BD1C-2825-4CF1-B2D2-7D1A99628C05}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{F3C1BD1C-2825-4CF1-B2D2-7D1A99628C05}.Release|x64.ActiveCfg = Release|x64
+		{F3C1BD1C-2825-4CF1-B2D2-7D1A99628C05}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -199,5 +212,6 @@ Global
 		{0721456B-71F5-4606-AB29-CDD58AEA6DEC} = {80C42880-31F2-44E8-93BD-13BA15E6A7F6}
 		{73B391C7-0C49-4947-BB9B-115AEE326088} = {80C42880-31F2-44E8-93BD-13BA15E6A7F6}
 		{A9A4A921-FB08-4090-9B98-C0A9E06A4842} = {80C42880-31F2-44E8-93BD-13BA15E6A7F6}
+		{F3C1BD1C-2825-4CF1-B2D2-7D1A99628C05} = {80C42880-31F2-44E8-93BD-13BA15E6A7F6}
 	EndGlobalSection
 EndGlobal

@@ -19,7 +19,7 @@
         /// Returns a small statistic indicating roughly how many puzzle states were expanded while finding a solution.
         /// </summary
         /// <returns></returns>
-        long GetNumberOfExpandedNodes();
+        long NumberOfExpandedNodes { get; }
 
         event PuzzleSolutionEventHandler StatusUpdate;
     }

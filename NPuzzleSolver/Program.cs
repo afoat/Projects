@@ -73,7 +73,7 @@
                     }
 
                     Console.WriteLine(string.Format("\n\nElapsed Time in ms: {0}", stopwatch.ElapsedMilliseconds));
-                    Console.WriteLine(string.Format("Expanded {0} nodes. Found a solution that is {1} moves long.", solutionGenerator.GetNumberOfExpandedNodes(), solution.Count()));
+                    Console.WriteLine(string.Format("Expanded {0} nodes. Found a solution that is {1} moves long.", solutionGenerator.NumberOfExpandedNodes, solution.Count()));
                 }
 
                 Console.WriteLine("Press Q to quit, anything else to try another one.");
