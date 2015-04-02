@@ -5,6 +5,7 @@
     using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
+    using System.Diagnostics;
 
     /// <summary>
     /// A worker that does the pattern set generation.
@@ -72,6 +73,11 @@
                             {
                                 this.PatternDatabase.AddOrUpdate(newCube, newDepth, (cube, depth) => Math.Min(newDepth, depth));
                                 count = PatternDatabase.Count;
+
+                                if (count % 100000 == 0)
+                                {
+                                    Trace.WriteLine(string.Format("Found {0} states so far.", this.PatternDatabase.Count));
+                                }
                             }
                         }
                     }

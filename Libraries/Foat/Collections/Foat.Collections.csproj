@@ -94,7 +94,6 @@
     </Compile>
     <Compile Include="Generic\SkipList.cs" />
     <Compile Include="Generic\SkipListNode.cs" />
-    <Compile Include="BitMask.cs" />
     <Compile Include="Generic\SmallIntArray.cs" />
     <Compile Include="Resources\Errors.Designer.cs">
       <AutoGen>True</AutoGen>

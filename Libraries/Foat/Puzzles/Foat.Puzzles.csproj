@@ -79,13 +79,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RubiksCube\RubiksCube.Moves.cs" />
     <Compile Include="RubiksCube\RubiksCubeFactory.cs" />
-    <Compile Include="Solutions\FrontierSearch\FrontierNode.cs" />
-    <Compile Include="Solutions\FrontierSearch\FrontierNodeEventHandler.cs" />
-    <Compile Include="Solutions\FrontierSearch\FrontierNodeFoundEventArgs.cs" />
-    <Compile Include="Solutions\FrontierSearch\FrontierSearch.cs" />
     <Compile Include="Solutions\IDAStar\DepthLimitedAStar.cs" />
     <Compile Include="Solutions\IDAStar\IDAStar.cs" />
-    <Compile Include="Solutions\PatternDatabase\PatternDatabase.cs" />
     <Compile Include="Solutions\PuzzleSolutionEventArgs.cs" />
     <Compile Include="Solutions\PuzzleSolutionEventHandler.cs" />
     <Compile Include="Solutions\PuzzleStateExpander.cs" />

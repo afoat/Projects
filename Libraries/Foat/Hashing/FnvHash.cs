@@ -49,7 +49,8 @@
 
             unchecked
             {
-                for (var i = 0; i < array.Length; i++)
+                int length = array.Length;
+                for (var i = 0; i < length; i++)
                 {
                     hash ^= array[i];
                     hash *= HashPrime;

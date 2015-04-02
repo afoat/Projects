@@ -65,12 +65,6 @@
 
         internal RubiksCube(byte[] data)
         {
-            if (data == null)
-                throw new ArgumentNullException("data");
-
-            if (data.Length != NumCubies)
-                throw new ArgumentException(string.Format("Must have {0} cubies.", NumCubies));
-
             this.Data = data;
         }
 
@@ -320,7 +314,7 @@
             }
             else
             {
-                for (int i = 0; i < this.Data.Length; i++)
+                for (int i = 0; i < NumCubies; i++)
                 {
                     if (this.Data[i] != otherCube.Data[i])
                     {

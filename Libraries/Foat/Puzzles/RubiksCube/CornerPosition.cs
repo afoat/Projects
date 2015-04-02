@@ -59,23 +59,8 @@
                     return CornerPosition.TopBackLeftPrimaryLeft;
                 case CornerPosition.TopFrontLeftPrimaryLeft:
                     return CornerPosition.TopBackLeftPrimaryBack;
-                case CornerPosition.BottomBackLeftPrimaryBottom:
-                case CornerPosition.BottomBackLeftPrimaryBack:
-                case CornerPosition.BottomBackLeftPrimaryLeft:
-                case CornerPosition.BottomBackRightPrimaryBottom:
-                case CornerPosition.BottomBackRightPrimaryBack:
-                case CornerPosition.BottomBackRightPrimaryRight:
-                case CornerPosition.BottomFrontRightPrimaryBottom:
-                case CornerPosition.BottomFrontRightPrimaryFront:
-                case CornerPosition.BottomFrontRightPrimaryRight:
-                case CornerPosition.BottomFrontLeftPrimaryBottom:
-                case CornerPosition.BottomFrontLeftPrimaryFront:
-                case CornerPosition.BottomFrontLeftPrimaryLeft:
-                case CornerPosition.Masked:
-                case CornerPosition.Unmasked:
-                    return cornerPosition;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    return cornerPosition;
             }
         }
 
@@ -107,23 +92,8 @@
                     return CornerPosition.TopFrontRightPrimaryRight;
                 case CornerPosition.TopFrontLeftPrimaryLeft:
                     return CornerPosition.TopFrontRightPrimaryFront;
-                case CornerPosition.BottomBackLeftPrimaryBottom:
-                case CornerPosition.BottomBackLeftPrimaryBack:
-                case CornerPosition.BottomBackLeftPrimaryLeft:
-                case CornerPosition.BottomBackRightPrimaryBottom:
-                case CornerPosition.BottomBackRightPrimaryBack:
-                case CornerPosition.BottomBackRightPrimaryRight:
-                case CornerPosition.BottomFrontRightPrimaryBottom:
-                case CornerPosition.BottomFrontRightPrimaryFront:
-                case CornerPosition.BottomFrontRightPrimaryRight:
-                case CornerPosition.BottomFrontLeftPrimaryBottom:
-                case CornerPosition.BottomFrontLeftPrimaryFront:
-                case CornerPosition.BottomFrontLeftPrimaryLeft:
-                case CornerPosition.Masked:
-                case CornerPosition.Unmasked:
-                    return cornerPosition;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    return cornerPosition;
             }
         }
 
@@ -155,23 +125,8 @@
                     return CornerPosition.TopBackRightPrimaryBack;
                 case CornerPosition.TopFrontLeftPrimaryLeft:
                     return CornerPosition.TopBackRightPrimaryRight;
-                case CornerPosition.BottomBackLeftPrimaryBottom:
-                case CornerPosition.BottomBackLeftPrimaryBack:
-                case CornerPosition.BottomBackLeftPrimaryLeft:
-                case CornerPosition.BottomBackRightPrimaryBottom:
-                case CornerPosition.BottomBackRightPrimaryBack:
-                case CornerPosition.BottomBackRightPrimaryRight:
-                case CornerPosition.BottomFrontRightPrimaryBottom:
-                case CornerPosition.BottomFrontRightPrimaryFront:
-                case CornerPosition.BottomFrontRightPrimaryRight:
-                case CornerPosition.BottomFrontLeftPrimaryBottom:
-                case CornerPosition.BottomFrontLeftPrimaryFront:
-                case CornerPosition.BottomFrontLeftPrimaryLeft:
-                case CornerPosition.Masked:
-                case CornerPosition.Unmasked:
-                    return cornerPosition;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    return cornerPosition;
             }
         }
 
@@ -179,21 +134,6 @@
         {
             switch (cornerPosition)
             {
-                case CornerPosition.TopBackLeftPrimaryTop:
-                case CornerPosition.TopBackLeftPrimaryBack:
-                case CornerPosition.TopBackLeftPrimaryLeft:
-                case CornerPosition.TopBackRightPrimaryTop:
-                case CornerPosition.TopBackRightPrimaryBack:
-                case CornerPosition.TopBackRightPrimaryRight:
-                case CornerPosition.TopFrontRightPrimaryTop:
-                case CornerPosition.TopFrontRightPrimaryFront:
-                case CornerPosition.TopFrontRightPrimaryRight:
-                case CornerPosition.TopFrontLeftPrimaryTop:
-                case CornerPosition.TopFrontLeftPrimaryFront:
-                case CornerPosition.TopFrontLeftPrimaryLeft:
-                case CornerPosition.Masked:
-                case CornerPosition.Unmasked:
-                    return cornerPosition;
                 case CornerPosition.BottomBackLeftPrimaryBottom:
                     return CornerPosition.BottomFrontLeftPrimaryBottom;
                 case CornerPosition.BottomBackLeftPrimaryBack:
@@ -219,7 +159,7 @@
                 case CornerPosition.BottomFrontLeftPrimaryLeft:
                     return CornerPosition.BottomFrontRightPrimaryFront;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    return cornerPosition;
             }
         }
 
@@ -227,21 +167,6 @@
         {
             switch (cornerPosition)
             {
-                case CornerPosition.TopBackLeftPrimaryTop:
-                case CornerPosition.TopBackLeftPrimaryBack:
-                case CornerPosition.TopBackLeftPrimaryLeft:
-                case CornerPosition.TopBackRightPrimaryTop:
-                case CornerPosition.TopBackRightPrimaryBack:
-                case CornerPosition.TopBackRightPrimaryRight:
-                case CornerPosition.TopFrontRightPrimaryTop:
-                case CornerPosition.TopFrontRightPrimaryFront:
-                case CornerPosition.TopFrontRightPrimaryRight:
-                case CornerPosition.TopFrontLeftPrimaryTop:
-                case CornerPosition.TopFrontLeftPrimaryFront:
-                case CornerPosition.TopFrontLeftPrimaryLeft:
-                case CornerPosition.Masked:
-                case CornerPosition.Unmasked:
-                    return cornerPosition;
                 case CornerPosition.BottomBackLeftPrimaryBottom:
                     return CornerPosition.BottomBackRightPrimaryBottom;
                 case CornerPosition.BottomBackLeftPrimaryBack:
@@ -267,7 +192,7 @@
                 case CornerPosition.BottomFrontLeftPrimaryLeft:
                     return CornerPosition.BottomBackLeftPrimaryBack;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    return cornerPosition;
             }
         }
 
@@ -275,21 +200,6 @@
         {
             switch (cornerPosition)
             {
-                case CornerPosition.TopBackLeftPrimaryTop:
-                case CornerPosition.TopBackLeftPrimaryBack:
-                case CornerPosition.TopBackLeftPrimaryLeft:
-                case CornerPosition.TopBackRightPrimaryTop:
-                case CornerPosition.TopBackRightPrimaryBack:
-                case CornerPosition.TopBackRightPrimaryRight:
-                case CornerPosition.TopFrontRightPrimaryTop:
-                case CornerPosition.TopFrontRightPrimaryFront:
-                case CornerPosition.TopFrontRightPrimaryRight:
-                case CornerPosition.TopFrontLeftPrimaryTop:
-                case CornerPosition.TopFrontLeftPrimaryFront:
-                case CornerPosition.TopFrontLeftPrimaryLeft:
-                case CornerPosition.Masked:
-                case CornerPosition.Unmasked:
-                    return cornerPosition;
                 case CornerPosition.BottomBackLeftPrimaryBottom:
                     return CornerPosition.BottomFrontRightPrimaryBottom;
                 case CornerPosition.BottomBackLeftPrimaryBack:
@@ -315,7 +225,7 @@
                 case CornerPosition.BottomFrontLeftPrimaryLeft:
                     return CornerPosition.BottomBackRightPrimaryRight;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    return cornerPosition;
             }
         }
 
@@ -347,23 +257,8 @@
                     return CornerPosition.BottomBackLeftPrimaryBottom;
                 case CornerPosition.BottomFrontLeftPrimaryLeft:
                     return CornerPosition.BottomBackLeftPrimaryLeft;
-                case CornerPosition.TopBackRightPrimaryTop:
-                case CornerPosition.TopBackRightPrimaryBack:
-                case CornerPosition.TopBackRightPrimaryRight:
-                case CornerPosition.TopFrontRightPrimaryTop:
-                case CornerPosition.TopFrontRightPrimaryFront:
-                case CornerPosition.TopFrontRightPrimaryRight:
-                case CornerPosition.BottomBackRightPrimaryBottom:
-                case CornerPosition.BottomBackRightPrimaryBack:
-                case CornerPosition.BottomBackRightPrimaryRight:
-                case CornerPosition.BottomFrontRightPrimaryBottom:
-                case CornerPosition.BottomFrontRightPrimaryFront:
-                case CornerPosition.BottomFrontRightPrimaryRight:
-                case CornerPosition.Masked:
-                case CornerPosition.Unmasked:
-                    return cornerPosition;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    return cornerPosition;
             }
         }
 
@@ -395,23 +290,8 @@
                     return CornerPosition.TopFrontLeftPrimaryTop;
                 case CornerPosition.BottomFrontLeftPrimaryLeft:
                     return CornerPosition.TopFrontLeftPrimaryLeft;
-                case CornerPosition.TopBackRightPrimaryTop:
-                case CornerPosition.TopBackRightPrimaryBack:
-                case CornerPosition.TopBackRightPrimaryRight:
-                case CornerPosition.TopFrontRightPrimaryTop:
-                case CornerPosition.TopFrontRightPrimaryFront:
-                case CornerPosition.TopFrontRightPrimaryRight:
-                case CornerPosition.BottomBackRightPrimaryBottom:
-                case CornerPosition.BottomBackRightPrimaryBack:
-                case CornerPosition.BottomBackRightPrimaryRight:
-                case CornerPosition.BottomFrontRightPrimaryBottom:
-                case CornerPosition.BottomFrontRightPrimaryFront:
-                case CornerPosition.BottomFrontRightPrimaryRight:
-                case CornerPosition.Masked:
-                case CornerPosition.Unmasked:
-                    return cornerPosition;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    return cornerPosition;
             }
         }
 
@@ -443,23 +323,8 @@
                     return CornerPosition.TopBackLeftPrimaryBack;
                 case CornerPosition.BottomFrontLeftPrimaryLeft:
                     return CornerPosition.TopBackLeftPrimaryLeft;
-                case CornerPosition.TopBackRightPrimaryTop:
-                case CornerPosition.TopBackRightPrimaryBack:
-                case CornerPosition.TopBackRightPrimaryRight:
-                case CornerPosition.TopFrontRightPrimaryTop:
-                case CornerPosition.TopFrontRightPrimaryFront:
-                case CornerPosition.TopFrontRightPrimaryRight:
-                case CornerPosition.BottomBackRightPrimaryBottom:
-                case CornerPosition.BottomBackRightPrimaryBack:
-                case CornerPosition.BottomBackRightPrimaryRight:
-                case CornerPosition.BottomFrontRightPrimaryBottom:
-                case CornerPosition.BottomFrontRightPrimaryFront:
-                case CornerPosition.BottomFrontRightPrimaryRight:
-                case CornerPosition.Masked:
-                case CornerPosition.Unmasked:
-                    return cornerPosition;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    return cornerPosition;
             }
         }
 
@@ -491,23 +356,8 @@
                     return CornerPosition.TopFrontRightPrimaryTop;
                 case CornerPosition.BottomFrontRightPrimaryRight:
                     return CornerPosition.TopFrontRightPrimaryRight;
-                case CornerPosition.TopBackLeftPrimaryTop:
-                case CornerPosition.TopBackLeftPrimaryBack:
-                case CornerPosition.TopBackLeftPrimaryLeft:
-                case CornerPosition.TopFrontLeftPrimaryTop:
-                case CornerPosition.TopFrontLeftPrimaryFront:
-                case CornerPosition.TopFrontLeftPrimaryLeft:
-                case CornerPosition.BottomBackLeftPrimaryBottom:
-                case CornerPosition.BottomBackLeftPrimaryBack:
-                case CornerPosition.BottomBackLeftPrimaryLeft:
-                case CornerPosition.BottomFrontLeftPrimaryBottom:
-                case CornerPosition.BottomFrontLeftPrimaryFront:
-                case CornerPosition.BottomFrontLeftPrimaryLeft:
-                case CornerPosition.Masked:
-                case CornerPosition.Unmasked:
-                    return cornerPosition;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    return cornerPosition;
             }
         }
 
@@ -539,23 +389,8 @@
                     return CornerPosition.BottomBackRightPrimaryBottom;
                 case CornerPosition.BottomFrontRightPrimaryRight:
                     return CornerPosition.BottomBackRightPrimaryRight;
-                case CornerPosition.TopBackLeftPrimaryTop:
-                case CornerPosition.TopBackLeftPrimaryBack:
-                case CornerPosition.TopBackLeftPrimaryLeft:
-                case CornerPosition.TopFrontLeftPrimaryTop:
-                case CornerPosition.TopFrontLeftPrimaryFront:
-                case CornerPosition.TopFrontLeftPrimaryLeft:
-                case CornerPosition.BottomBackLeftPrimaryBottom:
-                case CornerPosition.BottomBackLeftPrimaryBack:
-                case CornerPosition.BottomBackLeftPrimaryLeft:
-                case CornerPosition.BottomFrontLeftPrimaryBottom:
-                case CornerPosition.BottomFrontLeftPrimaryFront:
-                case CornerPosition.BottomFrontLeftPrimaryLeft:
-                case CornerPosition.Masked:
-                case CornerPosition.Unmasked:
-                    return cornerPosition;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    return cornerPosition;
             }
         }
 
@@ -587,23 +422,8 @@
                     return CornerPosition.TopBackRightPrimaryBack;
                 case CornerPosition.BottomFrontRightPrimaryRight:
                     return CornerPosition.TopBackRightPrimaryRight;
-                case CornerPosition.TopBackLeftPrimaryTop:
-                case CornerPosition.TopBackLeftPrimaryBack:
-                case CornerPosition.TopBackLeftPrimaryLeft:
-                case CornerPosition.TopFrontLeftPrimaryTop:
-                case CornerPosition.TopFrontLeftPrimaryFront:
-                case CornerPosition.TopFrontLeftPrimaryLeft:
-                case CornerPosition.BottomBackLeftPrimaryBottom:
-                case CornerPosition.BottomBackLeftPrimaryBack:
-                case CornerPosition.BottomBackLeftPrimaryLeft:
-                case CornerPosition.BottomFrontLeftPrimaryBottom:
-                case CornerPosition.BottomFrontLeftPrimaryFront:
-                case CornerPosition.BottomFrontLeftPrimaryLeft:
-                case CornerPosition.Masked:
-                case CornerPosition.Unmasked:
-                    return cornerPosition;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    return cornerPosition;
             }
         }
 
@@ -635,23 +455,8 @@
                     return CornerPosition.TopFrontLeftPrimaryFront;
                 case CornerPosition.BottomFrontLeftPrimaryLeft:
                     return CornerPosition.TopFrontLeftPrimaryTop;
-                case CornerPosition.TopBackLeftPrimaryTop:
-                case CornerPosition.TopBackLeftPrimaryBack:
-                case CornerPosition.TopBackLeftPrimaryLeft:
-                case CornerPosition.TopBackRightPrimaryTop:
-                case CornerPosition.TopBackRightPrimaryBack:
-                case CornerPosition.TopBackRightPrimaryRight:
-                case CornerPosition.BottomBackLeftPrimaryBottom:
-                case CornerPosition.BottomBackLeftPrimaryBack:
-                case CornerPosition.BottomBackLeftPrimaryLeft:
-                case CornerPosition.BottomBackRightPrimaryBottom:
-                case CornerPosition.BottomBackRightPrimaryBack:
-                case CornerPosition.BottomBackRightPrimaryRight:
-                case CornerPosition.Masked:
-                case CornerPosition.Unmasked:
-                    return cornerPosition;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    return cornerPosition;
             }
         }
 
@@ -683,23 +488,8 @@
                     return CornerPosition.BottomFrontRightPrimaryFront;
                 case CornerPosition.BottomFrontLeftPrimaryLeft:
                     return CornerPosition.BottomFrontRightPrimaryBottom;
-                case CornerPosition.TopBackLeftPrimaryTop:
-                case CornerPosition.TopBackLeftPrimaryBack:
-                case CornerPosition.TopBackLeftPrimaryLeft:
-                case CornerPosition.TopBackRightPrimaryTop:
-                case CornerPosition.TopBackRightPrimaryBack:
-                case CornerPosition.TopBackRightPrimaryRight:
-                case CornerPosition.BottomBackLeftPrimaryBottom:
-                case CornerPosition.BottomBackLeftPrimaryBack:
-                case CornerPosition.BottomBackLeftPrimaryLeft:
-                case CornerPosition.BottomBackRightPrimaryBottom:
-                case CornerPosition.BottomBackRightPrimaryBack:
-                case CornerPosition.BottomBackRightPrimaryRight:
-                case CornerPosition.Masked:
-                case CornerPosition.Unmasked:
-                    return cornerPosition;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    return cornerPosition;
             }
         }
 
@@ -731,23 +521,8 @@
                     return CornerPosition.TopFrontRightPrimaryFront;
                 case CornerPosition.BottomFrontLeftPrimaryLeft:
                     return CornerPosition.TopFrontRightPrimaryRight;
-                case CornerPosition.TopBackLeftPrimaryTop:
-                case CornerPosition.TopBackLeftPrimaryBack:
-                case CornerPosition.TopBackLeftPrimaryLeft:
-                case CornerPosition.TopBackRightPrimaryTop:
-                case CornerPosition.TopBackRightPrimaryBack:
-                case CornerPosition.TopBackRightPrimaryRight:
-                case CornerPosition.BottomBackLeftPrimaryBottom:
-                case CornerPosition.BottomBackLeftPrimaryBack:
-                case CornerPosition.BottomBackLeftPrimaryLeft:
-                case CornerPosition.BottomBackRightPrimaryBottom:
-                case CornerPosition.BottomBackRightPrimaryBack:
-                case CornerPosition.BottomBackRightPrimaryRight:
-                case CornerPosition.Masked:
-                case CornerPosition.Unmasked:
-                    return cornerPosition;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    return cornerPosition;
             }
         }
 
@@ -755,21 +530,6 @@
         {
             switch (cornerPosition)
             {
-                case CornerPosition.TopFrontRightPrimaryTop:
-                case CornerPosition.TopFrontRightPrimaryFront:
-                case CornerPosition.TopFrontRightPrimaryRight:
-                case CornerPosition.TopFrontLeftPrimaryTop:
-                case CornerPosition.TopFrontLeftPrimaryFront:
-                case CornerPosition.TopFrontLeftPrimaryLeft:
-                case CornerPosition.BottomFrontRightPrimaryBottom:
-                case CornerPosition.BottomFrontRightPrimaryFront:
-                case CornerPosition.BottomFrontRightPrimaryRight:
-                case CornerPosition.BottomFrontLeftPrimaryBottom:
-                case CornerPosition.BottomFrontLeftPrimaryFront:
-                case CornerPosition.BottomFrontLeftPrimaryLeft:
-                case CornerPosition.Masked:
-                case CornerPosition.Unmasked:
-                    return cornerPosition;
                 case CornerPosition.TopBackLeftPrimaryTop:
                     return CornerPosition.BottomBackLeftPrimaryLeft;
                 case CornerPosition.TopBackLeftPrimaryBack:
@@ -795,7 +555,7 @@
                 case CornerPosition.BottomBackRightPrimaryRight:
                     return CornerPosition.TopBackRightPrimaryTop;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    return cornerPosition;
             }
         }
 
@@ -804,21 +564,6 @@
         {
             switch (cornerPosition)
             {
-                case CornerPosition.TopFrontRightPrimaryTop:
-                case CornerPosition.TopFrontRightPrimaryFront:
-                case CornerPosition.TopFrontRightPrimaryRight:
-                case CornerPosition.TopFrontLeftPrimaryTop:
-                case CornerPosition.TopFrontLeftPrimaryFront:
-                case CornerPosition.TopFrontLeftPrimaryLeft:
-                case CornerPosition.BottomFrontRightPrimaryBottom:
-                case CornerPosition.BottomFrontRightPrimaryFront:
-                case CornerPosition.BottomFrontRightPrimaryRight:
-                case CornerPosition.BottomFrontLeftPrimaryBottom:
-                case CornerPosition.BottomFrontLeftPrimaryFront:
-                case CornerPosition.BottomFrontLeftPrimaryLeft:
-                case CornerPosition.Masked:
-                case CornerPosition.Unmasked:
-                    return cornerPosition;
                 case CornerPosition.TopBackLeftPrimaryTop:
                     return CornerPosition.TopBackRightPrimaryRight;
                 case CornerPosition.TopBackLeftPrimaryBack:
@@ -844,7 +589,7 @@
                 case CornerPosition.BottomBackRightPrimaryRight:
                     return CornerPosition.BottomBackLeftPrimaryBottom;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    return cornerPosition;
             }
         }
 
@@ -853,21 +598,6 @@
         {
             switch (cornerPosition)
             {
-                case CornerPosition.TopFrontRightPrimaryTop:
-                case CornerPosition.TopFrontRightPrimaryFront:
-                case CornerPosition.TopFrontRightPrimaryRight:
-                case CornerPosition.TopFrontLeftPrimaryTop:
-                case CornerPosition.TopFrontLeftPrimaryFront:
-                case CornerPosition.TopFrontLeftPrimaryLeft:
-                case CornerPosition.BottomFrontRightPrimaryBottom:
-                case CornerPosition.BottomFrontRightPrimaryFront:
-                case CornerPosition.BottomFrontRightPrimaryRight:
-                case CornerPosition.BottomFrontLeftPrimaryBottom:
-                case CornerPosition.BottomFrontLeftPrimaryFront:
-                case CornerPosition.BottomFrontLeftPrimaryLeft:
-                case CornerPosition.Masked:
-                case CornerPosition.Unmasked:
-                    return cornerPosition;
                 case CornerPosition.TopBackLeftPrimaryTop:
                     return CornerPosition.BottomBackRightPrimaryBottom;
                 case CornerPosition.TopBackLeftPrimaryBack:
@@ -893,7 +623,7 @@
                 case CornerPosition.BottomBackRightPrimaryRight:
                     return CornerPosition.TopBackLeftPrimaryLeft;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    return cornerPosition;
             }
         }
 

@@ -51,27 +51,8 @@
                     return EdgePosition.TopFrontPrimaryTop;
                 case EdgePosition.TopRightPrimaryRight:
                     return EdgePosition.TopFrontPrimaryFront;
-                case EdgePosition.BottomFrontPrimaryBottom:
-                case EdgePosition.BottomFrontPrimaryFront:
-                case EdgePosition.BottomLeftPrimaryBottom:
-                case EdgePosition.BottomLeftPrimaryLeft:
-                case EdgePosition.BottomBackPrimaryBottom:
-                case EdgePosition.BottomBackPrimaryBack:
-                case EdgePosition.BottomRightPrimaryBottom:
-                case EdgePosition.BottomRightPrimaryRight:
-                case EdgePosition.FrontLeftPrimaryFront:
-                case EdgePosition.FrontLeftPrimaryLeft:
-                case EdgePosition.BackLeftPrimaryBack:
-                case EdgePosition.BackLeftPrimaryLeft:
-                case EdgePosition.BackRightPrimaryBack:
-                case EdgePosition.BackRightPrimaryRight:
-                case EdgePosition.FrontRightPrimaryFront:
-                case EdgePosition.FrontRightPrimaryRight:
-                case EdgePosition.Masked:
-                case EdgePosition.Unmasked:
-                    return edgePosition;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    return edgePosition;
             }
         }
 
@@ -95,27 +76,8 @@
                     return EdgePosition.TopBackPrimaryTop;
                 case EdgePosition.TopRightPrimaryRight:
                     return EdgePosition.TopBackPrimaryBack;
-                case EdgePosition.BottomFrontPrimaryBottom:
-                case EdgePosition.BottomFrontPrimaryFront:
-                case EdgePosition.BottomLeftPrimaryBottom:
-                case EdgePosition.BottomLeftPrimaryLeft:
-                case EdgePosition.BottomBackPrimaryBottom:
-                case EdgePosition.BottomBackPrimaryBack:
-                case EdgePosition.BottomRightPrimaryBottom:
-                case EdgePosition.BottomRightPrimaryRight:
-                case EdgePosition.FrontLeftPrimaryFront:
-                case EdgePosition.FrontLeftPrimaryLeft:
-                case EdgePosition.BackLeftPrimaryBack:
-                case EdgePosition.BackLeftPrimaryLeft:
-                case EdgePosition.BackRightPrimaryBack:
-                case EdgePosition.BackRightPrimaryRight:
-                case EdgePosition.FrontRightPrimaryFront:
-                case EdgePosition.FrontRightPrimaryRight:
-                case EdgePosition.Masked:
-                case EdgePosition.Unmasked:
-                    return edgePosition;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    return edgePosition;
             }
         }
 
@@ -139,27 +101,8 @@
                     return EdgePosition.TopLeftPrimaryTop;
                 case EdgePosition.TopRightPrimaryRight:
                     return EdgePosition.TopLeftPrimaryLeft;
-                case EdgePosition.BottomFrontPrimaryBottom:
-                case EdgePosition.BottomFrontPrimaryFront:
-                case EdgePosition.BottomLeftPrimaryBottom:
-                case EdgePosition.BottomLeftPrimaryLeft:
-                case EdgePosition.BottomBackPrimaryBottom:
-                case EdgePosition.BottomBackPrimaryBack:
-                case EdgePosition.BottomRightPrimaryBottom:
-                case EdgePosition.BottomRightPrimaryRight:
-                case EdgePosition.FrontLeftPrimaryFront:
-                case EdgePosition.FrontLeftPrimaryLeft:
-                case EdgePosition.BackLeftPrimaryBack:
-                case EdgePosition.BackLeftPrimaryLeft:
-                case EdgePosition.BackRightPrimaryBack:
-                case EdgePosition.BackRightPrimaryRight:
-                case EdgePosition.FrontRightPrimaryFront:
-                case EdgePosition.FrontRightPrimaryRight:
-                case EdgePosition.Masked:
-                case EdgePosition.Unmasked:
-                    return edgePosition;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    return edgePosition;
             }
         }
         public static byte RotateBottomCW(byte edgePosition)
@@ -182,27 +125,8 @@
                     return EdgePosition.BottomBackPrimaryBottom;
                 case EdgePosition.BottomRightPrimaryRight:
                     return EdgePosition.BottomBackPrimaryBack;
-                case EdgePosition.TopFrontPrimaryTop:
-                case EdgePosition.TopFrontPrimaryFront:
-                case EdgePosition.TopLeftPrimaryTop:
-                case EdgePosition.TopLeftPrimaryLeft:
-                case EdgePosition.TopBackPrimaryTop:
-                case EdgePosition.TopBackPrimaryBack:
-                case EdgePosition.TopRightPrimaryTop:
-                case EdgePosition.TopRightPrimaryRight:
-                case EdgePosition.FrontLeftPrimaryFront:
-                case EdgePosition.FrontLeftPrimaryLeft:
-                case EdgePosition.BackLeftPrimaryBack:
-                case EdgePosition.BackLeftPrimaryLeft:
-                case EdgePosition.BackRightPrimaryBack:
-                case EdgePosition.BackRightPrimaryRight:
-                case EdgePosition.FrontRightPrimaryFront:
-                case EdgePosition.FrontRightPrimaryRight:
-                case EdgePosition.Masked:
-                case EdgePosition.Unmasked:
-                    return edgePosition;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    return edgePosition;
             }
         }
 
@@ -226,27 +150,8 @@
                     return EdgePosition.BottomFrontPrimaryBottom;
                 case EdgePosition.BottomRightPrimaryRight:
                     return EdgePosition.BottomFrontPrimaryFront;
-                case EdgePosition.TopFrontPrimaryTop:
-                case EdgePosition.TopFrontPrimaryFront:
-                case EdgePosition.TopLeftPrimaryTop:
-                case EdgePosition.TopLeftPrimaryLeft:
-                case EdgePosition.TopBackPrimaryTop:
-                case EdgePosition.TopBackPrimaryBack:
-                case EdgePosition.TopRightPrimaryTop:
-                case EdgePosition.TopRightPrimaryRight:
-                case EdgePosition.FrontLeftPrimaryFront:
-                case EdgePosition.FrontLeftPrimaryLeft:
-                case EdgePosition.BackLeftPrimaryBack:
-                case EdgePosition.BackLeftPrimaryLeft:
-                case EdgePosition.BackRightPrimaryBack:
-                case EdgePosition.BackRightPrimaryRight:
-                case EdgePosition.FrontRightPrimaryFront:
-                case EdgePosition.FrontRightPrimaryRight:
-                case EdgePosition.Masked:
-                case EdgePosition.Unmasked:
-                    return edgePosition;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    return edgePosition;
             }
         }
 
@@ -270,27 +175,8 @@
                     return EdgePosition.BottomLeftPrimaryBottom;
                 case EdgePosition.BottomRightPrimaryRight:
                     return EdgePosition.BottomLeftPrimaryLeft;
-                case EdgePosition.TopFrontPrimaryTop:
-                case EdgePosition.TopFrontPrimaryFront:
-                case EdgePosition.TopLeftPrimaryTop:
-                case EdgePosition.TopLeftPrimaryLeft:
-                case EdgePosition.TopBackPrimaryTop:
-                case EdgePosition.TopBackPrimaryBack:
-                case EdgePosition.TopRightPrimaryTop:
-                case EdgePosition.TopRightPrimaryRight:
-                case EdgePosition.FrontLeftPrimaryFront:
-                case EdgePosition.FrontLeftPrimaryLeft:
-                case EdgePosition.BackLeftPrimaryBack:
-                case EdgePosition.BackLeftPrimaryLeft:
-                case EdgePosition.BackRightPrimaryBack:
-                case EdgePosition.BackRightPrimaryRight:
-                case EdgePosition.FrontRightPrimaryFront:
-                case EdgePosition.FrontRightPrimaryRight:
-                case EdgePosition.Masked:
-                case EdgePosition.Unmasked:
-                    return edgePosition;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    return edgePosition;
             }
         }
 
@@ -315,27 +201,8 @@
                     return EdgePosition.TopLeftPrimaryTop;
                 case EdgePosition.BackLeftPrimaryLeft:
                     return EdgePosition.TopLeftPrimaryLeft;
-                case EdgePosition.TopFrontPrimaryTop:
-                case EdgePosition.TopFrontPrimaryFront:
-                case EdgePosition.TopBackPrimaryTop:
-                case EdgePosition.TopBackPrimaryBack:
-                case EdgePosition.TopRightPrimaryTop:
-                case EdgePosition.TopRightPrimaryRight:
-                case EdgePosition.BottomFrontPrimaryBottom:
-                case EdgePosition.BottomFrontPrimaryFront:
-                case EdgePosition.BottomBackPrimaryBottom:
-                case EdgePosition.BottomBackPrimaryBack:
-                case EdgePosition.BottomRightPrimaryBottom:
-                case EdgePosition.BottomRightPrimaryRight:
-                case EdgePosition.BackRightPrimaryBack:
-                case EdgePosition.BackRightPrimaryRight:
-                case EdgePosition.FrontRightPrimaryFront:
-                case EdgePosition.FrontRightPrimaryRight:
-                case EdgePosition.Masked:
-                case EdgePosition.Unmasked:
-                    return edgePosition;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    return edgePosition;
             }
         }
 
@@ -359,27 +226,8 @@
                     return EdgePosition.BottomLeftPrimaryBottom;
                 case EdgePosition.BackLeftPrimaryLeft:
                     return EdgePosition.BottomLeftPrimaryLeft;
-                case EdgePosition.TopFrontPrimaryTop:
-                case EdgePosition.TopFrontPrimaryFront:
-                case EdgePosition.TopBackPrimaryTop:
-                case EdgePosition.TopBackPrimaryBack:
-                case EdgePosition.TopRightPrimaryTop:
-                case EdgePosition.TopRightPrimaryRight:
-                case EdgePosition.BottomFrontPrimaryBottom:
-                case EdgePosition.BottomFrontPrimaryFront:
-                case EdgePosition.BottomBackPrimaryBottom:
-                case EdgePosition.BottomBackPrimaryBack:
-                case EdgePosition.BottomRightPrimaryBottom:
-                case EdgePosition.BottomRightPrimaryRight:
-                case EdgePosition.BackRightPrimaryBack:
-                case EdgePosition.BackRightPrimaryRight:
-                case EdgePosition.FrontRightPrimaryFront:
-                case EdgePosition.FrontRightPrimaryRight:
-                case EdgePosition.Masked:
-                case EdgePosition.Unmasked:
-                    return edgePosition;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    return edgePosition;
             }
         }
 
@@ -403,27 +251,8 @@
                     return EdgePosition.FrontLeftPrimaryFront;
                 case EdgePosition.BackLeftPrimaryLeft:
                     return EdgePosition.FrontLeftPrimaryLeft;
-                case EdgePosition.TopFrontPrimaryTop:
-                case EdgePosition.TopFrontPrimaryFront:
-                case EdgePosition.TopBackPrimaryTop:
-                case EdgePosition.TopBackPrimaryBack:
-                case EdgePosition.TopRightPrimaryTop:
-                case EdgePosition.TopRightPrimaryRight:
-                case EdgePosition.BottomFrontPrimaryBottom:
-                case EdgePosition.BottomFrontPrimaryFront:
-                case EdgePosition.BottomBackPrimaryBottom:
-                case EdgePosition.BottomBackPrimaryBack:
-                case EdgePosition.BottomRightPrimaryBottom:
-                case EdgePosition.BottomRightPrimaryRight:
-                case EdgePosition.BackRightPrimaryBack:
-                case EdgePosition.BackRightPrimaryRight:
-                case EdgePosition.FrontRightPrimaryFront:
-                case EdgePosition.FrontRightPrimaryRight:
-                case EdgePosition.Masked:
-                case EdgePosition.Unmasked:
-                    return edgePosition;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    return edgePosition;
             }
         }
 
@@ -447,27 +276,8 @@
                     return EdgePosition.TopRightPrimaryTop;
                 case EdgePosition.FrontRightPrimaryRight:
                     return EdgePosition.TopRightPrimaryRight;
-                case EdgePosition.TopFrontPrimaryTop:
-                case EdgePosition.TopFrontPrimaryFront:
-                case EdgePosition.TopLeftPrimaryTop:
-                case EdgePosition.TopLeftPrimaryLeft:
-                case EdgePosition.TopBackPrimaryTop:
-                case EdgePosition.TopBackPrimaryBack:
-                case EdgePosition.BottomFrontPrimaryBottom:
-                case EdgePosition.BottomFrontPrimaryFront:
-                case EdgePosition.BottomLeftPrimaryBottom:
-                case EdgePosition.BottomLeftPrimaryLeft:
-                case EdgePosition.BottomBackPrimaryBottom:
-                case EdgePosition.BottomBackPrimaryBack:
-                case EdgePosition.FrontLeftPrimaryFront:
-                case EdgePosition.FrontLeftPrimaryLeft:
-                case EdgePosition.BackLeftPrimaryBack:
-                case EdgePosition.BackLeftPrimaryLeft:
-                case EdgePosition.Masked:
-                case EdgePosition.Unmasked:
-                    return edgePosition;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    return edgePosition;
             }
         }
 
@@ -491,27 +301,8 @@
                     return EdgePosition.BottomRightPrimaryBottom;
                 case EdgePosition.FrontRightPrimaryRight:
                     return EdgePosition.BottomRightPrimaryRight;
-                case EdgePosition.TopFrontPrimaryTop:
-                case EdgePosition.TopFrontPrimaryFront:
-                case EdgePosition.TopLeftPrimaryTop:
-                case EdgePosition.TopLeftPrimaryLeft:
-                case EdgePosition.TopBackPrimaryTop:
-                case EdgePosition.TopBackPrimaryBack:
-                case EdgePosition.BottomFrontPrimaryBottom:
-                case EdgePosition.BottomFrontPrimaryFront:
-                case EdgePosition.BottomLeftPrimaryBottom:
-                case EdgePosition.BottomLeftPrimaryLeft:
-                case EdgePosition.BottomBackPrimaryBottom:
-                case EdgePosition.BottomBackPrimaryBack:
-                case EdgePosition.FrontLeftPrimaryFront:
-                case EdgePosition.FrontLeftPrimaryLeft:
-                case EdgePosition.BackLeftPrimaryBack:
-                case EdgePosition.BackLeftPrimaryLeft:
-                case EdgePosition.Masked:
-                case EdgePosition.Unmasked:
-                    return edgePosition;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    return edgePosition;
             }
         }
 
@@ -535,27 +326,8 @@
                     return EdgePosition.BackRightPrimaryBack;
                 case EdgePosition.FrontRightPrimaryRight:
                     return EdgePosition.BackRightPrimaryRight;
-                case EdgePosition.TopFrontPrimaryTop:
-                case EdgePosition.TopFrontPrimaryFront:
-                case EdgePosition.TopLeftPrimaryTop:
-                case EdgePosition.TopLeftPrimaryLeft:
-                case EdgePosition.TopBackPrimaryTop:
-                case EdgePosition.TopBackPrimaryBack:
-                case EdgePosition.BottomFrontPrimaryBottom:
-                case EdgePosition.BottomFrontPrimaryFront:
-                case EdgePosition.BottomLeftPrimaryBottom:
-                case EdgePosition.BottomLeftPrimaryLeft:
-                case EdgePosition.BottomBackPrimaryBottom:
-                case EdgePosition.BottomBackPrimaryBack:
-                case EdgePosition.FrontLeftPrimaryFront:
-                case EdgePosition.FrontLeftPrimaryLeft:
-                case EdgePosition.BackLeftPrimaryBack:
-                case EdgePosition.BackLeftPrimaryLeft:
-                case EdgePosition.Masked:
-                case EdgePosition.Unmasked:
-                    return edgePosition;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    return edgePosition;
             }
         }
 
@@ -579,27 +351,8 @@
                     return EdgePosition.BottomFrontPrimaryFront;
                 case EdgePosition.FrontRightPrimaryRight:
                     return EdgePosition.BottomFrontPrimaryBottom;
-                case EdgePosition.TopLeftPrimaryTop:
-                case EdgePosition.TopLeftPrimaryLeft:
-                case EdgePosition.TopBackPrimaryTop:
-                case EdgePosition.TopBackPrimaryBack:
-                case EdgePosition.TopRightPrimaryTop:
-                case EdgePosition.TopRightPrimaryRight:
-                case EdgePosition.BottomLeftPrimaryBottom:
-                case EdgePosition.BottomLeftPrimaryLeft:
-                case EdgePosition.BottomBackPrimaryBottom:
-                case EdgePosition.BottomBackPrimaryBack:
-                case EdgePosition.BottomRightPrimaryBottom:
-                case EdgePosition.BottomRightPrimaryRight:
-                case EdgePosition.BackLeftPrimaryBack:
-                case EdgePosition.BackLeftPrimaryLeft:
-                case EdgePosition.BackRightPrimaryBack:
-                case EdgePosition.BackRightPrimaryRight:
-                case EdgePosition.Masked:
-                case EdgePosition.Unmasked:
-                    return edgePosition;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    return edgePosition;
             }
         }
 
@@ -623,27 +376,8 @@
                     return EdgePosition.TopFrontPrimaryFront;
                 case EdgePosition.FrontRightPrimaryRight:
                     return EdgePosition.TopFrontPrimaryTop;
-                case EdgePosition.TopLeftPrimaryTop:
-                case EdgePosition.TopLeftPrimaryLeft:
-                case EdgePosition.TopBackPrimaryTop:
-                case EdgePosition.TopBackPrimaryBack:
-                case EdgePosition.TopRightPrimaryTop:
-                case EdgePosition.TopRightPrimaryRight:
-                case EdgePosition.BottomLeftPrimaryBottom:
-                case EdgePosition.BottomLeftPrimaryLeft:
-                case EdgePosition.BottomBackPrimaryBottom:
-                case EdgePosition.BottomBackPrimaryBack:
-                case EdgePosition.BottomRightPrimaryBottom:
-                case EdgePosition.BottomRightPrimaryRight:
-                case EdgePosition.BackLeftPrimaryBack:
-                case EdgePosition.BackLeftPrimaryLeft:
-                case EdgePosition.BackRightPrimaryBack:
-                case EdgePosition.BackRightPrimaryRight:
-                case EdgePosition.Masked:
-                case EdgePosition.Unmasked:
-                    return edgePosition;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    return edgePosition;
             }
         }
 
@@ -667,27 +401,8 @@
                     return EdgePosition.FrontLeftPrimaryFront;
                 case EdgePosition.FrontRightPrimaryRight:
                     return EdgePosition.FrontLeftPrimaryLeft;
-                case EdgePosition.TopLeftPrimaryTop:
-                case EdgePosition.TopLeftPrimaryLeft:
-                case EdgePosition.TopBackPrimaryTop:
-                case EdgePosition.TopBackPrimaryBack:
-                case EdgePosition.TopRightPrimaryTop:
-                case EdgePosition.TopRightPrimaryRight:
-                case EdgePosition.BottomLeftPrimaryBottom:
-                case EdgePosition.BottomLeftPrimaryLeft:
-                case EdgePosition.BottomBackPrimaryBottom:
-                case EdgePosition.BottomBackPrimaryBack:
-                case EdgePosition.BottomRightPrimaryBottom:
-                case EdgePosition.BottomRightPrimaryRight:
-                case EdgePosition.BackLeftPrimaryBack:
-                case EdgePosition.BackLeftPrimaryLeft:
-                case EdgePosition.BackRightPrimaryBack:
-                case EdgePosition.BackRightPrimaryRight:
-                case EdgePosition.Masked:
-                case EdgePosition.Unmasked:
-                    return edgePosition;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    return edgePosition;
             }
         }
 
@@ -712,27 +427,8 @@
                     return EdgePosition.TopBackPrimaryBack;
                 case EdgePosition.BackRightPrimaryRight:
                     return EdgePosition.TopBackPrimaryTop;
-                case EdgePosition.TopFrontPrimaryTop:
-                case EdgePosition.TopFrontPrimaryFront:
-                case EdgePosition.TopLeftPrimaryTop:
-                case EdgePosition.TopLeftPrimaryLeft:
-                case EdgePosition.TopRightPrimaryTop:
-                case EdgePosition.TopRightPrimaryRight:
-                case EdgePosition.BottomFrontPrimaryBottom:
-                case EdgePosition.BottomFrontPrimaryFront:
-                case EdgePosition.BottomLeftPrimaryBottom:
-                case EdgePosition.BottomLeftPrimaryLeft:
-                case EdgePosition.BottomRightPrimaryBottom:
-                case EdgePosition.BottomRightPrimaryRight:
-                case EdgePosition.FrontLeftPrimaryFront:
-                case EdgePosition.FrontLeftPrimaryLeft:
-                case EdgePosition.FrontRightPrimaryFront:
-                case EdgePosition.FrontRightPrimaryRight:
-                case EdgePosition.Masked:
-                case EdgePosition.Unmasked:
-                    return edgePosition;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    return edgePosition;
             }
         }
 
@@ -756,27 +452,8 @@
                     return EdgePosition.BottomBackPrimaryBack;
                 case EdgePosition.BackRightPrimaryRight:
                     return EdgePosition.BottomBackPrimaryBottom;
-                case EdgePosition.TopFrontPrimaryTop:
-                case EdgePosition.TopFrontPrimaryFront:
-                case EdgePosition.TopLeftPrimaryTop:
-                case EdgePosition.TopLeftPrimaryLeft:
-                case EdgePosition.TopRightPrimaryTop:
-                case EdgePosition.TopRightPrimaryRight:
-                case EdgePosition.BottomFrontPrimaryBottom:
-                case EdgePosition.BottomFrontPrimaryFront:
-                case EdgePosition.BottomLeftPrimaryBottom:
-                case EdgePosition.BottomLeftPrimaryLeft:
-                case EdgePosition.BottomRightPrimaryBottom:
-                case EdgePosition.BottomRightPrimaryRight:
-                case EdgePosition.FrontLeftPrimaryFront:
-                case EdgePosition.FrontLeftPrimaryLeft:
-                case EdgePosition.FrontRightPrimaryFront:
-                case EdgePosition.FrontRightPrimaryRight:
-                case EdgePosition.Masked:
-                case EdgePosition.Unmasked:
-                    return edgePosition;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    return edgePosition;
             }
         }
 
@@ -800,27 +477,8 @@
                     return EdgePosition.BackLeftPrimaryBack;
                 case EdgePosition.BackRightPrimaryRight:
                     return EdgePosition.BackLeftPrimaryLeft;
-                case EdgePosition.TopFrontPrimaryTop:
-                case EdgePosition.TopFrontPrimaryFront:
-                case EdgePosition.TopLeftPrimaryTop:
-                case EdgePosition.TopLeftPrimaryLeft:
-                case EdgePosition.TopRightPrimaryTop:
-                case EdgePosition.TopRightPrimaryRight:
-                case EdgePosition.BottomFrontPrimaryBottom:
-                case EdgePosition.BottomFrontPrimaryFront:
-                case EdgePosition.BottomLeftPrimaryBottom:
-                case EdgePosition.BottomLeftPrimaryLeft:
-                case EdgePosition.BottomRightPrimaryBottom:
-                case EdgePosition.BottomRightPrimaryRight:
-                case EdgePosition.FrontLeftPrimaryFront:
-                case EdgePosition.FrontLeftPrimaryLeft:
-                case EdgePosition.FrontRightPrimaryFront:
-                case EdgePosition.FrontRightPrimaryRight:
-                case EdgePosition.Masked:
-                case EdgePosition.Unmasked:
-                    return edgePosition;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    return edgePosition;
             }
         }
 
