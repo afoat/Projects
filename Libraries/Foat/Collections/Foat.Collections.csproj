@@ -95,6 +95,8 @@
     <Compile Include="Generic\SkipList.cs" />
     <Compile Include="Generic\SkipListNode.cs" />
     <Compile Include="Generic\SmallIntArray.cs" />
+    <Compile Include="Generic\Trie.cs" />
+    <Compile Include="Generic\TrieNode.cs" />
     <Compile Include="Resources\Errors.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -6,12 +6,6 @@
 
     /// <summary>
     /// This is an unbalanced binary search implemented using iterative algorithms so as to never encounter a stack overflow.
-    /// 
-    /// Based on my timings this tree is faster than the recusive BinarySearchTreeBase class. However it is only good on it's own.
-    /// When a parent node stack is maintained in the insert and delete operations in order to support inheritance from an
-    /// AVLTree for rebalancing, the iterative binary search tree becomes twice as slow as its recursive counterpart.
-    /// 
-    /// So. If you only need a basic BST use the BinarySearchTree.
     /// </summary>
     /// <typeparam name="T">The type that will be stored in the nodes of the tree</typeparam>
     public sealed partial class BinarySearchTree<T> : IBinarySearchTree<T> where T : IComparable<T>
@@ -111,7 +105,7 @@
         #region Insert
 
         /// <summary>
-        /// Inserts the node in to the tree in order. Throws a ArgumentException if this node was a duplicate of one that already exists in the tree
+        /// Inserts the node in to the tree in order. Throws a ArgumentException if this value already exists in the tree
         /// </summary>
         /// <param name="node">The node to insert</param>
         internal void Insert(BinarySearchTreeNode<T> node)
@@ -162,6 +156,11 @@
             ++this.Count;
         }
 
+        /// <summary>
+        /// Inserts the node in to the tree in order if it doesn't already exist
+        /// </summary>
+        /// <param name="node">The node we want to insert</param>
+        /// <returns>True if the node was inserted, false if it already existed</returns>
         internal bool InsertIfNotDuplicate(BinarySearchTreeNode<T> node)
         {
             if (this.Root == null)
@@ -212,7 +211,7 @@
         }
 
         /// <summary>
-        /// Inserts a new node with the given value in to the tree in order. Throws a ArgumentException if this node was a duplicate of one that already exists in the tree
+        /// Inserts the value into the correct spot in the tree. Throws a ArgumentException if the value already exists in the tree
         /// </summary>
         /// <param name="node">The value to insert</param>
         public void Insert(T value)
@@ -221,6 +220,11 @@
             this.Insert(node);
         }
 
+        /// <summary>
+        /// Inserts the value into the correct spot in the tree if it doesn't already exist
+        /// </summary>
+        /// <param name="value">The value to insert</param>
+        /// <returns>True if the value was inserted, false if it already existed</returns>
         public bool InsertIfNotDuplicate(T value)
         {
             var node = new BinarySearchTreeNode<T>(value);
@@ -311,7 +315,7 @@
         }
 
         /// <summary>
-        /// Deletes the node with the given value from the tree and deletes that node. Throws a NodeNotFoundException otherwise
+        /// Deletes the node with the given value from the tree and deletes that node. Throws a ValueNotFoundException otherwise
         /// 
         /// O(log n)
         /// </summary>
@@ -347,6 +351,47 @@
                 this.DeleteNode(current, previous);
 
             return result;
+        }
+
+        #endregion
+
+        #region Find
+
+        /// <summary>
+        /// Finds the item with the given value and returns it
+        /// </summary>
+        /// <param name="value">The value of the item we want to find</param>
+        /// <returns>The item that matches the given value, or default(T) if it can't be found</returns>
+        public T Find(T value)
+        {
+            BinarySearchTreeNode<T> node = this.FindNode(value);
+
+            if (node == null)
+                return default(T);
+            else
+                return node.Value;
+        }
+
+        /// <summary>
+        /// Finds the node matching the given value
+        /// </summary>
+        /// <param name="value">The value of the node we are looking for</param>
+        /// <returns>The node matching the value we were looking for</returns>
+        private BinarySearchTreeNode<T> FindNode(T value)
+        {
+            BinarySearchTreeNode<T> current = this.Root;
+            while (current != null)
+            {
+                int compareResult = current.Value.CompareTo(value);
+                if (compareResult == 0)
+                    break;
+                else if (compareResult > 0)
+                    current = current.Left;
+                else
+                    current = current.Right;
+            }
+
+            return current;
         }
 
         #endregion

@@ -931,6 +931,74 @@
 
         #endregion
 
+        #region IBinarySearchTree.Find
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Find_EmptyTree()
+        {
+            Assert.AreEqual<int>(0, Empty.Find(50));
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Find_RootOnly_NotFound()
+        {
+            Assert.AreEqual<int>(0, RootOnly.Find(60));
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Find_RootOnly_Found()
+        {
+            Assert.AreEqual<int>(50, RootOnly.Find(50));
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Find_RootLeft_FoundLeaf()
+        {
+            Assert.AreEqual<int>(25, RootLeft.Find(25));
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Find_RootRight_FoundLeaf()
+        {
+            Assert.AreEqual<int>(75, RootRight.Find(75));
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Find_ThreeNodesFull_FoundLeftLeaf()
+        {
+            Assert.AreEqual<int>(25, ThreeNodesFull.Find(25));
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Find_ThreeNodesFull_FoundRightLeaf()
+        {
+            Assert.AreEqual(75, ThreeNodesFull.Find(75));
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Find_BiggerTree_NotFound()
+        {
+            Assert.AreEqual(0, Bigger.Find(200));
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Find_BiggerTree_Found()
+        {
+            Assert.AreEqual(75, Bigger.Find(75));
+            Assert.AreEqual(30, Bigger.Find(30));
+        }
+
+        #endregion
+
         #region BinarySearchTree.Delete
 
         [TestMethod]

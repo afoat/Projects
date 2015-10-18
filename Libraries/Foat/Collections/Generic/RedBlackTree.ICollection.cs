@@ -12,19 +12,7 @@
 
         public bool Contains(T item)
         {
-            RedBlackNode<T> current = this.Root;
-            while (current != null)
-            {
-                int compareResult = current.Value.CompareTo(item);
-                if (compareResult == 0)
-                    break;
-                else if (compareResult > 0)
-                    current = current.Left;
-                else
-                    current = current.Right;
-            }
-
-            return current != null;
+            return this.FindNode(item) != null;
         }
 
         public void CopyTo(T[] array, int arrayIndex)

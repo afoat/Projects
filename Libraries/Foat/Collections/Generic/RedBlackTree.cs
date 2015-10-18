@@ -20,7 +20,7 @@
         internal RedBlackNode<T> Root { get; set; }
 
         /// <summary>
-        /// Returns the number of nodes in the tree
+        /// Returns the number of values in the tree
         /// </summary>
         public int Count { get; internal set; }
 
@@ -57,10 +57,10 @@
         #region Depth
 
         /// <summary>
-        /// Finds the depth of the node with the given value.
+        /// Finds the depth of the item with the given value.
         /// 
         /// Throws a TreeNotRootedException if the tree is empty
-        /// Throws a NodeNotFoundException if the node was not found
+        /// Throws a ValueNotFoundException if the node was not found
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -70,9 +70,9 @@
         }
 
         /// <summary>
-        /// Finds the depth of the node with the given value underneath the given root
+        /// Finds the depth of the item with the given value underneath the given root
         /// 
-        /// Throws a NodeNotFoundException if the node was not found
+        /// Throws a ValueNotFoundException if the node was not found
         /// </summary>
         /// <param name="root">The root of the tree to search</param>
         /// <param name="value">The value of the node whose depth should be returned</param>
@@ -113,7 +113,13 @@
             if (this.Root.IsRed)
                 this.Root.SetColour(Colour.Black);
         }
-        
+
+        /// <summary>
+        /// Inserts the given value into the tree if it doesn't already exist and ensures that the tree is rebalanced
+        /// according to the red-black tree rules
+        /// </summary>
+        /// <param name="value">The value we want to insert into the tree</param>
+        /// <returns>True if the value was inserted, and false if it already exists in the tree</returns>
         public bool InsertIfNotDuplicate(T value)
         {
             bool success;
@@ -307,7 +313,7 @@
         /// <summary>
         /// Deletes the given value from the tree.
         /// 
-        /// Throws a NodeNotFoundException if the value doesnt exists in the tree
+        /// Throws a ValueNotFoundException if the value doesnt exists in the tree
         /// Throws a TreeNotRootedException if the tree is empty
         /// 
         /// O(log n)
@@ -524,6 +530,47 @@
             }
 
             return root;
+        }
+
+        #endregion
+
+        #region Find
+
+        /// <summary>
+        /// Finds the item with the given value and returns it
+        /// </summary>
+        /// <param name="value">The value of the item we want to find</param>
+        /// <returns>The item that matches the given value, or default(T) if it can't be found</returns>
+        public T Find(T value)
+        {
+            RedBlackNode<T> node = this.FindNode(value);
+
+            if (node == null)
+                return default(T);
+            else
+                return node.Value;
+        }
+
+        /// <summary>
+        /// Finds the node with the given value and returns it. Returns null if it isnt found
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        private RedBlackNode<T> FindNode(T item)
+        {
+            RedBlackNode<T> current = this.Root;
+            while (current != null)
+            {
+                int compareResult = current.Value.CompareTo(item);
+                if (compareResult == 0)
+                    break;
+                else if (compareResult > 0)
+                    current = current.Left;
+                else
+                    current = current.Right;
+            }
+
+            return current;
         }
 
         #endregion

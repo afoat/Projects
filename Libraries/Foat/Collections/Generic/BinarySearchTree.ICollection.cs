@@ -10,31 +10,9 @@
             this.Insert(item);
         }
 
-        /// <summary>
-        /// Looks for a node with a matching value in this tree. Returns null if not found
-        /// 
-        /// O(log n)
-        /// </summary>
-        /// <param name="value">The value of the node to find</param>
-        /// <returns>
-        /// null if the node was not found
-        /// or the node if it was found
-        /// </returns>
         public bool Contains(T item)
         {
-            BinarySearchTreeNode<T> current = this.Root;
-            while (current != null)
-            {
-                int compareResult = current.Value.CompareTo(item);
-                if (compareResult == 0)
-                    break;
-                else if (compareResult > 0)
-                    current = current.Left;
-                else
-                    current = current.Right;
-            }
-
-            return current != null;
+            return this.FindNode(item) != null;
         }
 
         public void CopyTo(T[] array, int arrayIndex)

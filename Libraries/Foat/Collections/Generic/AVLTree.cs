@@ -27,7 +27,7 @@
         internal AVLNode<T> Root { get; set; }
 
         /// <summary>
-        /// Returns the number of nodes in the tree
+        /// Returns the number of values in the tree
         /// </summary>
         public int Count { get; internal set; }
 
@@ -64,10 +64,10 @@
         #region Depth
 
         /// <summary>
-        /// Finds the depth of the node with the given value.
+        /// Finds the depth of the item with the given value.
         /// 
         /// Throws a TreeNotRootedException if the tree is empty
-        /// Throws a NodeNotFoundException if the node was not found
+        /// Throws a ValueNotFoundException if the node was not found
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -77,12 +77,12 @@
         }
 
         /// <summary>
-        /// Finds the depth of the node with the given value underneath the given root
+        /// Finds the depth of the item with the given value underneath the given root
         /// 
-        /// Throws a NodeNotFoundException if the node was not found
+        /// Throws a ValueNotFoundException if the value was not found
         /// </summary>
         /// <param name="root">The root of the tree to search</param>
-        /// <param name="value">The value of the node whose depth should be returned</param>
+        /// <param name="value">The value of the item whose depth should be returned</param>
         /// <returns></returns>
         private static int Depth(AVLNode<T> root, T value)
         {
@@ -113,11 +113,17 @@
         /// 
         /// O(log n)
         /// </summary>
+        /// <param name="value">The value of the item to insert</param>
         public void Insert(T value)
         {
             this.Root = this.Insert(this.Root, new AVLNode<T>(value));
         }
 
+        /// <summary>
+        /// Inserts the given value into the tree if it doesn't already exist
+        /// </summary>
+        /// <param name="value">The value of the item to insert</param>
+        /// <returns>True if the item was successfully inserted, false if it already exists in the tree</returns>
         public bool InsertIfNotDuplicate(T value)
         {
             bool success;
@@ -131,8 +137,8 @@
         }
 
         /// <summary>
-        /// Inserts the given node underneath the given root according to the BinarySearchTree algorithm and then
-        /// rebalances the tree.
+        /// Inserts an node with the given value underneath the given root according to the BinarySearchTree
+        /// algorithm and then rebalances the tree.
         /// </summary>
         /// <param name="root">The root node of the tree</param>
         /// <param name="node">The node to insert</param>
@@ -161,6 +167,14 @@
             return root;
         }
 
+        /// <summary>
+        /// Inserts an node with the given value underneath the given root according to the BinarySearchTree
+        /// algorithm if it doesn't already exist and then rebalances the tree.
+        /// </summary>
+        /// <param name="root">The root node of the tree</param>
+        /// <param name="node">The node to insert</param>
+        /// <param name="success">Out parameter. True if the value was inserted, false if it already existed.</param>
+        /// <returns>The new root of the tree as it may have changed</returns>
         private AVLNode<T> InsertIfNotDuplicate(AVLNode<T> root, AVLNode<T> node, out bool success)
         {
             if (root == null)
@@ -200,7 +214,7 @@
         /// <summary>
         /// Deletes the given value from the tree.
         /// 
-        /// Throws a NodeNotFoundException if the value doesnt exists in the tree
+        /// Throws a ValueNotFoundException if the value doesnt exists in the tree
         /// Throws a TreeNotRootedException if the tree is empty
         /// 
         /// O(log n)
@@ -293,6 +307,48 @@
         }
 
         #endregion Delete
+
+        #region Find
+
+        /// <summary>
+        /// Finds the item with the given value and returns it
+        /// </summary>
+        /// <param name="value">The value of the item we want to find</param>
+        /// <returns>The item that matches the given value, or default(T) if it can't be found</returns>
+        public T Find(T value)
+        {
+
+            AVLNode<T> node = this.FindNode(value);
+
+            if (node == null)
+                return default(T);
+            else
+                return node.Value;
+        }
+
+        /// <summary>
+        /// Finds the node with the given value and returns it.
+        /// </summary>
+        /// <param name="value">The value of the node we want to find</param>
+        /// <returns>The AVLNode that coressponds to the given value, or NULL if the value cannot be found</returns>
+        private AVLNode<T> FindNode(T value)
+        {
+            AVLNode<T> current = this.Root;
+            while (current != null)
+            {
+                int compareResult = current.Value.CompareTo(value);
+                if (compareResult == 0)
+                    break;
+                else if (compareResult > 0)
+                    current = current.Left;
+                else
+                    current = current.Right;
+            }
+
+            return current;
+        }
+
+        #endregion
 
         #region Rebalancing
 

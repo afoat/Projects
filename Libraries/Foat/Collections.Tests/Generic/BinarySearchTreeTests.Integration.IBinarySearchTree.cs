@@ -602,6 +602,73 @@
 
         #endregion
 
+        #region IBinarySearchTree.Find
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\BinarySearchTree")]
+        public override void Find_EmptyTree()
+        {
+            base.Find_EmptyTree();
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\BinarySearchTree")]
+        public override void Find_RootOnly_NotFound()
+        {
+            base.Find_RootOnly_NotFound();
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\BinarySearchTree")]
+        public override void Find_RootOnly_Found()
+        {
+            base.Find_RootOnly_Found();
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\BinarySearchTree")]
+        public override void Find_RootLeft_FoundLeaf()
+        {
+            base.Find_RootLeft_FoundLeaf();
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\BinarySearchTree")]
+        public override void Find_RootRight_FoundLeaf()
+        {
+            base.Find_RootRight_FoundLeaf();
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\BinarySearchTree")]
+        public override void Find_ThreeNodesFull_FoundLeftLeaf()
+        {
+            base.Find_ThreeNodesFull_FoundLeftLeaf();
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\BinarySearchTree")]
+        public override void Find_ThreeNodesFull_FoundRightLeaf()
+        {
+            base.Find_ThreeNodesFull_FoundRightLeaf();
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\BinarySearchTree")]
+        public override void Find_BiggerTree_NotFound()
+        {
+            base.Find_BiggerTree_NotFound();
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\BinarySearchTree")]
+        public override void Find_BiggerTree_Found()
+        {
+            base.Find_BiggerTree_Found();
+        }
+
+        #endregion
+
         #region IBinarySearchTree.Contains
 
         [TestMethod]
