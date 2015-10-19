@@ -315,12 +315,12 @@
         }
 
         /// <summary>
-        /// Deletes the node with the given value from the tree and deletes that node. Throws a ValueNotFoundException otherwise
+        /// Deletes the item with the given value from the tree.
         /// 
         /// O(log n)
         /// </summary>
         /// <param name="value">The value to delete from the tree</param>
-        /// <returns>The node that was deleted</returns>
+        /// <returns>True if the value was deleted, false if it could not be found</returns>
         public bool Delete(T value)
         {
             bool result = true;

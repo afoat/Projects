@@ -310,14 +310,14 @@
 
         #region Delete
 
+
         /// <summary>
-        /// Deletes the given value from the tree.
-        /// 
-        /// Throws a ValueNotFoundException if the value doesnt exists in the tree
-        /// Throws a TreeNotRootedException if the tree is empty
+        /// Deletes the item with the given value from the tree.
         /// 
         /// O(log n)
         /// </summary>
+        /// <param name="value">The value to delete from the tree</param>
+        /// <returns>True if the value was deleted, false if it could not be found</returns>
         public bool Delete(T value)
         {
             bool result = true;

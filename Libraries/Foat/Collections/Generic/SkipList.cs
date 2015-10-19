@@ -166,9 +166,10 @@
         #region Delete
 
         /// <summary>
-        /// Removes the node with the given value from the list.
+        /// Deletes the item with the given value from the skip list.
         /// </summary>
-        /// <returns>Returns true if a node was deleted.</returns>
+        /// <param name="value">The value to delete from the skip list</param>
+        /// <returns>True if the value was deleted, false if it could not be found</returns>
         public bool Delete(T value)
         {
             bool deleted = false;
