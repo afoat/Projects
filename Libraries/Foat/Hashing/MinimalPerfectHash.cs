@@ -153,13 +153,13 @@ namespace Foat.Hashing
         #endregion
 
         #region Public Methods
-        
+
         /// <summary>
         /// Generates the minimal perfect hash for the set of keys that were passed in.
         /// </summary>
         /// <param name="keys">The keys to hash</param>
         /// <returns></returns>
-        public void Generate(IEnumerable<IHashKey> keys)
+        public void Generate(IEnumerable<byte[]> keys)
         {
             if (keys == null)
             {
@@ -173,7 +173,7 @@ namespace Foat.Hashing
 
             //Step 1 - Splits N Keys into Approximately C * N / Log2(N) Buckets
             //with several keys in each bucket
-            IHashKey[][] keyBuckets = SplitKeysIntoKeyBuckets(keys);
+            byte[][][] keyBuckets = SplitItemsIntoKeyBuckets(keys);
 
             //Step 2 - Sorts the buckets so the most full buckets are at the beginning.
             SortKeyBucketsInDescendingOrder(keyBuckets);
@@ -192,7 +192,7 @@ namespace Foat.Hashing
         /// </summary>
         /// <param name="key">The key to lookup</param>
         /// <returns>Returns the index in the range of 0 ... N - 1 that represents the key where N = number of keys in minimal perfect hash.</returns>
-        public int GetHashCode(IHashKey key)
+        public int GetHashCode(byte[] key)
         {
             if (key == null)
             {
@@ -204,7 +204,7 @@ namespace Foat.Hashing
                 throw new InvalidOperationException(ExceptionMessages.NotGenerated);
             }
 
-            int hash = this.Buckets[this.GetBucketIndexForKey(key)];
+            int hash = this.Buckets[this.GetBucketIndexForBytes(key)];
             if (hash < 0)
             {
                 return -(hash + 1);
@@ -220,12 +220,12 @@ namespace Foat.Hashing
         #region Static Methods
 
         /// <summary>
-        /// Compares two IHashKey arrays for the purpose of sorting them by length in descending order
+        /// Compares two byte[] arrays for the purpose of sorting them by length in descending order
         /// </summary>
         /// <param name="a">First array to be compared</param>
         /// <param name="b">Second array to be compared</param>
         /// <returns></returns>
-        internal static int CompareBucketsByLengthDesc(IHashKey[] a, IHashKey[] b)
+        internal static int CompareBucketsByLengthDesc(byte[][] a, byte[][] b)
         {
             return b.Length.CompareTo(a.Length);
         }
@@ -248,10 +248,10 @@ namespace Foat.Hashing
         /// Sorts the buckets in decending order of length
         /// </summary>
         /// <param name="keyBuckets"></param>
-        internal static void SortKeyBucketsInDescendingOrder(IHashKey[][] keyBuckets)
+        internal static void SortKeyBucketsInDescendingOrder(byte[][][] keyBuckets)
         {
             Trace.WriteLine(Logging.MPHStartingSort);
-            Array.Sort<IHashKey[]>(keyBuckets, CompareBucketsByLengthDesc);
+            Array.Sort<byte[][]>(keyBuckets, CompareBucketsByLengthDesc);
         }
 
         #endregion
@@ -290,7 +290,7 @@ namespace Foat.Hashing
         /// </summary>
         /// <param name="keys">The keys we are going to hash</param>
         /// <param name="stats">The statistics object</param>
-        internal void Initialize(IEnumerable<IHashKey> keys)
+        internal void Initialize(IEnumerable<byte[]> keys)
         {
             this.Stats = new MinimalPerfectHashStats();
             this.Stats.NumberOfKeys = keys.Count();
@@ -315,9 +315,9 @@ namespace Foat.Hashing
         /// </summary>
         /// <param name="key">The key to lookup in the MPH</param>
         /// <returns>The index of the bucket that contains the hash code for this key</returns>
-        internal int GetBucketIndexForKey(IHashKey key)
+        internal int GetBucketIndexForBytes(byte[] key)
         {
-            int fullHash = HashFunction.ComputeHash(key.GetBytes());
+            int fullHash = HashFunction.ComputeHash(key);
             int firstProjection = Math.Abs(fullHash % this.Count);
 
             if (firstProjection < this.FrontLoadedKeyCutoff)
@@ -340,9 +340,9 @@ namespace Foat.Hashing
         /// <param name="key">The key we want to hash</param>
         /// <param name="hash">The starting point for the hash</param>
         /// <returns></returns>
-        internal int ComputeHashForKey(IHashKey key, int hash)
+        internal int ComputeHashForKey(byte[] key, int hash)
         {
-            return (int)(((uint)HashFunction.ComputeHash(hash, key.GetBytes())) % this.Count);
+            return (int)(((uint)HashFunction.ComputeHash(hash, key)) % this.Count);
         }
 
         /// <summary>
@@ -358,17 +358,17 @@ namespace Foat.Hashing
         /// </summary>
         /// <param name="keys">The set of keys that will be split up.</param>
         /// <returns>An array of arrays where the first array are the buckets and the sub-arrays are the nodes in the buckets.</returns>
-        internal IHashKey[][] SplitKeysIntoKeyBuckets(IEnumerable<IHashKey> keys)
+        internal byte[][][] SplitItemsIntoKeyBuckets(IEnumerable<byte[]> keys)
         {
             Trace.WriteLine(Logging.MPHStartingSplit);
 
-            List<IHashKey>[] keyBuckets = new List<IHashKey>[this.Buckets.Length];
+            List<byte[]>[] keyBuckets = new List<byte[]>[this.Buckets.Length];
 
-            foreach (IHashKey key in keys)
+            foreach (byte[] bytes in keys)
             {
-                int index = this.GetBucketIndexForKey(key);
+                int index = this.GetBucketIndexForBytes(bytes);
                 this.CreateListOfKeysInBucketIfNecessary(keyBuckets, index);
-                keyBuckets[index].Add(key);
+                keyBuckets[index].Add(bytes);
 
                 this.UpdateStats(index);
             }
@@ -381,12 +381,12 @@ namespace Foat.Hashing
         /// </summary>
         /// <param name="buckets">The array of buckets</param>
         /// <param name="index">The index of the bucket we want to initialize within buckets</param>
-        internal void CreateListOfKeysInBucketIfNecessary(List<IHashKey>[] buckets, int index)
+        internal void CreateListOfKeysInBucketIfNecessary(List<byte[]>[] buckets, int index)
         {
             if (buckets[index] == null)
             {
                 ++this.Stats.NumberOfFilledBuckets;
-                buckets[index] = new List<IHashKey>();
+                buckets[index] = new List<byte[]>();
             }
         }
 
@@ -407,7 +407,7 @@ namespace Foat.Hashing
         /// Finds the minimal perfect hash of the sorted key bucket.
         /// </summary>
         /// <param name="sortedKeyBuckets"></param>
-        internal void FindPerfectHash(IHashKey[][] sortedKeyBuckets)
+        internal void FindPerfectHash(byte[][][] sortedKeyBuckets)
         {
             int firstSingleBucketIndex;
             HashSet<int> indexesFound;
@@ -422,7 +422,7 @@ namespace Foat.Hashing
         /// <param name="keyBuckets">key bickets to hash</param>
         /// <param name="bucketIndex">Output paramater pointing to the first bucket with less than 2 keys</param>
         /// <param name="finalIndexes">Hashset of indexes we have found so far</param>
-        internal void HashBucketsWithMultipleKeys(IHashKey[][] keyBuckets, out int bucketIndex, out HashSet<int> finalIndexes)
+        internal void HashBucketsWithMultipleKeys(byte[][][] keyBuckets, out int bucketIndex, out HashSet<int> finalIndexes)
         {
             Trace.WriteLine(Logging.MPHHashingBucketsWithMultipleKeys);
 
@@ -436,7 +436,7 @@ namespace Foat.Hashing
 
                 int hash = GetHashCodeForBucket(keyBuckets, bucketIndex, currentBucketIndexes, finalIndexes);
 
-                this.Buckets[this.GetBucketIndexForKey(keyBuckets[bucketIndex][0])] = (int)hash;
+                this.Buckets[this.GetBucketIndexForBytes(keyBuckets[bucketIndex][0])] = (int)hash;
 
                 foreach (var index in currentBucketIndexes)
                 {
@@ -459,7 +459,7 @@ namespace Foat.Hashing
         /// <param name="currentBucketIndexes">Hashset used to keep track of the indexes in the current bucket</param>
         /// <param name="finalIndexes">Hashset used to keep track of the indexes used by all buckets so far</param>
         /// <returns></returns>
-        private int GetHashCodeForBucket(IHashKey[][] buckets, int currentBucket, HashSet<int> currentBucketIndexes, HashSet<int> finalIndexes)
+        private int GetHashCodeForBucket(byte[][][] buckets, int currentBucket, HashSet<int> currentBucketIndexes, HashSet<int> finalIndexes)
         {
             int numHashedKeys = 0;
             int hash = 0;
@@ -495,7 +495,7 @@ namespace Foat.Hashing
         /// <param name="keyBuckets">All of the bucketed keys</param>
         /// <param name="firstSingleBucketIndex">index of first bucket that has less than 2 keys</param>
         /// <param name="finalIndexesFound">hashset that keeps track of all indexes in use by all buckets so far</param>
-        internal void HashBucketsWithOneKey(IHashKey[][] keyBuckets, int firstSingleBucketIndex, HashSet<int> finalIndexesFound)
+        internal void HashBucketsWithOneKey(byte[][][] keyBuckets, int firstSingleBucketIndex, HashSet<int> finalIndexesFound)
         {
             Trace.WriteLine(Logging.MPHHashingSingleBuckets);
 
@@ -504,7 +504,7 @@ namespace Foat.Hashing
             for (int i = firstSingleBucketIndex; i < keyBuckets.Length && keyBuckets[i].Length == 1; ++i)
             {
                 int nextFreeSpot = freeIndexes.Dequeue();
-                this.Buckets[this.GetBucketIndexForKey(keyBuckets[i][0])] = (-nextFreeSpot) - 1;
+                this.Buckets[this.GetBucketIndexForBytes(keyBuckets[i][0])] = (-nextFreeSpot) - 1;
             }
         }
 

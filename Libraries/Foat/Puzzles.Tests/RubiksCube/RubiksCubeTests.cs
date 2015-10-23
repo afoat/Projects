@@ -13,55 +13,115 @@
         {
             RubiksCube cube = new RubiksCube();
 
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryTop, cube[0]);
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryTop, cube[1]);
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryTop, cube[2]);
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryTop, cube[3]);
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryBottom, cube[4]);
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryBottom, cube[5]);
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryBottom, cube[6]);
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryTop, cube[0]);
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryTop, cube[1]);
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryTop, cube[2]);
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryTop, cube[3]);
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryBottom, cube[4]);
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryBottom, cube[5]);
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryBottom, cube[6]);
 
-            Assert.AreEqual<byte>(EdgePosition.TopLeftPrimaryTop, cube[7]);
-            Assert.AreEqual<byte>(EdgePosition.TopBackPrimaryTop, cube[8]);
-            Assert.AreEqual<byte>(EdgePosition.TopRightPrimaryTop, cube[9]);
-            Assert.AreEqual<byte>(EdgePosition.TopFrontPrimaryTop, cube[10]);
-            Assert.AreEqual<byte>(EdgePosition.BottomLeftPrimaryBottom, cube[11]);
-            Assert.AreEqual<byte>(EdgePosition.BottomBackPrimaryBottom, cube[12]);
-            Assert.AreEqual<byte>(EdgePosition.BottomRightPrimaryBottom, cube[13]);
-            Assert.AreEqual<byte>(EdgePosition.BottomFrontPrimaryBottom, cube[14]);
-            Assert.AreEqual<byte>(EdgePosition.FrontLeftPrimaryFront, cube[15]);
-            Assert.AreEqual<byte>(EdgePosition.BackLeftPrimaryBack, cube[16]);
-            Assert.AreEqual<byte>(EdgePosition.BackRightPrimaryBack, cube[17]);
-            Assert.AreEqual<byte>(EdgePosition.FrontRightPrimaryFront, cube[18]);
+            Assert.AreEqual<byte>(Position.TopLeftPrimaryTop, cube[7]);
+            Assert.AreEqual<byte>(Position.TopBackPrimaryTop, cube[8]);
+            Assert.AreEqual<byte>(Position.TopRightPrimaryTop, cube[9]);
+            Assert.AreEqual<byte>(Position.TopFrontPrimaryTop, cube[10]);
+            Assert.AreEqual<byte>(Position.BottomLeftPrimaryBottom, cube[11]);
+            Assert.AreEqual<byte>(Position.BottomBackPrimaryBottom, cube[12]);
+            Assert.AreEqual<byte>(Position.BottomRightPrimaryBottom, cube[13]);
+            Assert.AreEqual<byte>(Position.BottomFrontPrimaryBottom, cube[14]);
+            Assert.AreEqual<byte>(Position.FrontLeftPrimaryFront, cube[15]);
+            Assert.AreEqual<byte>(Position.BackLeftPrimaryBack, cube[16]);
+            Assert.AreEqual<byte>(Position.BackRightPrimaryBack, cube[17]);
+            Assert.AreEqual<byte>(Position.FrontRightPrimaryFront, cube[18]);
         }
 
         [TestMethod]
         [TestCategory(@"Foat\Puzzles\RubiksCube")]
         public void RubiksCube_InitConstructor_RandomCube()
         {
-            byte[] data = new byte[19] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 };
+            byte[] data = new byte[19] 
+            { 
+                Position.BottomBackLeftPrimaryBack, 
+                Position.BottomBackLeftPrimaryBottom, 
+                Position.BottomBackLeftPrimaryLeft, 
+                Position.BottomBackRightPrimaryBack, 
+                Position.BottomBackRightPrimaryBottom, 
+                Position.BottomBackRightPrimaryRight, 
+                Position.BottomFrontLeftPrimaryBottom, 
+                Position.BackLeftPrimaryBack, 
+                Position.BackLeftPrimaryLeft, 
+                Position.BackRightPrimaryBack, 
+                Position.BackRightPrimaryRight, 
+                Position.BottomBackPrimaryBack, 
+                Position.BottomBackPrimaryBottom, 
+                Position.BottomFrontPrimaryBottom, 
+                Position.BottomFrontPrimaryFront, 
+                Position.BottomLeftPrimaryBottom, 
+                Position.BottomLeftPrimaryLeft, 
+                Position.BottomRightPrimaryBottom, 
+                Position.BottomRightPrimaryRight
+            };
             RubiksCube cube = new RubiksCube(data);
 
-            Assert.AreEqual<byte>(1, cube[0]);
-            Assert.AreEqual<byte>(2, cube[1]);
-            Assert.AreEqual<byte>(3, cube[2]);
-            Assert.AreEqual<byte>(4, cube[3]);
-            Assert.AreEqual<byte>(5, cube[4]);
-            Assert.AreEqual<byte>(6, cube[5]);
-            Assert.AreEqual<byte>(7, cube[6]);
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryBack, cube[0]);
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryBottom, cube[1]);
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryLeft, cube[2]);
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryBack, cube[3]);
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryBottom, cube[4]);
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryRight, cube[5]);
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryBottom, cube[6]);
 
-            Assert.AreEqual<byte>(8, cube[7]);
-            Assert.AreEqual<byte>(9, cube[8]);
-            Assert.AreEqual<byte>(10, cube[9]);
-            Assert.AreEqual<byte>(11, cube[10]);
-            Assert.AreEqual<byte>(12, cube[11]);
-            Assert.AreEqual<byte>(13, cube[12]);
-            Assert.AreEqual<byte>(14, cube[13]);
-            Assert.AreEqual<byte>(15, cube[14]);
-            Assert.AreEqual<byte>(16, cube[15]);
-            Assert.AreEqual<byte>(17, cube[16]);
-            Assert.AreEqual<byte>(18, cube[17]);
-            Assert.AreEqual<byte>(19, cube[18]);
+            Assert.AreEqual<byte>(Position.BackLeftPrimaryBack, cube[7]);
+            Assert.AreEqual<byte>(Position.BackLeftPrimaryLeft, cube[8]);
+            Assert.AreEqual<byte>(Position.BackRightPrimaryBack, cube[9]);
+            Assert.AreEqual<byte>(Position.BackRightPrimaryRight, cube[10]);
+            Assert.AreEqual<byte>(Position.BottomBackPrimaryBack, cube[11]);
+            Assert.AreEqual<byte>(Position.BottomBackPrimaryBottom, cube[12]);
+            Assert.AreEqual<byte>(Position.BottomFrontPrimaryBottom, cube[13]);
+            Assert.AreEqual<byte>(Position.BottomFrontPrimaryFront, cube[14]);
+            Assert.AreEqual<byte>(Position.BottomLeftPrimaryBottom, cube[15]);
+            Assert.AreEqual<byte>(Position.BottomLeftPrimaryLeft, cube[16]);
+            Assert.AreEqual<byte>(Position.BottomRightPrimaryBottom, cube[17]);
+            Assert.AreEqual<byte>(Position.BottomRightPrimaryRight, cube[18]);
+        }
+
+        [TestMethod]
+        [TestCategory(@"Foat\Puzzles\RubiksCube")]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void RubiksCube_InitConstructor_NullBytes()
+        {
+            RubiksCube cube = new RubiksCube((byte[])null);
+        }
+        
+        [TestMethod]
+        [TestCategory(@"Foat\Puzzles\RubiksCube")]
+        [ExpectedException(typeof(ArgumentException))]
+        public void RubiksCube_InitConstructor_BytesTooLong()
+        {
+            byte[] data = new byte[20] 
+            { 
+                Position.BottomBackLeftPrimaryBack, 
+                Position.BottomBackLeftPrimaryBottom, 
+                Position.BottomBackLeftPrimaryLeft, 
+                Position.BottomBackRightPrimaryBack, 
+                Position.BottomBackRightPrimaryBottom, 
+                Position.BottomBackRightPrimaryRight, 
+                Position.BottomFrontLeftPrimaryBottom, 
+                Position.BackLeftPrimaryBack, 
+                Position.BackLeftPrimaryLeft, 
+                Position.BackRightPrimaryBack, 
+                Position.BackRightPrimaryRight, 
+                Position.BottomBackPrimaryBack, 
+                Position.BottomBackPrimaryBottom, 
+                Position.BottomFrontPrimaryBottom, 
+                Position.BottomFrontPrimaryFront, 
+                Position.BottomLeftPrimaryBottom, 
+                Position.BottomLeftPrimaryLeft, 
+                Position.BottomRightPrimaryBottom, 
+                Position.BottomRightPrimaryRight,
+                Position.BottomRightPrimaryRight
+            };
+            RubiksCube cube = new RubiksCube(data);
         }
 
         [TestMethod]
@@ -101,32 +161,32 @@
         {
             RubiksCube cube = new RubiksCube();
             RubiksCube unmasked = new RubiksCube(
-                new byte[] { CornerPosition.Unmasked, CornerPosition.Unmasked, CornerPosition.Unmasked, CornerPosition.Unmasked, CornerPosition.Unmasked, CornerPosition.Unmasked, CornerPosition.Unmasked,
-                             EdgePosition.Unmasked, EdgePosition.Unmasked, EdgePosition.Unmasked, EdgePosition.Unmasked, EdgePosition.Unmasked, EdgePosition.Unmasked, EdgePosition.Unmasked, EdgePosition.Unmasked, EdgePosition.Unmasked, EdgePosition.Unmasked, EdgePosition.Unmasked, EdgePosition.Unmasked }
+                new byte[] { Position.Unmasked, Position.Unmasked, Position.Unmasked, Position.Unmasked, Position.Unmasked, Position.Unmasked, Position.Unmasked,
+                             Position.Unmasked, Position.Unmasked, Position.Unmasked, Position.Unmasked, Position.Unmasked, Position.Unmasked, Position.Unmasked, Position.Unmasked, Position.Unmasked, Position.Unmasked, Position.Unmasked, Position.Unmasked }
                 );
 
             cube.ApplyMask(unmasked);
 
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryTop, cube[0]);
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryTop, cube[1]);
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryTop, cube[2]);
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryTop, cube[3]);
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryBottom, cube[4]);
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryBottom, cube[5]);
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryBottom, cube[6]);
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryTop, cube[0]);
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryTop, cube[1]);
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryTop, cube[2]);
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryTop, cube[3]);
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryBottom, cube[4]);
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryBottom, cube[5]);
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryBottom, cube[6]);
 
-            Assert.AreEqual<byte>(EdgePosition.TopLeftPrimaryTop, cube[7]);
-            Assert.AreEqual<byte>(EdgePosition.TopBackPrimaryTop, cube[8]);
-            Assert.AreEqual<byte>(EdgePosition.TopRightPrimaryTop, cube[9]);
-            Assert.AreEqual<byte>(EdgePosition.TopFrontPrimaryTop, cube[10]);
-            Assert.AreEqual<byte>(EdgePosition.BottomLeftPrimaryBottom, cube[11]);
-            Assert.AreEqual<byte>(EdgePosition.BottomBackPrimaryBottom, cube[12]);
-            Assert.AreEqual<byte>(EdgePosition.BottomRightPrimaryBottom, cube[13]);
-            Assert.AreEqual<byte>(EdgePosition.BottomFrontPrimaryBottom, cube[14]);
-            Assert.AreEqual<byte>(EdgePosition.FrontLeftPrimaryFront, cube[15]);
-            Assert.AreEqual<byte>(EdgePosition.BackLeftPrimaryBack, cube[16]);
-            Assert.AreEqual<byte>(EdgePosition.BackRightPrimaryBack, cube[17]);
-            Assert.AreEqual<byte>(EdgePosition.FrontRightPrimaryFront, cube[18]);
+            Assert.AreEqual<byte>(Position.TopLeftPrimaryTop, cube[7]);
+            Assert.AreEqual<byte>(Position.TopBackPrimaryTop, cube[8]);
+            Assert.AreEqual<byte>(Position.TopRightPrimaryTop, cube[9]);
+            Assert.AreEqual<byte>(Position.TopFrontPrimaryTop, cube[10]);
+            Assert.AreEqual<byte>(Position.BottomLeftPrimaryBottom, cube[11]);
+            Assert.AreEqual<byte>(Position.BottomBackPrimaryBottom, cube[12]);
+            Assert.AreEqual<byte>(Position.BottomRightPrimaryBottom, cube[13]);
+            Assert.AreEqual<byte>(Position.BottomFrontPrimaryBottom, cube[14]);
+            Assert.AreEqual<byte>(Position.FrontLeftPrimaryFront, cube[15]);
+            Assert.AreEqual<byte>(Position.BackLeftPrimaryBack, cube[16]);
+            Assert.AreEqual<byte>(Position.BackRightPrimaryBack, cube[17]);
+            Assert.AreEqual<byte>(Position.FrontRightPrimaryFront, cube[18]);
         }
 
         [TestMethod]
@@ -135,34 +195,13 @@
         {
             RubiksCube cube = new RubiksCube();
             RubiksCube masked = new RubiksCube(
-                new byte[] { CornerPosition.Masked, CornerPosition.Masked, CornerPosition.Masked, CornerPosition.Masked, CornerPosition.Masked, CornerPosition.Masked, CornerPosition.Masked,
-                             EdgePosition.Masked, EdgePosition.Masked, EdgePosition.Masked, EdgePosition.Masked, EdgePosition.Masked, EdgePosition.Masked, EdgePosition.Masked, EdgePosition.Masked, EdgePosition.Masked, EdgePosition.Masked, EdgePosition.Masked, EdgePosition.Masked }
+                new byte[] { Position.Masked, Position.Masked, Position.Masked, Position.Masked, Position.Masked, Position.Masked, Position.Masked,
+                             Position.Masked, Position.Masked, Position.Masked, Position.Masked, Position.Masked, Position.Masked, Position.Masked, Position.Masked, Position.Masked, Position.Masked, Position.Masked, Position.Masked }
                 );
 
             cube = cube.ApplyMask(masked);
 
-            Assert.IsFalse(object.ReferenceEquals(cube, masked));
-
-            Assert.AreEqual<byte>(CornerPosition.Masked, cube[0]);
-            Assert.AreEqual<byte>(CornerPosition.Masked, cube[1]);
-            Assert.AreEqual<byte>(CornerPosition.Masked, cube[2]);
-            Assert.AreEqual<byte>(CornerPosition.Masked, cube[3]);
-            Assert.AreEqual<byte>(CornerPosition.Masked, cube[4]);
-            Assert.AreEqual<byte>(CornerPosition.Masked, cube[5]);
-            Assert.AreEqual<byte>(CornerPosition.Masked, cube[6]);
-
-            Assert.AreEqual<byte>(EdgePosition.Masked, cube[7]);
-            Assert.AreEqual<byte>(EdgePosition.Masked, cube[8]);
-            Assert.AreEqual<byte>(EdgePosition.Masked, cube[9]);
-            Assert.AreEqual<byte>(EdgePosition.Masked, cube[10]);
-            Assert.AreEqual<byte>(EdgePosition.Masked, cube[11]);
-            Assert.AreEqual<byte>(EdgePosition.Masked, cube[12]);
-            Assert.AreEqual<byte>(EdgePosition.Masked, cube[13]);
-            Assert.AreEqual<byte>(EdgePosition.Masked, cube[14]);
-            Assert.AreEqual<byte>(EdgePosition.Masked, cube[15]);
-            Assert.AreEqual<byte>(EdgePosition.Masked, cube[16]);
-            Assert.AreEqual<byte>(EdgePosition.Masked, cube[17]);
-            Assert.AreEqual<byte>(EdgePosition.Masked, cube[18]);
+            Assert.AreEqual<int>(0, cube.GetBytes().Length);
         }
 
         [TestMethod]
@@ -172,31 +211,31 @@
         {
             RubiksCube cube = new RubiksCube();
             RubiksCube masked = new RubiksCube(
-                new byte[] { CornerPosition.TopBackLeftPrimaryLeft, CornerPosition.Masked, CornerPosition.Masked, CornerPosition.Masked, CornerPosition.Masked, CornerPosition.Masked, CornerPosition.Masked,
-                             EdgePosition.Masked, EdgePosition.Masked, EdgePosition.Masked, EdgePosition.Masked, EdgePosition.Masked, EdgePosition.Masked, EdgePosition.Masked, EdgePosition.Masked, EdgePosition.Masked, EdgePosition.Masked, EdgePosition.Masked, EdgePosition.Masked }
+                new byte[] { Position.TopBackLeftPrimaryLeft, Position.Masked, Position.Masked, Position.Masked, Position.Masked, Position.Masked, Position.Masked,
+                             Position.Masked, Position.Masked, Position.Masked, Position.Masked, Position.Masked, Position.Masked, Position.Masked, Position.Masked, Position.Masked, Position.Masked, Position.Masked, Position.Masked }
                 );
 
             cube.ApplyMask(masked);
         }
-
+        
         [TestMethod]
         [TestCategory(@"Foat\Puzzles\RubiksCube")]
-        public void RubiksCube_ModifyEdges_SolvedCube_ChangeAll()
+        public void RubiksCube_SolvedCube_ChangeAll()
         {
             RubiksCube cube = new RubiksCube();
 
-            const byte value = 27;
+            const byte value = 24;
 
             byte[] data = new byte[19];
-            cube.ModifyEdgesIntoNewData(data, edge => value);
+            cube.ModifyPositionsIntoNewData(data, edge => value);
 
-            Assert.AreEqual<byte>(0, data[0]);
-            Assert.AreEqual<byte>(0, data[1]);
-            Assert.AreEqual<byte>(0, data[2]);
-            Assert.AreEqual<byte>(0, data[3]);
-            Assert.AreEqual<byte>(0, data[4]);
-            Assert.AreEqual<byte>(0, data[5]);
-            Assert.AreEqual<byte>(0, data[6]);
+            Assert.AreEqual<byte>(value, data[0]);
+            Assert.AreEqual<byte>(value, data[1]);
+            Assert.AreEqual<byte>(value, data[2]);
+            Assert.AreEqual<byte>(value, data[3]);
+            Assert.AreEqual<byte>(value, data[4]);
+            Assert.AreEqual<byte>(value, data[5]);
+            Assert.AreEqual<byte>(value, data[6]);
 
             Assert.AreEqual<byte>(value, data[7]);
             Assert.AreEqual<byte>(value, data[8]);
@@ -210,39 +249,6 @@
             Assert.AreEqual<byte>(value, data[16]);
             Assert.AreEqual<byte>(value, data[17]);
             Assert.AreEqual<byte>(value, data[18]);
-        }
-
-        [TestMethod]
-        [TestCategory(@"Foat\Puzzles\RubiksCube")]
-        public void RubiksCube_ModifyCorners_SolvedCube_ChangeAll()
-        {
-            RubiksCube cube = new RubiksCube();
-
-            const byte value = 24;
-
-            byte[] data = new byte[19];
-            cube.ModifyCornersIntoNewData(data, edge => value);
-
-            Assert.AreEqual<byte>(value, data[0]);
-            Assert.AreEqual<byte>(value, data[1]);
-            Assert.AreEqual<byte>(value, data[2]);
-            Assert.AreEqual<byte>(value, data[3]);
-            Assert.AreEqual<byte>(value, data[4]);
-            Assert.AreEqual<byte>(value, data[5]);
-            Assert.AreEqual<byte>(value, data[6]);
-
-            Assert.AreEqual<byte>(0, data[7]);
-            Assert.AreEqual<byte>(0, data[8]);
-            Assert.AreEqual<byte>(0, data[9]);
-            Assert.AreEqual<byte>(0, data[10]);
-            Assert.AreEqual<byte>(0, data[11]);
-            Assert.AreEqual<byte>(0, data[12]);
-            Assert.AreEqual<byte>(0, data[13]);
-            Assert.AreEqual<byte>(0, data[14]);
-            Assert.AreEqual<byte>(0, data[15]);
-            Assert.AreEqual<byte>(0, data[16]);
-            Assert.AreEqual<byte>(0, data[17]);
-            Assert.AreEqual<byte>(0, data[18]);
         }
 
         [TestMethod]

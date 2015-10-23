@@ -691,10 +691,5 @@
         }
 
         #endregion
-
-        public NPuzzle ApplyMask(NPuzzle mask)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

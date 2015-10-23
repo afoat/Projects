@@ -3,7 +3,10 @@
     using Foat.Hashing;
     using Foat.Puzzles.RubiksCube;
     using Foat.Puzzles.Solutions;
+    using System;
     using System.Collections.Concurrent;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
     
@@ -22,7 +25,7 @@
         public static PatternSet Generate(Pattern pattern, int numberOfThreads)
         {
             ConcurrentDictionary<RubiksCube, byte> patternSetDictionary = GeneratePatternSetDictionary(pattern, numberOfThreads);
-            MinimalPerfectHash<FnvHash> mph = GetMinimalPerfectHashForPatternSet(patternSetDictionary);
+            MinimalPerfectHash<FnvHash> mph = GetMinimalPerfectHashForPatternSet(patternSetDictionary.Keys);
 
             return new PatternSet(patternSetDictionary, mph, pattern);
         }
@@ -34,10 +37,11 @@
         /// </summary>
         /// <param name="database"></param>
         /// <returns></returns>
-        private static MinimalPerfectHash<FnvHash> GetMinimalPerfectHashForPatternSet(ConcurrentDictionary<RubiksCube, byte> database)
+        private static MinimalPerfectHash<FnvHash> GetMinimalPerfectHashForPatternSet(IEnumerable<RubiksCube> cubes)
         {
             MinimalPerfectHash<FnvHash> mph = new MinimalPerfectHash<FnvHash>();
-            mph.Generate(database.Keys);
+            mph.Generate(cubes.Select(cube=>cube.GetBytes()));
+                       
             return mph;
         }
 
@@ -87,9 +91,9 @@
         /// Initializes the PatternSetGenerator to run.
         private static void SetInitalState(Pattern pattern, ConcurrentDictionary<RubiksCube, byte> patternDatabase, ConcurrentQueue<PuzzleState<RubiksCube>> cubesToExamine)
         {
-            RubiksCube newCube = new RubiksCube().ApplyMask(pattern.Mask);
-            cubesToExamine.Enqueue(new PuzzleState<RubiksCube>(0, newCube));
-            patternDatabase[newCube] = 0;
+            RubiksCube newMaskedCube = new RubiksCube().ApplyMask(pattern.Mask);
+            cubesToExamine.Enqueue(new PuzzleState<RubiksCube>(0, newMaskedCube));
+            patternDatabase.AddOrUpdate(newMaskedCube, 0, (cube, currentDepth)=>Math.Min(currentDepth, (byte)0));
         }
 
         #endregion

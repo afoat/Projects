@@ -30,7 +30,7 @@
         /// The current maximum number of moves found in the PatternSet so far.
         /// </summary>
         public int CurrentMaxDepth { get; private set; }
-
+        
         public PatternSetGeneratorWorker(ConcurrentDictionary<RubiksCube, byte> patternDatabase, ConcurrentQueue<PuzzleState<RubiksCube>> cubesToExamine, int groupSize, int maxDepth)
         {
             this.MaxDepth = maxDepth;
@@ -43,7 +43,6 @@
 
         public void Work()
         {
-            int count;
             while (this.CubesToExamine.Count > 0)
             {
                 PuzzleState<RubiksCube> puzzleState;
@@ -62,21 +61,21 @@
                         moves = puzzleState.LastMove.GetValidNextMoves(puzzleState.PuzzleInstance);
                     }
 
+                    RubiksCube rubiksCube;
                     foreach (Move<RubiksCube> move in moves)
                     {
-                        RubiksCube newCube = move.MovePuzzle(puzzleState.PuzzleInstance);
+                        rubiksCube = move.MovePuzzle(puzzleState.PuzzleInstance);
 
-                        if (!this.PatternDatabase.ContainsKey(newCube) && newDepth <= this.MaxDepth)
+                        if (!this.PatternDatabase.ContainsKey(rubiksCube) && newDepth <= this.MaxDepth)
                         {
-                            this.CubesToExamine.Enqueue(new PuzzleState<RubiksCube>(move, newDepth, newCube));
+                            this.CubesToExamine.Enqueue(new PuzzleState<RubiksCube>(move, newDepth, rubiksCube));
                             lock (this.PatternDatabase)
                             {
-                                this.PatternDatabase.AddOrUpdate(newCube, newDepth, (cube, depth) => Math.Min(newDepth, depth));
-                                count = PatternDatabase.Count;
+                                this.PatternDatabase.AddOrUpdate(rubiksCube, newDepth, (cube, curDepth)=>Math.Min(curDepth, newDepth));
 
-                                if (count % 100000 == 0)
+                                if (PatternDatabase.Count % 10000 == 0)
                                 {
-                                    Trace.WriteLine(string.Format("Found {0} states so far.", this.PatternDatabase.Count));
+                                    Trace.WriteLine(string.Format("Found {0:N0} states so far. {1:N0} Cubes to Examine.", this.PatternDatabase.Count, this.CubesToExamine.Count));
                                 }
                             }
                         }

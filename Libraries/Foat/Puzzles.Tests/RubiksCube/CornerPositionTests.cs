@@ -11,590 +11,590 @@ namespace Foat.Puzzles.Tests.RubiksCube
         [TestCategory(@"Foat\Puzzles\RubiksCube")]
         public void CornerPosition_RotateTopCW_AllCorners()
         {
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryBack, CornerPosition.RotateTopCW(CornerPosition.BottomBackLeftPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryBottom, CornerPosition.RotateTopCW(CornerPosition.BottomBackLeftPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryLeft, CornerPosition.RotateTopCW(CornerPosition.BottomBackLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryBack, CornerPosition.RotateTopCW(CornerPosition.BottomBackRightPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryBottom, CornerPosition.RotateTopCW(CornerPosition.BottomBackRightPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryRight, CornerPosition.RotateTopCW(CornerPosition.BottomBackRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryBottom, CornerPosition.RotateTopCW(CornerPosition.BottomFrontLeftPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryFront, CornerPosition.RotateTopCW(CornerPosition.BottomFrontLeftPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryLeft, CornerPosition.RotateTopCW(CornerPosition.BottomFrontLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryBottom, CornerPosition.RotateTopCW(CornerPosition.BottomFrontRightPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryFront, CornerPosition.RotateTopCW(CornerPosition.BottomFrontRightPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryRight, CornerPosition.RotateTopCW(CornerPosition.BottomFrontRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryRight, CornerPosition.RotateTopCW(CornerPosition.TopBackLeftPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryBack, CornerPosition.RotateTopCW(CornerPosition.TopBackLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryTop, CornerPosition.RotateTopCW(CornerPosition.TopBackLeftPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryRight, CornerPosition.RotateTopCW(CornerPosition.TopBackRightPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryFront, CornerPosition.RotateTopCW(CornerPosition.TopBackRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryTop, CornerPosition.RotateTopCW(CornerPosition.TopBackRightPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryLeft, CornerPosition.RotateTopCW(CornerPosition.TopFrontLeftPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryBack, CornerPosition.RotateTopCW(CornerPosition.TopFrontLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryTop, CornerPosition.RotateTopCW(CornerPosition.TopFrontLeftPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryLeft, CornerPosition.RotateTopCW(CornerPosition.TopFrontRightPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryFront, CornerPosition.RotateTopCW(CornerPosition.TopFrontRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryTop, CornerPosition.RotateTopCW(CornerPosition.TopFrontRightPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.Unmasked, CornerPosition.RotateTopCW(CornerPosition.Unmasked));
-            Assert.AreEqual<byte>(CornerPosition.Masked, CornerPosition.RotateTopCW(CornerPosition.Masked));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryBack, Position.RotateTopCW(Position.BottomBackLeftPrimaryBack));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryBottom, Position.RotateTopCW(Position.BottomBackLeftPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryLeft, Position.RotateTopCW(Position.BottomBackLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryBack, Position.RotateTopCW(Position.BottomBackRightPrimaryBack));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryBottom, Position.RotateTopCW(Position.BottomBackRightPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryRight, Position.RotateTopCW(Position.BottomBackRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryBottom, Position.RotateTopCW(Position.BottomFrontLeftPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryFront, Position.RotateTopCW(Position.BottomFrontLeftPrimaryFront));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryLeft, Position.RotateTopCW(Position.BottomFrontLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryBottom, Position.RotateTopCW(Position.BottomFrontRightPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryFront, Position.RotateTopCW(Position.BottomFrontRightPrimaryFront));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryRight, Position.RotateTopCW(Position.BottomFrontRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryRight, Position.RotateTopCW(Position.TopBackLeftPrimaryBack));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryBack, Position.RotateTopCW(Position.TopBackLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryTop, Position.RotateTopCW(Position.TopBackLeftPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryRight, Position.RotateTopCW(Position.TopBackRightPrimaryBack));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryFront, Position.RotateTopCW(Position.TopBackRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryTop, Position.RotateTopCW(Position.TopBackRightPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryLeft, Position.RotateTopCW(Position.TopFrontLeftPrimaryFront));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryBack, Position.RotateTopCW(Position.TopFrontLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryTop, Position.RotateTopCW(Position.TopFrontLeftPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryLeft, Position.RotateTopCW(Position.TopFrontRightPrimaryFront));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryFront, Position.RotateTopCW(Position.TopFrontRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryTop, Position.RotateTopCW(Position.TopFrontRightPrimaryTop));
+            Assert.AreEqual<byte>(Position.Unmasked, Position.RotateTopCW(Position.Unmasked));
+            Assert.AreEqual<byte>(Position.Masked, Position.RotateTopCW(Position.Masked));
         }
 
         [TestMethod]
         [TestCategory(@"Foat\Puzzles\RubiksCube")]
         public void CornerPosition_RotateTopCCW_AllCorners()
         {
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryBack, CornerPosition.RotateTopCCW(CornerPosition.BottomBackLeftPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryBottom, CornerPosition.RotateTopCCW(CornerPosition.BottomBackLeftPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryLeft, CornerPosition.RotateTopCCW(CornerPosition.BottomBackLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryBack, CornerPosition.RotateTopCCW(CornerPosition.BottomBackRightPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryBottom, CornerPosition.RotateTopCCW(CornerPosition.BottomBackRightPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryRight, CornerPosition.RotateTopCCW(CornerPosition.BottomBackRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryBottom, CornerPosition.RotateTopCCW(CornerPosition.BottomFrontLeftPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryFront, CornerPosition.RotateTopCCW(CornerPosition.BottomFrontLeftPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryLeft, CornerPosition.RotateTopCCW(CornerPosition.BottomFrontLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryBottom, CornerPosition.RotateTopCCW(CornerPosition.BottomFrontRightPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryFront, CornerPosition.RotateTopCCW(CornerPosition.BottomFrontRightPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryRight, CornerPosition.RotateTopCCW(CornerPosition.BottomFrontRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryLeft, CornerPosition.RotateTopCCW(CornerPosition.TopBackLeftPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryFront, CornerPosition.RotateTopCCW(CornerPosition.TopBackLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryTop, CornerPosition.RotateTopCCW(CornerPosition.TopBackLeftPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryLeft, CornerPosition.RotateTopCCW(CornerPosition.TopBackRightPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryBack, CornerPosition.RotateTopCCW(CornerPosition.TopBackRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryTop, CornerPosition.RotateTopCCW(CornerPosition.TopBackRightPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryRight, CornerPosition.RotateTopCCW(CornerPosition.TopFrontLeftPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryFront, CornerPosition.RotateTopCCW(CornerPosition.TopFrontLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryTop, CornerPosition.RotateTopCCW(CornerPosition.TopFrontLeftPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryRight, CornerPosition.RotateTopCCW(CornerPosition.TopFrontRightPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryBack, CornerPosition.RotateTopCCW(CornerPosition.TopFrontRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryTop, CornerPosition.RotateTopCCW(CornerPosition.TopFrontRightPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.Unmasked, CornerPosition.RotateTopCCW(CornerPosition.Unmasked));
-            Assert.AreEqual<byte>(CornerPosition.Masked, CornerPosition.RotateTopCCW(CornerPosition.Masked));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryBack, Position.RotateTopCCW(Position.BottomBackLeftPrimaryBack));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryBottom, Position.RotateTopCCW(Position.BottomBackLeftPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryLeft, Position.RotateTopCCW(Position.BottomBackLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryBack, Position.RotateTopCCW(Position.BottomBackRightPrimaryBack));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryBottom, Position.RotateTopCCW(Position.BottomBackRightPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryRight, Position.RotateTopCCW(Position.BottomBackRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryBottom, Position.RotateTopCCW(Position.BottomFrontLeftPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryFront, Position.RotateTopCCW(Position.BottomFrontLeftPrimaryFront));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryLeft, Position.RotateTopCCW(Position.BottomFrontLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryBottom, Position.RotateTopCCW(Position.BottomFrontRightPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryFront, Position.RotateTopCCW(Position.BottomFrontRightPrimaryFront));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryRight, Position.RotateTopCCW(Position.BottomFrontRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryLeft, Position.RotateTopCCW(Position.TopBackLeftPrimaryBack));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryFront, Position.RotateTopCCW(Position.TopBackLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryTop, Position.RotateTopCCW(Position.TopBackLeftPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryLeft, Position.RotateTopCCW(Position.TopBackRightPrimaryBack));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryBack, Position.RotateTopCCW(Position.TopBackRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryTop, Position.RotateTopCCW(Position.TopBackRightPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryRight, Position.RotateTopCCW(Position.TopFrontLeftPrimaryFront));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryFront, Position.RotateTopCCW(Position.TopFrontLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryTop, Position.RotateTopCCW(Position.TopFrontLeftPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryRight, Position.RotateTopCCW(Position.TopFrontRightPrimaryFront));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryBack, Position.RotateTopCCW(Position.TopFrontRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryTop, Position.RotateTopCCW(Position.TopFrontRightPrimaryTop));
+            Assert.AreEqual<byte>(Position.Unmasked, Position.RotateTopCCW(Position.Unmasked));
+            Assert.AreEqual<byte>(Position.Masked, Position.RotateTopCCW(Position.Masked));
         }
 
         [TestMethod]
         [TestCategory(@"Foat\Puzzles\RubiksCube")]
         public void CornerPosition_RotateTopHalf_AllCorners()
         {
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryBack, CornerPosition.RotateTopHalf(CornerPosition.BottomBackLeftPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryBottom, CornerPosition.RotateTopHalf(CornerPosition.BottomBackLeftPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryLeft, CornerPosition.RotateTopHalf(CornerPosition.BottomBackLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryBack, CornerPosition.RotateTopHalf(CornerPosition.BottomBackRightPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryBottom, CornerPosition.RotateTopHalf(CornerPosition.BottomBackRightPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryRight, CornerPosition.RotateTopHalf(CornerPosition.BottomBackRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryBottom, CornerPosition.RotateTopHalf(CornerPosition.BottomFrontLeftPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryFront, CornerPosition.RotateTopHalf(CornerPosition.BottomFrontLeftPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryLeft, CornerPosition.RotateTopHalf(CornerPosition.BottomFrontLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryBottom, CornerPosition.RotateTopHalf(CornerPosition.BottomFrontRightPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryFront, CornerPosition.RotateTopHalf(CornerPosition.BottomFrontRightPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryRight, CornerPosition.RotateTopHalf(CornerPosition.BottomFrontRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryFront, CornerPosition.RotateTopHalf(CornerPosition.TopBackLeftPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryRight, CornerPosition.RotateTopHalf(CornerPosition.TopBackLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryTop, CornerPosition.RotateTopHalf(CornerPosition.TopBackLeftPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryFront, CornerPosition.RotateTopHalf(CornerPosition.TopBackRightPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryLeft, CornerPosition.RotateTopHalf(CornerPosition.TopBackRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryTop, CornerPosition.RotateTopHalf(CornerPosition.TopBackRightPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryBack, CornerPosition.RotateTopHalf(CornerPosition.TopFrontLeftPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryRight, CornerPosition.RotateTopHalf(CornerPosition.TopFrontLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryTop, CornerPosition.RotateTopHalf(CornerPosition.TopFrontLeftPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryBack, CornerPosition.RotateTopHalf(CornerPosition.TopFrontRightPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryLeft, CornerPosition.RotateTopHalf(CornerPosition.TopFrontRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryTop, CornerPosition.RotateTopHalf(CornerPosition.TopFrontRightPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.Unmasked, CornerPosition.RotateTopHalf(CornerPosition.Unmasked));
-            Assert.AreEqual<byte>(CornerPosition.Masked, CornerPosition.RotateTopHalf(CornerPosition.Masked));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryBack, Position.RotateTopHalf(Position.BottomBackLeftPrimaryBack));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryBottom, Position.RotateTopHalf(Position.BottomBackLeftPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryLeft, Position.RotateTopHalf(Position.BottomBackLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryBack, Position.RotateTopHalf(Position.BottomBackRightPrimaryBack));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryBottom, Position.RotateTopHalf(Position.BottomBackRightPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryRight, Position.RotateTopHalf(Position.BottomBackRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryBottom, Position.RotateTopHalf(Position.BottomFrontLeftPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryFront, Position.RotateTopHalf(Position.BottomFrontLeftPrimaryFront));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryLeft, Position.RotateTopHalf(Position.BottomFrontLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryBottom, Position.RotateTopHalf(Position.BottomFrontRightPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryFront, Position.RotateTopHalf(Position.BottomFrontRightPrimaryFront));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryRight, Position.RotateTopHalf(Position.BottomFrontRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryFront, Position.RotateTopHalf(Position.TopBackLeftPrimaryBack));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryRight, Position.RotateTopHalf(Position.TopBackLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryTop, Position.RotateTopHalf(Position.TopBackLeftPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryFront, Position.RotateTopHalf(Position.TopBackRightPrimaryBack));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryLeft, Position.RotateTopHalf(Position.TopBackRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryTop, Position.RotateTopHalf(Position.TopBackRightPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryBack, Position.RotateTopHalf(Position.TopFrontLeftPrimaryFront));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryRight, Position.RotateTopHalf(Position.TopFrontLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryTop, Position.RotateTopHalf(Position.TopFrontLeftPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryBack, Position.RotateTopHalf(Position.TopFrontRightPrimaryFront));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryLeft, Position.RotateTopHalf(Position.TopFrontRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryTop, Position.RotateTopHalf(Position.TopFrontRightPrimaryTop));
+            Assert.AreEqual<byte>(Position.Unmasked, Position.RotateTopHalf(Position.Unmasked));
+            Assert.AreEqual<byte>(Position.Masked, Position.RotateTopHalf(Position.Masked));
         }
 
         [TestMethod]
         [TestCategory(@"Foat\Puzzles\RubiksCube")]
         public void CornerPosition_RotateBottomCW_AllCorners()
         {
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryLeft, CornerPosition.RotateBottomCW(CornerPosition.BottomBackLeftPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryBottom, CornerPosition.RotateBottomCW(CornerPosition.BottomBackLeftPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryFront, CornerPosition.RotateBottomCW(CornerPosition.BottomBackLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryLeft, CornerPosition.RotateBottomCW(CornerPosition.BottomBackRightPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryBottom, CornerPosition.RotateBottomCW(CornerPosition.BottomBackRightPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryBack, CornerPosition.RotateBottomCW(CornerPosition.BottomBackRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryBottom, CornerPosition.RotateBottomCW(CornerPosition.BottomFrontLeftPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryRight, CornerPosition.RotateBottomCW(CornerPosition.BottomFrontLeftPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryFront, CornerPosition.RotateBottomCW(CornerPosition.BottomFrontLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryBottom, CornerPosition.RotateBottomCW(CornerPosition.BottomFrontRightPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryRight, CornerPosition.RotateBottomCW(CornerPosition.BottomFrontRightPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryBack, CornerPosition.RotateBottomCW(CornerPosition.BottomFrontRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryBack, CornerPosition.RotateBottomCW(CornerPosition.TopBackLeftPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryLeft, CornerPosition.RotateBottomCW(CornerPosition.TopBackLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryTop, CornerPosition.RotateBottomCW(CornerPosition.TopBackLeftPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryBack, CornerPosition.RotateBottomCW(CornerPosition.TopBackRightPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryRight, CornerPosition.RotateBottomCW(CornerPosition.TopBackRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryTop, CornerPosition.RotateBottomCW(CornerPosition.TopBackRightPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryFront, CornerPosition.RotateBottomCW(CornerPosition.TopFrontLeftPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryLeft, CornerPosition.RotateBottomCW(CornerPosition.TopFrontLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryTop, CornerPosition.RotateBottomCW(CornerPosition.TopFrontLeftPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryFront, CornerPosition.RotateBottomCW(CornerPosition.TopFrontRightPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryRight, CornerPosition.RotateBottomCW(CornerPosition.TopFrontRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryTop, CornerPosition.RotateBottomCW(CornerPosition.TopFrontRightPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.Unmasked, CornerPosition.RotateBottomCW(CornerPosition.Unmasked));
-            Assert.AreEqual<byte>(CornerPosition.Masked, CornerPosition.RotateBottomCW(CornerPosition.Masked));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryLeft, Position.RotateBottomCW(Position.BottomBackLeftPrimaryBack));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryBottom, Position.RotateBottomCW(Position.BottomBackLeftPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryFront, Position.RotateBottomCW(Position.BottomBackLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryLeft, Position.RotateBottomCW(Position.BottomBackRightPrimaryBack));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryBottom, Position.RotateBottomCW(Position.BottomBackRightPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryBack, Position.RotateBottomCW(Position.BottomBackRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryBottom, Position.RotateBottomCW(Position.BottomFrontLeftPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryRight, Position.RotateBottomCW(Position.BottomFrontLeftPrimaryFront));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryFront, Position.RotateBottomCW(Position.BottomFrontLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryBottom, Position.RotateBottomCW(Position.BottomFrontRightPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryRight, Position.RotateBottomCW(Position.BottomFrontRightPrimaryFront));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryBack, Position.RotateBottomCW(Position.BottomFrontRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryBack, Position.RotateBottomCW(Position.TopBackLeftPrimaryBack));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryLeft, Position.RotateBottomCW(Position.TopBackLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryTop, Position.RotateBottomCW(Position.TopBackLeftPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryBack, Position.RotateBottomCW(Position.TopBackRightPrimaryBack));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryRight, Position.RotateBottomCW(Position.TopBackRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryTop, Position.RotateBottomCW(Position.TopBackRightPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryFront, Position.RotateBottomCW(Position.TopFrontLeftPrimaryFront));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryLeft, Position.RotateBottomCW(Position.TopFrontLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryTop, Position.RotateBottomCW(Position.TopFrontLeftPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryFront, Position.RotateBottomCW(Position.TopFrontRightPrimaryFront));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryRight, Position.RotateBottomCW(Position.TopFrontRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryTop, Position.RotateBottomCW(Position.TopFrontRightPrimaryTop));
+            Assert.AreEqual<byte>(Position.Unmasked, Position.RotateBottomCW(Position.Unmasked));
+            Assert.AreEqual<byte>(Position.Masked, Position.RotateBottomCW(Position.Masked));
         }
 
         [TestMethod]
         [TestCategory(@"Foat\Puzzles\RubiksCube")]
         public void CornerPosition_RotateBottomCCW_AllCorners()
         {
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryRight, CornerPosition.RotateBottomCCW(CornerPosition.BottomBackLeftPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryBottom, CornerPosition.RotateBottomCCW(CornerPosition.BottomBackLeftPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryBack, CornerPosition.RotateBottomCCW(CornerPosition.BottomBackLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryRight, CornerPosition.RotateBottomCCW(CornerPosition.BottomBackRightPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryBottom, CornerPosition.RotateBottomCCW(CornerPosition.BottomBackRightPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryFront, CornerPosition.RotateBottomCCW(CornerPosition.BottomBackRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryBottom, CornerPosition.RotateBottomCCW(CornerPosition.BottomFrontLeftPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryLeft, CornerPosition.RotateBottomCCW(CornerPosition.BottomFrontLeftPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryBack, CornerPosition.RotateBottomCCW(CornerPosition.BottomFrontLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryBottom, CornerPosition.RotateBottomCCW(CornerPosition.BottomFrontRightPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryLeft, CornerPosition.RotateBottomCCW(CornerPosition.BottomFrontRightPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryFront, CornerPosition.RotateBottomCCW(CornerPosition.BottomFrontRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryBack, CornerPosition.RotateBottomCCW(CornerPosition.TopBackLeftPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryLeft, CornerPosition.RotateBottomCCW(CornerPosition.TopBackLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryTop, CornerPosition.RotateBottomCCW(CornerPosition.TopBackLeftPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryBack, CornerPosition.RotateBottomCCW(CornerPosition.TopBackRightPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryRight, CornerPosition.RotateBottomCCW(CornerPosition.TopBackRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryTop, CornerPosition.RotateBottomCCW(CornerPosition.TopBackRightPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryFront, CornerPosition.RotateBottomCCW(CornerPosition.TopFrontLeftPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryLeft, CornerPosition.RotateBottomCCW(CornerPosition.TopFrontLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryTop, CornerPosition.RotateBottomCCW(CornerPosition.TopFrontLeftPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryFront, CornerPosition.RotateBottomCCW(CornerPosition.TopFrontRightPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryRight, CornerPosition.RotateBottomCCW(CornerPosition.TopFrontRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryTop, CornerPosition.RotateBottomCCW(CornerPosition.TopFrontRightPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.Unmasked, CornerPosition.RotateBottomCCW(CornerPosition.Unmasked));
-            Assert.AreEqual<byte>(CornerPosition.Masked, CornerPosition.RotateBottomCCW(CornerPosition.Masked));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryRight, Position.RotateBottomCCW(Position.BottomBackLeftPrimaryBack));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryBottom, Position.RotateBottomCCW(Position.BottomBackLeftPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryBack, Position.RotateBottomCCW(Position.BottomBackLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryRight, Position.RotateBottomCCW(Position.BottomBackRightPrimaryBack));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryBottom, Position.RotateBottomCCW(Position.BottomBackRightPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryFront, Position.RotateBottomCCW(Position.BottomBackRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryBottom, Position.RotateBottomCCW(Position.BottomFrontLeftPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryLeft, Position.RotateBottomCCW(Position.BottomFrontLeftPrimaryFront));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryBack, Position.RotateBottomCCW(Position.BottomFrontLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryBottom, Position.RotateBottomCCW(Position.BottomFrontRightPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryLeft, Position.RotateBottomCCW(Position.BottomFrontRightPrimaryFront));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryFront, Position.RotateBottomCCW(Position.BottomFrontRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryBack, Position.RotateBottomCCW(Position.TopBackLeftPrimaryBack));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryLeft, Position.RotateBottomCCW(Position.TopBackLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryTop, Position.RotateBottomCCW(Position.TopBackLeftPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryBack, Position.RotateBottomCCW(Position.TopBackRightPrimaryBack));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryRight, Position.RotateBottomCCW(Position.TopBackRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryTop, Position.RotateBottomCCW(Position.TopBackRightPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryFront, Position.RotateBottomCCW(Position.TopFrontLeftPrimaryFront));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryLeft, Position.RotateBottomCCW(Position.TopFrontLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryTop, Position.RotateBottomCCW(Position.TopFrontLeftPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryFront, Position.RotateBottomCCW(Position.TopFrontRightPrimaryFront));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryRight, Position.RotateBottomCCW(Position.TopFrontRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryTop, Position.RotateBottomCCW(Position.TopFrontRightPrimaryTop));
+            Assert.AreEqual<byte>(Position.Unmasked, Position.RotateBottomCCW(Position.Unmasked));
+            Assert.AreEqual<byte>(Position.Masked, Position.RotateBottomCCW(Position.Masked));
         }
 
         [TestMethod]
         [TestCategory(@"Foat\Puzzles\RubiksCube")]
         public void CornerPosition_RotateBottomHalf_AllCorners()
         {
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryFront, CornerPosition.RotateBottomHalf(CornerPosition.BottomBackLeftPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryBottom, CornerPosition.RotateBottomHalf(CornerPosition.BottomBackLeftPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryRight, CornerPosition.RotateBottomHalf(CornerPosition.BottomBackLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryFront, CornerPosition.RotateBottomHalf(CornerPosition.BottomBackRightPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryBottom, CornerPosition.RotateBottomHalf(CornerPosition.BottomBackRightPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryLeft, CornerPosition.RotateBottomHalf(CornerPosition.BottomBackRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryBottom, CornerPosition.RotateBottomHalf(CornerPosition.BottomFrontLeftPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryBack, CornerPosition.RotateBottomHalf(CornerPosition.BottomFrontLeftPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryRight, CornerPosition.RotateBottomHalf(CornerPosition.BottomFrontLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryBottom, CornerPosition.RotateBottomHalf(CornerPosition.BottomFrontRightPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryBack, CornerPosition.RotateBottomHalf(CornerPosition.BottomFrontRightPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryLeft, CornerPosition.RotateBottomHalf(CornerPosition.BottomFrontRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryBack, CornerPosition.RotateBottomHalf(CornerPosition.TopBackLeftPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryLeft, CornerPosition.RotateBottomHalf(CornerPosition.TopBackLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryTop, CornerPosition.RotateBottomHalf(CornerPosition.TopBackLeftPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryBack, CornerPosition.RotateBottomHalf(CornerPosition.TopBackRightPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryRight, CornerPosition.RotateBottomHalf(CornerPosition.TopBackRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryTop, CornerPosition.RotateBottomHalf(CornerPosition.TopBackRightPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryFront, CornerPosition.RotateBottomHalf(CornerPosition.TopFrontLeftPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryLeft, CornerPosition.RotateBottomHalf(CornerPosition.TopFrontLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryTop, CornerPosition.RotateBottomHalf(CornerPosition.TopFrontLeftPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryFront, CornerPosition.RotateBottomHalf(CornerPosition.TopFrontRightPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryRight, CornerPosition.RotateBottomHalf(CornerPosition.TopFrontRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryTop, CornerPosition.RotateBottomHalf(CornerPosition.TopFrontRightPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.Unmasked, CornerPosition.RotateBottomHalf(CornerPosition.Unmasked));
-            Assert.AreEqual<byte>(CornerPosition.Masked, CornerPosition.RotateBottomHalf(CornerPosition.Masked));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryFront, Position.RotateBottomHalf(Position.BottomBackLeftPrimaryBack));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryBottom, Position.RotateBottomHalf(Position.BottomBackLeftPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryRight, Position.RotateBottomHalf(Position.BottomBackLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryFront, Position.RotateBottomHalf(Position.BottomBackRightPrimaryBack));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryBottom, Position.RotateBottomHalf(Position.BottomBackRightPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryLeft, Position.RotateBottomHalf(Position.BottomBackRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryBottom, Position.RotateBottomHalf(Position.BottomFrontLeftPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryBack, Position.RotateBottomHalf(Position.BottomFrontLeftPrimaryFront));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryRight, Position.RotateBottomHalf(Position.BottomFrontLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryBottom, Position.RotateBottomHalf(Position.BottomFrontRightPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryBack, Position.RotateBottomHalf(Position.BottomFrontRightPrimaryFront));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryLeft, Position.RotateBottomHalf(Position.BottomFrontRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryBack, Position.RotateBottomHalf(Position.TopBackLeftPrimaryBack));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryLeft, Position.RotateBottomHalf(Position.TopBackLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryTop, Position.RotateBottomHalf(Position.TopBackLeftPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryBack, Position.RotateBottomHalf(Position.TopBackRightPrimaryBack));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryRight, Position.RotateBottomHalf(Position.TopBackRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryTop, Position.RotateBottomHalf(Position.TopBackRightPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryFront, Position.RotateBottomHalf(Position.TopFrontLeftPrimaryFront));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryLeft, Position.RotateBottomHalf(Position.TopFrontLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryTop, Position.RotateBottomHalf(Position.TopFrontLeftPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryFront, Position.RotateBottomHalf(Position.TopFrontRightPrimaryFront));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryRight, Position.RotateBottomHalf(Position.TopFrontRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryTop, Position.RotateBottomHalf(Position.TopFrontRightPrimaryTop));
+            Assert.AreEqual<byte>(Position.Unmasked, Position.RotateBottomHalf(Position.Unmasked));
+            Assert.AreEqual<byte>(Position.Masked, Position.RotateBottomHalf(Position.Masked));
         }
 
         [TestMethod]
         [TestCategory(@"Foat\Puzzles\RubiksCube")]
         public void CornerPosition_RotateLeftCW_AllCorners()
         {
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryTop, CornerPosition.RotateLeftCW(CornerPosition.BottomBackLeftPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryBack, CornerPosition.RotateLeftCW(CornerPosition.BottomBackLeftPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryLeft, CornerPosition.RotateLeftCW(CornerPosition.BottomBackLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryBack, CornerPosition.RotateLeftCW(CornerPosition.BottomBackRightPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryBottom, CornerPosition.RotateLeftCW(CornerPosition.BottomBackRightPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryRight, CornerPosition.RotateLeftCW(CornerPosition.BottomBackRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryBack, CornerPosition.RotateLeftCW(CornerPosition.BottomFrontLeftPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryBottom, CornerPosition.RotateLeftCW(CornerPosition.BottomFrontLeftPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryLeft, CornerPosition.RotateLeftCW(CornerPosition.BottomFrontLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryBottom, CornerPosition.RotateLeftCW(CornerPosition.BottomFrontRightPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryFront, CornerPosition.RotateLeftCW(CornerPosition.BottomFrontRightPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryRight, CornerPosition.RotateLeftCW(CornerPosition.BottomFrontRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryTop, CornerPosition.RotateLeftCW(CornerPosition.TopBackLeftPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryLeft, CornerPosition.RotateLeftCW(CornerPosition.TopBackLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryFront, CornerPosition.RotateLeftCW(CornerPosition.TopBackLeftPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryBack, CornerPosition.RotateLeftCW(CornerPosition.TopBackRightPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryRight, CornerPosition.RotateLeftCW(CornerPosition.TopBackRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryTop, CornerPosition.RotateLeftCW(CornerPosition.TopBackRightPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryBottom, CornerPosition.RotateLeftCW(CornerPosition.TopFrontLeftPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryLeft, CornerPosition.RotateLeftCW(CornerPosition.TopFrontLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryFront, CornerPosition.RotateLeftCW(CornerPosition.TopFrontLeftPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryFront, CornerPosition.RotateLeftCW(CornerPosition.TopFrontRightPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryRight, CornerPosition.RotateLeftCW(CornerPosition.TopFrontRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryTop, CornerPosition.RotateLeftCW(CornerPosition.TopFrontRightPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.Unmasked, CornerPosition.RotateLeftCW(CornerPosition.Unmasked));
-            Assert.AreEqual<byte>(CornerPosition.Masked, CornerPosition.RotateLeftCW(CornerPosition.Masked));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryTop, Position.RotateLeftCW(Position.BottomBackLeftPrimaryBack));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryBack, Position.RotateLeftCW(Position.BottomBackLeftPrimaryBottom));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryLeft, Position.RotateLeftCW(Position.BottomBackLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryBack, Position.RotateLeftCW(Position.BottomBackRightPrimaryBack));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryBottom, Position.RotateLeftCW(Position.BottomBackRightPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryRight, Position.RotateLeftCW(Position.BottomBackRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryBack, Position.RotateLeftCW(Position.BottomFrontLeftPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryBottom, Position.RotateLeftCW(Position.BottomFrontLeftPrimaryFront));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryLeft, Position.RotateLeftCW(Position.BottomFrontLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryBottom, Position.RotateLeftCW(Position.BottomFrontRightPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryFront, Position.RotateLeftCW(Position.BottomFrontRightPrimaryFront));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryRight, Position.RotateLeftCW(Position.BottomFrontRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryTop, Position.RotateLeftCW(Position.TopBackLeftPrimaryBack));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryLeft, Position.RotateLeftCW(Position.TopBackLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryFront, Position.RotateLeftCW(Position.TopBackLeftPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryBack, Position.RotateLeftCW(Position.TopBackRightPrimaryBack));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryRight, Position.RotateLeftCW(Position.TopBackRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryTop, Position.RotateLeftCW(Position.TopBackRightPrimaryTop));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryBottom, Position.RotateLeftCW(Position.TopFrontLeftPrimaryFront));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryLeft, Position.RotateLeftCW(Position.TopFrontLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryFront, Position.RotateLeftCW(Position.TopFrontLeftPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryFront, Position.RotateLeftCW(Position.TopFrontRightPrimaryFront));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryRight, Position.RotateLeftCW(Position.TopFrontRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryTop, Position.RotateLeftCW(Position.TopFrontRightPrimaryTop));
+            Assert.AreEqual<byte>(Position.Unmasked, Position.RotateLeftCW(Position.Unmasked));
+            Assert.AreEqual<byte>(Position.Masked, Position.RotateLeftCW(Position.Masked));
         }
 
         [TestMethod]
         [TestCategory(@"Foat\Puzzles\RubiksCube")]
         public void CornerPosition_RotateLeftCCW_AllCorners()
         {
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryBottom, CornerPosition.RotateLeftCCW(CornerPosition.BottomBackLeftPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryFront, CornerPosition.RotateLeftCCW(CornerPosition.BottomBackLeftPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryLeft, CornerPosition.RotateLeftCCW(CornerPosition.BottomBackLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryBack, CornerPosition.RotateLeftCCW(CornerPosition.BottomBackRightPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryBottom, CornerPosition.RotateLeftCCW(CornerPosition.BottomBackRightPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryRight, CornerPosition.RotateLeftCCW(CornerPosition.BottomBackRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryFront, CornerPosition.RotateLeftCCW(CornerPosition.BottomFrontLeftPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryTop, CornerPosition.RotateLeftCCW(CornerPosition.BottomFrontLeftPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryLeft, CornerPosition.RotateLeftCCW(CornerPosition.BottomFrontLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryBottom, CornerPosition.RotateLeftCCW(CornerPosition.BottomFrontRightPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryFront, CornerPosition.RotateLeftCCW(CornerPosition.BottomFrontRightPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryRight, CornerPosition.RotateLeftCCW(CornerPosition.BottomFrontRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryBottom, CornerPosition.RotateLeftCCW(CornerPosition.TopBackLeftPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryLeft, CornerPosition.RotateLeftCCW(CornerPosition.TopBackLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryBack, CornerPosition.RotateLeftCCW(CornerPosition.TopBackLeftPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryBack, CornerPosition.RotateLeftCCW(CornerPosition.TopBackRightPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryRight, CornerPosition.RotateLeftCCW(CornerPosition.TopBackRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryTop, CornerPosition.RotateLeftCCW(CornerPosition.TopBackRightPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryTop, CornerPosition.RotateLeftCCW(CornerPosition.TopFrontLeftPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryLeft, CornerPosition.RotateLeftCCW(CornerPosition.TopFrontLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryBack, CornerPosition.RotateLeftCCW(CornerPosition.TopFrontLeftPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryFront, CornerPosition.RotateLeftCCW(CornerPosition.TopFrontRightPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryRight, CornerPosition.RotateLeftCCW(CornerPosition.TopFrontRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryTop, CornerPosition.RotateLeftCCW(CornerPosition.TopFrontRightPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.Unmasked, CornerPosition.RotateLeftCCW(CornerPosition.Unmasked));
-            Assert.AreEqual<byte>(CornerPosition.Masked, CornerPosition.RotateLeftCCW(CornerPosition.Masked));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryBottom, Position.RotateLeftCCW(Position.BottomBackLeftPrimaryBack));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryFront, Position.RotateLeftCCW(Position.BottomBackLeftPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryLeft, Position.RotateLeftCCW(Position.BottomBackLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryBack, Position.RotateLeftCCW(Position.BottomBackRightPrimaryBack));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryBottom, Position.RotateLeftCCW(Position.BottomBackRightPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryRight, Position.RotateLeftCCW(Position.BottomBackRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryFront, Position.RotateLeftCCW(Position.BottomFrontLeftPrimaryBottom));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryTop, Position.RotateLeftCCW(Position.BottomFrontLeftPrimaryFront));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryLeft, Position.RotateLeftCCW(Position.BottomFrontLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryBottom, Position.RotateLeftCCW(Position.BottomFrontRightPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryFront, Position.RotateLeftCCW(Position.BottomFrontRightPrimaryFront));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryRight, Position.RotateLeftCCW(Position.BottomFrontRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryBottom, Position.RotateLeftCCW(Position.TopBackLeftPrimaryBack));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryLeft, Position.RotateLeftCCW(Position.TopBackLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryBack, Position.RotateLeftCCW(Position.TopBackLeftPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryBack, Position.RotateLeftCCW(Position.TopBackRightPrimaryBack));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryRight, Position.RotateLeftCCW(Position.TopBackRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryTop, Position.RotateLeftCCW(Position.TopBackRightPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryTop, Position.RotateLeftCCW(Position.TopFrontLeftPrimaryFront));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryLeft, Position.RotateLeftCCW(Position.TopFrontLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryBack, Position.RotateLeftCCW(Position.TopFrontLeftPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryFront, Position.RotateLeftCCW(Position.TopFrontRightPrimaryFront));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryRight, Position.RotateLeftCCW(Position.TopFrontRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryTop, Position.RotateLeftCCW(Position.TopFrontRightPrimaryTop));
+            Assert.AreEqual<byte>(Position.Unmasked, Position.RotateLeftCCW(Position.Unmasked));
+            Assert.AreEqual<byte>(Position.Masked, Position.RotateLeftCCW(Position.Masked));
         }
 
         [TestMethod]
         [TestCategory(@"Foat\Puzzles\RubiksCube")]
         public void CornerPosition_RotateLeftHalf_AllCorners()
         {
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryFront, CornerPosition.RotateLeftHalf(CornerPosition.BottomBackLeftPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryTop, CornerPosition.RotateLeftHalf(CornerPosition.BottomBackLeftPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryLeft, CornerPosition.RotateLeftHalf(CornerPosition.BottomBackLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryBack, CornerPosition.RotateLeftHalf(CornerPosition.BottomBackRightPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryBottom, CornerPosition.RotateLeftHalf(CornerPosition.BottomBackRightPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryRight, CornerPosition.RotateLeftHalf(CornerPosition.BottomBackRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryTop, CornerPosition.RotateLeftHalf(CornerPosition.BottomFrontLeftPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryBack, CornerPosition.RotateLeftHalf(CornerPosition.BottomFrontLeftPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryLeft, CornerPosition.RotateLeftHalf(CornerPosition.BottomFrontLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryBottom, CornerPosition.RotateLeftHalf(CornerPosition.BottomFrontRightPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryFront, CornerPosition.RotateLeftHalf(CornerPosition.BottomFrontRightPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryRight, CornerPosition.RotateLeftHalf(CornerPosition.BottomFrontRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryFront, CornerPosition.RotateLeftHalf(CornerPosition.TopBackLeftPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryLeft, CornerPosition.RotateLeftHalf(CornerPosition.TopBackLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryBottom, CornerPosition.RotateLeftHalf(CornerPosition.TopBackLeftPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryBack, CornerPosition.RotateLeftHalf(CornerPosition.TopBackRightPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryRight, CornerPosition.RotateLeftHalf(CornerPosition.TopBackRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryTop, CornerPosition.RotateLeftHalf(CornerPosition.TopBackRightPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryBack, CornerPosition.RotateLeftHalf(CornerPosition.TopFrontLeftPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryLeft, CornerPosition.RotateLeftHalf(CornerPosition.TopFrontLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryBottom, CornerPosition.RotateLeftHalf(CornerPosition.TopFrontLeftPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryFront, CornerPosition.RotateLeftHalf(CornerPosition.TopFrontRightPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryRight, CornerPosition.RotateLeftHalf(CornerPosition.TopFrontRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryTop, CornerPosition.RotateLeftHalf(CornerPosition.TopFrontRightPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.Unmasked, CornerPosition.RotateLeftHalf(CornerPosition.Unmasked));
-            Assert.AreEqual<byte>(CornerPosition.Masked, CornerPosition.RotateLeftHalf(CornerPosition.Masked));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryFront, Position.RotateLeftHalf(Position.BottomBackLeftPrimaryBack));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryTop, Position.RotateLeftHalf(Position.BottomBackLeftPrimaryBottom));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryLeft, Position.RotateLeftHalf(Position.BottomBackLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryBack, Position.RotateLeftHalf(Position.BottomBackRightPrimaryBack));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryBottom, Position.RotateLeftHalf(Position.BottomBackRightPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryRight, Position.RotateLeftHalf(Position.BottomBackRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryTop, Position.RotateLeftHalf(Position.BottomFrontLeftPrimaryBottom));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryBack, Position.RotateLeftHalf(Position.BottomFrontLeftPrimaryFront));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryLeft, Position.RotateLeftHalf(Position.BottomFrontLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryBottom, Position.RotateLeftHalf(Position.BottomFrontRightPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryFront, Position.RotateLeftHalf(Position.BottomFrontRightPrimaryFront));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryRight, Position.RotateLeftHalf(Position.BottomFrontRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryFront, Position.RotateLeftHalf(Position.TopBackLeftPrimaryBack));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryLeft, Position.RotateLeftHalf(Position.TopBackLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryBottom, Position.RotateLeftHalf(Position.TopBackLeftPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryBack, Position.RotateLeftHalf(Position.TopBackRightPrimaryBack));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryRight, Position.RotateLeftHalf(Position.TopBackRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryTop, Position.RotateLeftHalf(Position.TopBackRightPrimaryTop));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryBack, Position.RotateLeftHalf(Position.TopFrontLeftPrimaryFront));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryLeft, Position.RotateLeftHalf(Position.TopFrontLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryBottom, Position.RotateLeftHalf(Position.TopFrontLeftPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryFront, Position.RotateLeftHalf(Position.TopFrontRightPrimaryFront));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryRight, Position.RotateLeftHalf(Position.TopFrontRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryTop, Position.RotateLeftHalf(Position.TopFrontRightPrimaryTop));
+            Assert.AreEqual<byte>(Position.Unmasked, Position.RotateLeftHalf(Position.Unmasked));
+            Assert.AreEqual<byte>(Position.Masked, Position.RotateLeftHalf(Position.Masked));
         }
 
         [TestMethod]
         [TestCategory(@"Foat\Puzzles\RubiksCube")]
         public void CornerPosition_RotateRightCW_AllCorners()
         {
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryBack, CornerPosition.RotateRightCW(CornerPosition.BottomBackLeftPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryBottom, CornerPosition.RotateRightCW(CornerPosition.BottomBackLeftPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryLeft, CornerPosition.RotateRightCW(CornerPosition.BottomBackLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryBottom, CornerPosition.RotateRightCW(CornerPosition.BottomBackRightPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryFront, CornerPosition.RotateRightCW(CornerPosition.BottomBackRightPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryRight, CornerPosition.RotateRightCW(CornerPosition.BottomBackRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryBottom, CornerPosition.RotateRightCW(CornerPosition.BottomFrontLeftPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryFront, CornerPosition.RotateRightCW(CornerPosition.BottomFrontLeftPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryLeft, CornerPosition.RotateRightCW(CornerPosition.BottomFrontLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryFront, CornerPosition.RotateRightCW(CornerPosition.BottomFrontRightPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryTop, CornerPosition.RotateRightCW(CornerPosition.BottomFrontRightPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryRight, CornerPosition.RotateRightCW(CornerPosition.BottomFrontRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryBack, CornerPosition.RotateRightCW(CornerPosition.TopBackLeftPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryLeft, CornerPosition.RotateRightCW(CornerPosition.TopBackLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryTop, CornerPosition.RotateRightCW(CornerPosition.TopBackLeftPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryBottom, CornerPosition.RotateRightCW(CornerPosition.TopBackRightPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryRight, CornerPosition.RotateRightCW(CornerPosition.TopBackRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryBack, CornerPosition.RotateRightCW(CornerPosition.TopBackRightPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryFront, CornerPosition.RotateRightCW(CornerPosition.TopFrontLeftPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryLeft, CornerPosition.RotateRightCW(CornerPosition.TopFrontLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryTop, CornerPosition.RotateRightCW(CornerPosition.TopFrontLeftPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryTop, CornerPosition.RotateRightCW(CornerPosition.TopFrontRightPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryRight, CornerPosition.RotateRightCW(CornerPosition.TopFrontRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryBack, CornerPosition.RotateRightCW(CornerPosition.TopFrontRightPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.Unmasked, CornerPosition.RotateRightCW(CornerPosition.Unmasked));
-            Assert.AreEqual<byte>(CornerPosition.Masked, CornerPosition.RotateRightCW(CornerPosition.Masked));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryBack, Position.RotateRightCW(Position.BottomBackLeftPrimaryBack));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryBottom, Position.RotateRightCW(Position.BottomBackLeftPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryLeft, Position.RotateRightCW(Position.BottomBackLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryBottom, Position.RotateRightCW(Position.BottomBackRightPrimaryBack));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryFront, Position.RotateRightCW(Position.BottomBackRightPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryRight, Position.RotateRightCW(Position.BottomBackRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryBottom, Position.RotateRightCW(Position.BottomFrontLeftPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryFront, Position.RotateRightCW(Position.BottomFrontLeftPrimaryFront));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryLeft, Position.RotateRightCW(Position.BottomFrontLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryFront, Position.RotateRightCW(Position.BottomFrontRightPrimaryBottom));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryTop, Position.RotateRightCW(Position.BottomFrontRightPrimaryFront));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryRight, Position.RotateRightCW(Position.BottomFrontRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryBack, Position.RotateRightCW(Position.TopBackLeftPrimaryBack));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryLeft, Position.RotateRightCW(Position.TopBackLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryTop, Position.RotateRightCW(Position.TopBackLeftPrimaryTop));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryBottom, Position.RotateRightCW(Position.TopBackRightPrimaryBack));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryRight, Position.RotateRightCW(Position.TopBackRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryBack, Position.RotateRightCW(Position.TopBackRightPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryFront, Position.RotateRightCW(Position.TopFrontLeftPrimaryFront));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryLeft, Position.RotateRightCW(Position.TopFrontLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryTop, Position.RotateRightCW(Position.TopFrontLeftPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryTop, Position.RotateRightCW(Position.TopFrontRightPrimaryFront));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryRight, Position.RotateRightCW(Position.TopFrontRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryBack, Position.RotateRightCW(Position.TopFrontRightPrimaryTop));
+            Assert.AreEqual<byte>(Position.Unmasked, Position.RotateRightCW(Position.Unmasked));
+            Assert.AreEqual<byte>(Position.Masked, Position.RotateRightCW(Position.Masked));
         }
 
         [TestMethod]
         [TestCategory(@"Foat\Puzzles\RubiksCube")]
         public void CornerPosition_RotateRightCCW_AllCorners()
         {
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryBack, CornerPosition.RotateRightCCW(CornerPosition.BottomBackLeftPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryBottom, CornerPosition.RotateRightCCW(CornerPosition.BottomBackLeftPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryLeft, CornerPosition.RotateRightCCW(CornerPosition.BottomBackLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryTop, CornerPosition.RotateRightCCW(CornerPosition.BottomBackRightPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryBack, CornerPosition.RotateRightCCW(CornerPosition.BottomBackRightPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryRight, CornerPosition.RotateRightCCW(CornerPosition.BottomBackRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryBottom, CornerPosition.RotateRightCCW(CornerPosition.BottomFrontLeftPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryFront, CornerPosition.RotateRightCCW(CornerPosition.BottomFrontLeftPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryLeft, CornerPosition.RotateRightCCW(CornerPosition.BottomFrontLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryBack, CornerPosition.RotateRightCCW(CornerPosition.BottomFrontRightPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryBottom, CornerPosition.RotateRightCCW(CornerPosition.BottomFrontRightPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryRight, CornerPosition.RotateRightCCW(CornerPosition.BottomFrontRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryBack, CornerPosition.RotateRightCCW(CornerPosition.TopBackLeftPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryLeft, CornerPosition.RotateRightCCW(CornerPosition.TopBackLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryTop, CornerPosition.RotateRightCCW(CornerPosition.TopBackLeftPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryTop, CornerPosition.RotateRightCCW(CornerPosition.TopBackRightPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryRight, CornerPosition.RotateRightCCW(CornerPosition.TopBackRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryFront, CornerPosition.RotateRightCCW(CornerPosition.TopBackRightPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryFront, CornerPosition.RotateRightCCW(CornerPosition.TopFrontLeftPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryLeft, CornerPosition.RotateRightCCW(CornerPosition.TopFrontLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryTop, CornerPosition.RotateRightCCW(CornerPosition.TopFrontLeftPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryBottom, CornerPosition.RotateRightCCW(CornerPosition.TopFrontRightPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryRight, CornerPosition.RotateRightCCW(CornerPosition.TopFrontRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryFront, CornerPosition.RotateRightCCW(CornerPosition.TopFrontRightPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.Unmasked, CornerPosition.RotateRightCCW(CornerPosition.Unmasked));
-            Assert.AreEqual<byte>(CornerPosition.Masked, CornerPosition.RotateRightCCW(CornerPosition.Masked));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryBack, Position.RotateRightCCW(Position.BottomBackLeftPrimaryBack));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryBottom, Position.RotateRightCCW(Position.BottomBackLeftPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryLeft, Position.RotateRightCCW(Position.BottomBackLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryTop, Position.RotateRightCCW(Position.BottomBackRightPrimaryBack));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryBack, Position.RotateRightCCW(Position.BottomBackRightPrimaryBottom));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryRight, Position.RotateRightCCW(Position.BottomBackRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryBottom, Position.RotateRightCCW(Position.BottomFrontLeftPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryFront, Position.RotateRightCCW(Position.BottomFrontLeftPrimaryFront));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryLeft, Position.RotateRightCCW(Position.BottomFrontLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryBack, Position.RotateRightCCW(Position.BottomFrontRightPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryBottom, Position.RotateRightCCW(Position.BottomFrontRightPrimaryFront));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryRight, Position.RotateRightCCW(Position.BottomFrontRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryBack, Position.RotateRightCCW(Position.TopBackLeftPrimaryBack));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryLeft, Position.RotateRightCCW(Position.TopBackLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryTop, Position.RotateRightCCW(Position.TopBackLeftPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryTop, Position.RotateRightCCW(Position.TopBackRightPrimaryBack));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryRight, Position.RotateRightCCW(Position.TopBackRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryFront, Position.RotateRightCCW(Position.TopBackRightPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryFront, Position.RotateRightCCW(Position.TopFrontLeftPrimaryFront));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryLeft, Position.RotateRightCCW(Position.TopFrontLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryTop, Position.RotateRightCCW(Position.TopFrontLeftPrimaryTop));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryBottom, Position.RotateRightCCW(Position.TopFrontRightPrimaryFront));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryRight, Position.RotateRightCCW(Position.TopFrontRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryFront, Position.RotateRightCCW(Position.TopFrontRightPrimaryTop));
+            Assert.AreEqual<byte>(Position.Unmasked, Position.RotateRightCCW(Position.Unmasked));
+            Assert.AreEqual<byte>(Position.Masked, Position.RotateRightCCW(Position.Masked));
         }
 
         [TestMethod]
         [TestCategory(@"Foat\Puzzles\RubiksCube")]
         public void CornerPosition_RotateRightHalf_AllCorners()
         {
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryBack, CornerPosition.RotateRightHalf(CornerPosition.BottomBackLeftPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryBottom, CornerPosition.RotateRightHalf(CornerPosition.BottomBackLeftPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryLeft, CornerPosition.RotateRightHalf(CornerPosition.BottomBackLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryFront, CornerPosition.RotateRightHalf(CornerPosition.BottomBackRightPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryTop, CornerPosition.RotateRightHalf(CornerPosition.BottomBackRightPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryRight, CornerPosition.RotateRightHalf(CornerPosition.BottomBackRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryBottom, CornerPosition.RotateRightHalf(CornerPosition.BottomFrontLeftPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryFront, CornerPosition.RotateRightHalf(CornerPosition.BottomFrontLeftPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryLeft, CornerPosition.RotateRightHalf(CornerPosition.BottomFrontLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryTop, CornerPosition.RotateRightHalf(CornerPosition.BottomFrontRightPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryBack, CornerPosition.RotateRightHalf(CornerPosition.BottomFrontRightPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryRight, CornerPosition.RotateRightHalf(CornerPosition.BottomFrontRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryBack, CornerPosition.RotateRightHalf(CornerPosition.TopBackLeftPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryLeft, CornerPosition.RotateRightHalf(CornerPosition.TopBackLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryTop, CornerPosition.RotateRightHalf(CornerPosition.TopBackLeftPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryFront, CornerPosition.RotateRightHalf(CornerPosition.TopBackRightPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryRight, CornerPosition.RotateRightHalf(CornerPosition.TopBackRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryBottom, CornerPosition.RotateRightHalf(CornerPosition.TopBackRightPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryFront, CornerPosition.RotateRightHalf(CornerPosition.TopFrontLeftPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryLeft, CornerPosition.RotateRightHalf(CornerPosition.TopFrontLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryTop, CornerPosition.RotateRightHalf(CornerPosition.TopFrontLeftPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryBack, CornerPosition.RotateRightHalf(CornerPosition.TopFrontRightPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryRight, CornerPosition.RotateRightHalf(CornerPosition.TopFrontRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryBottom, CornerPosition.RotateRightHalf(CornerPosition.TopFrontRightPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.Unmasked, CornerPosition.RotateRightHalf(CornerPosition.Unmasked));
-            Assert.AreEqual<byte>(CornerPosition.Masked, CornerPosition.RotateRightHalf(CornerPosition.Masked));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryBack, Position.RotateRightHalf(Position.BottomBackLeftPrimaryBack));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryBottom, Position.RotateRightHalf(Position.BottomBackLeftPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryLeft, Position.RotateRightHalf(Position.BottomBackLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryFront, Position.RotateRightHalf(Position.BottomBackRightPrimaryBack));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryTop, Position.RotateRightHalf(Position.BottomBackRightPrimaryBottom));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryRight, Position.RotateRightHalf(Position.BottomBackRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryBottom, Position.RotateRightHalf(Position.BottomFrontLeftPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryFront, Position.RotateRightHalf(Position.BottomFrontLeftPrimaryFront));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryLeft, Position.RotateRightHalf(Position.BottomFrontLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryTop, Position.RotateRightHalf(Position.BottomFrontRightPrimaryBottom));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryBack, Position.RotateRightHalf(Position.BottomFrontRightPrimaryFront));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryRight, Position.RotateRightHalf(Position.BottomFrontRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryBack, Position.RotateRightHalf(Position.TopBackLeftPrimaryBack));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryLeft, Position.RotateRightHalf(Position.TopBackLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryTop, Position.RotateRightHalf(Position.TopBackLeftPrimaryTop));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryFront, Position.RotateRightHalf(Position.TopBackRightPrimaryBack));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryRight, Position.RotateRightHalf(Position.TopBackRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryBottom, Position.RotateRightHalf(Position.TopBackRightPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryFront, Position.RotateRightHalf(Position.TopFrontLeftPrimaryFront));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryLeft, Position.RotateRightHalf(Position.TopFrontLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryTop, Position.RotateRightHalf(Position.TopFrontLeftPrimaryTop));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryBack, Position.RotateRightHalf(Position.TopFrontRightPrimaryFront));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryRight, Position.RotateRightHalf(Position.TopFrontRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryBottom, Position.RotateRightHalf(Position.TopFrontRightPrimaryTop));
+            Assert.AreEqual<byte>(Position.Unmasked, Position.RotateRightHalf(Position.Unmasked));
+            Assert.AreEqual<byte>(Position.Masked, Position.RotateRightHalf(Position.Masked));
         }
 
         [TestMethod]
         [TestCategory(@"Foat\Puzzles\RubiksCube")]
         public void CornerPosition_RotateFrontCW_AllCorners()
         {
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryBack, CornerPosition.RotateFrontCW(CornerPosition.BottomBackLeftPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryBottom, CornerPosition.RotateFrontCW(CornerPosition.BottomBackLeftPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryLeft, CornerPosition.RotateFrontCW(CornerPosition.BottomBackLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryBack, CornerPosition.RotateFrontCW(CornerPosition.BottomBackRightPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryBottom, CornerPosition.RotateFrontCW(CornerPosition.BottomBackRightPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryRight, CornerPosition.RotateFrontCW(CornerPosition.BottomBackRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryLeft, CornerPosition.RotateFrontCW(CornerPosition.BottomFrontLeftPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryFront, CornerPosition.RotateFrontCW(CornerPosition.BottomFrontLeftPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryTop, CornerPosition.RotateFrontCW(CornerPosition.BottomFrontLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryLeft, CornerPosition.RotateFrontCW(CornerPosition.BottomFrontRightPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryFront, CornerPosition.RotateFrontCW(CornerPosition.BottomFrontRightPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryBottom, CornerPosition.RotateFrontCW(CornerPosition.BottomFrontRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryBack, CornerPosition.RotateFrontCW(CornerPosition.TopBackLeftPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryLeft, CornerPosition.RotateFrontCW(CornerPosition.TopBackLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryTop, CornerPosition.RotateFrontCW(CornerPosition.TopBackLeftPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryBack, CornerPosition.RotateFrontCW(CornerPosition.TopBackRightPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryRight, CornerPosition.RotateFrontCW(CornerPosition.TopBackRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryTop, CornerPosition.RotateFrontCW(CornerPosition.TopBackRightPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryFront, CornerPosition.RotateFrontCW(CornerPosition.TopFrontLeftPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryTop, CornerPosition.RotateFrontCW(CornerPosition.TopFrontLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryRight, CornerPosition.RotateFrontCW(CornerPosition.TopFrontLeftPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryFront, CornerPosition.RotateFrontCW(CornerPosition.TopFrontRightPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryBottom, CornerPosition.RotateFrontCW(CornerPosition.TopFrontRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryRight, CornerPosition.RotateFrontCW(CornerPosition.TopFrontRightPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.Unmasked, CornerPosition.RotateFrontCW(CornerPosition.Unmasked));
-            Assert.AreEqual<byte>(CornerPosition.Masked, CornerPosition.RotateFrontCW(CornerPosition.Masked));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryBack, Position.RotateFrontCW(Position.BottomBackLeftPrimaryBack));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryBottom, Position.RotateFrontCW(Position.BottomBackLeftPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryLeft, Position.RotateFrontCW(Position.BottomBackLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryBack, Position.RotateFrontCW(Position.BottomBackRightPrimaryBack));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryBottom, Position.RotateFrontCW(Position.BottomBackRightPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryRight, Position.RotateFrontCW(Position.BottomBackRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryLeft, Position.RotateFrontCW(Position.BottomFrontLeftPrimaryBottom));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryFront, Position.RotateFrontCW(Position.BottomFrontLeftPrimaryFront));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryTop, Position.RotateFrontCW(Position.BottomFrontLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryLeft, Position.RotateFrontCW(Position.BottomFrontRightPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryFront, Position.RotateFrontCW(Position.BottomFrontRightPrimaryFront));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryBottom, Position.RotateFrontCW(Position.BottomFrontRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryBack, Position.RotateFrontCW(Position.TopBackLeftPrimaryBack));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryLeft, Position.RotateFrontCW(Position.TopBackLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryTop, Position.RotateFrontCW(Position.TopBackLeftPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryBack, Position.RotateFrontCW(Position.TopBackRightPrimaryBack));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryRight, Position.RotateFrontCW(Position.TopBackRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryTop, Position.RotateFrontCW(Position.TopBackRightPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryFront, Position.RotateFrontCW(Position.TopFrontLeftPrimaryFront));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryTop, Position.RotateFrontCW(Position.TopFrontLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryRight, Position.RotateFrontCW(Position.TopFrontLeftPrimaryTop));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryFront, Position.RotateFrontCW(Position.TopFrontRightPrimaryFront));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryBottom, Position.RotateFrontCW(Position.TopFrontRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryRight, Position.RotateFrontCW(Position.TopFrontRightPrimaryTop));
+            Assert.AreEqual<byte>(Position.Unmasked, Position.RotateFrontCW(Position.Unmasked));
+            Assert.AreEqual<byte>(Position.Masked, Position.RotateFrontCW(Position.Masked));
         }
 
         [TestMethod]
         [TestCategory(@"Foat\Puzzles\RubiksCube")]
         public void CornerPosition_RotateFrontCCW_AllCorners()
         {
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryBack, CornerPosition.RotateFrontCCW(CornerPosition.BottomBackLeftPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryBottom, CornerPosition.RotateFrontCCW(CornerPosition.BottomBackLeftPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryLeft, CornerPosition.RotateFrontCCW(CornerPosition.BottomBackLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryBack, CornerPosition.RotateFrontCCW(CornerPosition.BottomBackRightPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryBottom, CornerPosition.RotateFrontCCW(CornerPosition.BottomBackRightPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryRight, CornerPosition.RotateFrontCCW(CornerPosition.BottomBackRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryRight, CornerPosition.RotateFrontCCW(CornerPosition.BottomFrontLeftPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryFront, CornerPosition.RotateFrontCCW(CornerPosition.BottomFrontLeftPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryBottom, CornerPosition.RotateFrontCCW(CornerPosition.BottomFrontLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryRight, CornerPosition.RotateFrontCCW(CornerPosition.BottomFrontRightPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryFront, CornerPosition.RotateFrontCCW(CornerPosition.BottomFrontRightPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryTop, CornerPosition.RotateFrontCCW(CornerPosition.BottomFrontRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryBack, CornerPosition.RotateFrontCCW(CornerPosition.TopBackLeftPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryLeft, CornerPosition.RotateFrontCCW(CornerPosition.TopBackLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryTop, CornerPosition.RotateFrontCCW(CornerPosition.TopBackLeftPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryBack, CornerPosition.RotateFrontCCW(CornerPosition.TopBackRightPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryRight, CornerPosition.RotateFrontCCW(CornerPosition.TopBackRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryTop, CornerPosition.RotateFrontCCW(CornerPosition.TopBackRightPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryFront, CornerPosition.RotateFrontCCW(CornerPosition.TopFrontLeftPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryBottom, CornerPosition.RotateFrontCCW(CornerPosition.TopFrontLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryLeft, CornerPosition.RotateFrontCCW(CornerPosition.TopFrontLeftPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryFront, CornerPosition.RotateFrontCCW(CornerPosition.TopFrontRightPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryTop, CornerPosition.RotateFrontCCW(CornerPosition.TopFrontRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryLeft, CornerPosition.RotateFrontCCW(CornerPosition.TopFrontRightPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.Unmasked, CornerPosition.RotateFrontCCW(CornerPosition.Unmasked));
-            Assert.AreEqual<byte>(CornerPosition.Masked, CornerPosition.RotateFrontCCW(CornerPosition.Masked));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryBack, Position.RotateFrontCCW(Position.BottomBackLeftPrimaryBack));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryBottom, Position.RotateFrontCCW(Position.BottomBackLeftPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryLeft, Position.RotateFrontCCW(Position.BottomBackLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryBack, Position.RotateFrontCCW(Position.BottomBackRightPrimaryBack));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryBottom, Position.RotateFrontCCW(Position.BottomBackRightPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryRight, Position.RotateFrontCCW(Position.BottomBackRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryRight, Position.RotateFrontCCW(Position.BottomFrontLeftPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryFront, Position.RotateFrontCCW(Position.BottomFrontLeftPrimaryFront));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryBottom, Position.RotateFrontCCW(Position.BottomFrontLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryRight, Position.RotateFrontCCW(Position.BottomFrontRightPrimaryBottom));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryFront, Position.RotateFrontCCW(Position.BottomFrontRightPrimaryFront));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryTop, Position.RotateFrontCCW(Position.BottomFrontRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryBack, Position.RotateFrontCCW(Position.TopBackLeftPrimaryBack));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryLeft, Position.RotateFrontCCW(Position.TopBackLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryTop, Position.RotateFrontCCW(Position.TopBackLeftPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryBack, Position.RotateFrontCCW(Position.TopBackRightPrimaryBack));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryRight, Position.RotateFrontCCW(Position.TopBackRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryTop, Position.RotateFrontCCW(Position.TopBackRightPrimaryTop));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryFront, Position.RotateFrontCCW(Position.TopFrontLeftPrimaryFront));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryBottom, Position.RotateFrontCCW(Position.TopFrontLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryLeft, Position.RotateFrontCCW(Position.TopFrontLeftPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryFront, Position.RotateFrontCCW(Position.TopFrontRightPrimaryFront));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryTop, Position.RotateFrontCCW(Position.TopFrontRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryLeft, Position.RotateFrontCCW(Position.TopFrontRightPrimaryTop));
+            Assert.AreEqual<byte>(Position.Unmasked, Position.RotateFrontCCW(Position.Unmasked));
+            Assert.AreEqual<byte>(Position.Masked, Position.RotateFrontCCW(Position.Masked));
         }
 
         [TestMethod]
         [TestCategory(@"Foat\Puzzles\RubiksCube")]
         public void CornerPosition_RotateFrontHalf_AllCorners()
         {
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryBack, CornerPosition.RotateFrontHalf(CornerPosition.BottomBackLeftPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryBottom, CornerPosition.RotateFrontHalf(CornerPosition.BottomBackLeftPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryLeft, CornerPosition.RotateFrontHalf(CornerPosition.BottomBackLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryBack, CornerPosition.RotateFrontHalf(CornerPosition.BottomBackRightPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryBottom, CornerPosition.RotateFrontHalf(CornerPosition.BottomBackRightPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryRight, CornerPosition.RotateFrontHalf(CornerPosition.BottomBackRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryTop, CornerPosition.RotateFrontHalf(CornerPosition.BottomFrontLeftPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryFront, CornerPosition.RotateFrontHalf(CornerPosition.BottomFrontLeftPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryRight, CornerPosition.RotateFrontHalf(CornerPosition.BottomFrontLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryTop, CornerPosition.RotateFrontHalf(CornerPosition.BottomFrontRightPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryFront, CornerPosition.RotateFrontHalf(CornerPosition.BottomFrontRightPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryLeft, CornerPosition.RotateFrontHalf(CornerPosition.BottomFrontRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryBack, CornerPosition.RotateFrontHalf(CornerPosition.TopBackLeftPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryLeft, CornerPosition.RotateFrontHalf(CornerPosition.TopBackLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryTop, CornerPosition.RotateFrontHalf(CornerPosition.TopBackLeftPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryBack, CornerPosition.RotateFrontHalf(CornerPosition.TopBackRightPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryRight, CornerPosition.RotateFrontHalf(CornerPosition.TopBackRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryTop, CornerPosition.RotateFrontHalf(CornerPosition.TopBackRightPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryFront, CornerPosition.RotateFrontHalf(CornerPosition.TopFrontLeftPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryRight, CornerPosition.RotateFrontHalf(CornerPosition.TopFrontLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryBottom, CornerPosition.RotateFrontHalf(CornerPosition.TopFrontLeftPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryFront, CornerPosition.RotateFrontHalf(CornerPosition.TopFrontRightPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryLeft, CornerPosition.RotateFrontHalf(CornerPosition.TopFrontRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryBottom, CornerPosition.RotateFrontHalf(CornerPosition.TopFrontRightPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.Unmasked, CornerPosition.RotateFrontHalf(CornerPosition.Unmasked));
-            Assert.AreEqual<byte>(CornerPosition.Masked, CornerPosition.RotateFrontHalf(CornerPosition.Masked));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryBack, Position.RotateFrontHalf(Position.BottomBackLeftPrimaryBack));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryBottom, Position.RotateFrontHalf(Position.BottomBackLeftPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryLeft, Position.RotateFrontHalf(Position.BottomBackLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryBack, Position.RotateFrontHalf(Position.BottomBackRightPrimaryBack));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryBottom, Position.RotateFrontHalf(Position.BottomBackRightPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryRight, Position.RotateFrontHalf(Position.BottomBackRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryTop, Position.RotateFrontHalf(Position.BottomFrontLeftPrimaryBottom));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryFront, Position.RotateFrontHalf(Position.BottomFrontLeftPrimaryFront));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryRight, Position.RotateFrontHalf(Position.BottomFrontLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryTop, Position.RotateFrontHalf(Position.BottomFrontRightPrimaryBottom));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryFront, Position.RotateFrontHalf(Position.BottomFrontRightPrimaryFront));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryLeft, Position.RotateFrontHalf(Position.BottomFrontRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryBack, Position.RotateFrontHalf(Position.TopBackLeftPrimaryBack));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryLeft, Position.RotateFrontHalf(Position.TopBackLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryTop, Position.RotateFrontHalf(Position.TopBackLeftPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryBack, Position.RotateFrontHalf(Position.TopBackRightPrimaryBack));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryRight, Position.RotateFrontHalf(Position.TopBackRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryTop, Position.RotateFrontHalf(Position.TopBackRightPrimaryTop));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryFront, Position.RotateFrontHalf(Position.TopFrontLeftPrimaryFront));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryRight, Position.RotateFrontHalf(Position.TopFrontLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryBottom, Position.RotateFrontHalf(Position.TopFrontLeftPrimaryTop));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryFront, Position.RotateFrontHalf(Position.TopFrontRightPrimaryFront));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryLeft, Position.RotateFrontHalf(Position.TopFrontRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryBottom, Position.RotateFrontHalf(Position.TopFrontRightPrimaryTop));
+            Assert.AreEqual<byte>(Position.Unmasked, Position.RotateFrontHalf(Position.Unmasked));
+            Assert.AreEqual<byte>(Position.Masked, Position.RotateFrontHalf(Position.Masked));
         }
 
         [TestMethod]
         [TestCategory(@"Foat\Puzzles\RubiksCube")]
         public void CornerPosition_RotateBackCW_AllCorners()
         {
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryBack, CornerPosition.RotateBackCW(CornerPosition.BottomBackLeftPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryRight, CornerPosition.RotateBackCW(CornerPosition.BottomBackLeftPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryBottom, CornerPosition.RotateBackCW(CornerPosition.BottomBackLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryBack, CornerPosition.RotateBackCW(CornerPosition.BottomBackRightPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryRight, CornerPosition.RotateBackCW(CornerPosition.BottomBackRightPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryTop, CornerPosition.RotateBackCW(CornerPosition.BottomBackRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryBottom, CornerPosition.RotateBackCW(CornerPosition.BottomFrontLeftPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryFront, CornerPosition.RotateBackCW(CornerPosition.BottomFrontLeftPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryLeft, CornerPosition.RotateBackCW(CornerPosition.BottomFrontLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryBottom, CornerPosition.RotateBackCW(CornerPosition.BottomFrontRightPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryFront, CornerPosition.RotateBackCW(CornerPosition.BottomFrontRightPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryRight, CornerPosition.RotateBackCW(CornerPosition.BottomFrontRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryBack, CornerPosition.RotateBackCW(CornerPosition.TopBackLeftPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryBottom, CornerPosition.RotateBackCW(CornerPosition.TopBackLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryLeft, CornerPosition.RotateBackCW(CornerPosition.TopBackLeftPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryBack, CornerPosition.RotateBackCW(CornerPosition.TopBackRightPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryTop, CornerPosition.RotateBackCW(CornerPosition.TopBackRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryLeft, CornerPosition.RotateBackCW(CornerPosition.TopBackRightPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryFront, CornerPosition.RotateBackCW(CornerPosition.TopFrontLeftPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryLeft, CornerPosition.RotateBackCW(CornerPosition.TopFrontLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryTop, CornerPosition.RotateBackCW(CornerPosition.TopFrontLeftPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryFront, CornerPosition.RotateBackCW(CornerPosition.TopFrontRightPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryRight, CornerPosition.RotateBackCW(CornerPosition.TopFrontRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryTop, CornerPosition.RotateBackCW(CornerPosition.TopFrontRightPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.Unmasked, CornerPosition.RotateBackCW(CornerPosition.Unmasked));
-            Assert.AreEqual<byte>(CornerPosition.Masked, CornerPosition.RotateBackCW(CornerPosition.Masked));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryBack, Position.RotateBackCW(Position.BottomBackLeftPrimaryBack));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryRight, Position.RotateBackCW(Position.BottomBackLeftPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryBottom, Position.RotateBackCW(Position.BottomBackLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryBack, Position.RotateBackCW(Position.BottomBackRightPrimaryBack));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryRight, Position.RotateBackCW(Position.BottomBackRightPrimaryBottom));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryTop, Position.RotateBackCW(Position.BottomBackRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryBottom, Position.RotateBackCW(Position.BottomFrontLeftPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryFront, Position.RotateBackCW(Position.BottomFrontLeftPrimaryFront));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryLeft, Position.RotateBackCW(Position.BottomFrontLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryBottom, Position.RotateBackCW(Position.BottomFrontRightPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryFront, Position.RotateBackCW(Position.BottomFrontRightPrimaryFront));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryRight, Position.RotateBackCW(Position.BottomFrontRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryBack, Position.RotateBackCW(Position.TopBackLeftPrimaryBack));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryBottom, Position.RotateBackCW(Position.TopBackLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryLeft, Position.RotateBackCW(Position.TopBackLeftPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryBack, Position.RotateBackCW(Position.TopBackRightPrimaryBack));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryTop, Position.RotateBackCW(Position.TopBackRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryLeft, Position.RotateBackCW(Position.TopBackRightPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryFront, Position.RotateBackCW(Position.TopFrontLeftPrimaryFront));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryLeft, Position.RotateBackCW(Position.TopFrontLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryTop, Position.RotateBackCW(Position.TopFrontLeftPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryFront, Position.RotateBackCW(Position.TopFrontRightPrimaryFront));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryRight, Position.RotateBackCW(Position.TopFrontRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryTop, Position.RotateBackCW(Position.TopFrontRightPrimaryTop));
+            Assert.AreEqual<byte>(Position.Unmasked, Position.RotateBackCW(Position.Unmasked));
+            Assert.AreEqual<byte>(Position.Masked, Position.RotateBackCW(Position.Masked));
         }
 
         [TestMethod]
         [TestCategory(@"Foat\Puzzles\RubiksCube")]
         public void CornerPosition_RotateBackCCW_AllCorners()
         {
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryBack, CornerPosition.RotateBackCCW(CornerPosition.BottomBackLeftPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryLeft, CornerPosition.RotateBackCCW(CornerPosition.BottomBackLeftPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryTop, CornerPosition.RotateBackCCW(CornerPosition.BottomBackLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryBack, CornerPosition.RotateBackCCW(CornerPosition.BottomBackRightPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryLeft, CornerPosition.RotateBackCCW(CornerPosition.BottomBackRightPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryBottom, CornerPosition.RotateBackCCW(CornerPosition.BottomBackRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryBottom, CornerPosition.RotateBackCCW(CornerPosition.BottomFrontLeftPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryFront, CornerPosition.RotateBackCCW(CornerPosition.BottomFrontLeftPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryLeft, CornerPosition.RotateBackCCW(CornerPosition.BottomFrontLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryBottom, CornerPosition.RotateBackCCW(CornerPosition.BottomFrontRightPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryFront, CornerPosition.RotateBackCCW(CornerPosition.BottomFrontRightPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryRight, CornerPosition.RotateBackCCW(CornerPosition.BottomFrontRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryBack, CornerPosition.RotateBackCCW(CornerPosition.TopBackLeftPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryTop, CornerPosition.RotateBackCCW(CornerPosition.TopBackLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryRight, CornerPosition.RotateBackCCW(CornerPosition.TopBackLeftPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryBack, CornerPosition.RotateBackCCW(CornerPosition.TopBackRightPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryBottom, CornerPosition.RotateBackCCW(CornerPosition.TopBackRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryRight, CornerPosition.RotateBackCCW(CornerPosition.TopBackRightPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryFront, CornerPosition.RotateBackCCW(CornerPosition.TopFrontLeftPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryLeft, CornerPosition.RotateBackCCW(CornerPosition.TopFrontLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryTop, CornerPosition.RotateBackCCW(CornerPosition.TopFrontLeftPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryFront, CornerPosition.RotateBackCCW(CornerPosition.TopFrontRightPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryRight, CornerPosition.RotateBackCCW(CornerPosition.TopFrontRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryTop, CornerPosition.RotateBackCCW(CornerPosition.TopFrontRightPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.Unmasked, CornerPosition.RotateBackCCW(CornerPosition.Unmasked));
-            Assert.AreEqual<byte>(CornerPosition.Masked, CornerPosition.RotateBackCCW(CornerPosition.Masked));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryBack, Position.RotateBackCCW(Position.BottomBackLeftPrimaryBack));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryLeft, Position.RotateBackCCW(Position.BottomBackLeftPrimaryBottom));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryTop, Position.RotateBackCCW(Position.BottomBackLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryBack, Position.RotateBackCCW(Position.BottomBackRightPrimaryBack));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryLeft, Position.RotateBackCCW(Position.BottomBackRightPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryBottom, Position.RotateBackCCW(Position.BottomBackRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryBottom, Position.RotateBackCCW(Position.BottomFrontLeftPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryFront, Position.RotateBackCCW(Position.BottomFrontLeftPrimaryFront));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryLeft, Position.RotateBackCCW(Position.BottomFrontLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryBottom, Position.RotateBackCCW(Position.BottomFrontRightPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryFront, Position.RotateBackCCW(Position.BottomFrontRightPrimaryFront));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryRight, Position.RotateBackCCW(Position.BottomFrontRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryBack, Position.RotateBackCCW(Position.TopBackLeftPrimaryBack));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryTop, Position.RotateBackCCW(Position.TopBackLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryRight, Position.RotateBackCCW(Position.TopBackLeftPrimaryTop));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryBack, Position.RotateBackCCW(Position.TopBackRightPrimaryBack));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryBottom, Position.RotateBackCCW(Position.TopBackRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryRight, Position.RotateBackCCW(Position.TopBackRightPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryFront, Position.RotateBackCCW(Position.TopFrontLeftPrimaryFront));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryLeft, Position.RotateBackCCW(Position.TopFrontLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryTop, Position.RotateBackCCW(Position.TopFrontLeftPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryFront, Position.RotateBackCCW(Position.TopFrontRightPrimaryFront));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryRight, Position.RotateBackCCW(Position.TopFrontRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryTop, Position.RotateBackCCW(Position.TopFrontRightPrimaryTop));
+            Assert.AreEqual<byte>(Position.Unmasked, Position.RotateBackCCW(Position.Unmasked));
+            Assert.AreEqual<byte>(Position.Masked, Position.RotateBackCCW(Position.Masked));
         }
 
         [TestMethod]
         [TestCategory(@"Foat\Puzzles\RubiksCube")]
         public void CornerPosition_RotateBackHalf_AllCorners()
         {
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryBack, CornerPosition.RotateBackHalf(CornerPosition.BottomBackLeftPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryTop, CornerPosition.RotateBackHalf(CornerPosition.BottomBackLeftPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.TopBackRightPrimaryRight, CornerPosition.RotateBackHalf(CornerPosition.BottomBackLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryBack, CornerPosition.RotateBackHalf(CornerPosition.BottomBackRightPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryTop, CornerPosition.RotateBackHalf(CornerPosition.BottomBackRightPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryLeft, CornerPosition.RotateBackHalf(CornerPosition.BottomBackRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryBottom, CornerPosition.RotateBackHalf(CornerPosition.BottomFrontLeftPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryFront, CornerPosition.RotateBackHalf(CornerPosition.BottomFrontLeftPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontLeftPrimaryLeft, CornerPosition.RotateBackHalf(CornerPosition.BottomFrontLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryBottom, CornerPosition.RotateBackHalf(CornerPosition.BottomFrontRightPrimaryBottom));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryFront, CornerPosition.RotateBackHalf(CornerPosition.BottomFrontRightPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.BottomFrontRightPrimaryRight, CornerPosition.RotateBackHalf(CornerPosition.BottomFrontRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryBack, CornerPosition.RotateBackHalf(CornerPosition.TopBackLeftPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryRight, CornerPosition.RotateBackHalf(CornerPosition.TopBackLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackRightPrimaryBottom, CornerPosition.RotateBackHalf(CornerPosition.TopBackLeftPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryBack, CornerPosition.RotateBackHalf(CornerPosition.TopBackRightPrimaryBack));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryLeft, CornerPosition.RotateBackHalf(CornerPosition.TopBackRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.BottomBackLeftPrimaryBottom, CornerPosition.RotateBackHalf(CornerPosition.TopBackRightPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryFront, CornerPosition.RotateBackHalf(CornerPosition.TopFrontLeftPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryLeft, CornerPosition.RotateBackHalf(CornerPosition.TopFrontLeftPrimaryLeft));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontLeftPrimaryTop, CornerPosition.RotateBackHalf(CornerPosition.TopFrontLeftPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryFront, CornerPosition.RotateBackHalf(CornerPosition.TopFrontRightPrimaryFront));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryRight, CornerPosition.RotateBackHalf(CornerPosition.TopFrontRightPrimaryRight));
-            Assert.AreEqual<byte>(CornerPosition.TopFrontRightPrimaryTop, CornerPosition.RotateBackHalf(CornerPosition.TopFrontRightPrimaryTop));
-            Assert.AreEqual<byte>(CornerPosition.Unmasked, CornerPosition.RotateBackHalf(CornerPosition.Unmasked));
-            Assert.AreEqual<byte>(CornerPosition.Masked, CornerPosition.RotateBackHalf(CornerPosition.Masked));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryBack, Position.RotateBackHalf(Position.BottomBackLeftPrimaryBack));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryTop, Position.RotateBackHalf(Position.BottomBackLeftPrimaryBottom));
+            Assert.AreEqual<byte>(Position.TopBackRightPrimaryRight, Position.RotateBackHalf(Position.BottomBackLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryBack, Position.RotateBackHalf(Position.BottomBackRightPrimaryBack));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryTop, Position.RotateBackHalf(Position.BottomBackRightPrimaryBottom));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryLeft, Position.RotateBackHalf(Position.BottomBackRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryBottom, Position.RotateBackHalf(Position.BottomFrontLeftPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryFront, Position.RotateBackHalf(Position.BottomFrontLeftPrimaryFront));
+            Assert.AreEqual<byte>(Position.BottomFrontLeftPrimaryLeft, Position.RotateBackHalf(Position.BottomFrontLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryBottom, Position.RotateBackHalf(Position.BottomFrontRightPrimaryBottom));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryFront, Position.RotateBackHalf(Position.BottomFrontRightPrimaryFront));
+            Assert.AreEqual<byte>(Position.BottomFrontRightPrimaryRight, Position.RotateBackHalf(Position.BottomFrontRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryBack, Position.RotateBackHalf(Position.TopBackLeftPrimaryBack));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryRight, Position.RotateBackHalf(Position.TopBackLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.BottomBackRightPrimaryBottom, Position.RotateBackHalf(Position.TopBackLeftPrimaryTop));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryBack, Position.RotateBackHalf(Position.TopBackRightPrimaryBack));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryLeft, Position.RotateBackHalf(Position.TopBackRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.BottomBackLeftPrimaryBottom, Position.RotateBackHalf(Position.TopBackRightPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryFront, Position.RotateBackHalf(Position.TopFrontLeftPrimaryFront));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryLeft, Position.RotateBackHalf(Position.TopFrontLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.TopFrontLeftPrimaryTop, Position.RotateBackHalf(Position.TopFrontLeftPrimaryTop));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryFront, Position.RotateBackHalf(Position.TopFrontRightPrimaryFront));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryRight, Position.RotateBackHalf(Position.TopFrontRightPrimaryRight));
+            Assert.AreEqual<byte>(Position.TopFrontRightPrimaryTop, Position.RotateBackHalf(Position.TopFrontRightPrimaryTop));
+            Assert.AreEqual<byte>(Position.Unmasked, Position.RotateBackHalf(Position.Unmasked));
+            Assert.AreEqual<byte>(Position.Masked, Position.RotateBackHalf(Position.Masked));
         }
 
         [TestMethod]
         [TestCategory(@"Foat\Puzzles\RubiksCube")]
         public void CornerPosition_Mask_MaskedEdge()
         {
-            Assert.AreEqual<byte>(CornerPosition.Masked, CornerPosition.Mask(CornerPosition.TopBackLeftPrimaryLeft, CornerPosition.Masked));
+            Assert.AreEqual<byte>(Position.Masked, Position.Mask(Position.TopBackLeftPrimaryLeft, Position.Masked));
         }
 
         [TestMethod]
         [TestCategory(@"Foat\Puzzles\RubiksCube")]
         public void CornerPosition_Mask_UnmaskedEdge()
         {
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryLeft, CornerPosition.Mask(CornerPosition.TopBackLeftPrimaryLeft, CornerPosition.Unmasked));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryLeft, Position.Mask(Position.TopBackLeftPrimaryLeft, Position.Unmasked));
         }
 
         [TestMethod]
@@ -602,7 +602,7 @@ namespace Foat.Puzzles.Tests.RubiksCube
         [ExpectedException(typeof(ArgumentException))]
         public void CornerPosition_Mask_BadMask()
         {
-            Assert.AreEqual<byte>(CornerPosition.TopBackLeftPrimaryLeft, CornerPosition.Mask(CornerPosition.TopBackLeftPrimaryLeft, CornerPosition.TopBackLeftPrimaryLeft));
+            Assert.AreEqual<byte>(Position.TopBackLeftPrimaryLeft, Position.Mask(Position.TopBackLeftPrimaryLeft, Position.TopBackLeftPrimaryLeft));
         }
     }
 }

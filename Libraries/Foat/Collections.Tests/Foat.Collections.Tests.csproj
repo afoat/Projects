@@ -93,10 +93,13 @@
     <Compile Include="Generic\AVLNodeTests.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Generic\AVLTreeTests.Integration.ICollection.cs" />
     <Compile Include="Generic\BinarySearchTreeTests.Integration.IBinarySearchTree.cs" />
     <Compile Include="Generic\AVLTreeTests.Integration.IBinarySearchTree.cs" />
     <Compile Include="Generic\AVLTreeTests.Integration.IEnumerable.cs" />
+    <Compile Include="Generic\BinarySearchTreeTests.Integration.ICollection.cs" />
     <Compile Include="Generic\BinarySearchTreeTests.Integration.IEnumerable.cs" />
+    <Compile Include="Generic\RedBlackTreeTests.Integration.ICollection.cs" />
     <Compile Include="Generic\SkipListTests.Unit.ICollection.cs" />
     <Compile Include="Generic\SkipListTests.Unit.IEnumerable.cs" />
     <Compile Include="Generic\RedBlackTreeTests.Integration.IEnumerable.cs" />

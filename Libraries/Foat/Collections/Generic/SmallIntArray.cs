@@ -5,7 +5,7 @@
     using System.Collections.Generic;
     using System.Xml.Serialization;
 
-    public sealed class SmallIntArray : IHashKey, IXmlSerializable
+    public sealed class SmallIntArray : IXmlSerializable
     {
 
         public byte BitsPerInt { get; private set; }
@@ -135,11 +135,6 @@
         internal static byte CreateSetMask(int startPosition, int endPosition)
         {
             return (byte)~CreateGetMask(startPosition, endPosition);
-        }
-
-        public byte[] GetBytes()
-        {
-            return this.Array;
         }
 
         public System.Xml.Schema.XmlSchema GetSchema()

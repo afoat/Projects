@@ -3,10 +3,11 @@
     using Foat.Hashing;
     using Foat.Puzzles.Solutions;
     using System;
+    using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using System.Xml.Serialization;
 
-    public sealed partial class RubiksCube : IPuzzle<RubiksCube>, IHashKey, IXmlSerializable, IEquatable<RubiksCube>
+    public sealed partial class RubiksCube : IPuzzle<RubiksCube>, IXmlSerializable, IEquatable<RubiksCube>, IEnumerable<byte>
     {
 
         #region Constants
@@ -22,6 +23,14 @@
         #endregion
 
         #region Properties
+
+        public bool IsMasked
+        {
+            get
+            {
+                return this.Data.Length != NumCubies;
+            }
+        }
 
         private byte[] Data;
 
@@ -41,30 +50,42 @@
         {
             this.Data = new byte[NumCubies];
 
-            this.Data[0] = CornerPosition.TopBackLeftPrimaryTop;
-            this.Data[1] = CornerPosition.TopBackRightPrimaryTop;
-            this.Data[2] = CornerPosition.TopFrontRightPrimaryTop;
-            this.Data[3] = CornerPosition.TopFrontLeftPrimaryTop;
-            this.Data[4] = CornerPosition.BottomBackLeftPrimaryBottom;
-            this.Data[5] = CornerPosition.BottomBackRightPrimaryBottom;
-            this.Data[6] = CornerPosition.BottomFrontRightPrimaryBottom;
+            this.Data[0] = Position.TopBackLeftPrimaryTop;
+            this.Data[1] = Position.TopBackRightPrimaryTop;
+            this.Data[2] = Position.TopFrontRightPrimaryTop;
+            this.Data[3] = Position.TopFrontLeftPrimaryTop;
+            this.Data[4] = Position.BottomBackLeftPrimaryBottom;
+            this.Data[5] = Position.BottomBackRightPrimaryBottom;
+            this.Data[6] = Position.BottomFrontRightPrimaryBottom;
 
-            this.Data[7] = EdgePosition.TopLeftPrimaryTop;
-            this.Data[8] = EdgePosition.TopBackPrimaryTop;
-            this.Data[9] = EdgePosition.TopRightPrimaryTop;
-            this.Data[10] = EdgePosition.TopFrontPrimaryTop;
-            this.Data[11] = EdgePosition.BottomLeftPrimaryBottom;
-            this.Data[12] = EdgePosition.BottomBackPrimaryBottom;
-            this.Data[13] = EdgePosition.BottomRightPrimaryBottom;
-            this.Data[14] = EdgePosition.BottomFrontPrimaryBottom;
-            this.Data[15] = EdgePosition.FrontLeftPrimaryFront;
-            this.Data[16] = EdgePosition.BackLeftPrimaryBack;
-            this.Data[17] = EdgePosition.BackRightPrimaryBack;
-            this.Data[18] = EdgePosition.FrontRightPrimaryFront;
+            this.Data[7] = Position.TopLeftPrimaryTop;
+            this.Data[8] = Position.TopBackPrimaryTop;
+            this.Data[9] = Position.TopRightPrimaryTop;
+            this.Data[10] = Position.TopFrontPrimaryTop;
+            this.Data[11] = Position.BottomLeftPrimaryBottom;
+            this.Data[12] = Position.BottomBackPrimaryBottom;
+            this.Data[13] = Position.BottomRightPrimaryBottom;
+            this.Data[14] = Position.BottomFrontPrimaryBottom;
+            this.Data[15] = Position.FrontLeftPrimaryFront;
+            this.Data[16] = Position.BackLeftPrimaryBack;
+            this.Data[17] = Position.BackRightPrimaryBack;
+            this.Data[18] = Position.FrontRightPrimaryFront;
         }
 
-        internal RubiksCube(byte[] data)
+        public RubiksCube(byte[] data)
         {
+            if (data == null)
+                throw new ArgumentNullException("data");
+
+            if (data.Length > NumCubies)
+                throw new ArgumentException("Data too long");
+
+            for (int i = 0; i < data.Length; i++)
+            {
+                if (!Position.IsValidCornerPosition(data[i]))
+                    throw new ArgumentException("Invalid data.");
+            }
+
             this.Data = data;
         }
 
@@ -74,179 +95,196 @@
 
         public RubiksCube ApplyMask(RubiksCube mask)
         {
-            byte[] newData = new byte[NumCubies];
+            if (mask == null)
+                throw new NullReferenceException("mask");
 
-            for (int cornerIx = CornerStartIx; cornerIx <= CornerEndIx; ++cornerIx)
+            if (this.IsMasked)
+                throw new InvalidOperationException("Rubiks cube is already masked.");
+                        
+            List<byte> maskedBytes = new List<byte>(RubiksCube.NumCubies);
+            for (int i = 0; i < this.Data.Length; i++)
             {
-                newData[cornerIx] = CornerPosition.Mask(this.Data[cornerIx], mask.Data[cornerIx]);
+                if (mask[i] != Position.Masked)
+                {
+                    if (mask[i] != Position.Unmasked)
+                    {
+                        throw new ArgumentException("Bad mask");
+                    }
+
+                    maskedBytes.Add(this.Data[i]);
+                }
             }
 
-            for (int edgeIx = EdgeStartIx; edgeIx <= EdgeEndIx; ++edgeIx)
-            {
-                newData[edgeIx] = EdgePosition.Mask(this.Data[edgeIx], mask.Data[edgeIx]);
-            }
+            return new RubiksCube(maskedBytes.ToArray());
+        }
+        
+        public RubiksCube GetFullRubiksCube(RubiksCube mask)
+        {
+            if (mask == null)
+                throw new NullReferenceException("mask");
 
-            return new RubiksCube(newData);
+            if (!this.IsMasked)
+                throw new InvalidOperationException("Rubiks cube is already full.");
+            
+            byte[] rubiksBytes = new byte[RubiksCube.NumCubies];
+            int currentRubiksByte = 0;
+            int currentMaskedByte = 0;
+
+            for (int i = 0; i < this.Data.Length; i++)
+            {
+                if (mask[i] == Position.Masked)
+                {
+                    rubiksBytes[currentRubiksByte++] = Position.Masked;
+                }
+                else
+                {
+                    rubiksBytes[currentRubiksByte++] = this.Data[currentMaskedByte++];
+                }
+            }
+            
+            return new RubiksCube(rubiksBytes);
         }
 
         public RubiksCube RotateTopCW()
         {
-            byte[] newData = new byte[NumCubies];
-            ModifyEdgesIntoNewData(newData, edge => EdgePosition.RotateTopCW(edge));
-            ModifyCornersIntoNewData(newData, corner => CornerPosition.RotateTopCW(corner));
+            byte[] newData = new byte[this.Data.Length];
+            ModifyPositionsIntoNewData(newData, corner => Position.RotateTopCW(corner));
 
             return new RubiksCube(newData);
         }
 
         public RubiksCube RotateTopCCW()
         {
-            byte[] newData = new byte[NumCubies];
-            ModifyEdgesIntoNewData(newData, edge => EdgePosition.RotateTopCCW(edge));
-            ModifyCornersIntoNewData(newData, corner => CornerPosition.RotateTopCCW(corner));
+            byte[] newData = new byte[this.Data.Length];
+            ModifyPositionsIntoNewData(newData, corner => Position.RotateTopCCW(corner));
 
             return new RubiksCube(newData);
         }
 
         public RubiksCube RotateTopHalf()
         {
-            byte[] newData = new byte[NumCubies];
-            ModifyEdgesIntoNewData(newData, edge => EdgePosition.RotateTopHalf(edge));
-            ModifyCornersIntoNewData(newData, corner => CornerPosition.RotateTopHalf(corner));
+            byte[] newData = new byte[this.Data.Length];
+            ModifyPositionsIntoNewData(newData, corner => Position.RotateTopHalf(corner));
 
             return new RubiksCube(newData);
         }
 
         public RubiksCube RotateBottomCW()
         {
-            byte[] newData = new byte[NumCubies];
-            ModifyEdgesIntoNewData(newData, edge => EdgePosition.RotateBottomCW(edge));
-            ModifyCornersIntoNewData(newData, corner => CornerPosition.RotateBottomCW(corner));
+            byte[] newData = new byte[this.Data.Length];
+            ModifyPositionsIntoNewData(newData, corner => Position.RotateBottomCW(corner));
 
             return new RubiksCube(newData);
         }
 
         public RubiksCube RotateBottomCCW()
         {
-            byte[] newData = new byte[NumCubies];
-            ModifyEdgesIntoNewData(newData, edge => EdgePosition.RotateBottomCCW(edge));
-            ModifyCornersIntoNewData(newData, corner => CornerPosition.RotateBottomCCW(corner));
+            byte[] newData = new byte[this.Data.Length];
+            ModifyPositionsIntoNewData(newData, corner => Position.RotateBottomCCW(corner));
 
             return new RubiksCube(newData);
         }
 
         public RubiksCube RotateBottomHalf()
         {
-            byte[] newData = new byte[NumCubies];
-            ModifyEdgesIntoNewData(newData, edge => EdgePosition.RotateBottomHalf(edge));
-            ModifyCornersIntoNewData(newData, corner => CornerPosition.RotateBottomHalf(corner));
+            byte[] newData = new byte[this.Data.Length];
+            ModifyPositionsIntoNewData(newData, corner => Position.RotateBottomHalf(corner));
 
             return new RubiksCube(newData);
         }
 
         public RubiksCube RotateLeftCW()
         {
-            byte[] newData = new byte[NumCubies];
-            ModifyEdgesIntoNewData(newData, edge => EdgePosition.RotateLeftCW(edge));
-            ModifyCornersIntoNewData(newData, corner => CornerPosition.RotateLeftCW(corner));
+            byte[] newData = new byte[this.Data.Length];
+            ModifyPositionsIntoNewData(newData, corner => Position.RotateLeftCW(corner));
 
             return new RubiksCube(newData);
         }
 
         public RubiksCube RotateLeftCCW()
         {
-            byte[] newData = new byte[NumCubies];
-            ModifyEdgesIntoNewData(newData, edge => EdgePosition.RotateLeftCCW(edge));
-            ModifyCornersIntoNewData(newData, corner => CornerPosition.RotateLeftCCW(corner));
+            byte[] newData = new byte[this.Data.Length];
+            ModifyPositionsIntoNewData(newData, corner => Position.RotateLeftCCW(corner));
 
             return new RubiksCube(newData);
         }
 
         public RubiksCube RotateLeftHalf()
         {
-            byte[] newData = new byte[NumCubies];
-            ModifyEdgesIntoNewData(newData, edge => EdgePosition.RotateLeftHalf(edge));
-            ModifyCornersIntoNewData(newData, corner => CornerPosition.RotateLeftHalf(corner));
+            byte[] newData = new byte[this.Data.Length];
+            ModifyPositionsIntoNewData(newData, corner => Position.RotateLeftHalf(corner));
 
             return new RubiksCube(newData);
         }
 
         public RubiksCube RotateRightCW()
         {
-            byte[] newData = new byte[NumCubies];
-            ModifyEdgesIntoNewData(newData, edge => EdgePosition.RotateRightCW(edge));
-            ModifyCornersIntoNewData(newData, corner => CornerPosition.RotateRightCW(corner));
+            byte[] newData = new byte[this.Data.Length];
+            ModifyPositionsIntoNewData(newData, corner => Position.RotateRightCW(corner));
 
             return new RubiksCube(newData);
         }
 
         public RubiksCube RotateRightCCW()
         {
-            byte[] newData = new byte[NumCubies];
-            ModifyEdgesIntoNewData(newData, edge => EdgePosition.RotateRightCCW(edge));
-            ModifyCornersIntoNewData(newData, corner => CornerPosition.RotateRightCCW(corner));
+            byte[] newData = new byte[this.Data.Length];
+            ModifyPositionsIntoNewData(newData, corner => Position.RotateRightCCW(corner));
 
             return new RubiksCube(newData);
         }
 
         public RubiksCube RotateRightHalf()
         {
-            byte[] newData = new byte[NumCubies];
-            ModifyEdgesIntoNewData(newData, edge => EdgePosition.RotateRightHalf(edge));
-            ModifyCornersIntoNewData(newData, corner => CornerPosition.RotateRightHalf(corner));
+            byte[] newData = new byte[this.Data.Length];
+            ModifyPositionsIntoNewData(newData, corner => Position.RotateRightHalf(corner));
 
             return new RubiksCube(newData);
         }
 
         public RubiksCube RotateFrontCW()
         {
-            byte[] newData = new byte[NumCubies];
-            ModifyEdgesIntoNewData(newData, edge => EdgePosition.RotateFrontCW(edge));
-            ModifyCornersIntoNewData(newData, corner => CornerPosition.RotateFrontCW(corner));
+            byte[] newData = new byte[this.Data.Length];
+            ModifyPositionsIntoNewData(newData, corner => Position.RotateFrontCW(corner));
 
             return new RubiksCube(newData);
         }
 
         public RubiksCube RotateFrontCCW()
         {
-            byte[] newData = new byte[NumCubies];
-            ModifyEdgesIntoNewData(newData, edge => EdgePosition.RotateFrontCCW(edge));
-            ModifyCornersIntoNewData(newData, corner => CornerPosition.RotateFrontCCW(corner));
+            byte[] newData = new byte[this.Data.Length];
+            ModifyPositionsIntoNewData(newData, corner => Position.RotateFrontCCW(corner));
 
             return new RubiksCube(newData);
         }
 
         public RubiksCube RotateFrontHalf()
         {
-            byte[] newData = new byte[NumCubies];
-            ModifyEdgesIntoNewData(newData, edge => EdgePosition.RotateFrontHalf(edge));
-            ModifyCornersIntoNewData(newData, corner => CornerPosition.RotateFrontHalf(corner));
+            byte[] newData = new byte[this.Data.Length];
+            ModifyPositionsIntoNewData(newData, corner => Position.RotateFrontHalf(corner));
 
             return new RubiksCube(newData);
         }
 
         public RubiksCube RotateBackCW()
         {
-            byte[] newData = new byte[NumCubies];
-            ModifyEdgesIntoNewData(newData, edge => EdgePosition.RotateBackCW(edge));
-            ModifyCornersIntoNewData(newData, corner => CornerPosition.RotateBackCW(corner));
+            byte[] newData = new byte[this.Data.Length];
+            ModifyPositionsIntoNewData(newData, corner => Position.RotateBackCW(corner));
 
             return new RubiksCube(newData);
         }
 
         public RubiksCube RotateBackCCW()
         {
-            byte[] newData = new byte[NumCubies];
-            ModifyEdgesIntoNewData(newData, edge => EdgePosition.RotateBackCCW(edge));
-            ModifyCornersIntoNewData(newData, corner => CornerPosition.RotateBackCCW(corner));
+            byte[] newData = new byte[this.Data.Length];
+            ModifyPositionsIntoNewData(newData, corner => Position.RotateBackCCW(corner));
 
             return new RubiksCube(newData);
         }
 
         public RubiksCube RotateBackHalf()
         {
-            byte[] newData = new byte[NumCubies];
-            ModifyEdgesIntoNewData(newData, edge => EdgePosition.RotateBackHalf(edge));
-            ModifyCornersIntoNewData(newData, corner => CornerPosition.RotateBackHalf(corner));
+            byte[] newData = new byte[this.Data.Length];
+            ModifyPositionsIntoNewData(newData, corner => Position.RotateBackHalf(corner));
 
             return new RubiksCube(newData);
         }
@@ -264,22 +302,13 @@
         #endregion
 
         #region Helpers
-
+        
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        internal void ModifyEdgesIntoNewData(byte[] newData, Func<byte, byte> function)
+        internal void ModifyPositionsIntoNewData(byte[] newData, Func<byte, byte> function)
         {
-            for (int edgeIx = EdgeStartIx; edgeIx <= EdgeEndIx; ++edgeIx)
+            for (int i = 0; i < this.Data.Length; ++i)
             {
-                newData[edgeIx] = function(this.Data[edgeIx]);
-            }
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        internal void ModifyCornersIntoNewData(byte[] newData, Func<byte, byte> function)
-        {
-            for (int cornerIx = CornerStartIx; cornerIx <= CornerEndIx; ++cornerIx)
-            {
-                newData[cornerIx] = function(this.Data[cornerIx]);
+                newData[i] = function(this.Data[i]);
             }
         }
 
@@ -314,7 +343,7 @@
             }
             else
             {
-                for (int i = 0; i < NumCubies; i++)
+                for (int i = 0; i < this.Data.Length; i++)
                 {
                     if (this.Data[i] != otherCube.Data[i])
                     {
@@ -358,5 +387,21 @@
 
         #endregion
 
+        #region IEnumerable
+
+        public IEnumerator<byte> GetEnumerator()
+        {
+            for (int i = 0; i < this.Data.Length; ++i)
+            {
+                yield return this.Data[i];
+            }
+        }
+
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
+        }
+
+        #endregion
     }
 }

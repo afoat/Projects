@@ -6,8 +6,9 @@
     using System.Xml.Serialization;
 
     /// <summary>
-    /// A pattern provides a way for us to map a random RubiksCube into a PatternSet by using a masked RubiksCube that
-    /// is similar to a real Rubik's Cube that has some of its stickers taken off.
+    /// A pattern contains the information necesssary to generate a pattern set. This includes a 
+    /// rubiks cube with some stickers taken off (the mask) and some information about the 
+    /// expected size and shape of the set that this mask generates.
     /// </summary>
     public sealed class Pattern : IXmlSerializable
     {
@@ -43,7 +44,7 @@
         /// The maximum solution depth of any possible cube in this pattern.
         /// </summary>
         public int MaxDepth { get; private set; }
-                        
+
         public XmlSchema GetSchema()
         {
             return null;

@@ -15,13 +15,13 @@
         {
             int n = 100000;
 
-            HashSet<IHashKey> keys = new HashSet<IHashKey>();
+            HashSet<byte[]> keys = new HashSet<byte[]>();
             Random rnd = new Random();
 
             Trace.WriteLine(string.Format(CultureInfo.InvariantCulture, ConsoleOutput.GeneratingKeys, n));
             while (keys.Count < n )
             {
-                IntHashKey next = new IntHashKey(rnd.Next());
+                byte[] next = new byte[] {(byte)rnd.Next(), (byte)rnd.Next(), (byte)rnd.Next(), (byte)rnd.Next(), (byte)rnd.Next()};
                 if (!keys.Contains(next))
                 {
                     keys.Add(next);
@@ -56,14 +56,14 @@
             }
         }
 
-        private static bool CheckMinimalPerfectHash(int n, HashSet<IHashKey> keys, MinimalPerfectHash<FnvHash> mph)
+        private static bool CheckMinimalPerfectHash(int n, HashSet<byte[]> keys, MinimalPerfectHash<FnvHash> mph)
         {
             bool results = true;
             try
             {
                 bool[] foundIndex = new bool[n];
 
-                foreach (IHashKey key in keys)
+                foreach (byte[] key in keys)
                 {
                     foundIndex[mph.GetHashCode(key)] = true;
                 }

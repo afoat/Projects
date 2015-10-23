@@ -14,7 +14,5 @@
         Move<TPuzzle>[] GetValidMoves();
 
         Move<TPuzzle>[] GetAllMoves();
-
-        TPuzzle ApplyMask(TPuzzle mask);
     }
 }

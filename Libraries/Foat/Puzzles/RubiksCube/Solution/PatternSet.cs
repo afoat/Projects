@@ -3,6 +3,7 @@
     using Foat.Hashing;
     using Foat.Puzzles.RubiksCube;
     using System;
+    using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.IO;
     using System.Runtime.Serialization;
@@ -58,7 +59,7 @@
         {
         }
 
-        public PatternSet(IDictionary<RubiksCube, byte> cubeSolutionDistanceMap, MinimalPerfectHash<FnvHash> minimalPerfectHash, Pattern pattern)
+        public PatternSet(ConcurrentDictionary<RubiksCube, byte> cubeSolutionDistanceMap, MinimalPerfectHash<FnvHash> minimalPerfectHash, Pattern pattern)
         {
             if (cubeSolutionDistanceMap == null)
             {
@@ -79,9 +80,9 @@
             this.MinimalPerfectHash = minimalPerfectHash;
             this.MinimumSolutionLength = new byte[cubeSolutionDistanceMap.Count];
 
-            foreach (RubiksCube value in cubeSolutionDistanceMap.Keys)
+            foreach (KeyValuePair<RubiksCube, byte> rubiksCubeAndDepth in cubeSolutionDistanceMap)
             {
-                this.MinimumSolutionLength[this.MinimalPerfectHash.GetHashCode(value)] = cubeSolutionDistanceMap[value];
+                this.MinimumSolutionLength[this.MinimalPerfectHash.GetHashCode(rubiksCubeAndDepth.Key.GetBytes())] = rubiksCubeAndDepth.Value;
             }
         }
 
@@ -99,7 +100,7 @@
         public byte GetEstimatedSolutionLength(RubiksCube cube)
         {
             RubiksCube maskedCube = cube.ApplyMask(this.Pattern.Mask);
-            int index = this.MinimalPerfectHash.GetHashCode(maskedCube);
+            int index = this.MinimalPerfectHash.GetHashCode(maskedCube.GetBytes());
             return this.MinimumSolutionLength[index];
         }
 
