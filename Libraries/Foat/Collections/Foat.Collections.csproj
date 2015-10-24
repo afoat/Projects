@@ -71,6 +71,8 @@
     <Compile Include="Generic\Colour.cs" />
     <Compile Include="Generic\Heap.cs" />
     <Compile Include="Generic\HeapType.cs" />
+    <Compile Include="Generic\MMF\ConcurrentMMFQueue.cs" />
+    <Compile Include="Generic\MMF\MMFCache.cs" />
     <Compile Include="Generic\RedBlackTree.ICollection.cs" />
     <Compile Include="Generic\SkipList.ICollection.cs" />
     <Compile Include="Generic\SkipList.IEnumerable.cs" />

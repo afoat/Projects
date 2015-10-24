@@ -42,6 +42,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrieTestConsole", "LibraryT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinimalPerfectHashConsole", "LibraryTestConsoles\MinimalPerfectHashConsole\MinimalPerfectHashConsole.csproj", "{AF047E2E-E11C-448A-BCBE-9CDE27B1A678}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcurrentMMFQueueTestConsole", "LibraryTestConsoles\ConcurrentMMFQueueTestConsole\ConcurrentMMFQueueTestConsole.csproj", "{BC42273A-0FF4-47C6-A608-6C1AB490E04A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -196,6 +198,16 @@ Global
 		{AF047E2E-E11C-448A-BCBE-9CDE27B1A678}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{AF047E2E-E11C-448A-BCBE-9CDE27B1A678}.Release|x64.ActiveCfg = Release|x64
 		{AF047E2E-E11C-448A-BCBE-9CDE27B1A678}.Release|x64.Build.0 = Release|x64
+		{BC42273A-0FF4-47C6-A608-6C1AB490E04A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC42273A-0FF4-47C6-A608-6C1AB490E04A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC42273A-0FF4-47C6-A608-6C1AB490E04A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{BC42273A-0FF4-47C6-A608-6C1AB490E04A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{BC42273A-0FF4-47C6-A608-6C1AB490E04A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BC42273A-0FF4-47C6-A608-6C1AB490E04A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC42273A-0FF4-47C6-A608-6C1AB490E04A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC42273A-0FF4-47C6-A608-6C1AB490E04A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{BC42273A-0FF4-47C6-A608-6C1AB490E04A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{BC42273A-0FF4-47C6-A608-6C1AB490E04A}.Release|x64.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -214,5 +226,6 @@ Global
 		{A9A4A921-FB08-4090-9B98-C0A9E06A4842} = {80C42880-31F2-44E8-93BD-13BA15E6A7F6}
 		{7CF7B441-80DC-4CA6-B3D7-9D97196E4FC1} = {637D3672-3E95-4BA0-A22B-919AB847F4F7}
 		{AF047E2E-E11C-448A-BCBE-9CDE27B1A678} = {637D3672-3E95-4BA0-A22B-919AB847F4F7}
+		{BC42273A-0FF4-47C6-A608-6C1AB490E04A} = {637D3672-3E95-4BA0-A22B-919AB847F4F7}
 	EndGlobalSection
 EndGlobal
