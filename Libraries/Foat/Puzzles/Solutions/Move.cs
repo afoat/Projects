@@ -19,6 +19,11 @@
         /// </summary>
         public Func<TPuzzle, TPuzzle> MovePuzzle { get; private set; }
 
+        public byte[] GetBytes()
+        {
+            return BitConverter.GetBytes(this.Id);
+        }
+
         /// <summary>
         /// This lambda expression returns all of the valid moves based on what the current move is.
         /// </summary>

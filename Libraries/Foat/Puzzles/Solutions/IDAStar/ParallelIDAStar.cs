@@ -20,7 +20,8 @@
 
         #region Construction
 
-        public ParallelIDAStar(IHeuristic<TPuzzle> heuristic, TPuzzle solutionInstance) : base(heuristic, solutionInstance)
+        public ParallelIDAStar(IHeuristic<TPuzzle> heuristic, TPuzzle solutionInstance)
+            : base(heuristic, solutionInstance)
         {
         }
 

@@ -14,5 +14,7 @@
         Move<TPuzzle>[] GetValidMoves();
 
         Move<TPuzzle>[] GetAllMoves();
+
+        byte[] GetBytes();
     }
 }

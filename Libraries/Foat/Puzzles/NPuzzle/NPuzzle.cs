@@ -2,6 +2,7 @@
 {
     using Foat.Puzzles.Solutions;
     using System;
+    using System.Collections.Generic;
     using System.Text;
 
     /// <summary>
@@ -281,6 +282,24 @@
         public byte GetValue(int rowIx, int colIx)
         {
             return this.Board[rowIx, colIx];
+        }
+
+        public byte[] GetBytes()
+        {
+            List<byte> bytes = new List<byte>();
+
+            bytes.Add(this.BlankSpaceCol);
+            bytes.Add(this.BlankSpaceRow);
+
+            for (byte rowIx = 0; rowIx < this.Dimension; ++rowIx)
+            {
+                for (byte colIx = 0; colIx < this.Dimension; ++colIx)
+                {
+                    bytes.Add(this.Board[rowIx, colIx]);
+                }
+            }
+
+            return bytes.ToArray();
         }
 
         public Move<NPuzzle>[] GetAllMoves()

@@ -1,6 +1,8 @@
 ﻿namespace Foat.Puzzles.Solutions
 {
+    using Foat.Puzzles.RubiksCube.Solution;
     using System;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Contains a puzzle and some information relevant to the current state of the puzzle.
@@ -21,7 +23,7 @@
         /// The instance of the puzzle that applies to this state information.
         /// </summary>
         public TPuzzle PuzzleInstance { get; private set; }
-
+                
         public PuzzleState(byte depth, TPuzzle puzzleInstance)
         {
             this.LastMove = null;
@@ -29,11 +31,48 @@
             this.PuzzleInstance = puzzleInstance;
         }
 
+        public PuzzleState(byte[] puzzleState)
+        {
+            if (puzzleState == null)
+                throw new ArgumentNullException("puzzleState");
+            
+            if (puzzleState.Length < 5)
+                throw new ArgumentException("bytes array isnt long enough to make a PuzzleState", "puzzleState");
+
+            this.Depth = puzzleState[0];
+
+            int moveId = BitConverter.ToInt32(puzzleState, 1);
+            if (moveId == int.MaxValue)
+                this.LastMove = null;
+            else
+                this.LastMove = PuzzleFactory<TPuzzle>.FindMove(moveId);
+
+            byte[] puzzleBytes = new byte[puzzleState.Length - 5];
+            Array.Copy(puzzleState, 5, puzzleBytes, 0, puzzleState.Length - 5);
+            this.PuzzleInstance = PuzzleFactory<TPuzzle>.PuzzleFromBytes(puzzleBytes);
+        }
+
         public PuzzleState(Move<TPuzzle> move, byte depth, TPuzzle puzzleInstance)
         {
             this.LastMove = move;
             this.Depth = depth;
             this.PuzzleInstance = puzzleInstance;
+        }
+
+        public byte[] GetBytes()
+        {
+            List<byte> bytes = new List<byte>();
+
+            bytes.Add(this.Depth);
+
+            if (this.LastMove == null)
+                bytes.AddRange(BitConverter.GetBytes(int.MaxValue));
+            else
+                bytes.AddRange(BitConverter.GetBytes(this.LastMove.Id));
+
+            bytes.AddRange(this.PuzzleInstance.GetBytes());
+
+            return bytes.ToArray();
         }
     }
 }

@@ -3,6 +3,7 @@
     using Foat.Hashing;
     using Foat.Puzzles.RubiksCube;
     using Foat.Puzzles.Solutions;
+    using Foat.Collections.Generic.MMF;
     using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
@@ -54,7 +55,7 @@
         private static ConcurrentDictionary<RubiksCube, byte> GeneratePatternSetDictionary(Pattern pattern, int numberOfThreads)
         {
             ConcurrentDictionary<RubiksCube, byte> patternDatabase = new ConcurrentDictionary<RubiksCube, byte>(numberOfThreads, pattern.GroupSize);
-            ConcurrentQueue<PuzzleState<RubiksCube>> cubesToExamine = new ConcurrentQueue<PuzzleState<RubiksCube>>();
+            PuzzleStateQueue cubesToExamine = new PuzzleStateQueue(11, 50000000, 100000);
 
             SetInitalState(pattern, patternDatabase, cubesToExamine);
 
@@ -89,10 +90,10 @@
 
         /// <summary>
         /// Initializes the PatternSetGenerator to run.
-        private static void SetInitalState(Pattern pattern, ConcurrentDictionary<RubiksCube, byte> patternDatabase, ConcurrentQueue<PuzzleState<RubiksCube>> cubesToExamine)
+        private static void SetInitalState(Pattern pattern, ConcurrentDictionary<RubiksCube, byte> patternDatabase, PuzzleStateQueue cubesToExamine)
         {
             RubiksCube newMaskedCube = new RubiksCube().ApplyMask(pattern.Mask);
-            cubesToExamine.Enqueue(new PuzzleState<RubiksCube>(0, newMaskedCube));
+            cubesToExamine.TryEnqueue(new PuzzleState<RubiksCube>(0, newMaskedCube));
             patternDatabase.AddOrUpdate(newMaskedCube, 0, (cube, currentDepth)=>Math.Min(currentDepth, (byte)0));
         }
 

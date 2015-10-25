@@ -78,6 +78,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RubiksCube\RubiksCube.Moves.cs" />
     <Compile Include="RubiksCube\RubiksCubeFactory.cs" />
+    <Compile Include="Solutions\PuzzleFactory.cs" />
+    <Compile Include="RubiksCube\Solution\PuzzleStateQueue.cs" />
     <Compile Include="Solutions\IDAStar\DepthLimitedAStar.cs" />
     <Compile Include="Solutions\IDAStar\IDAStar.cs" />
     <Compile Include="Solutions\PuzzleSolutionEventArgs.cs" />
