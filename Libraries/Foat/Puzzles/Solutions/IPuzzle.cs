@@ -16,5 +16,6 @@
         Move<TPuzzle>[] GetAllMoves();
 
         byte[] GetBytes();
+        int GetNumBytes();
     }
 }

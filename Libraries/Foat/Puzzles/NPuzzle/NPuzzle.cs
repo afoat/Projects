@@ -284,6 +284,14 @@
             return this.Board[rowIx, colIx];
         }
 
+        public int GetNumBytes()
+        {
+            return 1 // BlankSpaceCol
+                 + 1 // BlankSpaceRow
+                 + 4 // Dimensions
+                 + (this.Dimension * this.Dimension); // One byte per space on the square board
+        }
+
         public byte[] GetBytes()
         {
             List<byte> bytes = new List<byte>();

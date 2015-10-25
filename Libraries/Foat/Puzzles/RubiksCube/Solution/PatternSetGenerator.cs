@@ -55,9 +55,11 @@
         private static ConcurrentDictionary<RubiksCube, byte> GeneratePatternSetDictionary(Pattern pattern, int numberOfThreads)
         {
             ConcurrentDictionary<RubiksCube, byte> patternDatabase = new ConcurrentDictionary<RubiksCube, byte>(numberOfThreads, pattern.GroupSize);
-            PuzzleStateQueue cubesToExamine = new PuzzleStateQueue(11, 50000000, 100000);
 
-            SetInitalState(pattern, patternDatabase, cubesToExamine);
+            RubiksCube newMaskedCube = new RubiksCube().ApplyMask(pattern.Mask);
+            PuzzleState<RubiksCube> puzzleState = new PuzzleState<RubiksCube>(0, newMaskedCube);
+            PuzzleStateQueue cubesToExamine = new PuzzleStateQueue(puzzleState.GetNumBytes(), 50000000, 100000);
+            SetInitalState(puzzleState, patternDatabase, cubesToExamine);
 
             PatternSetGeneratorWorker[] workers = new PatternSetGeneratorWorker[numberOfThreads];
             Task[] tasks = new Task[numberOfThreads];
@@ -90,11 +92,10 @@
 
         /// <summary>
         /// Initializes the PatternSetGenerator to run.
-        private static void SetInitalState(Pattern pattern, ConcurrentDictionary<RubiksCube, byte> patternDatabase, PuzzleStateQueue cubesToExamine)
+        private static void SetInitalState(PuzzleState<RubiksCube> puzzleState, ConcurrentDictionary<RubiksCube, byte> patternDatabase, PuzzleStateQueue cubesToExamine)
         {
-            RubiksCube newMaskedCube = new RubiksCube().ApplyMask(pattern.Mask);
-            cubesToExamine.TryEnqueue(new PuzzleState<RubiksCube>(0, newMaskedCube));
-            patternDatabase.AddOrUpdate(newMaskedCube, 0, (cube, currentDepth)=>Math.Min(currentDepth, (byte)0));
+            cubesToExamine.TryEnqueue(puzzleState);
+            patternDatabase.AddOrUpdate(puzzleState.PuzzleInstance, 0, (cube, currentDepth)=>Math.Min(currentDepth, (byte)0));
         }
 
         #endregion

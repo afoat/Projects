@@ -59,9 +59,16 @@
             this.PuzzleInstance = puzzleInstance;
         }
 
+        public int GetNumBytes()
+        {
+            return 1 // Depth
+                 + 4 // Last Move ID
+                 + this.PuzzleInstance.GetNumBytes();
+        }
+
         public byte[] GetBytes()
         {
-            List<byte> bytes = new List<byte>();
+            List<byte> bytes = new List<byte>(this.GetNumBytes());
 
             bytes.Add(this.Depth);
 

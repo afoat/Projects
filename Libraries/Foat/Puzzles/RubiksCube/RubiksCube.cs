@@ -145,6 +145,16 @@
             return new RubiksCube(rubiksBytes);
         }
 
+        public int GetNumBytes()
+        {
+            return this.Data.Length;
+        }
+
+        public byte[] GetBytes()
+        {
+            return this.Data;
+        }
+
         public RubiksCube RotateTopCW()
         {
             byte[] newData = new byte[this.Data.Length];
@@ -314,14 +324,6 @@
 
         #endregion
 
-        #region IHashKey
-
-        public byte[] GetBytes()
-        {
-            return this.Data;
-        }
-
-        #endregion
 
         #region Object Overrides
 
