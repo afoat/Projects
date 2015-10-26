@@ -83,6 +83,10 @@
     <Compile Include="RubiksCube\CornerPositionTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Foat.csproj">
+      <Project>{60b57f74-c556-41c7-bf31-e756647d4120}</Project>
+      <Name>Foat</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Hashing\Foat.Hashing.csproj">
       <Project>{335c2cec-b336-476c-9cfe-17dd52e81860}</Project>
       <Name>Foat.Hashing</Name>

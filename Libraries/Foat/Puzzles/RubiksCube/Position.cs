@@ -59,9 +59,7 @@
         internal const byte FrontRightPrimaryRight = 49;
 
         internal const byte NumPositions = 50;
-
-
-
+        
         public static byte RotateTopCW(byte cornerPosition)
         {
             switch (cornerPosition)
@@ -959,7 +957,7 @@
             }
         }
 
-        public static bool IsValidCornerPosition(byte b)
+        public static bool IsValidPosition(byte b)
         {
             return b >= TopBackLeftPrimaryTop && b <= FrontRightPrimaryRight;
         }

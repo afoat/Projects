@@ -3,7 +3,6 @@
     using Foat.Puzzles.RubiksCube;
     using Foat.Puzzles.Solutions;
     using System;
-    using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Diagnostics;
 
@@ -19,7 +18,7 @@
         /// <summary>
         /// A Dictionary used to map RubiksCubes to their solution distance which is shared with multiple PatternSetGeneratorWorkers.
         /// </summary>
-        public ConcurrentDictionary<RubiksCube, byte> PatternDatabase { get; private set; }
+        public RubiksCubeDepthDatabase PatternDatabase { get; private set; }
 
         /// <summary>
         /// A queue containing all of the RubiksCubes that we have not yet examined (by applying all twists/moves to them).
@@ -31,7 +30,7 @@
         /// </summary>
         public int CurrentMaxDepth { get; private set; }
 
-        public PatternSetGeneratorWorker(ConcurrentDictionary<RubiksCube, byte> patternDatabase, PuzzleStateQueue cubesToExamine, int groupSize, int maxDepth)
+        public PatternSetGeneratorWorker(RubiksCubeDepthDatabase patternDatabase, PuzzleStateQueue cubesToExamine, int groupSize, int maxDepth)
         {
             this.MaxDepth = maxDepth;
             this.GroupSize = groupSize;
@@ -66,12 +65,12 @@
                     {
                         rubiksCube = move.MovePuzzle(puzzleState.PuzzleInstance);
 
-                        if (!this.PatternDatabase.ContainsKey(rubiksCube) && newDepth <= this.MaxDepth)
+                        if (!this.PatternDatabase.Contains(rubiksCube) && newDepth <= this.MaxDepth)
                         {
                             while (!this.CubesToExamine.TryEnqueue(new PuzzleState<RubiksCube>(move, newDepth, rubiksCube))) { }
                             lock (this.PatternDatabase)
                             {
-                                this.PatternDatabase.AddOrUpdate(rubiksCube, newDepth, (cube, curDepth)=>Math.Min(curDepth, newDepth));
+                                this.PatternDatabase.Insert(rubiksCube, newDepth);
 
                                 if (PatternDatabase.Count % 100000 == 0)
                                 {

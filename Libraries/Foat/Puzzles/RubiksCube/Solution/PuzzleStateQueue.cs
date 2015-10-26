@@ -1,12 +1,8 @@
 ﻿namespace Foat.Puzzles.RubiksCube.Solution
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using Foat.Collections.Generic.MMF;
     using Foat.Puzzles.Solutions;
+    using System;
 
     public class PuzzleStateQueue : IDisposable
     {

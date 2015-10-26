@@ -68,18 +68,33 @@
 
         public byte[] GetBytes()
         {
-            List<byte> bytes = new List<byte>(this.GetNumBytes());
+            int curByte = 0;
+            byte[] bytes = new byte[this.GetNumBytes()];
 
-            bytes.Add(this.Depth);
+            bytes[curByte++] = this.Depth;
 
+            int lastMoveId = GetLastMoveId();
+            foreach (byte b in BitConverter.GetBytes(lastMoveId))
+            {
+                bytes[curByte++] = b;
+            }
+
+            foreach (byte b in this.PuzzleInstance.GetBytes())
+            {
+                bytes[curByte++] = b;
+            }
+
+            return bytes;
+        }
+
+        private int GetLastMoveId()
+        {
+            int lastMoveId;
             if (this.LastMove == null)
-                bytes.AddRange(BitConverter.GetBytes(int.MaxValue));
+                lastMoveId = int.MaxValue;
             else
-                bytes.AddRange(BitConverter.GetBytes(this.LastMove.Id));
-
-            bytes.AddRange(this.PuzzleInstance.GetBytes());
-
-            return bytes.ToArray();
+                lastMoveId = this.LastMove.Id;
+            return lastMoveId;
         }
     }
 }

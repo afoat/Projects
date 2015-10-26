@@ -3,7 +3,6 @@
     using Foat.Hashing;
     using Foat.Puzzles.RubiksCube;
     using System;
-    using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.IO;
     using System.Runtime.Serialization;
@@ -59,7 +58,7 @@
         {
         }
 
-        public PatternSet(ConcurrentDictionary<RubiksCube, byte> cubeSolutionDistanceMap, MinimalPerfectHash<FnvHash> minimalPerfectHash, Pattern pattern)
+        public PatternSet(RubiksCubeDepthDatabase cubeSolutionDistanceMap, MinimalPerfectHash<FnvHash> minimalPerfectHash, Pattern pattern)
         {
             if (cubeSolutionDistanceMap == null)
             {

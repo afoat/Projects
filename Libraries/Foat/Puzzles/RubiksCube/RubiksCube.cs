@@ -7,7 +7,7 @@
     using System.Runtime.CompilerServices;
     using System.Xml.Serialization;
 
-    public sealed partial class RubiksCube : IPuzzle<RubiksCube>, IXmlSerializable, IEquatable<RubiksCube>, IEnumerable<byte>
+    public sealed partial class RubiksCube : IPuzzle<RubiksCube>, IXmlSerializable, IEquatable<RubiksCube>, IEnumerable<byte>, IData, IComparable<RubiksCube>
     {
 
         #region Constants
@@ -82,7 +82,7 @@
 
             for (int i = 0; i < data.Length; i++)
             {
-                if (!Position.IsValidCornerPosition(data[i]))
+                if (!Position.IsValidPosition(data[i]))
                     throw new ArgumentException("Invalid data.");
             }
 
@@ -405,5 +405,23 @@
         }
 
         #endregion
+
+        public int CompareTo(RubiksCube other)
+        {
+            int minLength = Math.Min(this.Data.Length, other.Data.Length);
+            for (int i = 0; i < minLength; ++i)
+            {
+                int compareTo = this.Data[i].CompareTo(other.Data[i]);
+                if (compareTo != 0)
+                    return compareTo;
+            }
+
+            if (this.Data.Length == other.Data.Length)
+                return 0;
+            else if (this.Data.Length == minLength)
+                return 1;
+            else 
+                return -1;
+        }
     }
 }
