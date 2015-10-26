@@ -42,6 +42,7 @@
 
         public void Work()
         {
+            int updateFlag = 0;
             while (this.CubesToExamine.Count > 0)
             {
                 PuzzleState<RubiksCube> puzzleState;
@@ -71,12 +72,13 @@
                             lock (this.PatternDatabase)
                             {
                                 this.PatternDatabase.Insert(rubiksCube, newDepth);
-
-                                if (PatternDatabase.Count % 100000 == 0)
-                                {
-                                    Trace.WriteLine(string.Format("Found {0:N0} states so far. {1:N0} Cubes to Examine.", this.PatternDatabase.Count, this.CubesToExamine.Count));
-                                }
                             }
+                        }
+
+                        updateFlag = (updateFlag + 1) % 300000;
+                        if (updateFlag == 0)
+                        {
+                            Trace.WriteLine(string.Format("Confirmed found: {0:N0} To Examine: {1:N0} Current Max Depth: {2}", this.PatternDatabase.Count, this.CubesToExamine.Count, this.CurrentMaxDepth));
                         }
                     }
                 }
