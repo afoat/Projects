@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7CF7B441-80DC-4CA6-B3D7-9D97196E4FC1}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{60B57F74-C556-41C7-BF31-E756647D4120}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TrieTestConsole</RootNamespace>
-    <AssemblyName>TrieTestConsole</AssemblyName>
+    <RootNamespace>Foat</RootNamespace>
+    <AssemblyName>Foat</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -39,7 +37,6 @@
     <PlatformTarget>x64</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutputPath>bin\x64\Release\</OutputPath>
@@ -49,42 +46,21 @@
     <PlatformTarget>x64</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\..\key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Data.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="IData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Libraries\Foat\Collections\Foat.Collections.csproj">
-      <Project>{8edd2050-80a7-47a5-9d5f-b5d5c0ac7a79}</Project>
-      <Name>Foat.Collections</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Libraries\Foat\Foat.csproj">
-      <Project>{60b57f74-c556-41c7-bf31-e756647d4120}</Project>
-      <Name>Foat</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Libraries\Foat\Hashing\Foat.Hashing.csproj">
-      <Project>{335c2cec-b336-476c-9cfe-17dd52e81860}</Project>
-      <Name>Foat.Hashing</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Libraries\Foat\Puzzles\Foat.Puzzles.csproj">
-      <Project>{10b7de48-1ae6-495b-bfe1-8dd676eaffb5}</Project>
-      <Name>Foat.Puzzles</Name>
-    </ProjectReference>
+    <None Include="..\..\key.snk">
+      <Link>key.snk</Link>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

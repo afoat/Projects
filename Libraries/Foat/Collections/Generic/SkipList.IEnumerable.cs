@@ -4,14 +4,14 @@
     using System.Collections;
     using System.Collections.Generic;
 
-    public sealed partial class SkipList<T> : IEnumerable<T> where T : IComparable<T>
+    public sealed partial class SkipList<TKey, TValue> : IEnumerable<KeyValuePair<TKey, TValue>> where TKey : IComparable<TKey>
     {
-        public IEnumerator<T> GetEnumerator()
+        public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
         {
-            SkipListNode<T> current = this.Head.Next[0];
+            SkipListNode<TKey, TValue> current = this.Head.Next[0];
             while (current != null)
             {
-                yield return current.Value;
+                yield return new KeyValuePair<TKey, TValue>(current.Key, current.Value);
                 current = current.Next[0];
             }
         }

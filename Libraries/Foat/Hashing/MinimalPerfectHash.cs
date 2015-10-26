@@ -73,11 +73,16 @@ namespace Foat.Hashing
         internal double PercentOfFrontLoadedBuckets;
 
         [IgnoreDataMember]
-        private static THashFunction SharedHashFunction;
+        private static THashFunction HashFunction;
 
         #endregion
 
         #region Constructors
+
+        static MinimalPerfectHash()
+        {
+            HashFunction = new THashFunction();
+        }
 
         /// <summary>
         /// Constructs a MinimalPerfectHash using the default settings defined in the app/web.Config and the
@@ -127,19 +132,6 @@ namespace Foat.Hashing
             get { return (this.Stats != null); }
         }
 
-        internal static THashFunction HashFunction
-        {
-            get
-            {
-                if (SharedHashFunction == null)
-                {
-                    SharedHashFunction = new THashFunction();
-                }
-
-                return SharedHashFunction;
-            }
-        }
-
         /// <summary>
         /// Returns some stats that are created when we generate the minimal perfect hash.
         /// 
@@ -155,7 +147,8 @@ namespace Foat.Hashing
         #region Public Methods
 
         /// <summary>
-        /// Generates the minimal perfect hash for the set of keys that were passed in.
+        /// Generates the minimal perfect hash for the set of keys that were passed in. Each key contains
+        /// multiple bytes.
         /// </summary>
         /// <param name="keys">The keys to hash</param>
         /// <returns></returns>

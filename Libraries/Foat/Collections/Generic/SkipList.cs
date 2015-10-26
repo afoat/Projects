@@ -2,22 +2,32 @@
 {
     using System;
 
-    public sealed partial class SkipList<T> where T : IComparable<T>
+    /// <summary>
+    /// A skiplist that can associate a key with a value. Insert, lookup, and delete all happen in O(log n)
+    /// </summary>
+    public sealed partial class SkipList<TKey, TValue> 
+        where TKey : IComparable<TKey>
     {
         #region Constructors
 
+        /// <summary>
+        /// Creates an instance of the SkipList class
+        /// </summary>
         public SkipList()
         {
             this.Random = new Random();
             InitParameters();
         }
 
+        /// <summary>
+        /// Initializes the private and public members of the class
+        /// </summary>
         private void InitParameters()
         {
 
             this.Count = 0;
             this.Levels = 1;
-            this.Head = new SkipListNode<T>(32, default(T));
+            this.Head = new SkipListNode<TKey, TValue>(32, default(TKey), default(TValue));
         }
 
         #endregion
@@ -25,7 +35,7 @@
         #region Properties
 
         private Random Random;
-        internal SkipListNode<T> Head { get; set; }
+        internal SkipListNode<TKey, TValue> Head { get; set; }
 
         /// <summary>
         /// Returns the number of items in the skip list
@@ -55,7 +65,7 @@
 
         #region Insert
 
-        internal int RandomNumber()
+        private int RandomNumber()
         {
             return this.Random.Next();
         }
@@ -77,33 +87,31 @@
         /// <summary>
         /// Creates a new SkipListNode with a level that is smaller than or equal to the MaxLevel of the skip list.
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        internal SkipListNode<T> CreateSkipListNode(T value)
+        private SkipListNode<TKey, TValue> CreateSkipListNode(TKey key, TValue value)
         {
-            return new SkipListNode<T>(this.RandomLevel(), value);
+            return new SkipListNode<TKey, TValue>(this.RandomLevel(), key, value);
         }
 
         /// <summary>
-        /// Inserts a new value into the skip list.
+        /// Inserts a new key value pair into the skip list.
         /// </summary>
-        public void Insert(T value)
+        public void Insert(TKey key, TValue value)
         {
-            this.Insert(this.CreateSkipListNode(value));
+            this.Insert(this.CreateSkipListNode(key, value));
         }
 
         /// <summary>
         /// Inserts the given node into the skip list.
         /// </summary>
-        internal void Insert(SkipListNode<T> node)
+        private void Insert(SkipListNode<TKey, TValue> node)
         {
-            SkipListNode<T>[] previousNodes = new SkipListNode<T>[this.MaxLevels];
-            SkipListNode<T> previous = this.Head;
+            SkipListNode<TKey, TValue>[] previousNodes = new SkipListNode<TKey, TValue>[this.MaxLevels];
+            SkipListNode<TKey, TValue> previous = this.Head;
 
             // find the insertion point, making use of the highest / most sparse levels first
             for (int level = this.Levels-1; level >= 0; --level)
             {
-                while (previous.Next[level] != null && previous.Next[level].Value.CompareTo(node.Value) < 0)
+                while (previous.Next[level] != null && previous.Next[level].Key.CompareTo(node.Key) < 0)
                     previous = previous.Next[level];
 
                 if (level <= node.Levels)
@@ -134,9 +142,9 @@
         /// <summary>
         /// Returns true if the value has been found in the skip list.
         /// </summary>
-        public bool Contains(T value)
+        public bool ContainsKey(TKey key)
         {
-            if (this.Find(value) != null)
+            if (this.Find(key) != null)
                 return true;
             else
                 return false;
@@ -146,16 +154,16 @@
         /// Finds the node with the given value within the skip list.
         /// </summary>
         /// <returns>The node with the given value, or null if no node exists.</returns>
-        internal SkipListNode<T> Find(T value)
+        internal SkipListNode<TKey, TValue> Find(TKey key)
         {
-            SkipListNode<T> current = this.Head;
+            SkipListNode<TKey, TValue> current = this.Head;
             for (int level = this.Levels - 1; level >= 0; --level)
             {
-                while (current.Next[level] != null && current.Next[level].Value.CompareTo(value) <= 0)
+                while (current.Next[level] != null && current.Next[level].Key.CompareTo(key) <= 0)
                     current = current.Next[level];
             }
 
-            if (current != null && current.Value.CompareTo(value) == 0)
+            if (current != null && current.Key != null && current.Key.CompareTo(key) == 0)
                 return current;
             else
                 return null;
@@ -168,17 +176,17 @@
         /// <summary>
         /// Deletes the item with the given value from the skip list.
         /// </summary>
-        /// <param name="value">The value to delete from the skip list</param>
+        /// <param name="key">The value to delete from the skip list</param>
         /// <returns>True if the value was deleted, false if it could not be found</returns>
-        public bool Delete(T value)
+        public bool Delete(TKey key)
         {
             bool deleted = false;
-            SkipListNode<T>[] previousNodes = new SkipListNode<T>[this.Levels];
-            SkipListNode<T> node = this.Head;
+            SkipListNode<TKey, TValue>[] previousNodes = new SkipListNode<TKey, TValue>[this.Levels];
+            SkipListNode<TKey, TValue> node = this.Head;
 
             for (int level = this.Levels - 1; level >= 0; --level)
             {
-                while (node.Next[level] != null && node.Next[level].Value.CompareTo(value) < 0)
+                while (node.Next[level] != null && node.Next[level].Key.CompareTo(key) < 0)
                     node = node.Next[level];
 
                 if (node.Next[level] != null)
@@ -187,12 +195,12 @@
 
             node = node.Next[0];
 
-            if (node.Value.CompareTo(value) == 0)
+            if (node.Key.CompareTo(key) == 0)
             {
                 for (int level = 0; level < node.Levels; ++level)
                 {
                     deleted = true;
-                    SkipListNode<T> toDelete = previousNodes[level].Next[level];
+                    SkipListNode<TKey, TValue> toDelete = previousNodes[level].Next[level];
                     previousNodes[level].Next[level] = toDelete.Next[level];
                     toDelete.Next[level] = null;
                 }
