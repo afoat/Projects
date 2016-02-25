@@ -5,7 +5,7 @@
 
     /// <summary>
     /// A trie that stores objects instead of characters. Objects must support the IData interface which
-    /// allows the try to get a representation of the object as a byte[]. The bytes are used as the letters
+    /// allows the trie to get a representation of the object as a byte[]. The bytes are used as the letters
     /// in the trie.
     /// 
     /// This implementation isn't so efficient in a sparse dictionary (one with lots of letters, but not a lot of keys).

@@ -15,6 +15,8 @@
         /// </summary>
         public BinarySearchTree()
         {
+            this.Root = null;
+            this.Count = 0;
         }
 
         #region Properties

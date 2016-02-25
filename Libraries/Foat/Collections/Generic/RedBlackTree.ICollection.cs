@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     public sealed partial class RedBlackTree<T> : ICollection<T> where T : IComparable<T>
     {
@@ -17,7 +18,7 @@
 
         public void CopyTo(T[] array, int arrayIndex)
         {
-            throw new NotImplementedException();
+            this.InOrderIterator.ToArray().CopyTo(array, arrayIndex);
         }
 
         public bool IsReadOnly

@@ -211,7 +211,6 @@
 
         #region Delete
 
-
         /// <summary>
         /// Deletes the item with the given value from the tree.
         /// 
