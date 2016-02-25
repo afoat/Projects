@@ -7,7 +7,7 @@
     using System.Runtime.CompilerServices;
     using System.Xml.Serialization;
 
-    public sealed partial class RubiksCube : IPuzzle<RubiksCube>, IXmlSerializable, IEquatable<RubiksCube>, IEnumerable<byte>, IData, IComparable<RubiksCube>
+    public sealed partial class RubiksCube : IPuzzle<RubiksCube>, IXmlSerializable, IEquatable<RubiksCube>, IEnumerable<byte>, IComparable<RubiksCube>
     {
 
         #region Constants

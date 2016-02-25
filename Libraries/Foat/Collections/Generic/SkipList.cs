@@ -1,5 +1,6 @@
 ﻿namespace Foat.Collections.Generic
 {
+    using Foat;
     using System;
 
     /// <summary>
@@ -13,9 +14,24 @@
         /// <summary>
         /// Creates an instance of the SkipList class
         /// </summary>
-        public SkipList()
+        public SkipList(): this(new Foat.Random((int)DateTime.Now.Ticks))
         {
-            this.Random = new Random();
+        }
+
+        /// <summary>
+        /// Creates an instance of the SkipList class
+        /// </summary>
+        internal SkipList(IRandom random)
+        {
+            if (random == null)
+            {
+                this.Random = new Foat.Random((int)DateTime.Now.Ticks);
+            }
+            else
+            {
+                this.Random = random;
+            }
+
             InitParameters();
         }
 
@@ -34,7 +50,7 @@
 
         #region Properties
 
-        private Random Random;
+        private IRandom Random;
         internal SkipListNode<TKey, TValue> Head { get; set; }
 
         /// <summary>
@@ -74,7 +90,7 @@
         /// Calculates a random level. Used when creating a new skip list node
         /// </summary>
         /// <returns>A random number between 1 and MaxLevel</returns>
-        internal int RandomLevel()
+        private int RandomLevel()
         {
             int level = 1;
             int maxLevels = this.MaxLevels;
@@ -154,7 +170,7 @@
         /// Finds the node with the given value within the skip list.
         /// </summary>
         /// <returns>The node with the given value, or null if no node exists.</returns>
-        internal SkipListNode<TKey, TValue> Find(TKey key)
+        private SkipListNode<TKey, TValue> Find(TKey key)
         {
             SkipListNode<TKey, TValue> current = this.Head;
             for (int level = this.Levels - 1; level >= 0; --level)
@@ -167,6 +183,24 @@
                 return current;
             else
                 return null;
+        }
+
+        #endregion
+
+        #region GetValue
+
+        public TValue GetValue(TKey key)
+        {
+            SkipListNode<TKey, TValue> result = this.Find(key);
+
+            if (result != null)
+            {
+                return result.Value;
+            }
+            else
+            {
+                throw new ValueNotFoundException();
+            }
         }
 
         #endregion
@@ -195,7 +229,7 @@
 
             node = node.Next[0];
 
-            if (node.Key.CompareTo(key) == 0)
+            if (node != null &&node.Key.CompareTo(key) == 0)
             {
                 for (int level = 0; level < node.Levels; ++level)
                 {
@@ -204,9 +238,10 @@
                     previousNodes[level].Next[level] = toDelete.Next[level];
                     toDelete.Next[level] = null;
                 }
+
+                --this.Count;
             }
 
-            --this.Count;
             return deleted;
         }
 
