@@ -1,10 +1,10 @@
 ﻿namespace Foat.Collections.Tests
 {
-    using System;
-    using System.Collections.Generic;
     using Foat.Collections.Generic;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
     using System.Collections;
+    using System.Collections.Generic;
 
     [TestClass]
     public abstract class IBinarySearchTreeTests<T> where T : IBinarySearchTree<int>, new()
