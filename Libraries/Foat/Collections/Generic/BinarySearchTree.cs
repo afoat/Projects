@@ -110,7 +110,7 @@
         /// Inserts the node in to the tree in order. Throws a ArgumentException if this value already exists in the tree
         /// </summary>
         /// <param name="node">The node to insert</param>
-        internal void Insert(BinarySearchTreeNode<T> node)
+        private void Insert(BinarySearchTreeNode<T> node)
         {
             if (this.Root == null)
             {

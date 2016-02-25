@@ -105,6 +105,15 @@
 
         [TestMethod]
         [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Insert_IntoRootOnly_Smaller_CheckContains()
+        {
+            IBinarySearchTree<int> tree = this.InitRootOnly();
+            tree.Insert(25);
+            Assert.IsTrue(tree.Contains(25));
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
         public virtual void Insert_IntoRootOnly_Larger_CheckCount()
         {
             IBinarySearchTree<int> tree = this.InitRootOnly();
@@ -131,6 +140,15 @@
             tree.Insert(75);
 
             Assert.AreEqual<int>(1, tree.Height);
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Insert_IntoRootOnly_Larger_CheckContains()
+        {
+            IBinarySearchTree<int> tree = this.InitRootOnly();
+            tree.Insert(75);
+            Assert.IsTrue(tree.Contains(75));
         }
 
         #endregion
@@ -165,6 +183,15 @@
             tree.Insert(75);
 
             Assert.AreEqual<int>(0, tree.Balance);
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Insert_ThirdNode_IntoRootLeft_AtRootRight_CheckContains()
+        {
+            IBinarySearchTree<int> tree = this.InitRootLeft();
+            tree.Insert(75);
+            Assert.IsTrue(tree.Contains(75));
         }
 
         [TestMethod]
@@ -209,6 +236,15 @@
 
         [TestMethod]
         [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Insert_ThirdNode_IntoRootLeft_AtRootLeftLeft_CheckContains()
+        {
+            IBinarySearchTree<int> tree = this.InitRootLeft();
+            tree.Insert(12);
+            Assert.IsTrue(tree.Contains(12));
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
         public virtual void Insert_ThirdNode_IntoRootLeft_AtRootLeftRight_CheckCount()
         {
             IBinarySearchTree<int> tree = this.InitRootLeft();
@@ -245,6 +281,15 @@
         protected virtual int GetExpected_Insert_ThirdNode_IntoRootLeft_AtRootLeftRight_CheckBalance()
         {
             return 2;
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Insert_ThirdNode_IntoRootLeft_AtRootLeftRight_CheckContains()
+        {
+            IBinarySearchTree<int> tree = this.InitRootLeft();
+            tree.Insert(32);
+            Assert.IsTrue(tree.Contains(32));
         }
 
         #endregion
@@ -293,6 +338,15 @@
 
         [TestMethod]
         [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Insert_ThirdNode_IntoRootRight_AtRootRightRight_CheckContains()
+        {
+            IBinarySearchTree<int> tree = this.InitRootRight();
+            tree.Insert(100);
+            Assert.IsTrue(tree.Contains(100));
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
         public virtual void Insert_ThirdNode_IntoRootRight_AtRootRightLeft_CheckCount()
         {
             IBinarySearchTree<int> tree = this.InitRootRight();
@@ -331,9 +385,18 @@
             return -2;
         }
 
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Insert_ThirdNode_IntoRootRight_AtRootRightLeft_CheckContains()
+        {
+            IBinarySearchTree<int> tree = this.InitRootRight();
+            tree.Insert(62);
+            Assert.IsTrue(tree.Contains(62));
+        }
+
         #endregion
 
-        #region Duplicate
+        #region Insert Duplicate
 
         [TestMethod]
         [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
@@ -413,11 +476,29 @@
 
         [TestMethod]
         [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void InsertIfNotDuplicate_AtRoot_CheckContains()
+        {
+            IBinarySearchTree<int> tree = this.InitEmptyTree();
+            Assert.IsTrue(tree.InsertIfNotDuplicate(50));
+            Assert.IsTrue(tree.Contains(50));
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
         public virtual void InsertIfNotDuplicate_AtLeftLeaf_CheckCount()
         {
             IBinarySearchTree<int> tree = this.InitRootOnly();
             Assert.IsTrue(tree.InsertIfNotDuplicate(25));
             Assert.AreEqual<int>(2, tree.Count);
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void InsertIfNotDuplicate_AtLeftLeaf_CheckContains()
+        {
+            IBinarySearchTree<int> tree = this.InitRootOnly();
+            Assert.IsTrue(tree.InsertIfNotDuplicate(25));
+            Assert.IsTrue(tree.Contains(25));
         }
 
         [TestMethod]
@@ -431,6 +512,15 @@
 
         [TestMethod]
         [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void InsertIfNotDuplicate_AtRightLeaf_CheckContains()
+        {
+            IBinarySearchTree<int> tree = this.InitRootOnly();
+            Assert.IsTrue(tree.InsertIfNotDuplicate(75));
+            Assert.IsTrue(tree.Contains(75));
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
         public virtual void InsertIfNotDuplicate_AfterLeft_CheckCount()
         {
             IBinarySearchTree<int> tree = this.InitThreeNodesFull();
@@ -440,11 +530,29 @@
 
         [TestMethod]
         [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void InsertIfNotDuplicate_AfterLeft_CheckContains()
+        {
+            IBinarySearchTree<int> tree = this.InitThreeNodesFull();
+            Assert.IsTrue(tree.InsertIfNotDuplicate(12));
+            Assert.IsTrue(tree.Contains(12));
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
         public virtual void InsertIfNotDuplicate_AfterRight_CheckCount()
         {
             IBinarySearchTree<int> tree = this.InitThreeNodesFull();
             Assert.IsTrue(tree.InsertIfNotDuplicate(100));
             Assert.AreEqual<int>(4, tree.Count);
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void InsertIfNotDuplicate_AfterRight_CheckContains()
+        {
+            IBinarySearchTree<int> tree = this.InitThreeNodesFull();
+            Assert.IsTrue(tree.InsertIfNotDuplicate(100));
+            Assert.IsTrue(tree.Contains(100));
         }
 
         #endregion
@@ -1455,6 +1563,15 @@
 
         [TestMethod]
         [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Delete_RootOnly_Found_CheckHeight()
+        {
+            IBinarySearchTree<int> tree = this.InitRootOnly();
+            Assert.IsTrue(tree.Delete(50));
+            Assert.AreEqual<int>(-1, tree.Height);
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
         public virtual void Delete_RootOnly_Found_CheckBalance()
         {
             IBinarySearchTree<int> tree = this.InitRootOnly();
@@ -1464,11 +1581,11 @@
 
         [TestMethod]
         [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
-        public virtual void Delete_RootOnly_Found_CheckHeight()
+        public virtual void Delete_RootOnly_Found_CheckContains()
         {
             IBinarySearchTree<int> tree = this.InitRootOnly();
             Assert.IsTrue(tree.Delete(50));
-            Assert.AreEqual<int>(-1, tree.Height);
+            Assert.IsFalse(tree.Contains(50));
         }
 
         [TestMethod]
@@ -1551,6 +1668,15 @@
 
         [TestMethod]
         [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Delete_RootLeft_Root_CheckContains()
+        {
+            IBinarySearchTree<int> tree = this.InitRootLeft();
+            Assert.IsTrue(tree.Delete(50));
+            Assert.IsFalse(tree.Contains(50));
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
         public virtual void Delete_RootRight_Root_CheckCount()
         {
             IBinarySearchTree<int> tree = this.InitRootRight();
@@ -1561,7 +1687,7 @@
 
         [TestMethod]
         [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
-        public virtual void Delete_RootRight_Root_CheckHeught()
+        public virtual void Delete_RootRight_Root_CheckHeight()
         {
             IBinarySearchTree<int> tree = this.InitRootRight();
             Assert.IsTrue(tree.Delete(50));
@@ -1577,6 +1703,15 @@
             Assert.IsTrue(tree.Delete(50));
 
             Assert.AreEqual<int>(0, tree.Balance);
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Delete_RootRight_Root_CheckContains()
+        {
+            IBinarySearchTree<int> tree = this.InitRootRight();
+            Assert.IsTrue(tree.Delete(50));
+            Assert.IsFalse(tree.Contains(50));
         }
 
         [TestMethod]
@@ -1611,6 +1746,15 @@
 
         [TestMethod]
         [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Delete_ThreeNodesFull_Root_CheckContains()
+        {
+            IBinarySearchTree<int> tree = this.InitThreeNodesFull();
+            Assert.IsTrue(tree.Delete(50));
+            Assert.IsFalse(tree.Contains(50));
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
         public virtual void Delete_FiveNodesLeftFull_NonRootWithFullChildren_CheckCount()
         {
             IBinarySearchTree<int> tree = this.InitFiveNodesLeftFull();
@@ -1641,6 +1785,15 @@
 
         [TestMethod]
         [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Delete_FiveNodesLeftFull_NonRootWithFullChildren_CheckContains()
+        {
+            IBinarySearchTree<int> tree = this.InitFiveNodesLeftFull();
+            Assert.IsTrue(tree.Delete(25));
+            Assert.IsFalse(tree.Contains(25));
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
         public virtual void Delete_RootLeft_Leaf_CheckCount()
         {
             IBinarySearchTree<int> tree = this.InitRootLeft();
@@ -1665,6 +1818,15 @@
             Assert.IsTrue(tree.Delete(25));
 
             Assert.AreEqual<int>(0, tree.Balance);
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Delete_RootLeft_Leaf_CheckContains()
+        {
+            IBinarySearchTree<int> tree = this.InitRootLeft();
+            Assert.IsTrue(tree.Delete(25));
+            Assert.IsFalse(tree.Contains(25));
         }
 
         [TestMethod]
@@ -1699,6 +1861,15 @@
 
         [TestMethod]
         [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Delete_RootRight_Leaf_CheckContains()
+        {
+            IBinarySearchTree<int> tree = this.InitRootRight();
+            Assert.IsTrue(tree.Delete(75));
+            Assert.IsFalse(tree.Contains(75));
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
         public virtual void Delete_ThreeNodesFull_LeftLeaf_CheckCount()
         {
             IBinarySearchTree<int> tree = this.InitThreeNodesFull();
@@ -1727,7 +1898,15 @@
             Assert.AreEqual<int>(-1, tree.Balance);
         }
 
-
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Delete_ThreeNodesFull_LeftLeaf_CheckContains()
+        {
+            IBinarySearchTree<int> tree = this.InitThreeNodesFull();
+            Assert.IsTrue(tree.Delete(25));
+            Assert.IsFalse(tree.Contains(25));
+        }
+        
         [TestMethod]
         [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
         public virtual void Delete_ThreeNodesFull_RightLeaf_CheckCount()
@@ -1756,6 +1935,15 @@
             Assert.IsTrue(tree.Delete(75));
 
             Assert.AreEqual<int>(1, tree.Balance);
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Delete_ThreeNodesFull_RightLeaf_CheckContains()
+        {
+            IBinarySearchTree<int> tree = this.InitThreeNodesFull();
+            Assert.IsTrue(tree.Delete(75));
+            Assert.IsFalse(tree.Contains(75));
         }
 
         [TestMethod]
@@ -1790,6 +1978,211 @@
 
         [TestMethod]
         [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Delete_FourNodesLeftLeft_HasParentAndChild_CheckContains()
+        {
+            IBinarySearchTree<int> tree = this.InitFourNodesLeftLeft();
+            Assert.IsTrue(tree.Delete(25));
+            Assert.IsFalse(tree.Contains(25));
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Delete_FourNodesLeftLeft_Right_CheckCount()
+        {
+            IBinarySearchTree<int> tree = this.InitFourNodesLeftLeft();
+            Assert.IsTrue(tree.Delete(75));
+
+            Assert.AreEqual<int>(3, tree.Count);
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Delete_FourNodesLeftLeft_Right_CheckHeight()
+        {
+            IBinarySearchTree<int> tree = this.InitFourNodesLeftLeft();
+            Assert.IsTrue(tree.Delete(75));
+
+            Assert.AreEqual<int>(GetExpected_Delete_FourNodesLeftLeft_Right_CheckHeight(), tree.Height);
+        }
+
+        protected virtual int GetExpected_Delete_FourNodesLeftLeft_Right_CheckHeight()
+        {
+            return 2;
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Delete_FourNodesLeftLeft_Right_CheckBalance()
+        {
+            IBinarySearchTree<int> tree = this.InitFourNodesLeftLeft();
+            Assert.IsTrue(tree.Delete(75));
+
+            Assert.AreEqual<int>(GetExpected_Delete_FourNodesLeftLeft_Right_CheckBalance(), tree.Balance);
+        }
+
+        protected virtual int GetExpected_Delete_FourNodesLeftLeft_Right_CheckBalance()
+        {
+            return 2;
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Delete_FourNodesLeftLeft_Right_CheckContains()
+        {
+            IBinarySearchTree<int> tree = this.InitFourNodesLeftLeft();
+            Assert.IsTrue(tree.Delete(75));
+            Assert.IsFalse(tree.Contains(75));
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Delete_FourNodesLeftRight_Right_CheckCount()
+        {
+            IBinarySearchTree<int> tree = this.InitFourNodesLeftRight();
+            Assert.IsTrue(tree.Delete(75));
+
+            Assert.AreEqual<int>(3, tree.Count);
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Delete_FourNodesLeftRight_Right_CheckHeight()
+        {
+            IBinarySearchTree<int> tree = this.InitFourNodesLeftRight();
+            Assert.IsTrue(tree.Delete(75));
+
+            Assert.AreEqual<int>(GetExpected_Delete_FourNodesLeftRight_Right_CheckHeight(), tree.Height);
+        }
+
+        protected virtual int GetExpected_Delete_FourNodesLeftRight_Right_CheckHeight()
+        {
+            return 2;
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Delete_FourNodesLeftRight_Right_CheckBalance()
+        {
+            IBinarySearchTree<int> tree = this.InitFourNodesLeftLeft();
+            Assert.IsTrue(tree.Delete(75));
+
+            Assert.AreEqual<int>(GetExpected_Delete_FourNodesLeftRight_Right_CheckBalance(), tree.Balance);
+        }
+
+        protected virtual int GetExpected_Delete_FourNodesLeftRight_Right_CheckBalance()
+        {
+            return 2;
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Delete_FourNodesLeftRight_Right_CheckContains()
+        {
+            IBinarySearchTree<int> tree = this.InitFourNodesLeftLeft();
+            Assert.IsTrue(tree.Delete(75));
+            Assert.IsFalse(tree.Contains(75));
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Delete_FourNodesRightRight_Left_CheckCount()
+        {
+            IBinarySearchTree<int> tree = this.InitFourNodesRightRight();
+            Assert.IsTrue(tree.Delete(25));
+
+            Assert.AreEqual<int>(3, tree.Count);
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Delete_FourNodesRightRight_Left_CheckHeight()
+        {
+            IBinarySearchTree<int> tree = this.InitFourNodesRightRight();
+            Assert.IsTrue(tree.Delete(25));
+
+            Assert.AreEqual<int>(GetExpected_Delete_FourNodesRightRight_Left_CheckHeight(), tree.Height);
+        }
+
+        protected virtual int GetExpected_Delete_FourNodesRightRight_Left_CheckHeight()
+        {
+            return 2;
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Delete_FourNodesRightRight_Left_CheckBalance()
+        {
+            IBinarySearchTree<int> tree = this.InitFourNodesRightRight();
+            Assert.IsTrue(tree.Delete(25));
+
+            Assert.AreEqual<int>(GetExpected_Delete_FourNodesRightRight_Left_CheckBalance(), tree.Balance);
+        }
+
+        protected virtual int GetExpected_Delete_FourNodesRightRight_Left_CheckBalance()
+        {
+            return -2;
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Delete_FourNodesRightRight_Left_CheckContains()
+        {
+            IBinarySearchTree<int> tree = this.InitFourNodesRightRight();
+            Assert.IsTrue(tree.Delete(25));
+            Assert.IsFalse(tree.Contains(25));
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Delete_FourNodesRightLeft_Left_CheckCount()
+        {
+            IBinarySearchTree<int> tree = this.InitFourNodesRightLeft();
+            Assert.IsTrue(tree.Delete(25));
+
+            Assert.AreEqual<int>(3, tree.Count);
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Delete_FourNodesRightLeft_Left_CheckHeight()
+        {
+            IBinarySearchTree<int> tree = this.InitFourNodesRightLeft();
+            Assert.IsTrue(tree.Delete(25));
+
+            Assert.AreEqual<int>(GetExpected_Delete_FourNodesRightLeft_Left_CheckHeight(), tree.Height);
+        }
+
+        protected virtual int GetExpected_Delete_FourNodesRightLeft_Left_CheckHeight()
+        {
+            return 2;
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Delete_FourNodesRightLeft_Left_CheckBalance()
+        {
+            IBinarySearchTree<int> tree = this.InitFourNodesRightLeft();
+            Assert.IsTrue(tree.Delete(25));
+
+            Assert.AreEqual<int>(GetExpected_Delete_FourNodesRightLeft_Left_CheckBalance(), tree.Balance);
+        }
+
+        protected virtual int GetExpected_Delete_FourNodesRightLeft_Left_CheckBalance()
+        {
+            return -2;
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Delete_FourNodesRightLeft_Left_CheckContains()
+        {
+            IBinarySearchTree<int> tree = this.InitFourNodesRightLeft();
+            Assert.IsTrue(tree.Delete(25));
+            Assert.IsFalse(tree.Contains(25));
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
         public virtual void Delete_FourNodesLeftRight_HasParentAndChild_CheckCount()
         {
             IBinarySearchTree<int> tree = this.InitFourNodesLeftRight();
@@ -1816,6 +2209,15 @@
             Assert.IsTrue(tree.Delete(25));
 
             Assert.AreEqual<int>(0, tree.Balance);
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Delete_FourNodesLeftRight_HasParentAndChild_CheckContains()
+        {
+            IBinarySearchTree<int> tree = this.InitFourNodesLeftRight();
+            Assert.IsTrue(tree.Delete(25));
+            Assert.IsFalse(tree.Contains(25));
         }
 
         [TestMethod]
@@ -1850,6 +2252,15 @@
 
         [TestMethod]
         [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Delete_FourNodesRightLeft_HasParentAndChild_CheckContains()
+        {
+            IBinarySearchTree<int> tree = this.InitFourNodesRightLeft();
+            Assert.IsTrue(tree.Delete(75));
+            Assert.IsFalse(tree.Contains(75));
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
         public virtual void Delete_FourNodesRightRight_HasParentAndChild_CheckCount()
         {
             IBinarySearchTree<int> tree = this.InitFourNodesRightRight();
@@ -1876,6 +2287,15 @@
             Assert.IsTrue(tree.Delete(75));
 
             Assert.AreEqual<int>(0, tree.Balance);
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\IBinarySearchTree")]
+        public virtual void Delete_FourNodesRightRight_HasParentAndChild_CheckContains()
+        {
+            IBinarySearchTree<int> tree = this.InitFourNodesRightRight();
+            Assert.IsTrue(tree.Delete(75));
+            Assert.IsFalse(tree.Contains(75));
         }
 
         #endregion

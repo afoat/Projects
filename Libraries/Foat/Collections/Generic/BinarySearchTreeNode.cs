@@ -1,6 +1,7 @@
 ﻿namespace Foat.Collections.Generic
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
 
     internal sealed class BinarySearchTreeNode<T>
     {
@@ -109,26 +110,11 @@
             }
         }
 
-        internal BinarySearchTreeNode<T> InOrderSuccessor
-        {
-            get
-            {
-                BinarySearchTreeNode<T> previous = null;
-                BinarySearchTreeNode<T> current = this.Right;
-                while (current != null)
-                {
-                    previous = current;
-                    current = current.Left;
-                }
-
-                return previous;
-            }
-        }
-
         #endregion
 
         #region Methods
-        
+
+        [ExcludeFromCodeCoverage]
         public override string ToString()
         {
             string format = "{0}; Left={1}; Right={2}";

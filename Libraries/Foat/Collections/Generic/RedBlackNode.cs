@@ -1,5 +1,6 @@
 ﻿namespace Foat.Collections.Generic
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.CompilerServices;
 
     internal sealed class RedBlackNode<T>
@@ -11,15 +12,6 @@
             this._height = sbyte.MinValue;
             this.Value = value;
             this.IsRed = true;
-        }
-
-        internal RedBlackNode(T value, Colour colour)
-        {
-            this.Left = null;
-            this.Right = null;
-            this._height = sbyte.MinValue;
-            this.Value = value;
-            this.SetColour(colour);
         }
 
         #region Properties
@@ -40,15 +32,7 @@
         /// Returns true if the node is red, returns false if the node is black.
         /// </summary>
         internal bool IsRed { get; set; }
-
-        /// <summary>
-        /// Returns true if this node has no neighbours
-        /// </summary>
-        internal bool IsLeaf
-        {
-            get { return (this.Left == null && this.Right == null); }
-        }
-
+        
         private sbyte _height;
 
         /// <summary>
@@ -91,22 +75,6 @@
                 {
                     previous = current;
                     current = current.Right;
-                }
-
-                return previous;
-            }
-        }
-
-        internal RedBlackNode<T> InOrderSuccessor
-        {
-            get
-            {
-                RedBlackNode<T> previous = null;
-                RedBlackNode<T> current = this.Right;
-                while (current != null)
-                {
-                    previous = current;
-                    current = current.Left;
                 }
 
                 return previous;
@@ -209,6 +177,7 @@
             this._height = sbyte.MinValue;
         }
 
+        [ExcludeFromCodeCoverage]
         public override string ToString()
         {
             string format = "{0},{1}; Left={2}; Right={3}";

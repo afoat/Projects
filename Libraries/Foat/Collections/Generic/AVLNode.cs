@@ -1,5 +1,6 @@
 ﻿namespace Foat.Collections.Generic
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.CompilerServices;
 
     internal sealed class AVLNode<T>
@@ -29,15 +30,7 @@
         /// Points to a the right sub tree of this node
         /// </summary>
         internal AVLNode<T> Right { get; set; }
-
-        /// <summary>
-        /// Returns true if this node has no neighbours
-        /// </summary>
-        internal bool IsLeaf
-        {
-            get { return (this.Left == null && this.Right == null); }
-        }
-
+        
         private sbyte _height;
 
         /// <summary>
@@ -84,26 +77,6 @@
                 {
                     previous = current;
                     current = current.Right;
-                }
-
-                return previous;
-            }
-        }
-
-        /// <summary>
-        /// Returns the node that comes right after this one during an in order
-        /// traversal
-        /// </summary>
-        internal AVLNode<T> InOrderSuccessor
-        {
-            get
-            {
-                AVLNode<T> previous = null;
-                AVLNode<T> current = this.Right;
-                while (current != null)
-                {
-                    previous = current;
-                    current = current.Left;
                 }
 
                 return previous;
@@ -215,6 +188,7 @@
             this._height = sbyte.MinValue;
         }
 
+        [ExcludeFromCodeCoverage]
         public override string ToString()
         {
             string format = "{0}; Left={1}; Right={2}";

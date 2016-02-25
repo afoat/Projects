@@ -6,6 +6,8 @@
     [TestClass]
     public class AVLTreeTests : IBinarySearchTreeTests<AVLTree<int>>
     {
+        #region Setup
+
         protected override IBinarySearchTree<int> InitEmptyTree()
         {
             AVLTree<int> tree = new AVLTree<int>();
@@ -114,6 +116,43 @@
             return tree;
         }
 
+        protected override IBinarySearchTree<int> InitBadTree()
+        {
+            AVLTree<int> tree = new AVLTree<int>();
+            tree.Root = new AVLNode<int>(50);
+            tree.Root.Left = new AVLNode<int>(75);
+            tree.Root.Right = new AVLNode<int>(25);
+            tree.Count = 3;
+
+            return tree;
+        }
+
+        protected IBinarySearchTree<int> InitBadTreeNotBalancedLeft()
+        {
+            AVLTree<int> tree = new AVLTree<int>();
+            tree.Root = new AVLNode<int>(50);
+            tree.Root.Left = new AVLNode<int>(25);
+            tree.Root.Left.Left = new AVLNode<int>(12);
+            tree.Count = 3;
+
+            return tree;
+        }
+
+        protected IBinarySearchTree<int> InitBadTreeNotBalancedRight()
+        {
+            AVLTree<int> tree = new AVLTree<int>();
+            tree.Root = new AVLNode<int>(50);
+            tree.Root.Right = new AVLNode<int>(75);
+            tree.Root.Right.Right = new AVLNode<int>(100);
+            tree.Count = 3;
+
+            return tree;
+        }
+
+        #endregion
+
+        #region Expected Values
+
         protected override int GetExpected_Insert_ThirdNode_IntoRootLeft_AtRootLeftLeft_CheckBalance()
         {
             return 0;
@@ -154,35 +193,68 @@
             return 1;
         }
 
-        protected override IBinarySearchTree<int> InitBadTree()
+        protected override int GetExpected_Delete_FourNodesLeftLeft_Right_CheckBalance()
         {
-            AVLTree<int> tree = new AVLTree<int>();
-            tree.Root = new AVLNode<int>(50);
-            tree.Root.Left = new AVLNode<int>(75);
-            tree.Root.Right = new AVLNode<int>(25);
-            tree.Count = 3;
-
-            return tree;
+            return 0;
         }
 
-        protected IBinarySearchTree<int> InitBadTreeNotBalanced()
+        protected override int GetExpected_Delete_FourNodesLeftLeft_Right_CheckHeight()
         {
-            AVLTree<int> tree = new AVLTree<int>();
-            tree.Root = new AVLNode<int>(50);
-            tree.Root.Left = new AVLNode<int>(25);
-            tree.Root.Left.Left = new AVLNode<int>(12);
-            tree.Count = 3;
+            return 1;
+        }
 
-            return tree;
+        protected override int GetExpected_Delete_FourNodesLeftRight_Right_CheckBalance()
+        {
+            return 0;
+        }
+
+        protected override int GetExpected_Delete_FourNodesLeftRight_Right_CheckHeight()
+        {
+            return 1;
+        }
+
+        protected override int GetExpected_Delete_FourNodesRightRight_Left_CheckBalance()
+        {
+            return 0;
+        }
+
+        protected override int GetExpected_Delete_FourNodesRightRight_Left_CheckHeight()
+        {
+            return 1;
+        }
+
+        protected override int GetExpected_Delete_FourNodesRightLeft_Left_CheckBalance()
+        {
+            return 0;
+        }
+
+        protected override int GetExpected_Delete_FourNodesRightLeft_Left_CheckHeight()
+        {
+            return 1;
+        }
+
+        #endregion
+
+        #region AssertValidTree
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\AvlTree")]
+        [ExpectedException(typeof(InvalidTreeException))]
+        public virtual void AssertValidTree_NotBalanced_Left()
+        {
+            IBinarySearchTree<int> tree = this.InitBadTreeNotBalancedLeft();
+            tree.AssertValidTree();
         }
 
         [TestMethod]
         [TestCategory("Foat\\Collections\\Generic\\AvlTree")]
         [ExpectedException(typeof(InvalidTreeException))]
-        public virtual void AssertValidTree_NotBalanced()
+        public virtual void AssertValidTree_NotBalanced_Right()
         {
-            IBinarySearchTree<int> tree = this.InitBadTreeNotBalanced();
+            IBinarySearchTree<int> tree = this.InitBadTreeNotBalancedRight();
             tree.AssertValidTree();
         }
+
+        #endregion
     }
 }
