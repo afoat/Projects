@@ -1,11 +1,10 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Foat.Collections.Generic;
-using Microsoft.QualityTools.Testing.Fakes;
-using System.Collections;
-
-namespace Foat.Collections.Tests
+﻿namespace Foat.Collections.Tests
 {
+    using Foat.Collections.Generic;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Collections;
+    using System.Collections.Generic;
+
     [TestClass]
     public class SkipListTests
     {
@@ -540,6 +539,48 @@ namespace Foat.Collections.Tests
             SkipList<int, int> skipList = Init2HighListContains4(null);
             Assert.IsTrue(skipList.Delete(200));
             Assert.IsFalse(skipList.ContainsKey(200));
+        }
+
+        #endregion
+
+        #region Enumerable
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\SkipList")]
+        public void GenericEnumerator()
+        {
+            SkipList<int, int> skipList = Init2HighListContains4(null);
+
+            var enumerator = skipList.GetEnumerator();
+
+            Assert.IsTrue(enumerator.MoveNext());
+            Assert.AreEqual(50, enumerator.Current.Key);
+            Assert.IsTrue(enumerator.MoveNext());
+            Assert.AreEqual(100, enumerator.Current.Key);
+            Assert.IsTrue(enumerator.MoveNext());
+            Assert.AreEqual(200, enumerator.Current.Key);
+            Assert.IsTrue(enumerator.MoveNext());
+            Assert.AreEqual(300, enumerator.Current.Key);
+            Assert.IsFalse(enumerator.MoveNext());
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\SkipList")]
+        public void Enumerator()
+        {
+            IEnumerable skipList = (IEnumerable)Init2HighListContains4(null);
+
+            var enumerator = skipList.GetEnumerator();
+
+            Assert.IsTrue(enumerator.MoveNext());
+            Assert.AreEqual(50, ((KeyValuePair<int, int>)enumerator.Current).Key);
+            Assert.IsTrue(enumerator.MoveNext());
+            Assert.AreEqual(100, ((KeyValuePair<int, int>)enumerator.Current).Key);
+            Assert.IsTrue(enumerator.MoveNext());
+            Assert.AreEqual(200, ((KeyValuePair<int, int>)enumerator.Current).Key);
+            Assert.IsTrue(enumerator.MoveNext());
+            Assert.AreEqual(300, ((KeyValuePair<int, int>)enumerator.Current).Key);
+            Assert.IsFalse(enumerator.MoveNext());
         }
 
         #endregion
