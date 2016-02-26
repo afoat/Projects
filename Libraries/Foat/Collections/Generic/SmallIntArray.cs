@@ -5,17 +5,11 @@
     using System.Collections.Generic;
     using System.Xml.Serialization;
 
-    public sealed class SmallIntArray : IXmlSerializable
+    public sealed class SmallIntArray
     {
 
         public byte BitsPerInt { get; private set; }
-        public int Length
-        {
-            get
-            {
-                return this.Array.Length;
-            }
-        }
+        public int Length { get; private set; }
 
         internal byte[] Array { get; set; }
         
@@ -23,6 +17,11 @@
         {
             get
             {
+                if (i < 0 || i > this.Length - 1)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+
                 unchecked
                 {
                     int startBucket;
@@ -31,7 +30,7 @@
                     int endPosition;
 
                     InitializeStartAndEnd(i, out startBucket, out endBucket, out startPosition, out endPosition);
-
+                    
                     if (startBucket == endBucket)
                     {
                         return (byte)((this.Array[startBucket] & CreateGetMask(startPosition, endPosition)) >> startPosition);
@@ -46,6 +45,11 @@
 
             set
             {
+                if (i < 0 || i > this.Length - 1)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+
                 unchecked
                 {
                     int startBucket;
@@ -82,7 +86,10 @@
             endPosition = endBit % 8;
         }
 
-        private SmallIntArray() { }
+        private SmallIntArray()
+        {
+            throw new NotImplementedException();
+        }
 
         public SmallIntArray(byte bitsPerInt, int capacity)
         {
@@ -94,11 +101,13 @@
             this.BitsPerInt = bitsPerInt;
 
             this.Array = new byte[(bitsPerInt * capacity / 8) + 1];
+            this.Length = capacity;
         }
 
         public SmallIntArray(SmallIntArray toCopy)
         {
             this.BitsPerInt = toCopy.BitsPerInt;
+            this.Length = toCopy.Length;
             this.Array = new byte[toCopy.Array.Length];
             toCopy.Array.CopyTo(this.Array, 0);
         }
@@ -126,6 +135,8 @@
                     }
 
                     result = (byte)(mask << startPosition);
+
+                    MaskCache[key] = result;
                 }
 
                 return result;
@@ -135,39 +146,6 @@
         private static byte CreateSetMask(int startPosition, int endPosition)
         {
             return (byte)~CreateGetMask(startPosition, endPosition);
-        }
-
-        public System.Xml.Schema.XmlSchema GetSchema()
-        {
-            return null;
-        }
-
-        public void ReadXml(System.Xml.XmlReader reader)
-        {
-            if (!reader.IsStartElement("SmallIntArray"))
-            {
-                throw new InvalidOperationException();
-            }
-            else
-            {
-                reader.ReadStartElement("SmallIntArray");
-                XmlSerializer serializer = new XmlSerializer(typeof(byte));
-                this.BitsPerInt = (byte)serializer.Deserialize(reader);
-
-                serializer = new XmlSerializer(typeof(byte[]));
-                this.Array = (byte[])serializer.Deserialize(reader);
-
-                reader.ReadEndElement();
-            }
-        }
-
-        public void WriteXml(System.Xml.XmlWriter writer)
-        {
-            XmlSerializer serializer = new XmlSerializer(typeof(byte));
-            serializer.Serialize(writer, this.BitsPerInt);
-
-            serializer = new XmlSerializer(typeof(byte[]));
-            serializer.Serialize(writer, this.Array);
         }
 
         public override int GetHashCode()
