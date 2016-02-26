@@ -6,8 +6,8 @@
     public sealed class Heap<T> where T : IComparable<T>
     {
 
-        internal delegate bool IndexComparor(int childIx, int parentIx);
-        internal IndexComparor IsHigherPriorityThanParent;
+        private delegate bool IndexComparor(int childIx, int parentIx);
+        private IndexComparor IsHigherPriorityThanParent;
 
         #region Constructors
 
@@ -58,9 +58,9 @@
         /// <summary>
         /// Identifies the heap as either being a max heap or a min heap
         /// </summary>
-        public HeapType Type { get; internal set; }
+        public HeapType Type { get; private set; }
 
-        internal List<T> List { get; set; }
+        internal List<T> List { get; private set; }
 
         /// <summary>
         /// Returns the number of items in the heap
@@ -74,20 +74,15 @@
         /// <summary>
         /// Given an index of a node, this method returns the index of that node's parent
         /// </summary>
-        internal static int ParentIndexOf(int ix)
+        private static int ParentIndexOf(int ix)
         {
-            if (ix == 0)
-                throw new InvalidOperationException(Resources.Errors.ParentOfRootDoesntExist);
-            else
-            {
-                return (int)Math.Floor((double)(ix - 1) / 2);
-            }
+            return (int)Math.Floor((double)(ix - 1) / 2);
         }
 
         /// <summary>
         /// Given an index of a node, this method returns the index of that node's left child
         /// </summary>
-        internal static int LeftChildIndexOf(int ix)
+        private static int LeftChildIndexOf(int ix)
         {
             return (2 * ix) + 1;
         }
@@ -95,7 +90,7 @@
         /// <summary>
         /// Given an index of a node, this method returns the index of that node's right child
         /// </summary>
-        internal static int RightChildIndexOf(int ix)
+        private static int RightChildIndexOf(int ix)
         {
             return (2 * ix) + 2;
         }
@@ -109,7 +104,7 @@
         /// </summary>
         /// <param name="first">The index of the first value</param>
         /// <param name="second">The index of the second value</param>
-        internal bool IsLargerThan(int first, int second)
+        private bool IsLargerThan(int first, int second)
         {
             return this.List[first].CompareTo(this.List[second]) > 0;
         }
@@ -119,7 +114,7 @@
         /// </summary>
         /// <param name="first">The index of the first value</param>
         /// <param name="second">The index of the second value</param>
-        internal bool IsSmallerThanParent(int first, int second)
+        private bool IsSmallerThanParent(int first, int second)
         {
             return this.List[first].CompareTo(this.List[second]) < 0;
         }
@@ -131,7 +126,7 @@
         /// <summary>
         /// Swaps the value at index ix1 with the value at index ix2
         /// </summary>
-        internal void Swap(int ix1, int ix2)
+        private void Swap(int ix1, int ix2)
         {
             T temp = this.List[ix1];
             this.List[ix1] = this.List[ix2];
@@ -155,7 +150,7 @@
         /// <summary>
         /// Helper function that takes the node inserted at insertedIx and makes sure it is bubbled up to the correct place in the heap.
         /// </summary>
-        internal void HeapifyUp(int insertedIx)
+        private void HeapifyUp(int insertedIx)
         {
             int currentIx = insertedIx;
 
@@ -202,7 +197,7 @@
         /// <summary>
         /// Starting at the top of the heap, examines all nodes underneath it ensuring that the heap property is maintained at all nodes.
         /// </summary>
-        internal void HeapifyDown()
+        private void HeapifyDown()
         {
             int parentIx = 0;
             while (parentIx < this.Count)
