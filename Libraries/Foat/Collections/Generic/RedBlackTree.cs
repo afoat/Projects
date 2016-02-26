@@ -110,8 +110,8 @@
         {
             this.Root = this.Insert(this.Root, new Node(value));
 
-            if (this.Root.IsRed)
-                this.Root.SetColour(Node.Colour.Black);
+            if (this.Root.NodeColour == Node.Colour.Red)
+                this.Root.NodeColour = Node.Colour.Black;
         }
 
         /// <summary>
@@ -128,8 +128,8 @@
             {
                 this.Root = newRoot;
 
-                if (this.Root.IsRed)
-                    this.Root.SetColour(Node.Colour.Black);
+                if (this.Root.NodeColour == Node.Colour.Red)
+                    this.Root.NodeColour = Node.Colour.Black;
             }
 
             return success;
@@ -331,7 +331,7 @@
                     this.Root = this.Delete(this.Root, value, ref done);
 
                     if (this.Root != null)
-                        this.Root.SetColour(Node.Colour.Black);
+                        this.Root.NodeColour = Node.Colour.Black;
                 }
             }
             catch (ValueNotFoundException)
@@ -369,7 +369,7 @@
                     root.Left.ResetHeight();
                     if (IsNodeRed(root.Left)) // node to delete is black but has red child that can be recoloured
                     {
-                        root.Left.SetColour(Node.Colour.Black);
+                        root.Left.NodeColour = Node.Colour.Black;
                         done = true;
                     }
 
@@ -382,7 +382,7 @@
                     root.Right.ResetHeight();
                     if (IsNodeRed(root.Right)) // node to delete is black but has red child that can be recoloured
                     {
-                        root.Right.SetColour(Node.Colour.Black);
+                        root.Right.NodeColour = Node.Colour.Black;
                         done = true;
                     }
 
@@ -447,12 +447,12 @@
                     if (IsNodeRed(parent))
                         done = true;
 
-                    parent.SetColour(Node.Colour.Black);
-                    sibling.SetColour(Node.Colour.Red);
+                    parent.NodeColour = Node.Colour.Black;
+                    sibling.NodeColour = Node.Colour.Red;
                 }
                 else
                 {
-                    bool parentIsRed = parent.IsRed;
+                    Node.Colour colour = parent.NodeColour;
                     bool sameRoot = root == parent;
 
                     if (IsNodeRed(sibling.Left))
@@ -463,9 +463,9 @@
                         parent = parent.RotateRight();
                     }
 
-                    parent.IsRed = parentIsRed;
-                    parent.Left.SetColour(Node.Colour.Black);
-                    parent.Right.SetColour(Node.Colour.Black);
+                    parent.NodeColour = colour;
+                    parent.Left.NodeColour = Node.Colour.Black;
+                    parent.Right.NodeColour = Node.Colour.Black;
 
                     if (sameRoot)
                         root = parent;
@@ -500,12 +500,12 @@
                         done = true;
                     }
 
-                    parent.SetColour(Node.Colour.Black);
-                    sibling.SetColour(Node.Colour.Red);
+                    parent.NodeColour = Node.Colour.Black;
+                    sibling.NodeColour = Node.Colour.Red;
                 }
                 else
                 {
-                    bool parentIsRed = parent.IsRed;
+                    Node.Colour colour = parent.NodeColour;
                     bool sameRoot = root == parent;
 
                     if (IsNodeRed(sibling.Right))
@@ -516,9 +516,9 @@
                         parent = parent.RotateLeft();
                     }
 
-                    parent.IsRed = parentIsRed;
-                    parent.Left.SetColour(Node.Colour.Black);
-                    parent.Right.SetColour(Node.Colour.Black);
+                    parent.NodeColour = colour;
+                    parent.Left.NodeColour = Node.Colour.Black;
+                    parent.Right.NodeColour = Node.Colour.Black;
 
                     if (sameRoot)
                         root = parent;
@@ -582,7 +582,7 @@
         /// </summary>
         private static bool IsNodeRed(Node node)
         {
-            return (node != null && node.IsRed);
+            return (node != null && node.NodeColour == Node.Colour.Red);
         }
 
         /// <summary>
@@ -591,9 +591,9 @@
         /// <param name="root"></param>
         private static void MoveBlackDown(Node root)
         {
-            root.SetColour(Node.Colour.Red);
-            root.Left.SetColour(Node.Colour.Black);
-            root.Right.SetColour(Node.Colour.Black);
+            root.NodeColour = Node.Colour.Red;
+            root.Left.NodeColour = Node.Colour.Black;
+            root.Right.NodeColour = Node.Colour.Black;
         }
 
         private static void AssertValidTree(Node root, out int numBlack)

@@ -20,7 +20,7 @@
                 this.Right = null;
                 this._height = sbyte.MinValue;
                 this.Value = value;
-                this.IsRed = true;
+                this.NodeColour = Colour.Red;
             }
 
             #region Properties
@@ -37,10 +37,7 @@
             /// </summary>
             internal Node Right { get; set; }
 
-            /// <summary>
-            /// Returns true if the node is red, returns false if the node is black.
-            /// </summary>
-            internal bool IsRed { get; set; }
+            internal Colour NodeColour { get; set; }
 
             private sbyte _height;
 
@@ -109,8 +106,8 @@
                 pivot.ResetHeight();
                 this.ResetHeight();
 
-                pivot.Left.SetColour(Colour.Red);
-                pivot.SetColour(Colour.Black);
+                pivot.Left.NodeColour = Colour.Red;
+                pivot.NodeColour = Colour.Black;
 
                 return pivot;
             }
@@ -130,8 +127,8 @@
                 pivot.ResetHeight();
                 this.ResetHeight();
 
-                pivot.Right.SetColour(Colour.Red);
-                pivot.SetColour(Colour.Black);
+                pivot.Right.NodeColour = Colour.Red;
+                pivot.NodeColour = Colour.Black;
 
                 return pivot;
             }
@@ -175,12 +172,7 @@
             #endregion
 
             #region Methods
-
-            internal void SetColour(Colour colour)
-            {
-                this.IsRed = colour == Colour.Red;
-            }
-
+            
             internal void ResetHeight()
             {
                 this._height = sbyte.MinValue;
@@ -203,7 +195,7 @@
                 else
                     right = this.Right.Value.ToString();
 
-                return string.Format(format, this.Value.ToString(), this.IsRed ? "Red" : "Black", left, right);
+                return string.Format(format, this.Value.ToString(), this.NodeColour.ToString(), left, right);
             }
 
             #endregion
