@@ -105,7 +105,7 @@
 
         private static Dictionary<KeyValuePair<int, int>, byte> MaskCache = new Dictionary<KeyValuePair<int, int>, byte>();
 
-        internal static byte CreateGetMask(int startPosition, int endPosition)
+        private static byte CreateGetMask(int startPosition, int endPosition)
         {
             unchecked
             {
@@ -132,7 +132,7 @@
             }
         }
 
-        internal static byte CreateSetMask(int startPosition, int endPosition)
+        private static byte CreateSetMask(int startPosition, int endPosition)
         {
             return (byte)~CreateGetMask(startPosition, endPosition);
         }
