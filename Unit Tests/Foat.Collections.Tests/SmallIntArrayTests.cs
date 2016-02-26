@@ -122,7 +122,7 @@
 
         #endregion
 
-        #region
+        #region Writing To Array
 
         [TestMethod]
         [TestCategory("Foat\\Collections\\Generic\\SmallIntArray")]
@@ -179,6 +179,72 @@
             array[0] = 11;
 
             Assert.AreEqual<int>(11, array.Array[0]);
+        }
+
+        #endregion
+
+        #region Equals
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\SmallIntArray")]
+        public void Equals_Null()
+        {
+            SmallIntArray array1 = Init5BitIntWithOnesTwosThrees();
+            SmallIntArray array2 = null;
+
+            Assert.IsFalse(array1.Equals(array2));
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\SmallIntArray")]
+        public void Equals_DiffLength()
+        {
+            SmallIntArray array1 = new SmallIntArray(3, 5);
+            SmallIntArray array2 = new SmallIntArray(3, 6);
+
+            Assert.IsFalse(array1.Equals(array2));
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\SmallIntArray")]
+        public void Equals_DiffBitsPerInt()
+        {
+            SmallIntArray array1 = Init2BitIntWithOneTwoThree();
+            SmallIntArray array2 = Init5BitIntWithOnesTwosThrees();
+
+            Assert.IsFalse(array1.Equals(array2));
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\SmallIntArray")]
+        public void Equals_True()
+        {
+            SmallIntArray array1 = Init5BitIntWithOnesTwosThrees();
+            SmallIntArray array2 = Init5BitIntWithOnesTwosThrees();
+
+            Assert.IsTrue(array1.Equals(array2));
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\SmallIntArray")]
+        public void Equals_False()
+        {
+            SmallIntArray array1 = Init5BitIntWithOnesTwosThrees();
+            SmallIntArray array2 = Init5BitIntWithOnesTwosThrees();
+            array2[1] = 5;
+
+            Assert.IsFalse(array1.Equals(array2));
+        }
+
+        [TestMethod]
+        [TestCategory("Foat\\Collections\\Generic\\SmallIntArray")]
+        public void Equals_Generic()
+        {
+            SmallIntArray array1 = Init5BitIntWithOnesTwosThrees();
+            SmallIntArray array2 = Init5BitIntWithOnesTwosThrees();
+            array2[1] = 5;
+
+            Assert.IsFalse(((object)array1).Equals(array2));
         }
 
         #endregion

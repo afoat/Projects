@@ -3,6 +3,7 @@
     using Foat.Hashing;
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Xml.Serialization;
 
     public sealed class SmallIntArray
@@ -86,6 +87,7 @@
             endPosition = endBit % 8;
         }
 
+        [ExcludeFromCodeCoverage]
         private SmallIntArray()
         {
             throw new NotImplementedException();
@@ -148,6 +150,7 @@
             return (byte)~CreateGetMask(startPosition, endPosition);
         }
 
+        [ExcludeFromCodeCoverage]
         public override int GetHashCode()
         {
             FnvHash hash = new FnvHash();
