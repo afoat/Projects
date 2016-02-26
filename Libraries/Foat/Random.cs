@@ -1,11 +1,8 @@
 ﻿namespace Foat
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+    using System.Diagnostics.CodeAnalysis;
 
+    [ExcludeFromCodeCoverage]
     public class Random : IRandom
     {
         private System.Random SystemRandom;

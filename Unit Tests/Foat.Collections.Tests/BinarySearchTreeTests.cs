@@ -2,8 +2,10 @@
 {
     using Foat.Collections.Generic;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Diagnostics.CodeAnalysis;
 
     [TestClass]
+    [ExcludeFromCodeCoverage]
     public class BinarySearchTreeTests : IBinarySearchTreeTests<BinarySearchTree<int>>
     {
         protected override IBinarySearchTree<int> InitEmptyTree()
