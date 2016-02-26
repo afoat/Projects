@@ -8,7 +8,7 @@
     {
         public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
         {
-            SkipListNode<TKey, TValue> current = this.Head.Next[0];
+            Node current = this.Head.Next[0];
             while (current != null)
             {
                 yield return new KeyValuePair<TKey, TValue>(current.Key, current.Value);

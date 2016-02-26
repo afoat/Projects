@@ -17,7 +17,7 @@
 
         #region Properties
 
-        internal RedBlackNode<T> Root { get; set; }
+        internal Node Root { get; set; }
 
         /// <summary>
         /// Returns the number of values in the tree
@@ -77,7 +77,7 @@
         /// <param name="root">The root of the tree to search</param>
         /// <param name="value">The value of the node whose depth should be returned</param>
         /// <returns></returns>
-        private static int Depth(RedBlackNode<T> root, T value)
+        private static int Depth(Node root, T value)
         {
             if (root == null)
                 throw new ValueNotFoundException(Resources.Errors.DepthNodeNotFound);
@@ -108,10 +108,10 @@
         /// </summary>
         public void Insert(T value)
         {
-            this.Root = this.Insert(this.Root, new RedBlackNode<T>(value));
+            this.Root = this.Insert(this.Root, new Node(value));
 
-            if (this.Root.IsRed)
-                this.Root.SetColour(Colour.Black);
+            if (this.Root.NodeColour == Node.Colour.Red)
+                this.Root.NodeColour = Node.Colour.Black;
         }
 
         /// <summary>
@@ -123,13 +123,13 @@
         public bool InsertIfNotDuplicate(T value)
         {
             bool success;
-            RedBlackNode<T> newRoot = this.InsertIfNotDuplicate(this.Root, new RedBlackNode<T>(value), out success);
+            Node newRoot = this.InsertIfNotDuplicate(this.Root, new Node(value), out success);
             if (success)
             {
                 this.Root = newRoot;
 
-                if (this.Root.IsRed)
-                    this.Root.SetColour(Colour.Black);
+                if (this.Root.NodeColour == Node.Colour.Red)
+                    this.Root.NodeColour = Node.Colour.Black;
             }
 
             return success;
@@ -142,7 +142,7 @@
         /// <param name="root">The root node of the tree</param>
         /// <param name="node">The node to insert</param>
         /// <returns>The new root of the tree as it may have changed</returns>
-        private RedBlackNode<T> Insert(RedBlackNode<T> root, RedBlackNode<T> node)
+        private Node Insert(Node root, Node node)
         {
             int compareResult;
             if (root == null)
@@ -164,9 +164,9 @@
 
             compareResult = root.Value.CompareTo(node.Value);
             if (compareResult > 0)
-                root = Insert_Case1_LeftTwoRedChidren(root as RedBlackNode<T>);
+                root = Insert_Case1_LeftTwoRedChidren(root as Node);
             else if (compareResult < 0)
-                root = Insert_Case1_RightTwoRedChidren(root as RedBlackNode<T>);
+                root = Insert_Case1_RightTwoRedChidren(root as Node);
 
             return root;
         }
@@ -178,7 +178,7 @@
         /// <param name="root">The root node of the tree</param>
         /// <param name="node">The node to insert</param>
         /// <returns>The new root of the tree as it may have changed</returns>
-        private RedBlackNode<T> InsertIfNotDuplicate(RedBlackNode<T> root, RedBlackNode<T> node, out bool success)
+        private Node InsertIfNotDuplicate(Node root, Node node, out bool success)
         {
             int compareResult;
             if (root == null)
@@ -207,9 +207,9 @@
 
             compareResult = root.Value.CompareTo(node.Value);
             if (compareResult > 0)
-                root = Insert_Case1_LeftTwoRedChidren(root as RedBlackNode<T>);
+                root = Insert_Case1_LeftTwoRedChidren(root as Node);
             else if (compareResult < 0)
-                root = Insert_Case1_RightTwoRedChidren(root as RedBlackNode<T>);
+                root = Insert_Case1_RightTwoRedChidren(root as Node);
 
             return root;
         }
@@ -217,7 +217,7 @@
         /// <summary>
         /// Deals with the case where after inserting a node to the left, a node has two red children. If this case is not matched we move on to case 2
         /// </summary>
-        private RedBlackNode<T> Insert_Case1_LeftTwoRedChidren(RedBlackNode<T> root)
+        private Node Insert_Case1_LeftTwoRedChidren(Node root)
         {
             if (IsNodeRed(root.Left) && (IsNodeRed(root.Left.Left) || IsNodeRed(root.Left.Right)))
             {
@@ -235,7 +235,7 @@
         /// <summary>
         /// Deals with the case where after inserting a node to the right, a node has two red children. If this case is not matched we move on to case 2
         /// </summary>
-        private RedBlackNode<T> Insert_Case1_RightTwoRedChidren(RedBlackNode<T> root)
+        private Node Insert_Case1_RightTwoRedChidren(Node root)
         {
             if (IsNodeRed(root.Right) && (IsNodeRed(root.Right.Right) || IsNodeRed(root.Right.Left)))
             {
@@ -253,7 +253,7 @@
         /// <summary>
         /// Deals with the case where after an insert to the left we have two red nodes as left sub-children of each-other
         /// </summary>
-        private RedBlackNode<T> Insert_Case2_TwoLeftReds(RedBlackNode<T> root)
+        private Node Insert_Case2_TwoLeftReds(Node root)
         {
             if (IsNodeRed(root.Left.Left))
             {
@@ -270,7 +270,7 @@
         /// <summary>
         /// Deals with the case where after an insert to the right we have two red nodes as right sub-children of each-other
         /// </summary>
-        private RedBlackNode<T> Insert_Case2_TwoRightReds(RedBlackNode<T> root)
+        private Node Insert_Case2_TwoRightReds(Node root)
         {
             if (IsNodeRed(root.Right.Right))
             {
@@ -287,7 +287,7 @@
         /// <summary>
         /// Deals with the case where after inserting a node to the right we have a red node as a right sub-child of its parent and has another red node as a left subchild.
         /// </summary>
-        private RedBlackNode<T> Insert_Case3_RightLeftReds(RedBlackNode<T> root)
+        private Node Insert_Case3_RightLeftReds(Node root)
         {
             root.Right = root.Right.RotateRight();
             root = root.RotateLeft();
@@ -298,7 +298,7 @@
         /// <summary>
         /// Deals with the case where after inserting a node to the left we have a red node as a left sub-child of its parent and has another red node as a right subchild.
         /// </summary>
-        private RedBlackNode<T> Insert_Case3_LeftRightReds(RedBlackNode<T> root)
+        private Node Insert_Case3_LeftRightReds(Node root)
         {
             root.Left = root.Left.RotateLeft();
             root = root.RotateRight();
@@ -331,7 +331,7 @@
                     this.Root = this.Delete(this.Root, value, ref done);
 
                     if (this.Root != null)
-                        this.Root.SetColour(Colour.Black);
+                        this.Root.NodeColour = Node.Colour.Black;
                 }
             }
             catch (ValueNotFoundException)
@@ -349,7 +349,7 @@
         /// <param name="value">The value to delete</param>
         /// <param name="done">A flag determining if more rebalancing and recolouring is necessary</param>
         /// <returns>The new root of the tree as it may have changed</returns>
-        private RedBlackNode<T> Delete(RedBlackNode<T> root, T value, ref bool done)
+        private Node Delete(Node root, T value, ref bool done)
         {
             int compareResult = root.Value.CompareTo(value);
             if (compareResult == 0)
@@ -369,7 +369,7 @@
                     root.Left.ResetHeight();
                     if (IsNodeRed(root.Left)) // node to delete is black but has red child that can be recoloured
                     {
-                        root.Left.SetColour(Colour.Black);
+                        root.Left.NodeColour = Node.Colour.Black;
                         done = true;
                     }
 
@@ -382,7 +382,7 @@
                     root.Right.ResetHeight();
                     if (IsNodeRed(root.Right)) // node to delete is black but has red child that can be recoloured
                     {
-                        root.Right.SetColour(Colour.Black);
+                        root.Right.NodeColour = Node.Colour.Black;
                         done = true;
                     }
 
@@ -428,10 +428,10 @@
         /// <param name="root"></param>
         /// <param name="done"></param>
         /// <returns></returns>
-        private RedBlackNode<T> DeleteRebalanceRight(RedBlackNode<T> root, ref bool done)
+        private Node DeleteRebalanceRight(Node root, ref bool done)
         {
-            RedBlackNode<T> parent = root;
-            RedBlackNode<T> sibling = root.Left;
+            Node parent = root;
+            Node sibling = root.Left;
 
             // Rotation to reduce the red sibling case to the easier to handle black sibling case
             if (IsNodeRed(sibling))
@@ -447,12 +447,12 @@
                     if (IsNodeRed(parent))
                         done = true;
 
-                    parent.SetColour(Colour.Black);
-                    sibling.SetColour(Colour.Red);
+                    parent.NodeColour = Node.Colour.Black;
+                    sibling.NodeColour = Node.Colour.Red;
                 }
                 else
                 {
-                    bool parentIsRed = parent.IsRed;
+                    Node.Colour colour = parent.NodeColour;
                     bool sameRoot = root == parent;
 
                     if (IsNodeRed(sibling.Left))
@@ -463,9 +463,9 @@
                         parent = parent.RotateRight();
                     }
 
-                    parent.IsRed = parentIsRed;
-                    parent.Left.SetColour(Colour.Black);
-                    parent.Right.SetColour(Colour.Black);
+                    parent.NodeColour = colour;
+                    parent.Left.NodeColour = Node.Colour.Black;
+                    parent.Right.NodeColour = Node.Colour.Black;
 
                     if (sameRoot)
                         root = parent;
@@ -479,11 +479,11 @@
             return root;
         }
 
-        private RedBlackNode<T> DeleteRebalanceLeft(RedBlackNode<T> root, ref bool done)
+        private Node DeleteRebalanceLeft(Node root, ref bool done)
         {
             // Rotation to reduce the red sibling case to the easier to handle black sibling case
-            RedBlackNode<T> parent = root;
-            RedBlackNode<T> sibling = root.Right;
+            Node parent = root;
+            Node sibling = root.Right;
 
             if (IsNodeRed(sibling))
             {
@@ -500,12 +500,12 @@
                         done = true;
                     }
 
-                    parent.SetColour(Colour.Black);
-                    sibling.SetColour(Colour.Red);
+                    parent.NodeColour = Node.Colour.Black;
+                    sibling.NodeColour = Node.Colour.Red;
                 }
                 else
                 {
-                    bool parentIsRed = parent.IsRed;
+                    Node.Colour colour = parent.NodeColour;
                     bool sameRoot = root == parent;
 
                     if (IsNodeRed(sibling.Right))
@@ -516,9 +516,9 @@
                         parent = parent.RotateLeft();
                     }
 
-                    parent.IsRed = parentIsRed;
-                    parent.Left.SetColour(Colour.Black);
-                    parent.Right.SetColour(Colour.Black);
+                    parent.NodeColour = colour;
+                    parent.Left.NodeColour = Node.Colour.Black;
+                    parent.Right.NodeColour = Node.Colour.Black;
 
                     if (sameRoot)
                         root = parent;
@@ -543,7 +543,7 @@
         /// <returns>The item that matches the given value, or default(T) if it can't be found</returns>
         public T Find(T value)
         {
-            RedBlackNode<T> node = this.FindNode(value);
+            Node node = this.FindNode(value);
 
             if (node == null)
                 return default(T);
@@ -556,9 +556,9 @@
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        private RedBlackNode<T> FindNode(T item)
+        private Node FindNode(T item)
         {
-            RedBlackNode<T> current = this.Root;
+            Node current = this.Root;
             while (current != null)
             {
                 int compareResult = current.Value.CompareTo(item);
@@ -580,23 +580,23 @@
         /// <summary>
         /// Returns true if the node is red. Returns false if the node is black or null.
         /// </summary>
-        private static bool IsNodeRed(RedBlackNode<T> node)
+        private static bool IsNodeRed(Node node)
         {
-            return (node != null && node.IsRed);
+            return (node != null && node.NodeColour == Node.Colour.Red);
         }
 
         /// <summary>
         /// Moves a black root node down to it's two children and colours the root red
         /// </summary>
         /// <param name="root"></param>
-        private static void MoveBlackDown(RedBlackNode<T> root)
+        private static void MoveBlackDown(Node root)
         {
-            root.SetColour(Colour.Red);
-            root.Left.SetColour(Colour.Black);
-            root.Right.SetColour(Colour.Black);
+            root.NodeColour = Node.Colour.Red;
+            root.Left.NodeColour = Node.Colour.Black;
+            root.Right.NodeColour = Node.Colour.Black;
         }
 
-        private static void AssertValidTree(RedBlackNode<T> root, out int numBlack)
+        private static void AssertValidTree(Node root, out int numBlack)
         {
             if (root == null)
             {
@@ -630,12 +630,12 @@
 
         #region Node Iterators
 
-        private IEnumerable<RedBlackNode<T>> InOrderNodeIterator
+        private IEnumerable<Node> InOrderNodeIterator
         {
             get
             {
-                RedBlackNode<T> current = this.Root;
-                Stack<RedBlackNode<T>> parentStack = new Stack<RedBlackNode<T>>();
+                Node current = this.Root;
+                Stack<Node> parentStack = new Stack<Node>();
 
                 while (current != null || parentStack.Count != 0)
                 {
@@ -654,13 +654,13 @@
             }
         }
 
-        private IEnumerable<RedBlackNode<T>> PostOrderNodeIterator
+        private IEnumerable<Node> PostOrderNodeIterator
         {
             get
             {
-                RedBlackNode<T> current;
-                RedBlackNode<T> previous = null;
-                Stack<RedBlackNode<T>> nodeStack = new Stack<RedBlackNode<T>>();
+                Node current;
+                Node previous = null;
+                Stack<Node> nodeStack = new Stack<Node>();
 
                 if (this.Root != null)
                     nodeStack.Push(this.Root);
@@ -695,13 +695,13 @@
             }
         }
 
-        private IEnumerable<RedBlackNode<T>> PreOrderNodeIterator
+        private IEnumerable<Node> PreOrderNodeIterator
         {
             get
             {
-                Stack<RedBlackNode<T>> parentStack = new Stack<RedBlackNode<T>>();
+                Stack<Node> parentStack = new Stack<Node>();
 
-                RedBlackNode<T> current = this.Root;
+                Node current = this.Root;
 
                 while (parentStack.Count > 0 || current != null)
                 {
@@ -731,7 +731,7 @@
         {
             get
             {
-                foreach (RedBlackNode<T> node in this.PreOrderNodeIterator)
+                foreach (Node node in this.PreOrderNodeIterator)
                     yield return node.Value;
             }
         }
@@ -743,7 +743,7 @@
         {
             get
             {
-                foreach (RedBlackNode<T> node in this.InOrderNodeIterator)
+                foreach (Node node in this.InOrderNodeIterator)
                     yield return node.Value;
             }
         }
@@ -755,7 +755,7 @@
         {
             get
             {
-                foreach (RedBlackNode<T> node in this.PostOrderNodeIterator)
+                foreach (Node node in this.PostOrderNodeIterator)
                     yield return node.Value;
             }
         }
@@ -768,8 +768,8 @@
         {
             if (this.Root != null)
             {
-                RedBlackNode<T> previousNode = null;
-                foreach (RedBlackNode<T> node in this.InOrderNodeIterator)
+                Node previousNode = null;
+                foreach (Node node in this.InOrderNodeIterator)
                 {
                     if (previousNode != null && previousNode.Value.CompareTo(node.Value) >= 0)
                         throw new InvalidTreeException();
@@ -780,7 +780,7 @@
 
             int numBlack;
 
-            AssertValidTree(this.Root as RedBlackNode<T>, out  numBlack);
+            AssertValidTree(this.Root as Node, out  numBlack);
         }
 
         #endregion

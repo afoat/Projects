@@ -9,6 +9,9 @@
     [ExcludeFromCodeCoverage]
     public class RedBlackTreeTests : IBinarySearchTreeTests<RedBlackTree<int>>
     {
+        private const RedBlackTree<int>.Node.Colour RedColour = RedBlackTree<int>.Node.Colour.Red;
+        private const RedBlackTree<int>.Node.Colour BlackColour = RedBlackTree<int>.Node.Colour.Black;
+
         #region Setup
 
         protected override IBinarySearchTree<int> InitEmptyTree()
@@ -22,11 +25,11 @@
         {
             RedBlackTree<int> tree = new RedBlackTree<int>();
 
-            tree.Root = new RedBlackNode<int>(50) { IsRed = false };
-            tree.Root.Right = new RedBlackNode<int>(75) { IsRed = false };
-            tree.Root.Left = new RedBlackNode<int>(25) { IsRed = false };
-            tree.Root.Left.Left = new RedBlackNode<int>(12) { IsRed = true };
-            tree.Root.Left.Right = new RedBlackNode<int>(32) { IsRed = true };
+            tree.Root = new RedBlackTree<int>.Node(50) { NodeColour = BlackColour };
+            tree.Root.Right = new RedBlackTree<int>.Node(75) { NodeColour = BlackColour };
+            tree.Root.Left = new RedBlackTree<int>.Node(25) { NodeColour = BlackColour };
+            tree.Root.Left.Left = new RedBlackTree<int>.Node(12) { NodeColour = RedColour };
+            tree.Root.Left.Right = new RedBlackTree<int>.Node(32) { NodeColour = RedColour };
             tree.Count = 5;
 
             return tree;
@@ -35,10 +38,10 @@
         protected override IBinarySearchTree<int> InitFourNodesLeftLeft()
         {
             RedBlackTree<int> tree = new RedBlackTree<int>();
-            tree.Root = new RedBlackNode<int>(50) { IsRed = false };
-            tree.Root.Right = new RedBlackNode<int>(75) { IsRed = false };
-            tree.Root.Left = new RedBlackNode<int>(25) { IsRed = false };
-            tree.Root.Left.Left = new RedBlackNode<int>(12) { IsRed = true };
+            tree.Root = new RedBlackTree<int>.Node(50) { NodeColour = BlackColour };
+            tree.Root.Right = new RedBlackTree<int>.Node(75) { NodeColour = BlackColour };
+            tree.Root.Left = new RedBlackTree<int>.Node(25) { NodeColour = BlackColour };
+            tree.Root.Left.Left = new RedBlackTree<int>.Node(12) { NodeColour = RedColour };
             tree.Count = 4;
 
             return tree;
@@ -47,10 +50,10 @@
         protected override IBinarySearchTree<int> InitFourNodesLeftRight()
         {
             RedBlackTree<int> tree = new RedBlackTree<int>();
-            tree.Root = new RedBlackNode<int>(50) { IsRed = false };
-            tree.Root.Right = new RedBlackNode<int>(75) { IsRed = false };
-            tree.Root.Left = new RedBlackNode<int>(25) { IsRed = false };
-            tree.Root.Left.Right = new RedBlackNode<int>(32) { IsRed = true };
+            tree.Root = new RedBlackTree<int>.Node(50) { NodeColour = BlackColour };
+            tree.Root.Right = new RedBlackTree<int>.Node(75) { NodeColour = BlackColour };
+            tree.Root.Left = new RedBlackTree<int>.Node(25) { NodeColour = BlackColour };
+            tree.Root.Left.Right = new RedBlackTree<int>.Node(32) { NodeColour = RedColour };
             tree.Count = 4;
 
             return tree;
@@ -59,10 +62,10 @@
         protected override IBinarySearchTree<int> InitFourNodesRightLeft()
         {
             RedBlackTree<int> tree = new RedBlackTree<int>();
-            tree.Root = new RedBlackNode<int>(50) { IsRed = false };
-            tree.Root.Left = new RedBlackNode<int>(25) { IsRed = false };
-            tree.Root.Right = new RedBlackNode<int>(75) { IsRed = false };
-            tree.Root.Right.Left = new RedBlackNode<int>(63) { IsRed = true };
+            tree.Root = new RedBlackTree<int>.Node(50) { NodeColour = BlackColour };
+            tree.Root.Left = new RedBlackTree<int>.Node(25) { NodeColour = BlackColour };
+            tree.Root.Right = new RedBlackTree<int>.Node(75) { NodeColour = BlackColour };
+            tree.Root.Right.Left = new RedBlackTree<int>.Node(63) { NodeColour = RedColour };
             tree.Count = 4;
 
             return tree;
@@ -71,10 +74,10 @@
         protected override IBinarySearchTree<int> InitFourNodesRightRight()
         {
             RedBlackTree<int> tree = new RedBlackTree<int>();
-            tree.Root = new RedBlackNode<int>(50) { IsRed = false };
-            tree.Root.Left = new RedBlackNode<int>(25) { IsRed = false };
-            tree.Root.Right = new RedBlackNode<int>(75) { IsRed = false };
-            tree.Root.Right.Right = new RedBlackNode<int>(100) { IsRed = true };
+            tree.Root = new RedBlackTree<int>.Node(50) { NodeColour = BlackColour };
+            tree.Root.Left = new RedBlackTree<int>.Node(25) { NodeColour = BlackColour };
+            tree.Root.Right = new RedBlackTree<int>.Node(75) { NodeColour = BlackColour };
+            tree.Root.Right.Right = new RedBlackTree<int>.Node(100) { NodeColour = RedColour };
             tree.Count = 4;
 
             return tree;
@@ -83,8 +86,8 @@
         protected override IBinarySearchTree<int> InitRootLeft()
         {
             RedBlackTree<int> tree = new RedBlackTree<int>();
-            tree.Root = new RedBlackNode<int>(50) { IsRed = false };
-            tree.Root.Left = new RedBlackNode<int>(25) { IsRed = true };
+            tree.Root = new RedBlackTree<int>.Node(50) { NodeColour = BlackColour };
+            tree.Root.Left = new RedBlackTree<int>.Node(25) { NodeColour = RedColour };
             tree.Count = 2;
 
             return tree;
@@ -93,7 +96,7 @@
         protected override IBinarySearchTree<int> InitRootOnly()
         {
             RedBlackTree<int> tree = new RedBlackTree<int>();
-            tree.Root = new RedBlackNode<int>(50) { IsRed = false };
+            tree.Root = new RedBlackTree<int>.Node(50) { NodeColour = BlackColour };
             tree.Count = 1;
 
             return tree;
@@ -102,8 +105,8 @@
         protected override IBinarySearchTree<int> InitRootRight()
         {
             RedBlackTree<int> tree = new RedBlackTree<int>();
-            tree.Root = new RedBlackNode<int>(50) { IsRed = false };
-            tree.Root.Right = new RedBlackNode<int>(75) { IsRed = true };
+            tree.Root = new RedBlackTree<int>.Node(50) { NodeColour = BlackColour };
+            tree.Root.Right = new RedBlackTree<int>.Node(75) { NodeColour = RedColour };
             tree.Count = 2;
 
             return tree;
@@ -112,9 +115,9 @@
         protected override IBinarySearchTree<int> InitThreeNodesFull()
         {
             RedBlackTree<int> tree = new RedBlackTree<int>();
-            tree.Root = new RedBlackNode<int>(50) { IsRed = false };
-            tree.Root.Left = new RedBlackNode<int>(25) { IsRed = true };
-            tree.Root.Right = new RedBlackNode<int>(75) { IsRed = true };
+            tree.Root = new RedBlackTree<int>.Node(50) { NodeColour = BlackColour };
+            tree.Root.Left = new RedBlackTree<int>.Node(25) { NodeColour = RedColour };
+            tree.Root.Right = new RedBlackTree<int>.Node(75) { NodeColour = RedColour };
             tree.Count = 3;
 
             return tree;
@@ -123,9 +126,9 @@
         protected override IBinarySearchTree<int> InitBadTree()
         {
             RedBlackTree<int> tree = new RedBlackTree<int>();
-            tree.Root = new RedBlackNode<int>(50) { IsRed = false };
-            tree.Root.Left = new RedBlackNode<int>(75) { IsRed = true };
-            tree.Root.Right = new RedBlackNode<int>(25) { IsRed = true };
+            tree.Root = new RedBlackTree<int>.Node(50) { NodeColour = BlackColour };
+            tree.Root.Left = new RedBlackTree<int>.Node(75) { NodeColour = RedColour };
+            tree.Root.Right = new RedBlackTree<int>.Node(25) { NodeColour = RedColour };
             tree.Count = 3;
 
             return tree;
@@ -135,13 +138,13 @@
         {
             RedBlackTree<int> tree = new RedBlackTree<int>();
 
-            tree.Root = new RedBlackNode<int>(50) { IsRed = false };
-            tree.Root.Left = new RedBlackNode<int>(25) { IsRed = true };
-            tree.Root.Right = new RedBlackNode<int>(75) { IsRed = false };
-            tree.Root.Left.Left = new RedBlackNode<int>(12) { IsRed = false };
-            tree.Root.Left.Right = new RedBlackNode<int>(32) { IsRed = false };
-            tree.Root.Left.Left.Left = new RedBlackNode<int>(7) { IsRed = true };
-            tree.Root.Left.Left.Right = new RedBlackNode<int>(15) { IsRed = true };
+            tree.Root = new RedBlackTree<int>.Node(50) { NodeColour = BlackColour };
+            tree.Root.Left = new RedBlackTree<int>.Node(25) { NodeColour = RedColour };
+            tree.Root.Right = new RedBlackTree<int>.Node(75) { NodeColour = BlackColour };
+            tree.Root.Left.Left = new RedBlackTree<int>.Node(12) { NodeColour = BlackColour };
+            tree.Root.Left.Right = new RedBlackTree<int>.Node(32) { NodeColour = BlackColour };
+            tree.Root.Left.Left.Left = new RedBlackTree<int>.Node(7) { NodeColour = RedColour };
+            tree.Root.Left.Left.Right = new RedBlackTree<int>.Node(15) { NodeColour = RedColour };
             tree.Count = 7;
 
             return tree;
@@ -151,12 +154,12 @@
         {
             RedBlackTree<int> tree = new RedBlackTree<int>();
             
-            tree.Root = new RedBlackNode<int>(50) { IsRed = false };
-            tree.Root.Left = new RedBlackNode<int>(30) { IsRed = true };
-            tree.Root.Right = new RedBlackNode<int>(75) { IsRed = false };
-            tree.Root.Left.Left = new RedBlackNode<int>(25) { IsRed = false };
-            tree.Root.Left.Right = new RedBlackNode<int>(32) { IsRed = false };
-            tree.Root.Left.Right.Right = new RedBlackNode<int>(35) { IsRed = true };
+            tree.Root = new RedBlackTree<int>.Node(50) { NodeColour = BlackColour };
+            tree.Root.Left = new RedBlackTree<int>.Node(30) { NodeColour = RedColour };
+            tree.Root.Right = new RedBlackTree<int>.Node(75) { NodeColour = BlackColour };
+            tree.Root.Left.Left = new RedBlackTree<int>.Node(25) { NodeColour = BlackColour };
+            tree.Root.Left.Right = new RedBlackTree<int>.Node(32) { NodeColour = BlackColour };
+            tree.Root.Left.Right.Right = new RedBlackTree<int>.Node(35) { NodeColour = RedColour };
             tree.Count = 6;
 
             return tree;
@@ -166,13 +169,13 @@
         {
             RedBlackTree<int> tree = new RedBlackTree<int>();
             
-            tree.Root = new RedBlackNode<int>(50) { IsRed = false };
-            tree.Root.Left = new RedBlackNode<int>(25) { IsRed = false };
-            tree.Root.Right = new RedBlackNode<int>(75) { IsRed = true };
-            tree.Root.Right.Left = new RedBlackNode<int>(62) { IsRed = false };
-            tree.Root.Right.Right = new RedBlackNode<int>(100) { IsRed = false };
-            tree.Root.Right.Right.Left = new RedBlackNode<int>(80) { IsRed = true };
-            tree.Root.Right.Right.Right = new RedBlackNode<int>(110) { IsRed = true };
+            tree.Root = new RedBlackTree<int>.Node(50) { NodeColour = BlackColour };
+            tree.Root.Left = new RedBlackTree<int>.Node(25) { NodeColour = BlackColour };
+            tree.Root.Right = new RedBlackTree<int>.Node(75) { NodeColour = RedColour };
+            tree.Root.Right.Left = new RedBlackTree<int>.Node(62) { NodeColour = BlackColour };
+            tree.Root.Right.Right = new RedBlackTree<int>.Node(100) { NodeColour = BlackColour };
+            tree.Root.Right.Right.Left = new RedBlackTree<int>.Node(80) { NodeColour = RedColour };
+            tree.Root.Right.Right.Right = new RedBlackTree<int>.Node(110) { NodeColour = RedColour };
             tree.Count = 7;
 
             return tree;
@@ -182,13 +185,13 @@
         {
             RedBlackTree<int> tree = new RedBlackTree<int>();
 
-            tree.Root = new RedBlackNode<int>(50) { IsRed = false };
-            tree.Root.Left = new RedBlackNode<int>(25) { IsRed = false };
-            tree.Root.Right = new RedBlackNode<int>(75) { IsRed = true };
-            tree.Root.Right.Left = new RedBlackNode<int>(62) { IsRed = false };
-            tree.Root.Right.Right = new RedBlackNode<int>(100) { IsRed = false };
-            tree.Root.Right.Left.Left = new RedBlackNode<int>(60) { IsRed = true };
-            tree.Root.Right.Left.Right = new RedBlackNode<int>(65) { IsRed = true };
+            tree.Root = new RedBlackTree<int>.Node(50) { NodeColour = BlackColour };
+            tree.Root.Left = new RedBlackTree<int>.Node(25) { NodeColour = BlackColour };
+            tree.Root.Right = new RedBlackTree<int>.Node(75) { NodeColour = RedColour };
+            tree.Root.Right.Left = new RedBlackTree<int>.Node(62) { NodeColour = BlackColour };
+            tree.Root.Right.Right = new RedBlackTree<int>.Node(100) { NodeColour = BlackColour };
+            tree.Root.Right.Left.Left = new RedBlackTree<int>.Node(60) { NodeColour = RedColour };
+            tree.Root.Right.Left.Right = new RedBlackTree<int>.Node(65) { NodeColour = RedColour };
             tree.Count = 7;
 
             return tree;
@@ -197,8 +200,8 @@
         protected virtual RedBlackTree<int> InitBadTreeTwoRedsLeft()
         {
             RedBlackTree<int> tree = new RedBlackTree<int>();
-            tree.Root = new RedBlackNode<int>(50) { IsRed = true };
-            tree.Root.Left = new RedBlackNode<int>(25) { IsRed = true };
+            tree.Root = new RedBlackTree<int>.Node(50) { NodeColour = RedColour };
+            tree.Root.Left = new RedBlackTree<int>.Node(25) { NodeColour = RedColour };
 
             return tree;
         }
@@ -206,8 +209,8 @@
         protected virtual RedBlackTree<int> InitBadTreeTwoRedsRight()
         {
             RedBlackTree<int> tree = new RedBlackTree<int>();
-            tree.Root = new RedBlackNode<int>(50) { IsRed = true };
-            tree.Root.Right = new RedBlackNode<int>(75) { IsRed = true };
+            tree.Root = new RedBlackTree<int>.Node(50) { NodeColour = RedColour };
+            tree.Root.Right = new RedBlackTree<int>.Node(75) { NodeColour = RedColour };
 
             return tree;
         }
@@ -215,9 +218,9 @@
         protected virtual RedBlackTree<int> InitBadTreeDifferentNumberOfRedsInSubtrees()
         {
             RedBlackTree<int> tree = new RedBlackTree<int>();
-            tree.Root = new RedBlackNode<int>(50) { IsRed = false };
-            tree.Root.Left = new RedBlackNode<int>(25) { IsRed = false };
-            tree.Root.Right = new RedBlackNode<int>(75) { IsRed = true };
+            tree.Root = new RedBlackTree<int>.Node(50) { NodeColour = BlackColour };
+            tree.Root.Left = new RedBlackTree<int>.Node(25) { NodeColour = BlackColour };
+            tree.Root.Right = new RedBlackTree<int>.Node(75) { NodeColour = RedColour };
 
             return tree;
         }
@@ -318,7 +321,7 @@
             RedBlackTree<int> tree = (RedBlackTree<int>)this.InitEmptyTree();
             tree.Insert(50);
 
-            Assert.IsFalse(tree.Root.IsRed);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.NodeColour);
         }
 
         [TestMethod]
@@ -328,8 +331,8 @@
             RedBlackTree<int> tree = (RedBlackTree<int>)this.InitRootOnly();
             tree.Insert(25);
 
-            Assert.IsFalse(tree.Root.IsRed);
-            Assert.IsTrue(tree.Root.Left.IsRed);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(RedColour, tree.Root.Left.NodeColour);
         }
 
         [TestMethod]
@@ -340,8 +343,8 @@
             tree.Insert(75);
 
 
-            Assert.IsFalse(tree.Root.IsRed);
-            Assert.IsTrue(tree.Root.Right.IsRed);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(RedColour, tree.Root.Right.NodeColour);
         }
 
         [TestMethod]
@@ -351,9 +354,9 @@
             RedBlackTree<int> tree = (RedBlackTree<int>)this.InitRootLeft();
             tree.Insert(75);
             
-            Assert.IsFalse(tree.Root.IsRed);
-            Assert.IsTrue(tree.Root.Left.IsRed);
-            Assert.IsTrue(tree.Root.Right.IsRed);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(RedColour, tree.Root.Left.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(RedColour, tree.Root.Right.NodeColour);
         }
 
         [TestMethod]
@@ -363,9 +366,9 @@
             RedBlackTree<int> tree = (RedBlackTree<int>)this.InitRootLeft();
             tree.Insert(12);
 
-            Assert.IsFalse(tree.Root.IsRed);
-            Assert.IsTrue(tree.Root.Left.IsRed);
-            Assert.IsTrue(tree.Root.Right.IsRed);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(RedColour, tree.Root.Left.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(RedColour, tree.Root.Right.NodeColour);
         }
 
         [TestMethod]
@@ -375,9 +378,9 @@
             RedBlackTree<int> tree = (RedBlackTree<int>)this.InitRootLeft();
             tree.Insert(32);
 
-            Assert.IsFalse(tree.Root.IsRed);
-            Assert.IsTrue(tree.Root.Left.IsRed);
-            Assert.IsTrue(tree.Root.Right.IsRed);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(RedColour, tree.Root.Left.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(RedColour, tree.Root.Right.NodeColour);
         }
 
         [TestMethod]
@@ -387,9 +390,9 @@
             RedBlackTree<int> tree = (RedBlackTree<int>)this.InitRootRight();
             tree.Insert(100);
 
-            Assert.IsFalse(tree.Root.IsRed);
-            Assert.IsTrue(tree.Root.Left.IsRed);
-            Assert.IsTrue(tree.Root.Right.IsRed);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(RedColour, tree.Root.Left.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(RedColour, tree.Root.Right.NodeColour);
         }
 
         [TestMethod]
@@ -401,9 +404,9 @@
 
             Assert.AreEqual<int>(3, tree.Count);
 
-            Assert.IsFalse(tree.Root.IsRed);
-            Assert.IsTrue(tree.Root.Left.IsRed);
-            Assert.IsTrue(tree.Root.Right.IsRed);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(RedColour, tree.Root.Left.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(RedColour, tree.Root.Right.NodeColour);
         }
 
         #endregion
@@ -417,7 +420,7 @@
             RedBlackTree<int> tree = (RedBlackTree<int>)this.InitRootLeft();
             Assert.IsTrue(tree.Delete(50));
 
-            Assert.IsFalse(tree.Root.IsRed);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.NodeColour);
         }
 
         [TestMethod]
@@ -427,7 +430,7 @@
             RedBlackTree<int> tree = (RedBlackTree<int>)this.InitRootLeft();
             Assert.IsTrue(tree.Delete(25));
 
-            Assert.IsFalse(tree.Root.IsRed);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.NodeColour);
         }
 
         [TestMethod]
@@ -437,7 +440,7 @@
             RedBlackTree<int> tree = (RedBlackTree<int>)this.InitRootRight();
             Assert.IsTrue(tree.Delete(50));
 
-            Assert.IsFalse(tree.Root.IsRed);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.NodeColour);
         }
 
         [TestMethod]
@@ -447,7 +450,7 @@
             RedBlackTree<int> tree = (RedBlackTree<int>)this.InitRootRight();
             Assert.IsTrue(tree.Delete(75));
 
-            Assert.IsFalse(tree.Root.IsRed);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.NodeColour);
         }
 
         [TestMethod]
@@ -457,8 +460,8 @@
             RedBlackTree<int> tree = (RedBlackTree<int>)this.InitThreeNodesFull();
             Assert.IsTrue(tree.Delete(50));
 
-            Assert.IsFalse(tree.Root.IsRed);
-            Assert.IsTrue(tree.Root.Right.IsRed);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(RedColour, tree.Root.Right.NodeColour);
         }
 
         [TestMethod]
@@ -468,10 +471,10 @@
             RedBlackTree<int> tree = (RedBlackTree<int>)this.InitFiveNodesLeftFull();
             Assert.IsTrue(tree.Delete(25));
 
-            Assert.IsFalse(tree.Root.IsRed);
-            Assert.IsFalse(tree.Root.Left.IsRed);
-            Assert.IsFalse(tree.Root.Right.IsRed);
-            Assert.IsTrue(tree.Root.Left.Right.IsRed);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.Left.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.Right.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(RedColour, tree.Root.Left.Right.NodeColour);
         }
 
         [TestMethod]
@@ -481,8 +484,8 @@
             RedBlackTree<int> tree = (RedBlackTree<int>)this.InitThreeNodesFull();
             Assert.IsTrue(tree.Delete(25));
 
-            Assert.IsFalse(tree.Root.IsRed);
-            Assert.IsTrue(tree.Root.Right.IsRed);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(RedColour, tree.Root.Right.NodeColour);
         }
 
         [TestMethod]
@@ -492,8 +495,8 @@
             RedBlackTree<int> tree = (RedBlackTree<int>)this.InitThreeNodesFull();
             Assert.IsTrue(tree.Delete(75));
 
-            Assert.IsFalse(tree.Root.IsRed);
-            Assert.IsTrue(tree.Root.Left.IsRed);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(RedColour, tree.Root.Left.NodeColour);
         }
 
         [TestMethod]
@@ -503,9 +506,9 @@
             RedBlackTree<int> tree = (RedBlackTree<int>)this.InitFourNodesLeftLeft();
             Assert.IsTrue(tree.Delete(25));
 
-            Assert.IsFalse(tree.Root.IsRed);
-            Assert.IsFalse(tree.Root.Left.IsRed);
-            Assert.IsFalse(tree.Root.Right.IsRed);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.Left.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.Right.NodeColour);
         }
 
         [TestMethod]
@@ -515,9 +518,9 @@
             RedBlackTree<int> tree = (RedBlackTree<int>)this.InitFourNodesLeftRight();
             Assert.IsTrue(tree.Delete(25));
 
-            Assert.IsFalse(tree.Root.IsRed);
-            Assert.IsFalse(tree.Root.Left.IsRed);
-            Assert.IsFalse(tree.Root.Right.IsRed);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.Left.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.Right.NodeColour);
         }
 
         [TestMethod]
@@ -527,9 +530,9 @@
             RedBlackTree<int> tree = (RedBlackTree<int>)this.InitFourNodesRightLeft();
             Assert.IsTrue(tree.Delete(75));
 
-            Assert.IsFalse(tree.Root.IsRed);
-            Assert.IsFalse(tree.Root.Left.IsRed);
-            Assert.IsFalse(tree.Root.Right.IsRed);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.Left.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.Right.NodeColour);
         }
 
         [TestMethod]
@@ -539,9 +542,9 @@
             RedBlackTree<int> tree = (RedBlackTree<int>)this.InitFourNodesRightRight();
             Assert.IsTrue(tree.Delete(75));
 
-            Assert.IsFalse(tree.Root.IsRed);
-            Assert.IsFalse(tree.Root.Left.IsRed);
-            Assert.IsFalse(tree.Root.Right.IsRed);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.Left.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.Right.NodeColour);
         }
 
         [TestMethod]
@@ -551,12 +554,11 @@
             RedBlackTree<int> tree = (RedBlackTree<int>)this.InitLeftUnbalancedRedSibling();
             Assert.IsTrue(tree.Delete(75));
 
-            Assert.IsFalse(tree.Root.IsRed);
-            Assert.IsFalse(tree.Root.Left.IsRed);
-            Assert.IsFalse(tree.Root.Right.IsRed);
-            Assert.IsTrue(tree.Root.Left.Left.IsRed);
-            Assert.IsTrue(tree.Root.Left.Right.IsRed);
-            Assert.IsTrue(tree.Root.Right.Left.IsRed);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.Left.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.Right.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(RedColour, tree.Root.Left.Left.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(RedColour, tree.Root.Left.Right.NodeColour);
         }
 
         [TestMethod]
@@ -602,11 +604,11 @@
             RedBlackTree<int> tree = (RedBlackTree<int>)this.InitLeftUnbalancedDifferentRoot();
             Assert.IsTrue(tree.Delete(75));
 
-            Assert.IsFalse(tree.Root.IsRed);
-            Assert.IsFalse(tree.Root.Left.IsRed);
-            Assert.IsTrue(tree.Root.Right.IsRed);
-            Assert.IsFalse(tree.Root.Right.Left.IsRed);
-            Assert.IsFalse(tree.Root.Right.Right.IsRed);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.Left.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(RedColour, tree.Root.Right.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.Right.Left.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.Right.Right.NodeColour);
         }
 
         [TestMethod]
@@ -652,12 +654,12 @@
             RedBlackTree<int> tree = (RedBlackTree<int>)this.InitRightUnbalancedRedSibling();
             Assert.IsTrue(tree.Delete(25));
 
-            Assert.IsFalse(tree.Root.IsRed);
-            Assert.IsFalse(tree.Root.Left.IsRed);
-            Assert.IsFalse(tree.Root.Right.IsRed);
-            Assert.IsTrue(tree.Root.Left.Right.IsRed);
-            Assert.IsTrue(tree.Root.Right.Left.IsRed);
-            Assert.IsTrue(tree.Root.Right.Right.IsRed);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.Left.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.Right.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(RedColour, tree.Root.Left.Right.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(RedColour, tree.Root.Right.Left.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(RedColour, tree.Root.Right.Right.NodeColour);
         }
 
         [TestMethod]
@@ -703,12 +705,12 @@
             RedBlackTree<int> tree = (RedBlackTree<int>)this.InitRightUnbalancedDifferentRoot();
             Assert.IsTrue(tree.Delete(25));
 
-            Assert.IsFalse(tree.Root.IsRed);
-            Assert.IsTrue(tree.Root.Left.IsRed);
-            Assert.IsFalse(tree.Root.Right.IsRed);
-            Assert.IsFalse(tree.Root.Left.Right.IsRed);
-            Assert.IsFalse(tree.Root.Left.Left.IsRed);
-            Assert.IsTrue(tree.Root.Left.Left.Right.IsRed);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(RedColour, tree.Root.Left.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.Right.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.Left.Right.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(BlackColour, tree.Root.Left.Left.NodeColour);
+            Assert.AreEqual<RedBlackTree<int>.Node.Colour>(RedColour, tree.Root.Left.Left.Right.NodeColour);
         }
 
         [TestMethod]

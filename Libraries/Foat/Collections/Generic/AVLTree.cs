@@ -24,7 +24,7 @@
 
         #region Properties
 
-        internal AVLNode<T> Root { get; set; }
+        internal Node Root { get; set; }
 
         /// <summary>
         /// Returns the number of values in the tree
@@ -84,7 +84,7 @@
         /// <param name="root">The root of the tree to search</param>
         /// <param name="value">The value of the item whose depth should be returned</param>
         /// <returns></returns>
-        private static int Depth(AVLNode<T> root, T value)
+        private static int Depth(Node root, T value)
         {
             if (root == null)
                 throw new ValueNotFoundException(Resources.Errors.DeleteNodeNotFound);
@@ -116,7 +116,7 @@
         /// <param name="value">The value of the item to insert</param>
         public void Insert(T value)
         {
-            this.Root = this.Insert(this.Root, new AVLNode<T>(value));
+            this.Root = this.Insert(this.Root, new Node(value));
         }
 
         /// <summary>
@@ -127,7 +127,7 @@
         public bool InsertIfNotDuplicate(T value)
         {
             bool success;
-            AVLNode<T> newRoot = this.InsertIfNotDuplicate(this.Root, new AVLNode<T>(value), out success);
+            Node newRoot = this.InsertIfNotDuplicate(this.Root, new Node(value), out success);
             if (success)
             {
                 this.Root = newRoot;
@@ -143,7 +143,7 @@
         /// <param name="root">The root node of the tree</param>
         /// <param name="node">The node to insert</param>
         /// <returns>The new root of the tree as it may have changed</returns>
-        private AVLNode<T> Insert(AVLNode<T> root, AVLNode<T> node)
+        private Node Insert(Node root, Node node)
         {
             if (root == null)
             {
@@ -175,7 +175,7 @@
         /// <param name="node">The node to insert</param>
         /// <param name="success">Out parameter. True if the value was inserted, false if it already existed.</param>
         /// <returns>The new root of the tree as it may have changed</returns>
-        private AVLNode<T> InsertIfNotDuplicate(AVLNode<T> root, AVLNode<T> node, out bool success)
+        private Node InsertIfNotDuplicate(Node root, Node node, out bool success)
         {
             if (root == null)
             {
@@ -243,7 +243,7 @@
         /// <param name="root">The root node of the tree</param>
         /// <param name="value">The value to delete</param>
         /// <returns>The new root of the tree as it may have changed</returns>
-        private AVLNode<T> Delete(AVLNode<T> root, T value)
+        private Node Delete(Node root, T value)
         {
             int compareResults = root.Value.CompareTo(value);
             if (compareResults > 0)
@@ -292,7 +292,7 @@
                 }
                 else
                 {
-                    AVLNode<T> predecessor = root.InOrderPredecessor;
+                    Node predecessor = root.InOrderPredecessor;
                     root.Value = predecessor.Value;
                     root.Left = Delete(root.Left, predecessor.Value);
                     root.ResetHeight();
@@ -317,7 +317,7 @@
         public T Find(T value)
         {
 
-            AVLNode<T> node = this.FindNode(value);
+            Node node = this.FindNode(value);
 
             if (node == null)
                 return default(T);
@@ -330,9 +330,9 @@
         /// </summary>
         /// <param name="value">The value of the node we want to find</param>
         /// <returns>The AVLNode that coressponds to the given value, or NULL if the value cannot be found</returns>
-        private AVLNode<T> FindNode(T value)
+        private Node FindNode(T value)
         {
-            AVLNode<T> current = this.Root;
+            Node current = this.Root;
             while (current != null)
             {
                 int compareResult = current.Value.CompareTo(value);
@@ -356,7 +356,7 @@
         /// </summary>
         /// <param name="node">The node to rebalance</param>
         /// <returns>True if a rebalancing was performed</returns>
-        private static AVLNode<T> RebalanceNode(AVLNode<T> node)
+        private static Node RebalanceNode(Node node)
         {
             // if left tree taller
             if (node.Balance > 1)
@@ -373,7 +373,7 @@
         /// Performs the rotations necessary to balance a parent
         /// </summary>
         /// <param name="parent">The parent node to rebalance</param>
-        private static AVLNode<T> RebalanceRightSubTree(AVLNode<T> parent)
+        private static Node RebalanceRightSubTree(Node parent)
         {
             // Converts a Root -> Right -> Left sub tree
             // Into a Root -> Right -> Right sub tree maintaining order
@@ -388,7 +388,7 @@
         /// Performs the rotations necessary to balance a parent
         /// </summary>
         /// <param name="parent">The parent node to rebalance</param>
-        private static AVLNode<T> RebalanceLeftSubTree(AVLNode<T> parent)
+        private static Node RebalanceLeftSubTree(Node parent)
         {
             // Converts a Root -> Left -> Right sub tree
             // Into a Root -> Left -> Left sub tree maintaining order
@@ -403,12 +403,12 @@
 
         #region Node Iterators
 
-        private IEnumerable<AVLNode<T>> InOrderNodeIterator
+        private IEnumerable<Node> InOrderNodeIterator
         {
             get
             {
-                AVLNode<T> current = this.Root;
-                Stack<AVLNode<T>> parentStack = new Stack<AVLNode<T>>();
+                Node current = this.Root;
+                Stack<Node> parentStack = new Stack<Node>();
 
                 while (current != null || parentStack.Count != 0)
                 {
@@ -427,13 +427,13 @@
             }
         }
 
-        private IEnumerable<AVLNode<T>> PostOrderNodeIterator
+        private IEnumerable<Node> PostOrderNodeIterator
         {
             get
             {
-                AVLNode<T> current;
-                AVLNode<T> previous = null;
-                Stack<AVLNode<T>> nodeStack = new Stack<AVLNode<T>>();
+                Node current;
+                Node previous = null;
+                Stack<Node> nodeStack = new Stack<Node>();
 
                 if (this.Root != null)
                     nodeStack.Push(this.Root);
@@ -468,13 +468,13 @@
             }
         }
 
-        private IEnumerable<AVLNode<T>> PreOrderNodeIterator
+        private IEnumerable<Node> PreOrderNodeIterator
         {
             get
             {
-                Stack<AVLNode<T>> parentStack = new Stack<AVLNode<T>>();
+                Stack<Node> parentStack = new Stack<Node>();
 
-                AVLNode<T> current = this.Root;
+                Node current = this.Root;
 
                 while (parentStack.Count > 0 || current != null)
                 {
@@ -504,7 +504,7 @@
         {
             get
             {
-                foreach (AVLNode<T> node in this.InOrderNodeIterator)
+                foreach (Node node in this.InOrderNodeIterator)
                     yield return node.Value;
             }
         }
@@ -516,7 +516,7 @@
         {
             get
             {
-                foreach (AVLNode<T> node in this.PostOrderNodeIterator)
+                foreach (Node node in this.PostOrderNodeIterator)
                     yield return node.Value;
             }
         }
@@ -528,7 +528,7 @@
         {
             get
             {
-                foreach (AVLNode<T> node in this.PreOrderNodeIterator)
+                foreach (Node node in this.PreOrderNodeIterator)
                     yield return node.Value;
             }
         }
@@ -541,8 +541,8 @@
         {
             if (this.Root != null)
             {
-                AVLNode<T> previousNode = null;
-                foreach (AVLNode<T> node in this.InOrderNodeIterator)
+                Node previousNode = null;
+                foreach (Node node in this.InOrderNodeIterator)
                 {
                     if (previousNode != null && previousNode.Value.CompareTo(node.Value) >= 0)
                         throw new InvalidTreeException();

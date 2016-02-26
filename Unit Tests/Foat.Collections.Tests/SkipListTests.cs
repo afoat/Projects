@@ -16,9 +16,9 @@
         {
             SkipList<int, int> skipList = new SkipList<int, int>(random) { Count = 3, Levels = 2 };
 
-            SkipListNode<int, int> node1 = new SkipListNode<int, int>(1, 50, 50);
-            SkipListNode<int, int> node2 = new SkipListNode<int, int>(1, 100, 100);
-            SkipListNode<int, int> node3 = new SkipListNode<int, int>(2, 200, 200);
+            SkipList<int, int>.Node node1 = new SkipList<int, int>.Node(1, 50, 50);
+            SkipList<int, int>.Node node2 = new SkipList<int, int>.Node(1, 100, 100);
+            SkipList<int, int>.Node node3 = new SkipList<int, int>.Node(2, 200, 200);
 
 
             node1.Next[0] = node2;
@@ -34,10 +34,10 @@
         {
             SkipList<int, int> skipList = new SkipList<int, int>(random) { Count = 4, Levels = 2 };
 
-            SkipListNode<int, int> node1 = new SkipListNode<int, int>(1, 50, 50);
-            SkipListNode<int, int> node2 = new SkipListNode<int, int>(1, 100, 100);
-            SkipListNode<int, int> node3 = new SkipListNode<int, int>(2, 200, 200);
-            SkipListNode<int, int> node4 = new SkipListNode<int, int>(1, 300, 200);
+            SkipList<int, int>.Node node1 = new SkipList<int, int>.Node(1, 50, 50);
+            SkipList<int, int>.Node node2 = new SkipList<int, int>.Node(1, 100, 100);
+            SkipList<int, int>.Node node3 = new SkipList<int, int>.Node(2, 200, 200);
+            SkipList<int, int>.Node node4 = new SkipList<int, int>.Node(1, 300, 200);
 
 
             node1.Next[0] = node2;

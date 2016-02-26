@@ -89,7 +89,7 @@
 
         [TestMethod]
         [TestCategory("Foat\\Collections\\Generic\\SmallIntArray")]
-        [ExpectedException(typeof(IndexOutOfRangeException))]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void ReadingFromArray_OutOfBoundsTooSmall()
         {
             SmallIntArray array = Init2BitIntWithOneTwoThree();
@@ -98,7 +98,7 @@
 
         [TestMethod]
         [TestCategory("Foat\\Collections\\Generic\\SmallIntArray")]
-        [ExpectedException(typeof(IndexOutOfRangeException))]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void ReadingFromArray_OutOfBoundsTooLarge()
         {
             SmallIntArray array = Init2BitIntWithOneTwoThree();
