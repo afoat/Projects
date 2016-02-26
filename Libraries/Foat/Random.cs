@@ -1,11 +1,8 @@
 ﻿namespace Foat
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-
+    /// <summary>
+    /// A wrapper for System.Random that implements the IRandom interface.
+    /// </summary>
     public class Random : IRandom
     {
         private System.Random SystemRandom;
