@@ -21,8 +21,8 @@
                 int minN = 1000000;
                 int step = 200000;
 
-                bool doDelete = false;
-                bool doFind = false;
+                bool doDelete = true;
+                bool doFind = true;
 
                 int repititions = 3;
 
@@ -54,12 +54,11 @@
             ICollection<int> iterativeBst = new BinarySearchTree<int>();
             ICollection<int> redBlackTree = new RedBlackTree<int>();
             ICollection<int> avlTree = new AVLTree<int>();
-            //ICollection<int> skipList = new SkipList<int, int>();
+            IEnumerable<KeyValuePair<int, int>> skipList = new SkipList<int, int>();
 
             bool doIterative = true;
             bool doRedBlack = true;
             bool doAvl = true;
-            bool doSkipList = false;
 
             if (doIterative)
                 iterativeBstTimes["insert"] = BuildAndCheckCollection(iterativeBst, numbers);
@@ -69,9 +68,6 @@
 
             if (doAvl)
                 avlTimes["insert"] = BuildAndCheckCollection(avlTree, numbers);
-
-            //if (doSkipList)
-            //    skipListTimes["insert"] = BuildAndCheckCollection(skipList, numbers);
 
             if (doFind)
             {
@@ -83,9 +79,6 @@
 
                 if (doAvl)
                     avlTimes["find"] = FindValuesInCollection(avlTree, numbers, randomIndexes);
-
-                //if (doSkipList)
-                //    skipListTimes["find"] = FindValuesInCollection(skipList, numbers, randomIndexes);
             }
 
             if (doDelete)
@@ -98,9 +91,6 @@
 
                 if (doAvl)
                     avlTimes["delete"] = DeleteValuesInCollection(avlTree, numbers, randomIndexes);
-
-                //if (doSkipList)
-                //    skipListTimes["delete"] = DeleteValuesInCollection(skipList, numbers, randomIndexes);
             }
 
             file.Write("{0},", n);
@@ -113,9 +103,6 @@
 
             if (doAvl)
                 WriteStats(avlTimes, file);
-
-            if (doSkipList)
-                WriteStats(skipListTimes, file);
 
             file.WriteLine();
         }
