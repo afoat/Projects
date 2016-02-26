@@ -20,7 +20,7 @@
             {
                 if (i < 0 || i > this.Length - 1)
                 {
-                    throw new IndexOutOfRangeException();
+                    throw new ArgumentOutOfRangeException();
                 }
 
                 unchecked
