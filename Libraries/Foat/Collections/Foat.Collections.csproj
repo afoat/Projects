@@ -68,7 +68,6 @@
   <ItemGroup>
     <Compile Include="Generic\AVLTree.ICollection.cs" />
     <Compile Include="Generic\BinarySearchTree.ICollection.cs" />
-    <Compile Include="Generic\Colour.cs" />
     <Compile Include="Generic\Heap.cs" />
     <Compile Include="Generic\HeapType.cs" />
     <Compile Include="Generic\MMF\ConcurrentMMFQueue.cs" />
@@ -79,10 +78,10 @@
     </Compile>
     <Compile Include="Generic\SkipList.IEnumerable.cs" />
     <Compile Include="Generic\Exceptions\InvalidTreeException.cs" />
-    <Compile Include="Generic\BinarySearchTreeNode.cs" />
-    <Compile Include="Generic\AVLNode.cs" />
+    <Compile Include="Generic\BinarySearchTree.Node.cs" />
+    <Compile Include="Generic\AVLTree.Node.cs" />
     <Compile Include="Generic\Exceptions\ValueNotFoundException.cs" />
-    <Compile Include="Generic\RedBlackNode.cs">
+    <Compile Include="Generic\RedBlackTree.Node.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Generic\AVLTree.cs">
@@ -96,7 +95,7 @@
     <Compile Include="Generic\RedBlackTree.IEnumerable.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Generic\SkipListNode.cs" />
+    <Compile Include="Generic\SkipList.Node.cs" />
     <Compile Include="Generic\SmallIntArray.cs" />
     <Compile Include="Resources\Errors.Designer.cs">
       <AutoGen>True</AutoGen>

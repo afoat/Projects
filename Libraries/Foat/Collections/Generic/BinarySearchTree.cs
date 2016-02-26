@@ -24,7 +24,7 @@
         /// <summary>
         /// The root of the tree
         /// </summary>
-        internal BinarySearchTreeNode<T> Root { get; set; }
+        internal Node Root { get; set; }
 
         /// <summary>
         /// The number of values stored in this tree
@@ -76,7 +76,7 @@
         /// <returns>The node's depth</returns>
         public int Depth(T value)
         {
-            BinarySearchTreeNode<T> current = this.Root;
+            Node current = this.Root;
             int depth = 0;
 
             while (current != null)
@@ -110,7 +110,7 @@
         /// Inserts the node in to the tree in order. Throws a ArgumentException if this value already exists in the tree
         /// </summary>
         /// <param name="node">The node to insert</param>
-        private void Insert(BinarySearchTreeNode<T> node)
+        private void Insert(Node node)
         {
             if (this.Root == null)
             {
@@ -118,7 +118,7 @@
             }
             else
             {
-                BinarySearchTreeNode<T> current = this.Root;
+                Node current = this.Root;
                 while (true)
                 {
                     int compareResult = current.Value.CompareTo(node.Value);
@@ -163,7 +163,7 @@
         /// </summary>
         /// <param name="node">The node we want to insert</param>
         /// <returns>True if the node was inserted, false if it already existed</returns>
-        internal bool InsertIfNotDuplicate(BinarySearchTreeNode<T> node)
+        internal bool InsertIfNotDuplicate(Node node)
         {
             if (this.Root == null)
             {
@@ -171,7 +171,7 @@
             }
             else
             {
-                BinarySearchTreeNode<T> current = this.Root;
+                Node current = this.Root;
                 while (true)
                 {
                     int compareResult = current.Value.CompareTo(node.Value);
@@ -218,7 +218,7 @@
         /// <param name="node">The value to insert</param>
         public void Insert(T value)
         {
-            var node = new BinarySearchTreeNode<T>(value);
+            var node = new Node(value);
             this.Insert(node);
         }
 
@@ -229,7 +229,7 @@
         /// <returns>True if the value was inserted, false if it already existed</returns>
         public bool InsertIfNotDuplicate(T value)
         {
-            var node = new BinarySearchTreeNode<T>(value);
+            var node = new Node(value);
             return this.InsertIfNotDuplicate(node);
         }
 
@@ -242,7 +242,7 @@
         /// </summary>
         /// <param name="node">The node to delete</param>
         /// <param name="parentNode">the parent of the node we are deleting</param>
-        internal void DeleteNode(BinarySearchTreeNode<T> node, BinarySearchTreeNode<T> parentNode)
+        internal void DeleteNode(Node node, Node parentNode)
         {
             if (this.Root.Value.CompareTo(node.Value) == 0)
             {
@@ -263,7 +263,7 @@
                 }
                 else
                 {
-                    BinarySearchTreeNode<T> swapNode = this.Root.InOrderPredecessor;
+                    Node swapNode = this.Root.InOrderPredecessor;
 
                     T tempValue = swapNode.Value;
                     this.Delete(swapNode.Value);
@@ -308,7 +308,7 @@
             }
             else // if both children not null
             {
-                BinarySearchTreeNode<T> swapNode = node.InOrderPredecessor;
+                Node swapNode = node.InOrderPredecessor;
 
                 T tempValue = swapNode.Value;
                 this.Delete(swapNode.Value);
@@ -327,8 +327,8 @@
         {
             bool result = true;
 
-            BinarySearchTreeNode<T> previous = null;
-            BinarySearchTreeNode<T> current = this.Root;
+            Node previous = null;
+            Node current = this.Root;
 
             while (current != null)
             {
@@ -366,7 +366,7 @@
         /// <returns>The item that matches the given value, or default(T) if it can't be found</returns>
         public T Find(T value)
         {
-            BinarySearchTreeNode<T> node = this.FindNode(value);
+            Node node = this.FindNode(value);
 
             if (node == null)
                 return default(T);
@@ -379,9 +379,9 @@
         /// </summary>
         /// <param name="value">The value of the node we are looking for</param>
         /// <returns>The node matching the value we were looking for</returns>
-        private BinarySearchTreeNode<T> FindNode(T value)
+        private Node FindNode(T value)
         {
-            BinarySearchTreeNode<T> current = this.Root;
+            Node current = this.Root;
             while (current != null)
             {
                 int compareResult = current.Value.CompareTo(value);
@@ -409,8 +409,8 @@
         {
             get
             {
-                BinarySearchTreeNode<T> current = this.Root;
-                Stack<BinarySearchTreeNode<T>> parentStack = new Stack<BinarySearchTreeNode<T>>();
+                Node current = this.Root;
+                Stack<Node> parentStack = new Stack<Node>();
 
                 while (current != null || parentStack.Count != 0)
                 {
@@ -438,9 +438,9 @@
         {
             get
             {
-                BinarySearchTreeNode<T> current;
-                BinarySearchTreeNode<T> previous = null;
-                Stack<BinarySearchTreeNode<T>> nodeStack = new Stack<BinarySearchTreeNode<T>>();
+                Node current;
+                Node previous = null;
+                Stack<Node> nodeStack = new Stack<Node>();
 
                 if (this.Root != null)
                     nodeStack.Push(this.Root);
@@ -484,9 +484,9 @@
         {
             get
             {
-                Stack<BinarySearchTreeNode<T>> parentStack = new Stack<BinarySearchTreeNode<T>>();
+                Stack<Node> parentStack = new Stack<Node>();
 
-                BinarySearchTreeNode<T> current = this.Root;
+                Node current = this.Root;
 
                 while (parentStack.Count > 0 || current != null)
                 {

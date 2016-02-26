@@ -20,11 +20,11 @@
         {
             RedBlackTree<int> tree = new RedBlackTree<int>();
 
-            tree.Root = new RedBlackNode<int>(50) { IsRed = false };
-            tree.Root.Right = new RedBlackNode<int>(75) { IsRed = false };
-            tree.Root.Left = new RedBlackNode<int>(25) { IsRed = false };
-            tree.Root.Left.Left = new RedBlackNode<int>(12) { IsRed = true };
-            tree.Root.Left.Right = new RedBlackNode<int>(32) { IsRed = true };
+            tree.Root = new RedBlackTree<int>.Node(50) { IsRed = false };
+            tree.Root.Right = new RedBlackTree<int>.Node(75) { IsRed = false };
+            tree.Root.Left = new RedBlackTree<int>.Node(25) { IsRed = false };
+            tree.Root.Left.Left = new RedBlackTree<int>.Node(12) { IsRed = true };
+            tree.Root.Left.Right = new RedBlackTree<int>.Node(32) { IsRed = true };
             tree.Count = 5;
 
             return tree;
@@ -33,10 +33,10 @@
         protected override IBinarySearchTree<int> InitFourNodesLeftLeft()
         {
             RedBlackTree<int> tree = new RedBlackTree<int>();
-            tree.Root = new RedBlackNode<int>(50) { IsRed = false };
-            tree.Root.Right = new RedBlackNode<int>(75) { IsRed = false };
-            tree.Root.Left = new RedBlackNode<int>(25) { IsRed = false };
-            tree.Root.Left.Left = new RedBlackNode<int>(12) { IsRed = true };
+            tree.Root = new RedBlackTree<int>.Node(50) { IsRed = false };
+            tree.Root.Right = new RedBlackTree<int>.Node(75) { IsRed = false };
+            tree.Root.Left = new RedBlackTree<int>.Node(25) { IsRed = false };
+            tree.Root.Left.Left = new RedBlackTree<int>.Node(12) { IsRed = true };
             tree.Count = 4;
 
             return tree;
@@ -45,10 +45,10 @@
         protected override IBinarySearchTree<int> InitFourNodesLeftRight()
         {
             RedBlackTree<int> tree = new RedBlackTree<int>();
-            tree.Root = new RedBlackNode<int>(50) { IsRed = false };
-            tree.Root.Right = new RedBlackNode<int>(75) { IsRed = false };
-            tree.Root.Left = new RedBlackNode<int>(25) { IsRed = false };
-            tree.Root.Left.Right = new RedBlackNode<int>(32) { IsRed = true };
+            tree.Root = new RedBlackTree<int>.Node(50) { IsRed = false };
+            tree.Root.Right = new RedBlackTree<int>.Node(75) { IsRed = false };
+            tree.Root.Left = new RedBlackTree<int>.Node(25) { IsRed = false };
+            tree.Root.Left.Right = new RedBlackTree<int>.Node(32) { IsRed = true };
             tree.Count = 4;
 
             return tree;
@@ -57,10 +57,10 @@
         protected override IBinarySearchTree<int> InitFourNodesRightLeft()
         {
             RedBlackTree<int> tree = new RedBlackTree<int>();
-            tree.Root = new RedBlackNode<int>(50) { IsRed = false };
-            tree.Root.Left = new RedBlackNode<int>(25) { IsRed = false };
-            tree.Root.Right = new RedBlackNode<int>(75) { IsRed = false };
-            tree.Root.Right.Left = new RedBlackNode<int>(63) { IsRed = true };
+            tree.Root = new RedBlackTree<int>.Node(50) { IsRed = false };
+            tree.Root.Left = new RedBlackTree<int>.Node(25) { IsRed = false };
+            tree.Root.Right = new RedBlackTree<int>.Node(75) { IsRed = false };
+            tree.Root.Right.Left = new RedBlackTree<int>.Node(63) { IsRed = true };
             tree.Count = 4;
 
             return tree;
@@ -69,10 +69,10 @@
         protected override IBinarySearchTree<int> InitFourNodesRightRight()
         {
             RedBlackTree<int> tree = new RedBlackTree<int>();
-            tree.Root = new RedBlackNode<int>(50) { IsRed = false };
-            tree.Root.Left = new RedBlackNode<int>(25) { IsRed = false };
-            tree.Root.Right = new RedBlackNode<int>(75) { IsRed = false };
-            tree.Root.Right.Right = new RedBlackNode<int>(100) { IsRed = true };
+            tree.Root = new RedBlackTree<int>.Node(50) { IsRed = false };
+            tree.Root.Left = new RedBlackTree<int>.Node(25) { IsRed = false };
+            tree.Root.Right = new RedBlackTree<int>.Node(75) { IsRed = false };
+            tree.Root.Right.Right = new RedBlackTree<int>.Node(100) { IsRed = true };
             tree.Count = 4;
 
             return tree;
@@ -81,8 +81,8 @@
         protected override IBinarySearchTree<int> InitRootLeft()
         {
             RedBlackTree<int> tree = new RedBlackTree<int>();
-            tree.Root = new RedBlackNode<int>(50) { IsRed = false };
-            tree.Root.Left = new RedBlackNode<int>(25) { IsRed = true };
+            tree.Root = new RedBlackTree<int>.Node(50) { IsRed = false };
+            tree.Root.Left = new RedBlackTree<int>.Node(25) { IsRed = true };
             tree.Count = 2;
 
             return tree;
@@ -91,7 +91,7 @@
         protected override IBinarySearchTree<int> InitRootOnly()
         {
             RedBlackTree<int> tree = new RedBlackTree<int>();
-            tree.Root = new RedBlackNode<int>(50) { IsRed = false };
+            tree.Root = new RedBlackTree<int>.Node(50) { IsRed = false };
             tree.Count = 1;
 
             return tree;
@@ -100,8 +100,8 @@
         protected override IBinarySearchTree<int> InitRootRight()
         {
             RedBlackTree<int> tree = new RedBlackTree<int>();
-            tree.Root = new RedBlackNode<int>(50) { IsRed = false };
-            tree.Root.Right = new RedBlackNode<int>(75) { IsRed = true };
+            tree.Root = new RedBlackTree<int>.Node(50) { IsRed = false };
+            tree.Root.Right = new RedBlackTree<int>.Node(75) { IsRed = true };
             tree.Count = 2;
 
             return tree;
@@ -110,9 +110,9 @@
         protected override IBinarySearchTree<int> InitThreeNodesFull()
         {
             RedBlackTree<int> tree = new RedBlackTree<int>();
-            tree.Root = new RedBlackNode<int>(50) { IsRed = false };
-            tree.Root.Left = new RedBlackNode<int>(25) { IsRed = true };
-            tree.Root.Right = new RedBlackNode<int>(75) { IsRed = true };
+            tree.Root = new RedBlackTree<int>.Node(50) { IsRed = false };
+            tree.Root.Left = new RedBlackTree<int>.Node(25) { IsRed = true };
+            tree.Root.Right = new RedBlackTree<int>.Node(75) { IsRed = true };
             tree.Count = 3;
 
             return tree;
@@ -121,9 +121,9 @@
         protected override IBinarySearchTree<int> InitBadTree()
         {
             RedBlackTree<int> tree = new RedBlackTree<int>();
-            tree.Root = new RedBlackNode<int>(50) { IsRed = false };
-            tree.Root.Left = new RedBlackNode<int>(75) { IsRed = true };
-            tree.Root.Right = new RedBlackNode<int>(25) { IsRed = true };
+            tree.Root = new RedBlackTree<int>.Node(50) { IsRed = false };
+            tree.Root.Left = new RedBlackTree<int>.Node(75) { IsRed = true };
+            tree.Root.Right = new RedBlackTree<int>.Node(25) { IsRed = true };
             tree.Count = 3;
 
             return tree;
@@ -133,13 +133,13 @@
         {
             RedBlackTree<int> tree = new RedBlackTree<int>();
 
-            tree.Root = new RedBlackNode<int>(50) { IsRed = false };
-            tree.Root.Left = new RedBlackNode<int>(25) { IsRed = true };
-            tree.Root.Right = new RedBlackNode<int>(75) { IsRed = false };
-            tree.Root.Left.Left = new RedBlackNode<int>(12) { IsRed = false };
-            tree.Root.Left.Right = new RedBlackNode<int>(32) { IsRed = false };
-            tree.Root.Left.Left.Left = new RedBlackNode<int>(7) { IsRed = true };
-            tree.Root.Left.Left.Right = new RedBlackNode<int>(15) { IsRed = true };
+            tree.Root = new RedBlackTree<int>.Node(50) { IsRed = false };
+            tree.Root.Left = new RedBlackTree<int>.Node(25) { IsRed = true };
+            tree.Root.Right = new RedBlackTree<int>.Node(75) { IsRed = false };
+            tree.Root.Left.Left = new RedBlackTree<int>.Node(12) { IsRed = false };
+            tree.Root.Left.Right = new RedBlackTree<int>.Node(32) { IsRed = false };
+            tree.Root.Left.Left.Left = new RedBlackTree<int>.Node(7) { IsRed = true };
+            tree.Root.Left.Left.Right = new RedBlackTree<int>.Node(15) { IsRed = true };
             tree.Count = 7;
 
             return tree;
@@ -149,12 +149,12 @@
         {
             RedBlackTree<int> tree = new RedBlackTree<int>();
             
-            tree.Root = new RedBlackNode<int>(50) { IsRed = false };
-            tree.Root.Left = new RedBlackNode<int>(30) { IsRed = true };
-            tree.Root.Right = new RedBlackNode<int>(75) { IsRed = false };
-            tree.Root.Left.Left = new RedBlackNode<int>(25) { IsRed = false };
-            tree.Root.Left.Right = new RedBlackNode<int>(32) { IsRed = false };
-            tree.Root.Left.Right.Right = new RedBlackNode<int>(35) { IsRed = true };
+            tree.Root = new RedBlackTree<int>.Node(50) { IsRed = false };
+            tree.Root.Left = new RedBlackTree<int>.Node(30) { IsRed = true };
+            tree.Root.Right = new RedBlackTree<int>.Node(75) { IsRed = false };
+            tree.Root.Left.Left = new RedBlackTree<int>.Node(25) { IsRed = false };
+            tree.Root.Left.Right = new RedBlackTree<int>.Node(32) { IsRed = false };
+            tree.Root.Left.Right.Right = new RedBlackTree<int>.Node(35) { IsRed = true };
             tree.Count = 6;
 
             return tree;
@@ -164,13 +164,13 @@
         {
             RedBlackTree<int> tree = new RedBlackTree<int>();
             
-            tree.Root = new RedBlackNode<int>(50) { IsRed = false };
-            tree.Root.Left = new RedBlackNode<int>(25) { IsRed = false };
-            tree.Root.Right = new RedBlackNode<int>(75) { IsRed = true };
-            tree.Root.Right.Left = new RedBlackNode<int>(62) { IsRed = false };
-            tree.Root.Right.Right = new RedBlackNode<int>(100) { IsRed = false };
-            tree.Root.Right.Right.Left = new RedBlackNode<int>(80) { IsRed = true };
-            tree.Root.Right.Right.Right = new RedBlackNode<int>(110) { IsRed = true };
+            tree.Root = new RedBlackTree<int>.Node(50) { IsRed = false };
+            tree.Root.Left = new RedBlackTree<int>.Node(25) { IsRed = false };
+            tree.Root.Right = new RedBlackTree<int>.Node(75) { IsRed = true };
+            tree.Root.Right.Left = new RedBlackTree<int>.Node(62) { IsRed = false };
+            tree.Root.Right.Right = new RedBlackTree<int>.Node(100) { IsRed = false };
+            tree.Root.Right.Right.Left = new RedBlackTree<int>.Node(80) { IsRed = true };
+            tree.Root.Right.Right.Right = new RedBlackTree<int>.Node(110) { IsRed = true };
             tree.Count = 7;
 
             return tree;
@@ -180,13 +180,13 @@
         {
             RedBlackTree<int> tree = new RedBlackTree<int>();
 
-            tree.Root = new RedBlackNode<int>(50) { IsRed = false };
-            tree.Root.Left = new RedBlackNode<int>(25) { IsRed = false };
-            tree.Root.Right = new RedBlackNode<int>(75) { IsRed = true };
-            tree.Root.Right.Left = new RedBlackNode<int>(62) { IsRed = false };
-            tree.Root.Right.Right = new RedBlackNode<int>(100) { IsRed = false };
-            tree.Root.Right.Left.Left = new RedBlackNode<int>(60) { IsRed = true };
-            tree.Root.Right.Left.Right = new RedBlackNode<int>(65) { IsRed = true };
+            tree.Root = new RedBlackTree<int>.Node(50) { IsRed = false };
+            tree.Root.Left = new RedBlackTree<int>.Node(25) { IsRed = false };
+            tree.Root.Right = new RedBlackTree<int>.Node(75) { IsRed = true };
+            tree.Root.Right.Left = new RedBlackTree<int>.Node(62) { IsRed = false };
+            tree.Root.Right.Right = new RedBlackTree<int>.Node(100) { IsRed = false };
+            tree.Root.Right.Left.Left = new RedBlackTree<int>.Node(60) { IsRed = true };
+            tree.Root.Right.Left.Right = new RedBlackTree<int>.Node(65) { IsRed = true };
             tree.Count = 7;
 
             return tree;
@@ -195,8 +195,8 @@
         protected virtual RedBlackTree<int> InitBadTreeTwoRedsLeft()
         {
             RedBlackTree<int> tree = new RedBlackTree<int>();
-            tree.Root = new RedBlackNode<int>(50) { IsRed = true };
-            tree.Root.Left = new RedBlackNode<int>(25) { IsRed = true };
+            tree.Root = new RedBlackTree<int>.Node(50) { IsRed = true };
+            tree.Root.Left = new RedBlackTree<int>.Node(25) { IsRed = true };
 
             return tree;
         }
@@ -204,8 +204,8 @@
         protected virtual RedBlackTree<int> InitBadTreeTwoRedsRight()
         {
             RedBlackTree<int> tree = new RedBlackTree<int>();
-            tree.Root = new RedBlackNode<int>(50) { IsRed = true };
-            tree.Root.Right = new RedBlackNode<int>(75) { IsRed = true };
+            tree.Root = new RedBlackTree<int>.Node(50) { IsRed = true };
+            tree.Root.Right = new RedBlackTree<int>.Node(75) { IsRed = true };
 
             return tree;
         }
@@ -213,9 +213,9 @@
         protected virtual RedBlackTree<int> InitBadTreeDifferentNumberOfRedsInSubtrees()
         {
             RedBlackTree<int> tree = new RedBlackTree<int>();
-            tree.Root = new RedBlackNode<int>(50) { IsRed = false };
-            tree.Root.Left = new RedBlackNode<int>(25) { IsRed = false };
-            tree.Root.Right = new RedBlackNode<int>(75) { IsRed = true };
+            tree.Root = new RedBlackTree<int>.Node(50) { IsRed = false };
+            tree.Root.Left = new RedBlackTree<int>.Node(25) { IsRed = false };
+            tree.Root.Right = new RedBlackTree<int>.Node(75) { IsRed = true };
 
             return tree;
         }
