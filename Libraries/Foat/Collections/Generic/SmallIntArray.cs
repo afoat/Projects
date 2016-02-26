@@ -4,12 +4,29 @@
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Xml.Serialization;
 
+    /// <summary>
+    /// This class is designed to hold ints that are 7 bits or smaller
+    /// in a byte array without wasting any space.
+    /// 
+    /// The smallest type available in C# is a byte (8 bits). For example, if you have
+    /// a large number of 5 bit integers, you will be wasting 3 bits of memory
+    /// per int. In the case of 5 bit integers the first item in the array takes up
+    /// bits 0-4 of the first array entry. The second item takes up bits 5-7 of the first
+    /// byte in the real array and the first two bits of the second byte.
+    /// 
+    /// Kind of slow, but useful if you need to store LOTS of information.
+    /// </summary>
     public sealed class SmallIntArray
     {
-
+        /// <summary>
+        /// Specifies the size of the integers this array will store.
+        /// </summary>
         public byte BitsPerInt { get; private set; }
+        /// <summary>
+        /// Returns the number integers with a size of BitsPerInt that this
+        /// array can store
+        /// </summary>
         public int Length { get; private set; }
 
         internal byte[] Array { get; set; }
@@ -77,6 +94,9 @@
             }
         }
 
+        /// <summary>
+        /// Does some math to find out where the desired number starts and ends
+        /// </summary>
         private void InitializeStartAndEnd(int i, out int startBucket, out int endBucket, out int startPosition, out int endPosition)
         {
             int startBit = (i * BitsPerInt);
@@ -93,6 +113,11 @@
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Constructs an instance of a SmallIntArray
+        /// </summary>
+        /// <param name="bitsPerInt">The number of bits that each int will contain.</param>
+        /// <param name="capacity">The number ints that this array will be able to hold.</param>
         public SmallIntArray(byte bitsPerInt, int capacity)
         {
             if (bitsPerInt > 7)
@@ -114,6 +139,9 @@
             toCopy.Array.CopyTo(this.Array, 0);
         }
 
+        /// <summary>
+        /// A cache to remember the masks that we need to get and set the data in the array
+        /// </summary>
         private static Dictionary<KeyValuePair<int, int>, byte> MaskCache = new Dictionary<KeyValuePair<int, int>, byte>();
 
         private static byte CreateGetMask(int startPosition, int endPosition)
