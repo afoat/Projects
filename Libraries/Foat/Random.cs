@@ -1,8 +1,11 @@
 ﻿namespace Foat
 {
+    using System.Diagnostics.CodeAnalysis;
+
     /// <summary>
     /// A wrapper for System.Random that implements the IRandom interface.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class Random : IRandom
     {
         private System.Random SystemRandom;

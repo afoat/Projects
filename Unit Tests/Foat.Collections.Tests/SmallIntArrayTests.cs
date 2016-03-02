@@ -3,8 +3,10 @@
     using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Foat.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
 
     [TestClass]
+    [ExcludeFromCodeCoverage]
     public class SmallIntArrayTests
     {
         #region Setup

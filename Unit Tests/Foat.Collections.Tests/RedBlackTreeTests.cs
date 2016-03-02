@@ -3,8 +3,10 @@
     using Foat.Collections.Generic;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System;
+    using System.Diagnostics.CodeAnalysis;
 
     [TestClass]
+    [ExcludeFromCodeCoverage]
     public class RedBlackTreeTests : IBinarySearchTreeTests<RedBlackTree<int>>
     {
         private const RedBlackTree<int>.Node.Colour RedColour = RedBlackTree<int>.Node.Colour.Red;

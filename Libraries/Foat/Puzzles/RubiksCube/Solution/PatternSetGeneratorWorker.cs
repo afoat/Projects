@@ -72,7 +72,11 @@
                         {
                             if (!this.PatternDatabase.Contains(rubiksCube) && newDepth <= this.MaxDepth)
                             {
-                                while (!this.CubesToExamine.TryEnqueue(new PuzzleState<RubiksCube>(move, newDepth, rubiksCube))) { }
+                                if (!this.CubesToExamine.TryEnqueue(new PuzzleState<RubiksCube>(move, newDepth, rubiksCube)))
+                                {
+                                    throw new InvalidOperationException("Cannot enqueue cube. Is the queue large enough?");
+                                }
+
                                 this.PatternDatabase.Insert(rubiksCube, newDepth);
                             }
                         }

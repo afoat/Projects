@@ -1,10 +1,12 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Foat.Collections.Generic;
-
-namespace Foat.Collections.Tests
+﻿namespace Foat.Collections.Tests
 {
+    using Foat.Collections.Generic;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+
     [TestClass]
+    [ExcludeFromCodeCoverage]
     public class HeapUnitTests
     {
         #region Setup

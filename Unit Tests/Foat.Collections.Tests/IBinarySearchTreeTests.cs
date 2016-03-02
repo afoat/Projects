@@ -5,8 +5,10 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
 
     [TestClass]
+    [ExcludeFromCodeCoverage]
     public abstract class IBinarySearchTreeTests<T> where T : IBinarySearchTree<int>, new()
     {
         #region Setup
