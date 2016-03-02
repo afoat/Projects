@@ -383,7 +383,7 @@
 
         [TestMethod]
         [TestCategory("Foat\\Collections\\Generic\\RedBlackTree")]
-        public  void Insert_ThirdNode_IntoRootRight_AtRootRightRight_Insert_ThirdNode_IntoRootLeft_AtRootLeftRight_CheckColours()
+        public  void Insert_ThirdNode_IntoRootRight_AtRootRightRight_CheckColours()
         {
             RedBlackTree<int> tree = (RedBlackTree<int>)this.InitRootRight();
             tree.Insert(100);
