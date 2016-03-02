@@ -42,6 +42,8 @@
 
         public void Work()
         {
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
             int updateFlag = 0;
             while (this.CubesToExamine.Count > 0)
             {
@@ -66,11 +68,11 @@
                     {
                         rubiksCube = move.MovePuzzle(puzzleState.PuzzleInstance);
 
-                        if (!this.PatternDatabase.Contains(rubiksCube) && newDepth <= this.MaxDepth)
+                        lock (this.PatternDatabase)
                         {
-                            while (!this.CubesToExamine.TryEnqueue(new PuzzleState<RubiksCube>(move, newDepth, rubiksCube))) { }
-                            lock (this.PatternDatabase)
+                            if (!this.PatternDatabase.Contains(rubiksCube) && newDepth <= this.MaxDepth)
                             {
+                                while (!this.CubesToExamine.TryEnqueue(new PuzzleState<RubiksCube>(move, newDepth, rubiksCube))) { }
                                 this.PatternDatabase.Insert(rubiksCube, newDepth);
                             }
                         }
@@ -78,7 +80,7 @@
                         updateFlag = (updateFlag + 1) % 300000;
                         if (updateFlag == 0)
                         {
-                            Trace.WriteLine(string.Format("Confirmed found: {0:N0} To Examine: {1:N0} Current Max Depth: {2}", this.PatternDatabase.Count, this.CubesToExamine.Count, this.CurrentMaxDepth));
+                            Trace.WriteLine(string.Format("Confirmed found: {0:N0} To Examine: {1:N0} Current Max Depth: {2}. Total Time: {3}", this.PatternDatabase.Count, this.CubesToExamine.Count, this.CurrentMaxDepth, sw.ElapsedMilliseconds));
                         }
                     }
                 }
