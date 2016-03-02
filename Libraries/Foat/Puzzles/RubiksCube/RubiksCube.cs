@@ -34,7 +34,7 @@
 
         private byte[] Data;
 
-        internal byte this[int index]
+        private byte this[int index]
         {
             get
             {
@@ -314,7 +314,7 @@
         #region Helpers
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        internal void ModifyPositionsIntoNewData(byte[] newData, Func<byte, byte> function)
+        private void ModifyPositionsIntoNewData(byte[] newData, Func<byte, byte> function)
         {
             for (int i = 0; i < this.Data.Length; ++i)
             {

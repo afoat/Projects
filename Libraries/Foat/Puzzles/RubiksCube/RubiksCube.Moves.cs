@@ -52,47 +52,10 @@
 
         public static Move<RubiksCube> GetMove(int moveId)
         {
-            switch (moveId)
-            {
-                case 0:
-                    return TopCW;
-                case 1:
-                    return TopCCW;
-                case 2:
-                    return TopHalf;
-                case 3:
-                    return BottomCW;
-                case 4:
-                    return BottomCCW;
-                case 5:
-                    return BottomHalf;
-                case 6:
-                    return LeftCW;
-                case 7:
-                    return LeftCCW;
-                case 8:
-                    return LeftHalf;
-                case 9:
-                    return RightCW;
-                case 10:
-                    return RightCCW;
-                case 11:
-                    return RightHalf;
-                case 12:
-                    return FrontCW;
-                case 13:
-                    return FrontCCW;
-                case 14:
-                    return FrontHalf;
-                case 15:
-                    return BackCW;
-                case 16:
-                    return BackCCW;
-                case 17:
-                    return BackHalf;
-                default:
-                    throw new ArgumentException("Invalid rubiks cube move id");
-            }
+            if (moveId < 0 || moveId > AllMoves.Length)
+                throw new ArgumentException("moveId out of range.");
+
+            return AllMoves[moveId];
         }
 
         private static readonly Move<RubiksCube>[] AllMoves = new Move<RubiksCube>[] {
