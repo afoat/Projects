@@ -63,8 +63,41 @@
 
             this.MemoryMappedFile = MemoryMappedFile.CreateNew(name, this.TotalBytes, MemoryMappedFileAccess.ReadWrite);
 
-            this.HeadCache = new MMFCache(this.BytesPerItem, this.ItemCacheCapacity, this.HeadItemIndex, this.MemoryMappedFile, MemoryMappedFileAccess.Read);
-            this.TailCache = new MMFCache(this.BytesPerItem, this.ItemCacheCapacity, this.TailItemIndex, this.MemoryMappedFile, MemoryMappedFileAccess.Write);
+            this.HeadCache = GetNewMMFCache(this.HeadItemIndex, MemoryMappedFileAccess.Read);
+            this.TailCache = GetNewMMFCache(this.TailItemIndex, MemoryMappedFileAccess.Write);
+        }
+
+        /// <summary>
+        /// Returns a new MMFCache
+        /// </summary>
+        /// <param name="startIndex">The index within the MMF that we will be starting this cache at.</param>
+        /// <param name="fileAccess">Indicates permissions with which to open the MMF.</param>
+        /// <returns>A new MMFCache</returns>
+        private MMFCache GetNewMMFCache(int startIndex, MemoryMappedFileAccess fileAccess)
+        {
+            int cacheCapacity = GetCacheCapacity(startIndex);
+
+            return new MMFCache(this.BytesPerItem, cacheCapacity, startIndex, this.MemoryMappedFile, fileAccess);
+        }
+
+        /// <summary>
+        /// Calculates the actual capacity that the cache can be based on it's starting index within the MMF.
+        /// Useful for cases where a full sized cache would run past the end of the MMF.
+        /// </summary>
+        /// <param name="startIndex">The index within the MMF that we will be starting this cache at.</param>
+        /// <returns></returns>
+        private int GetCacheCapacity(int startIndex)
+        {
+            int cacheCapacity;
+            if (startIndex + this.ItemCacheCapacity + 1 > this.ItemCapacity)
+            {
+                cacheCapacity = this.ItemCapacity - startIndex;
+            }
+            else
+            {
+                cacheCapacity = this.ItemCacheCapacity;
+            }
+            return cacheCapacity;
         }
 
         /// <summary>
@@ -92,7 +125,7 @@
                 if (nextTailItemIndex == this.TailCache.EndIndex || nextTailItemIndex == 0)
                 {
                     this.TailCache.Dispose();
-                    this.TailCache = new MMFCache(this.BytesPerItem, this.ItemCacheCapacity, nextTailItemIndex, this.MemoryMappedFile, MemoryMappedFileAccess.Write);
+                    this.TailCache = GetNewMMFCache(nextTailItemIndex, MemoryMappedFileAccess.Write);
                 }
 
                 this.TailItemIndex = nextTailItemIndex;
@@ -124,7 +157,7 @@
                 if (nextHeadItemIndex == this.HeadCache.EndIndex || nextHeadItemIndex == 0)
                 {
                     this.HeadCache.Dispose();
-                    this.HeadCache = new MMFCache(this.BytesPerItem, this.ItemCacheCapacity, nextHeadItemIndex, this.MemoryMappedFile, MemoryMappedFileAccess.Read);
+                    this.HeadCache = GetNewMMFCache(nextHeadItemIndex, MemoryMappedFileAccess.Read);
                 }
 
                 this.HeadItemIndex = (this.HeadItemIndex + 1) % this.ItemCapacity;
