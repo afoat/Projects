@@ -55,7 +55,7 @@
 
             RubiksCube newMaskedCube = new RubiksCube().ApplyMask(pattern.Mask);
             PuzzleState<RubiksCube> puzzleState = new PuzzleState<RubiksCube>(0, newMaskedCube);
-            using (PuzzleStateQueue cubesToExamine = new PuzzleStateQueue(puzzleState.GetNumBytes(), 48000000, 1000))
+            using (PuzzleStateQueue cubesToExamine = new PuzzleStateQueue(puzzleState.GetNumBytes(), pattern.GroupSize, 1000))
             {
                 SetInitalState(puzzleState, patternDatabase, cubesToExamine);
 
