@@ -7,7 +7,7 @@
     /// </summary>
     public sealed class Move<TPuzzle> where TPuzzle : IPuzzle<TPuzzle>, IEquatable<TPuzzle>
     {
-        public readonly int Id;
+        public readonly byte Id;
 
         /// <summary>
         /// The name of the move in a more human readable format.
@@ -37,7 +37,7 @@
         /// <param name="name">The name of the move.</param>
         /// <param name="movePuzzleFunction">Lambda expression that returns a new copy of the puzzle that has this move applied to it.</param>
         /// <param name="validMovesAfterFunction">Lambda expression that returns an array of moves that are valid to perform after this move.</param>
-        internal Move(int id, string name, Func<TPuzzle, TPuzzle> movePuzzleFunction, Func<TPuzzle, Move<TPuzzle>[]> validMovesAfterFunction)
+        internal Move(byte id, string name, Func<TPuzzle, TPuzzle> movePuzzleFunction, Func<TPuzzle, Move<TPuzzle>[]> validMovesAfterFunction)
         {
             if (string.IsNullOrWhiteSpace(name))
             {

@@ -23,6 +23,15 @@
         /// The instance of the puzzle that applies to this state information.
         /// </summary>
         public TPuzzle PuzzleInstance { get; private set; }
+
+        private int StaticNumberOfBytesInPuzzleState
+        {
+            get
+            {
+                return 1  // Depth
+                     + 1; // Last Move ID
+            }
+        }
                 
         public PuzzleState(byte depth, TPuzzle puzzleInstance)
         {
@@ -41,14 +50,10 @@
 
             this.Depth = puzzleState[0];
 
-            int moveId = BitConverter.ToInt32(puzzleState, 1);
-            if (moveId == int.MaxValue)
-                this.LastMove = null;
-            else
-                this.LastMove = PuzzleFactory<TPuzzle>.FindMove(moveId);
-
-            byte[] puzzleBytes = new byte[puzzleState.Length - 5];
-            Array.Copy(puzzleState, 5, puzzleBytes, 0, puzzleState.Length - 5);
+            this.LastMove = GetLastMoveFromPuzzleState(puzzleState);
+            
+            byte[] puzzleBytes = new byte[puzzleState.Length - StaticNumberOfBytesInPuzzleState];
+            Array.Copy(puzzleState, StaticNumberOfBytesInPuzzleState, puzzleBytes, 0, puzzleState.Length - StaticNumberOfBytesInPuzzleState);
             this.PuzzleInstance = PuzzleFactory<TPuzzle>.PuzzleFromBytes(puzzleBytes);
         }
 
@@ -61,8 +66,7 @@
 
         public int GetNumBytes()
         {
-            return 1 // Depth
-                 + 4 // Last Move ID
+            return StaticNumberOfBytesInPuzzleState
                  + this.PuzzleInstance.GetNumBytes();
         }
 
@@ -72,13 +76,8 @@
             byte[] bytes = new byte[this.GetNumBytes()];
 
             bytes[curByte++] = this.Depth;
-
-            int lastMoveId = GetLastMoveId();
-            foreach (byte b in BitConverter.GetBytes(lastMoveId))
-            {
-                bytes[curByte++] = b;
-            }
-
+            bytes[curByte++] = GetLastMoveId();
+            
             foreach (byte b in this.PuzzleInstance.GetBytes())
             {
                 bytes[curByte++] = b;
@@ -87,14 +86,25 @@
             return bytes;
         }
 
-        private int GetLastMoveId()
+        private byte GetLastMoveId()
         {
-            int lastMoveId;
+            byte lastMoveId;
             if (this.LastMove == null)
-                lastMoveId = int.MaxValue;
+                lastMoveId = byte.MaxValue;
             else
                 lastMoveId = this.LastMove.Id;
             return lastMoveId;
+        }
+
+        private static Move<TPuzzle> GetLastMoveFromPuzzleState(byte[] puzzleState)
+        {
+            byte moveId = puzzleState[1];
+            Move<TPuzzle> lastMove;
+            if (moveId == byte.MaxValue)
+                lastMove = null;
+            else
+                lastMove = PuzzleFactory<TPuzzle>.FindMove(moveId);
+            return lastMove;
         }
     }
 }

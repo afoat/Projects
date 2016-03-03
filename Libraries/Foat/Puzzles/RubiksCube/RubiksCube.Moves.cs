@@ -50,7 +50,7 @@
             BackHalf.OppositeMove = BackHalf;
         }
 
-        public static Move<RubiksCube> GetMove(int moveId)
+        public static Move<RubiksCube> GetMove(byte moveId)
         {
             if (moveId < 0 || moveId > AllMoves.Length)
                 throw new ArgumentException("moveId out of range.");
