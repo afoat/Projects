@@ -7,8 +7,8 @@
     {
         static void Main(string[] args)
         {
-            int itemCapacity = 100000000;
-            int itemCacheCapacity = 1000000;
+            int itemCapacity = 10001;
+            int itemCacheCapacity = 1000;
 
             int updateFrequency = 1000000;
 
@@ -81,8 +81,8 @@
                         throw new InvalidOperationException("Queue empty");
                     }
 
-                    if (queue.Count % updateFrequency == 0)
-                        Console.WriteLine("Dequeued {0:N0}", BitConverter.ToInt32(b, 0));
+                    //if (queue.Count % updateFrequency == 0)
+                        Console.WriteLine("Expected {0:N0} Dequeued {1:N0}", i, BitConverter.ToInt32(b, 0));
                 }
 
                 if (!queue.TryDequeue(out bytes))
