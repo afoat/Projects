@@ -52,7 +52,7 @@
 
             this.BytesPerItem = bytesPerItem;
             this.ItemCapacity = itemCapacity;
-            this.TotalBytes = itemCapacity * bytesPerItem;
+            this.TotalBytes = (long)itemCapacity * (long)bytesPerItem;
 
             this.ItemCacheCapacity = itemCacheCapacity;
 
