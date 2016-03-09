@@ -118,33 +118,6 @@
             return new RubiksCube(maskedBytes.ToArray());
         }
         
-        public RubiksCube GetFullRubiksCube(RubiksCube mask)
-        {
-            if (mask == null)
-                throw new NullReferenceException("mask");
-
-            if (!this.IsMasked)
-                throw new InvalidOperationException("Rubiks cube is already full.");
-            
-            byte[] rubiksBytes = new byte[RubiksCube.NumCubies];
-            int currentRubiksByte = 0;
-            int currentMaskedByte = 0;
-
-            for (int i = 0; i < this.Data.Length; i++)
-            {
-                if (mask[i] == Position.Masked)
-                {
-                    rubiksBytes[currentRubiksByte++] = Position.Masked;
-                }
-                else
-                {
-                    rubiksBytes[currentRubiksByte++] = this.Data[currentMaskedByte++];
-                }
-            }
-            
-            return new RubiksCube(rubiksBytes);
-        }
-
         public int GetNumBytes()
         {
             return this.Data.Length;
@@ -323,8 +296,7 @@
         }
 
         #endregion
-
-
+        
         #region Object Overrides
 
         public override int GetHashCode()
