@@ -16,12 +16,11 @@
         {
         }
 
-        public Pattern(string name, int groupSize, int maxDepth, RubiksCube mask)
+        public Pattern(string name, int groupSize, RubiksCube mask)
         {
             this.Name = name;
             this.GroupSize = groupSize;
             this.Mask = mask;
-            this.MaxDepth = maxDepth;
         }
 
         /// <summary>
@@ -39,11 +38,6 @@
         /// The masked RubiksCube that defines the Pattern.
         /// </summary>
         public RubiksCube Mask { get; private set; }
-
-        /// <summary>
-        /// The maximum solution depth of any possible cube in this pattern.
-        /// </summary>
-        public int MaxDepth { get; private set; }
 
         public XmlSchema GetSchema()
         {
@@ -63,7 +57,6 @@
             {
                 Name = reader.GetAttribute("Name");
                 GroupSize = int.Parse(reader.GetAttribute("GroupSize"));
-                MaxDepth = int.Parse(reader.GetAttribute("MaxDepth"));
                 reader.ReadStartElement("Pattern");
 
                 XmlSerializer serializer = new XmlSerializer(typeof(RubiksCube));
@@ -79,7 +72,6 @@
         {
             writer.WriteAttributeString("Name", this.Name);
             writer.WriteAttributeString("GroupSize", this.GroupSize.ToString());
-            writer.WriteAttributeString("MaxDepth", this.MaxDepth.ToString());
 
             XmlSerializer serializer = new XmlSerializer(typeof(RubiksCube));
             serializer.Serialize(writer, this.Mask);

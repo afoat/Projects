@@ -11,8 +11,6 @@
     /// </summary>
     internal sealed class PatternSetGeneratorWorker
     {
-        public int MaxDepth { get; private set; }
-
         public int GroupSize { get; private set; }
         
         /// <summary>
@@ -30,9 +28,8 @@
         /// </summary>
         public int CurrentMaxDepth { get; private set; }
 
-        public PatternSetGeneratorWorker(RubiksCubeDepthDatabase patternDatabase, PuzzleStateQueue cubesToExamine, int groupSize, int maxDepth)
+        public PatternSetGeneratorWorker(RubiksCubeDepthDatabase patternDatabase, PuzzleStateQueue cubesToExamine, int groupSize)
         {
-            this.MaxDepth = maxDepth;
             this.GroupSize = groupSize;
 
             this.PatternDatabase = patternDatabase;
@@ -70,7 +67,7 @@
 
                         lock (this.PatternDatabase)
                         {
-                            if (!this.PatternDatabase.Contains(rubiksCube) && newDepth <= this.MaxDepth)
+                            if (!this.PatternDatabase.Contains(rubiksCube))
                             {
                                 if (!this.CubesToExamine.TryEnqueue(new PuzzleState<RubiksCube>(move, newDepth, rubiksCube)))
                                 {

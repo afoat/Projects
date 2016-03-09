@@ -70,8 +70,7 @@
                         new PatternSetGeneratorWorker(
                             patternDatabase,
                             cubesToExamine,
-                            pattern.GroupSize,
-                            pattern.MaxDepth
+                            pattern.GroupSize
                             ).Work();
                     });
 
