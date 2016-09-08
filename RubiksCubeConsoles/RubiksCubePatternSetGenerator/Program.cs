@@ -30,21 +30,21 @@
         private static IEnumerable<Pattern> GetPatternsToGenerate()
         {
             Pattern[] patterns = new Pattern[] {
-                new Pattern("EdgeGroup1",   42577920, 10, RubiksCubeFactory.CreateEdgeGroup1MaskCube()),
-                new Pattern("EdgeGroup2",   42577920, 10, RubiksCubeFactory.CreateEdgeGroup2MaskCube()),
-                new Pattern("EdgeGroup3",   42577920, 10, RubiksCubeFactory.CreateEdgeGroup3MaskCube()),
-                new Pattern("EdgeGroup4",   42577920, 10, RubiksCubeFactory.CreateEdgeGroup4MaskCube()),
-                new Pattern("EdgeGroup5",   42577920, 10, RubiksCubeFactory.CreateEdgeGroup5MaskCube()),
-                new Pattern("EdgeGroup6",   42577920, 10, RubiksCubeFactory.CreateEdgeGroup6MaskCube()),
-                new Pattern("EdgeGroup7",   42577920, 10, RubiksCubeFactory.CreateEdgeGroup7MaskCube()),
-                new Pattern("CornersOnly",  88179840, 11, RubiksCubeFactory.CreateCornersOnlyCube()),
+                new Pattern("EdgeGroup1",   42577920, RubiksCubeFactory.CreateEdgeGroup1MaskCube()),
+                new Pattern("EdgeGroup2",   42577920, RubiksCubeFactory.CreateEdgeGroup2MaskCube()),
+                new Pattern("EdgeGroup3",   42577920, RubiksCubeFactory.CreateEdgeGroup3MaskCube()),
+                new Pattern("EdgeGroup4",   42577920, RubiksCubeFactory.CreateEdgeGroup4MaskCube()),
+                new Pattern("EdgeGroup5",   42577920, RubiksCubeFactory.CreateEdgeGroup5MaskCube()),
+                new Pattern("EdgeGroup6",   42577920, RubiksCubeFactory.CreateEdgeGroup6MaskCube()),
+                new Pattern("EdgeGroup7",   42577920, RubiksCubeFactory.CreateEdgeGroup7MaskCube()),
+                new Pattern("CornersOnly",  88179840, RubiksCubeFactory.CreateCornersOnlyCube()),
                 // What follows wont generate on a computer with 8GB ram
-                //new Pattern("HybridGroup1", 95800320, 11, RubiksCubeFactory.CreateHybridGroup1MaskCube()),
-                //new Pattern("HybridGroup2", 95800320, 11, RubiksCubeFactory.CreateHybridGroup2MaskCube()),
-                //new Pattern("HybridGroup3", 95800320, 11, RubiksCubeFactory.CreateHybridGroup3MaskCube()),
-                //new Pattern("HybridGroup4", 95800320, 11, RubiksCubeFactory.CreateHybridGroup4MaskCube()),
+                //new Pattern("HybridGroup1", 95800320, RubiksCubeFactory.CreateHybridGroup1MaskCube()),
+                //new Pattern("HybridGroup2", 95800320, RubiksCubeFactory.CreateHybridGroup2MaskCube()),
+                //new Pattern("HybridGroup3", 95800320, RubiksCubeFactory.CreateHybridGroup3MaskCube()),
+                //new Pattern("HybridGroup4", 95800320, RubiksCubeFactory.CreateHybridGroup4MaskCube()),
                 // What follows wont generate on a computer with 32GB ram (it might now - cant currently test this myself)
-                //new Pattern("7Corners1Edge-A",   352719360, 15, RubiksCubeFactory.Create7Corners1EdgeGroupA()),
+                //new Pattern("7Corners1Edge-A",   352719360, RubiksCubeFactory.Create7Corners1EdgeGroupA()),
             };
 
             return patterns;
