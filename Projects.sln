@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foat.Collections", "Libraries\Foat\Collections\Foat.Collections.csproj", "{8EDD2050-80A7-47A5-9D5F-B5D5C0AC7A79}"
 EndProject
@@ -40,7 +40,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foat.Collections.Tests", "U
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foat", "Libraries\Foat\Foat.csproj", "{60B57F74-C556-41C7-BF31-E756647D4120}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PermutationTestConsole", "PermutationTestConsole\PermutationTestConsole.csproj", "{77B9A029-0EE9-4D1F-9D92-1C4D457CD530}"
+EndProject
 Global
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -180,6 +185,18 @@ Global
 		{60B57F74-C556-41C7-BF31-E756647D4120}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{60B57F74-C556-41C7-BF31-E756647D4120}.Release|x64.ActiveCfg = Release|x64
 		{60B57F74-C556-41C7-BF31-E756647D4120}.Release|x64.Build.0 = Release|x64
+		{77B9A029-0EE9-4D1F-9D92-1C4D457CD530}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77B9A029-0EE9-4D1F-9D92-1C4D457CD530}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77B9A029-0EE9-4D1F-9D92-1C4D457CD530}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{77B9A029-0EE9-4D1F-9D92-1C4D457CD530}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{77B9A029-0EE9-4D1F-9D92-1C4D457CD530}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{77B9A029-0EE9-4D1F-9D92-1C4D457CD530}.Debug|x64.Build.0 = Debug|Any CPU
+		{77B9A029-0EE9-4D1F-9D92-1C4D457CD530}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77B9A029-0EE9-4D1F-9D92-1C4D457CD530}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77B9A029-0EE9-4D1F-9D92-1C4D457CD530}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{77B9A029-0EE9-4D1F-9D92-1C4D457CD530}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{77B9A029-0EE9-4D1F-9D92-1C4D457CD530}.Release|x64.ActiveCfg = Release|Any CPU
+		{77B9A029-0EE9-4D1F-9D92-1C4D457CD530}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -197,5 +214,6 @@ Global
 		{74349D22-E179-4A00-8995-63F7EE7DFA73} = {371B798D-F97E-402D-9624-DA69DA63AE38}
 		{776B75BD-02A2-47DC-9A13-7A8B6552E4CE} = {74349D22-E179-4A00-8995-63F7EE7DFA73}
 		{60B57F74-C556-41C7-BF31-E756647D4120} = {371B798D-F97E-402D-9624-DA69DA63AE38}
+		{77B9A029-0EE9-4D1F-9D92-1C4D457CD530} = {637D3672-3E95-4BA0-A22B-919AB847F4F7}
 	EndGlobalSection
 EndGlobal
