@@ -42,6 +42,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foat", "Libraries\Foat\Foat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PermutationTestConsole", "PermutationTestConsole\PermutationTestConsole.csproj", "{77B9A029-0EE9-4D1F-9D92-1C4D457CD530}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foat.Tests", "Unit Tests\Foat.Tests\Foat.Tests.csproj", "{34186A23-2C39-4905-844D-4DF3D0985451}"
+EndProject
 Global
 	GlobalSection(Performance) = preSolution
 		HasPerformanceSessions = true
@@ -197,6 +199,18 @@ Global
 		{77B9A029-0EE9-4D1F-9D92-1C4D457CD530}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{77B9A029-0EE9-4D1F-9D92-1C4D457CD530}.Release|x64.ActiveCfg = Release|Any CPU
 		{77B9A029-0EE9-4D1F-9D92-1C4D457CD530}.Release|x64.Build.0 = Release|Any CPU
+		{34186A23-2C39-4905-844D-4DF3D0985451}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34186A23-2C39-4905-844D-4DF3D0985451}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34186A23-2C39-4905-844D-4DF3D0985451}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{34186A23-2C39-4905-844D-4DF3D0985451}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{34186A23-2C39-4905-844D-4DF3D0985451}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{34186A23-2C39-4905-844D-4DF3D0985451}.Debug|x64.Build.0 = Debug|Any CPU
+		{34186A23-2C39-4905-844D-4DF3D0985451}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34186A23-2C39-4905-844D-4DF3D0985451}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34186A23-2C39-4905-844D-4DF3D0985451}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{34186A23-2C39-4905-844D-4DF3D0985451}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{34186A23-2C39-4905-844D-4DF3D0985451}.Release|x64.ActiveCfg = Release|Any CPU
+		{34186A23-2C39-4905-844D-4DF3D0985451}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -215,5 +229,6 @@ Global
 		{776B75BD-02A2-47DC-9A13-7A8B6552E4CE} = {74349D22-E179-4A00-8995-63F7EE7DFA73}
 		{60B57F74-C556-41C7-BF31-E756647D4120} = {371B798D-F97E-402D-9624-DA69DA63AE38}
 		{77B9A029-0EE9-4D1F-9D92-1C4D457CD530} = {637D3672-3E95-4BA0-A22B-919AB847F4F7}
+		{34186A23-2C39-4905-844D-4DF3D0985451} = {74349D22-E179-4A00-8995-63F7EE7DFA73}
 	EndGlobalSection
 EndGlobal

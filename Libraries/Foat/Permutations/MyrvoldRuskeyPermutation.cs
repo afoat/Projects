@@ -5,11 +5,12 @@
 
     /// <summary>
     /// A class capable of ranking and unranking a permutation of N integers that are all in the range of
-    /// 0 ... N - 1.
+    /// 0 ... N - 1. The order of the ranks that this algorithm produces is not lexicographical. Instead,
+    /// the order of the ranks is defined by the algorithm itself. It was designed to run in O(n) time.
     /// 
     /// http://webhome.cs.uvic.ca/~ruskey/Publications/RankPerm/RankPerm.html
     /// </summary>
-    public static class Permutation
+    public static class MyrvoldRuskeyPermutation
     {
 
         #region Helper Functions

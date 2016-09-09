@@ -14,8 +14,8 @@ namespace PermutationTestConsole
         {
             for (byte i = 0; i < 24; ++i)
             {
-                byte[] permutation = Permutation.Unrank(4, i);
-                int rank = Permutation.Rank(permutation);
+                byte[] permutation = MyrvoldRuskeyPermutation.Unrank(4, i);
+                int rank = MyrvoldRuskeyPermutation.Rank(permutation);
 
                 //Console.Write(Permutation.Format(permutation));
                 //Console.Write(" Rank = ");
