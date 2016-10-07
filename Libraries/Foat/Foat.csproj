@@ -55,8 +55,10 @@
     <AssemblyOriginatorKeyFile>..\..\key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Combinatorics.cs" />
+    <Compile Include="Convert.cs" />
     <Compile Include="IRandom.cs" />
-    <Compile Include="Permutations\Permutation.cs" />
+    <Compile Include="Permutations\MyrvoldRuskeyPermutation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Random.cs" />
   </ItemGroup>
